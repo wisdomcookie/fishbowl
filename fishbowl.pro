@@ -1,4 +1,8 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-    profile
+    admin \
+    comm \
+    groups \
+    profiles \
+    search
