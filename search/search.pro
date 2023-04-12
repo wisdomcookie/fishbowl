@@ -4,4 +4,10 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        main.cpp
+        main.cpp \
+        results.cpp \
+        searchengine.cpp
+
+HEADERS += \
+    results.h \
+    searchengine.h

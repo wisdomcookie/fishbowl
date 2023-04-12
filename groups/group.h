@@ -14,7 +14,7 @@ public:
 private:
     std::string name;
     std::string description;
-    std::vector<Admin> admin;
+    std::vector<Administrator> admin;
     std::vector<Profile> members;
 
 };

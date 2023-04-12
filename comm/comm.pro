@@ -4,4 +4,14 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        main.cpp
+        chat.cpp \
+        groupchat.cpp \
+        main.cpp \
+        message.cpp \
+        post.cpp
+
+HEADERS += \
+    chat.h \
+    groupchat.h \
+    message.h \
+    post.h
