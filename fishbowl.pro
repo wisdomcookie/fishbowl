@@ -2,4 +2,8 @@ TEMPLATE = subdirs
 
 SUBDIRS += \
     comm_database \
-    profile
+    admin \
+    comm \
+    groups \
+    profiles \
+    search
