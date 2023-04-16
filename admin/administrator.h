@@ -2,7 +2,7 @@
 #define ADMINISTRATOR_H
 #include "../profiles/profile.h"
 
-class Administrator: public Profile
+class Administrator: public profile
 {
 public:
     Administrator();
