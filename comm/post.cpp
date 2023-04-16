@@ -4,3 +4,7 @@ Post::Post()
 {
 
 }
+
+void Post::create_post(){
+
+}
