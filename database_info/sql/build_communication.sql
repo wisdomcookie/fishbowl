@@ -8,7 +8,7 @@ create table posts (
     primary key (post_id)              ,
     foreign key (poster_id) references profile(profile_id));
 
-create table postComments (
+create table post_comments (
       comment_id   INT  NOT NULL UNIQUE ,
       post_id      INT  NOT NULL        ,
       commenter_id INT  NOT NULL        ,
@@ -28,6 +28,6 @@ create table messages (
 
 .separator ","
 .mode csv
-.import "build/posts.csv"         posts
-.import "build/postComments.csv"  postComments
-.import "build/messages.csv"      messages
+.import "data/posts.csv"         posts
+.import "data/post_comments.csv"  post_comments
+.import "data/messages.csv"      messages

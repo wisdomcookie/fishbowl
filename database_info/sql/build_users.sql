@@ -2,7 +2,7 @@ create table profile (
       profile_id   INT  NOT NULL UNIQUE ,
       username     TEXT NOT NULL UNIQUE ,
       name         TEXT NOT NULL        ,
-      type         INT  NOT NULL        ,
+      type         TEXT NOT NULL        ,
       date_created DATE NOT NULL        ,
       description  TEXT                 ,
     primary key (profile_id)            ,
@@ -44,9 +44,9 @@ create table login (
 
 .separator ","
 .mode csv
-.import "build/profile.csv"            profile
-.import "build/group.csv"              groups
-.import "build/group_participants.csv" group_participants
-.import "build/friends.csv"            friends
-.import "build/fish.csv"               fish
-.import "build/login.csv"              login
+.import "data/profile.csv"            profile
+.import "data/group.csv"              groups
+.import "data/group_participants.csv" group_participants
+.import "data/friends.csv"            friends
+.import "data/fish.csv"               fish
+.import "data/login.csv"              login
