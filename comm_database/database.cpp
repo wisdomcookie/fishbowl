@@ -71,7 +71,7 @@ std::string Database::query_string(){
 
     for(auto &i: results){
         for(auto &j: i){
-            str += j.toStdString() + "|";
+            str += j + "|";
         }
         str += "\n";
     }
