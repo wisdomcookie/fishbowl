@@ -7,6 +7,19 @@ Database::Database()
     db = QSqlDatabase::addDatabase("QSQLITE");
 
     db.setDatabaseName(path);
+    if (!db.open())
+    {
+        std::cout << "Error: connection with database fail"
+                  << std::endl;
+        exit(1);
+    }
+    else
+    {
+        std::cout  << "Database: connection ok"
+                  << std::endl;
+    }
+
+    query = new QSqlQuery(db);
 }
 
 Database::~Database(){
