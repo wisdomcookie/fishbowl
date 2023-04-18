@@ -6,17 +6,20 @@
 #include "QSqlQuery"
 #include "QSqlError"
 #include "QVariant"
+#include "QSqlRecord"
 #include <string>
 #include <iostream>
 
-class database
+class Database
 {
 public:
-    database();
-    ~database();
+    Database();
+    ~Database();
 
     void open();
-    int queries(QString);
+    void query_exec(QString);
+    int query_size();
+    std::string query_string();
     void close();
 
 private:

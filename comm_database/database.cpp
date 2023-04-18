@@ -1,19 +1,19 @@
-#include "database.h"
+﻿#include "database.h"
 
-database::database()
+Database::Database()
 {
-    QString path("../database_info/fishbowl.sqlite");
+    QString path("../database_info/fishbowlDB.sqlite");
 
     db = QSqlDatabase::addDatabase("QSQLITE");
 
     db.setDatabaseName(path);
 }
 
-database::~database(){
-
+Database::~Database(){
+    delete query;
 }
 
-void database::open(){
+void Database::open(){
     if (!db.open())
     {
        std::cout << "Error: connection with database fail"
@@ -29,7 +29,7 @@ void database::open(){
     query = new QSqlQuery(db);
 }
 
-int database::queries(QString s) {
+void Database::query_exec(QString s) {
 
     // create the sql command
     QString sqlcmd = s;
@@ -41,12 +41,47 @@ int database::queries(QString s) {
     }
 
     // return the number of rows retrieved from the table
-    return query->size();
+
+}
+
+int Database::query_size(){
+    int res = 0;
+    if(query->last())
+    {
+        res =  query->at() + 1;
+        query->first();
+        query->previous();
+    }
+    return res;
+}
+
+std::string Database::query_string(){
+    QString res("");
+
+    std::vector<std::vector<QString>> results;
+    while (query->next()) {
+
+        QSqlRecord rec = query->record();
+        std::vector<QString> row;
+        for(int i = 0; i < rec.count(); i++){
+            row.push_back(rec.value(i).toString());
+        }
+        results.push_back(row);
+    }
+
+    for(auto &i: results){
+        for(auto &j: i){
+            res += j.toStdString() + "|";
+        }
+        res += "\n";
+    }
+
+    return res.toStdString();
 }
 
 //int database::insert()
 
-void database::close(){
+void Database::close(){
     db.close();
 
     std::cout  << "Database: successfully closed"

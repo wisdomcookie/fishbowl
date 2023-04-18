@@ -5,9 +5,11 @@ using namespace std;
 
 int main()
 {
-     database d;
-     d.open();
+    Database d;
+    d.open();
 
-     //d.queries("select * from profile;");
-     d.close();
+    d.query_exec("select * from profiles;");
+    cout << d.query_size() << endl;
+    cout << d.query_string();
+    d.close();
 }
