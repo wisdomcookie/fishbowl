@@ -56,7 +56,7 @@ int Database::query_size(){
 }
 
 std::string Database::query_string(){
-    QString res("");
+    QString str("");
 
     std::vector<std::vector<QString>> results;
     while (query->next()) {
@@ -71,12 +71,12 @@ std::string Database::query_string(){
 
     for(auto &i: results){
         for(auto &j: i){
-            res += j.toStdString() + "|";
+            str += j.toStdString() + "|";
         }
-        res += "\n";
+        str += "\n";
     }
 
-    return res.toStdString();
+    return str.toStdString();
 }
 
 //int database::insert()
