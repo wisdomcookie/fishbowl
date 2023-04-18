@@ -4,7 +4,7 @@ drop table if exists messages;
 drop table if exists banned_users;
 drop table if exists admins;
 drop table if exists reports;
-drop table if exists profile;
+drop table if exists profiles;
 drop table if exists groups;
 drop table if exists group_participants;
 drop table if exists friends;

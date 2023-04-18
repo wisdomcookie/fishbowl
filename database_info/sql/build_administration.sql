@@ -1,15 +1,15 @@
 create table banned_users (
       profile_id  INT  NOT NULL ,
       group_id    INT  NOT NULL ,
-      ban_date    DATE NOT NULL ,
+      ban_date    TEXT NOT NULL ,
       reason      TEXT NOT NULL ,
-    foreign key (profile_id) references profile(profile_id) ,
+    foreign key (profile_id) references profiles(profile_id) ,
     foreign key (group_id) references groups(group_id));
 
 create table admins (
       profile_id  INT  NOT NULL ,
       group_id    INT  NOT NULL ,
-    foreign key (profile_id) references profile(profile_id) ,
+    foreign key (profile_id) references profiles(profile_id) ,
     foreign key (group_id) references groups(group_id));
 
 create table reports (
@@ -17,8 +17,8 @@ create table reports (
       reported_id INT  NOT NULL ,
       type        TEXT NOT NULL ,
       reasoning   TEXT NOT NULL ,
-    foreign key (reporter_id) references profile(profile_id),
-    foreign key (reported_id) references profile(profile_id));
+    foreign key (reporter_id) references profiles(profile_id),
+    foreign key (reported_id) references profiles(profile_id));
 
 .separator ","
 .mode csv
