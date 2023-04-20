@@ -1,7 +1,14 @@
 #ifndef POST_H
 #define POST_H
-#include "../profiles/profile.h"
-#include "postcomment.h"
+
+
+#include "qdatetime.h"
+#include <vector>
+class Profile;
+class Group;
+
+
+class PostComment;
 
 class Post
 {

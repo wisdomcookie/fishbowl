@@ -1,7 +1,9 @@
 TEMPLATE = app
 CONFIG += console c++17
 CONFIG -= app_bundle
-CONFIG -= qt
+
+QT += core
+QT += sql
 
 SOURCES += \
         aquarium.cpp \
@@ -14,4 +16,6 @@ HEADERS += \
     fish.h \
     profile.h
 
-FORMS +=
+HEADERS += ../comm_database/database.h
+
+SOURCES += ../comm_database/databse.cpp

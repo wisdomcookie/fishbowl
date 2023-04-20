@@ -2,6 +2,7 @@
 #define POSTCOMMENT_H
 #include "../profiles/profile.h"
 
+#include "post.h"
 
 class PostComment
 {

@@ -1,8 +1,9 @@
 #ifndef MESSAGE_H
 #define MESSAGE_H
-#include "../profiles/profile.h"
+
 #include "QDateTime"
 
+class Profile;
 class GroupChat;
 
 class Message

@@ -1,29 +1,28 @@
 #include "profile.h"
 
-profile::profile() {
-
+Profile::Profile() {
 }
 
-profile::profile(string username, string password) {
-    //need access to general database of users' usernames and ID's
+Profile::Profile(string username, string password) {
     this->username = username;
     this->password = password;
-    //generate a unique ID by order of profile creation
+    Database d;
+    d.query_exec("select * from profiles");  //make sure name of table is correct
+    id = d.query_size() + 1;
 }
 
-profile::~profile() {
+Profile::~Profile() {
     delete this;
 }
 
 /**
- * Add a friend to your pending friends list. A signal that the target profile
- * has accepted your request will be required for the target profile to be
- * moved from your pending friends list to your friends list.
+ * Add a friend to your friends list. Your new friend will need to add you back
+ * for the friending process to be completed.
  * @brief profile::addFriend
  * @param x
  */
-void profile::addFriend(profile* x) {
-
+void Profile::addFriend(Profile* x) {
+    friendsList.push_back(x);
 }
 
 /**
@@ -34,7 +33,7 @@ void profile::addFriend(profile* x) {
  * @brief profile::removeFriend
  * @param x
  */
-void profile::removeFriend(profile* x) {
+void Profile::removeFriend(Profile* x) {
     for (unsigned long i=0; i<friendsList.size(); i++) {
         if (friendsList.at(i) == x) {
             friendsList.erase(friendsList.begin() + i);
@@ -48,10 +47,10 @@ void profile::removeFriend(profile* x) {
  * @brief profile::removeFriendForeign
  * @param x
  */
-void profile::removeFriendForeign(profile* x) {
-    for (unsigned long i=0; i<friendsList.size(); i++) {
-        if (friendsList.at(i) == x) {
-            friendsList.erase(friendsList.begin() + i);
+void Profile::removeFriendForeign(Profile* x) {
+    for (unsigned long i=0; i<x->friendsList.size(); i++) {
+        if (x->friendsList.at(i) == this) {
+            x->friendsList.erase(friendsList.begin() + i);
         }
     }
 }
@@ -60,13 +59,13 @@ void profile::removeFriendForeign(profile* x) {
  * This method and changeUsername & changePassword are simple edit
  * methods available to the user to change their profile info.
  */
-void profile::changeBio(string x) {
+void Profile::changeBio(string x) {
     bio = x;
 }
-void profile::changeUsername(string x) {
+void Profile::changeUsername(string x) {
     username = x;
 }
-void profile::changePassword(string x) {
+void Profile::changePassword(string x) {
     password = x;
 }
 
@@ -76,8 +75,8 @@ void profile::changePassword(string x) {
  * @brief profile::createFish
  * @param name
  */
-void profile::createFish(string name, string species) {
-    fish* x = new fish(name, species);
+void Profile::createFish(string name, string species) {
+    Fish* x = new Fish(name, species);
     collection.push_back(x);
     x->location = this->location;
 }
@@ -87,7 +86,7 @@ void profile::createFish(string name, string species) {
  * @brief profile::removeFish
  * @param x
  */
-void profile::removeFish(fish* x) {
+void Profile::removeFish(Fish* x) {
     for (unsigned long i=0; i<collection.size(); i++) {
         if (collection.at(i) == x) {
             collection.erase(collection.begin() + i);
@@ -101,7 +100,7 @@ void profile::removeFish(fish* x) {
  * @param x
  * @param y
  */
-void profile::changeFishBio(fish* x, string y) {
+void Profile::changeFishBio(Fish* x, string y) {
     x->bio = y;
 }
 
@@ -113,10 +112,69 @@ void profile::changeFishBio(fish* x, string y) {
  * @param x
  * @param y
  */
-void profile::changeFishLocation(fish* x, string y) {
+void Profile::changeFishLocation(Fish* x, string y) {
     x->location = y;
 }
 
+/**
+ * Add group to the adminlist.
+ * @brief profile::addAdminGroup
+ * @param g
+ */
+void Profile::addAdminGroup(Group* g) {
+    adminList.push_back(g);
+}
+
+/**
+ * Add a message to the profile's history of messages.
+ * @brief profile::addMessage
+ * @param m
+ */
+void Profile::addMessage(Message* m) {
+    messageHistory.push_back(m);
+}
+
+/**
+ * Add a post to the profile's history of posts.
+ * @brief profile::addPost
+ * @param p
+ */
+void Profile::addPost(Post* p) {
+    postHistory.push_back(p);
+}
+
+/**
+ * Add a group to the profile's list of groups.
+ * @brief profile::addGroup
+ * @param g
+ */
+void Profile::addGroup(Group* g) {
+    groupsList.push_back(g);
+}
+
+
+//Getter and setter methods
+string Profile::getNameFirst() {
+    return nameFirst;
+}
+string Profile::getNameLast() {
+    return nameLast;
+}
+string Profile::getUsername() {
+    return username;
+}
+string Profile::getBio() {
+    return bio;
+}
+string Profile::getLocation() {
+    return location;
+}
+string Profile::getPreference() {
+    return preference;
+}
+string Profile::getAge() {
+    return age;
+}
 
 
 

@@ -1,23 +1,25 @@
 #ifndef PROFILE_H
 #define PROFILE_H
 #include <vector>
+
 #include "../comm/post.h"
 #include "../comm/message.h"
+#include "../comm_database/database.h"
 
 using namespace std;
 
-class Group;
+//class Group;
 #include "../groups/group.h"
 
-class fish;
+//class Fish;
 #include "fish.h"
 
 class Profile
 {
 public:
-    profile();
-    profile(string username, string password);
-    ~profile();
+    Profile();
+    Profile(string username, string password);
+    ~Profile();
 
     //  -------- Profile information --------  //
 
@@ -29,34 +31,33 @@ public:
 
     //Profile information General
     string bio;
-    int id, admin;  //admin int = the id of the group for which the profile is an admin
-
+    vector<Group*> adminList;   //list of groups this profile is an admin for
+    int id;
 
     //Profile attributes -> expand this list
     string location, preference, age;
 
     //Friends list
-    vector<profile*> friendsList;
-    vector<profile*> pendingFriendsList;
+    vector<Profile*> friendsList;
 
     //Groups list
     vector<Group*> groupsList;
 
     //Post/Message History
     vector<Post*> postHistory;
-    vector<Message*> messageHistory;
+    vector<Message*> messageHistory;    //store different chats with other profiles
 
     //Fish owned by profile
-    vector<fish*> collection;
+    vector<Fish*> collection;
 
     //Settings
     bool access;    //private or public account
 
     //  -------- Methods --------  //
 
-    void addFriend(profile* x);
-    void removeFriend(profile* x);  //remove friend at profile
-    void removeFriendForeign(profile* x);  //remove friend at foreign profile
+    void addFriend(Profile* x);
+    void removeFriend(Profile* x);  //remove friend at profile
+    void removeFriendForeign(Profile* x);  //remove friend at foreign profile
 
     void changeBio(string x);
     void changeUsername(string x);
@@ -64,9 +65,26 @@ public:
     //change attributes here
 
     void createFish(string name, string species);
-    void removeFish(fish* x);
-    void changeFishBio(fish* x, string y);
-    void changeFishLocation(fish* x, string y);
+    void removeFish(Fish* x);
+    void changeFishBio(Fish* x, string y);
+    void changeFishLocation(Fish* x, string y);
+
+    void addAdminGroup(Group* g);
+
+    void addMessage(Message* m);
+    void addPost(Post* p);
+    void addGroup(Group* g);
+
+    // --- Getter/Setter Methods --- //
+
+    string getNameFirst();
+    string getNameLast();
+    string getUsername();
+    string getBio();
+    string getLocation();
+    string getPreference();
+    string getAge();
+
 };
 
 #endif // PROFILE_H

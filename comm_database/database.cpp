@@ -7,6 +7,7 @@ Database::Database()
     db = QSqlDatabase::addDatabase("QSQLITE");
 
     db.setDatabaseName(path);
+
     if (!db.open())
     {
         std::cout << "Error: connection with database fail"
@@ -25,6 +26,7 @@ Database::Database()
 Database::~Database(){
     delete query;
 }
+
 
 void Database::open(){
     if (!db.open())
@@ -68,8 +70,11 @@ int Database::query_size(){
     return res;
 }
 
+
 QString Database::query_string(){
+
     QString str("");
+
 
     std::vector<std::vector<QString>> results;
     while (query->next()) {
@@ -89,7 +94,9 @@ QString Database::query_string(){
         str += "\n";
     }
 
+
     return str;
+
 }
 
 //int database::insert()
