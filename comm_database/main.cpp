@@ -16,7 +16,8 @@ int main()
     d.query_exec("select * from profiles;");
     cout << d.query_string().toStdString() << endl;
 
-    d.query_exec("update profiles set(name, description) = ('Nathan2', 'check') where username='nathandinh2';");
+    QString str = QDateTime::currentDateTime().toString();
+    d.query_exec("update profiles set(name, description, date_created) = ('Nathan2', 'check', '" + str + "') where username='nathandinh2';");
     d.query_exec("select * from profiles;");
     cout << d.query_string().toStdString() << endl;
 
@@ -27,7 +28,7 @@ int main()
 
     d.close();
 
-    cout << QDateTime::currentDateTime().toString().toStdString() << endl;
+    cout << QDateTime::currentDateTimeUtc().toString(QString("yyyy-MM-dd hh:mm:ss")).toStdString() << endl;
 
     QString str1("asd");
     QString str2("gsdf");
