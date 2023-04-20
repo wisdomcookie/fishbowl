@@ -1,7 +1,10 @@
 TEMPLATE = app
 CONFIG += console c++17
+CONFIG += c++20
 CONFIG -= app_bundle
-CONFIG -= qt
+
+QT += core
+QT += sql
 
 SOURCES += \
         chat.cpp \
@@ -15,3 +18,8 @@ HEADERS += \
     groupchat.h \
     message.h \
     post.h
+
+
+HEADERS += ../profiles/profile.h
+
+SOURCES += ../profiles/profile.cpp

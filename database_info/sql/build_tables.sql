@@ -60,13 +60,26 @@ create table post_comments (
     foreign key (post_id) references posts(post_id),
     foreign key (commenter_id) references profiles(profile_id));
 
+create table chats (
+    chat_id INTEGER PRIMARY KEY,
+    name TEXT, 
+    size INTEGER NOT NULL,
+    date_created TEXT NOT NULL);
+
+create table chat_participants (
+     chat_id INTEGER NOT NULL,
+     participant_id,
+    foreign key (chat_id) references chats(chat_id),
+    foreign key (participant_id) references profiles(profile_id));
+
 create table messages (
+      message_id    INTEGER PRIMARY KEY,
       sender_id     INTEGER  NOT NULL ,
-      receiver_id   INTEGER  NOT NULL ,
+      chat_id   INTEGER  NOT NULL ,
       content       TEXT NOT NULL ,
       message_date  TEXT NOT NULL ,
     foreign key (sender_id) references profiles(profile_id) ,
-    foreign key (receiver_id) references profiles(profile_id));
+    foreign key (chat_id) references chats(chat_id));
 
 -----------------------------------------------------------------------------
 

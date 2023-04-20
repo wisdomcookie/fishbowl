@@ -1,6 +1,6 @@
 #include <iostream>
 #include "database.h"
-
+#include "QDateTime"
 using namespace std;
 
 int main()
@@ -26,4 +26,20 @@ int main()
 
 
     d.close();
+
+    cout << QDateTime::currentDateTime().toString().toStdString() << endl;
+
+    QString str1("asd");
+    QString str2("gsdf");
+
+    cout << str1.toStdString();
+    cout << str2.toStdString();
+
+    str1 = str2;
+
+
+    cout << str1.toStdString();
+    cout << str2.toStdString();
+
+
 }

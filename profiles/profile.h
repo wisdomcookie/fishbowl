@@ -12,7 +12,7 @@ class Group;
 class fish;
 #include "fish.h"
 
-class profile
+class Profile
 {
 public:
     profile();

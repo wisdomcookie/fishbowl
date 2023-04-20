@@ -1,8 +1,8 @@
 #ifndef ADMINISTRATOR_H
 #define ADMINISTRATOR_H
-#include "../profiles/profile.h"
+//#include "../profiles/profile.h"
 
-class Administrator: public profile
+class Administrator//: public Profile
 {
 public:
     Administrator();
