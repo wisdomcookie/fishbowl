@@ -15,6 +15,7 @@ public:
 
     int get_id();
     Profile *get_creator();
+    Group *get_sourceGroup();
     QString get_title();
     QString get_content();
     QDateTime get_dateCreated();
@@ -23,7 +24,7 @@ public:
 private:
     int id;
     Profile *creator;
-    Group *group;
+    Group *sourceGroup;
     QString title;
     QString content;
     QDateTime dateCreated;

@@ -5,13 +5,13 @@ Post::Post()
 
 }
 
-Post::Post(int id, Profile *creator, Group *group, QString title, QString content, QDateTime dateCreated, std::vector<PostComment*> comments):
-    id(id), creator(creator), group(group), title(title), content(content), dateCreated(dateCreated), comments(comments){
+Post::Post(int id, Profile *creator, Group *sourceGroup, QString title, QString content, QDateTime dateCreated, std::vector<PostComment*> comments):
+    id(id), creator(creator), sourceGroup(sourceGroup), title(title), content(content), dateCreated(dateCreated), comments(comments){
 
 } // Load from database
 
-Post::Post(Profile *creator, Group *group, QString title, QString content):
-    creator(creator), group(group), title(title), content(content), dateCreated(QDateTime::currentDateTime()){
+Post::Post(Profile *creator, Group *sourceGroup, QString title, QString content):
+    creator(creator), sourceGroup(sourceGroup), title(title), content(content), dateCreated(QDateTime::currentDateTime()){
 
 } // User creates new post
 
