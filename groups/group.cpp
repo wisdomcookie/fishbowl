@@ -12,7 +12,7 @@ Group::Group(std::string name): name(name){
 Group::~Group(){
 
 }
-
+/*
 void Group::add_member(Person *person){
     members.insert(person);
 }
@@ -29,7 +29,7 @@ bool Group::remove_admin(Administrator *administrator){
 void Group::add_post(Post *post){
     postHistory.push_back(post);
 }
-
+*/
 bool Group::remove_post(Post *post){
 
     for(unsigned int i = 0 ; i < postHistory.size(); i++){
@@ -50,13 +50,13 @@ std::string Group::get_name(){
 }
 std::string Group::get_description(){
     return description;
-}
+}/*
 std::set<Administrator*> Group::get_admin(){
     return admin;
 }
 std::set<Person*> Group::get_members(){
     return members;
-}
+}*/
 Aquarium Group::get_aquarium(){
     return aquarium;
 }

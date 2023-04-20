@@ -9,7 +9,9 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    #fishbowl-main/Gui/Gui.pro \
     #connect.cpp \
+    #home2.cpp \
     main.cpp \
     home.cpp \
     ../profiles/fish.cpp \
@@ -18,7 +20,8 @@ SOURCES += \
 HEADERS += \
     home.h \
     ../profiles/fish.h \
-    ../profiles/profile.h
+    ../profiles/profile.h \
+    #home2.h
 
 FORMS += \
     #adminOptions.ui \
@@ -32,12 +35,13 @@ FORMS += \
     #friends.ui \
     #group.ui \
     #groups.ui \
-    home.ui \
-    #login.ui \
+    #home.ui \
+    login.ui \
     #messages.ui \
     #post.ui \
     #profile.ui \
-    #search.ui
+   #search.ui
+    home.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

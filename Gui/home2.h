@@ -1,28 +1,23 @@
-#ifndef HOME_H
-#define HOME_H
+#ifndef HOME2_H
+#define HOME2_H
 
 #include <QMainWindow>
-#include <QLayout>
-#include <QObject>
-#include <QVector>
-#include <vector>
-
-#include "../profiles/fish.h"
-#include "../profiles/profile.h"
+//#include "../profiles/fish.h"
+//#include "../profiles/profile.h"
 #include "../groups/group.h"
 #include "QtWidgets/qlistwidget.h"
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class Home; }
-QT_END_NAMESPACE
+namespace Ui {
+class home2;
+}
 
-class Home : public QMainWindow
+class home2 : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    Home(QWidget *parent = nullptr);
-    ~Home();
+    explicit home2(QWidget *parent = nullptr);
+    ~home2();
 
 private slots:
     void on_homeButton_clicked();
@@ -49,19 +44,10 @@ private slots:
 
     void on_EditFishProfile_clicked();
 
-    void on_edit_accepted();
-
-    void on_friends_clicked();
-
-    void on_groups_clicked();
-
-    void on_posts_clicked();
-
-    void on_fish_clicked();
-
 private:
-    Ui::Home *ui;
+    Ui::home2 *ui;
     profile p;
     fish* f;
 };
-#endif // HOME_H
+
+#endif // HOME2_H
