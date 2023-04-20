@@ -27,6 +27,23 @@ Database::~Database(){
     delete query;
 }
 
+
+void Database::open(){
+    if (!db.open())
+    {
+       std::cout << "Error: connection with database fail"
+                 << std::endl;
+       exit(1);
+    }
+    else
+    {
+       std::cout  << "Database: connection ok"
+                  << std::endl;
+    }
+
+    query = new QSqlQuery(db);
+}
+
 void Database::query_exec(QString s) {
 
     // create the sql command
@@ -54,7 +71,9 @@ int Database::query_size(){
 }
 
 std::string Database::query_string(){
-    std::string str("");
+
+    QString str("");
+
 
     std::vector<std::vector<QString>> results;
     while (query->next()) {
@@ -69,12 +88,11 @@ std::string Database::query_string(){
 
     for(auto &i: results){
         for(auto &j: i){
-            str += j.toStdString() + "|";
+            str += j + "|";
         }
         str += "\n";
     }
-
-    return str;
+    return str.toStdString();
 }
 
 //int database::insert()
