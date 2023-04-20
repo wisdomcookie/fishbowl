@@ -1,6 +1,9 @@
 #include "post.h"
 
-Post::Post()
-{
+Post::Post() {
+
+}
+
+void Post::create_post(){
 
 }

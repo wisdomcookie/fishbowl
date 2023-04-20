@@ -6,6 +6,8 @@ class Post
 {
 public:
     Post();
+
+    void create_post();
 };
 
 #endif // POST_H
