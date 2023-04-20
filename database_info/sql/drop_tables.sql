@@ -1,5 +1,7 @@
 drop table if exists posts;
 drop table if exists post_comments;
+drop table if exists chats;
+drop table if exists chat_participants;
 drop table if exists messages;
 drop table if exists banned_users;
 drop table if exists admins;

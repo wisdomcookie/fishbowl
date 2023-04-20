@@ -1,4 +1,6 @@
 #include "group.h"
+#include "../profiles/aquarium.h"
+#include "../comm/post.h"
 
 Group::Group(){
 
@@ -12,19 +14,19 @@ Group::~Group(){
 
 }
 
-void Group::add_member(profile *person){
+void Group::add_member(Profile *person){
     members.insert(person);
 }
 
-void Group::remove_member(profile *person){
+void Group::remove_member(Profile *person){
     members.erase(person);
 }
 
-void Group::add_admin(profile *administrator){
+void Group::add_admin(Profile *administrator){
     admin.insert(administrator);
 }
 
-void Group::remove_admin(profile *administrator){
+void Group::remove_admin(Profile *administrator){
     admin.erase(administrator);
 }
 
@@ -50,10 +52,10 @@ std::string Group::get_name(){
 std::string Group::get_description(){
     return description;
 }
-std::set<profile*> Group::get_admin(){
+std::set<Profile*> Group::get_admin(){
     return admin;
 }
-std::set<profile*> Group::get_members(){
+std::set<Profile*> Group::get_members(){
     return members;
 }
 Aquarium Group::get_aquarium(){

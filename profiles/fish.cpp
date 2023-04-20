@@ -1,14 +1,14 @@
 #include "fish.h"
 
-fish::fish() {
+Fish::Fish() {
 
 }
 
-fish::fish(string name, string species) {
+Fish::Fish(string name, string species) {
     this->name = name;
     this->species = species;
 }
 
-fish::~fish() {
+Fish::~Fish() {
 
 }

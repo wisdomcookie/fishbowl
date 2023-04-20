@@ -70,7 +70,8 @@ int Database::query_size(){
     return res;
 }
 
-std::string Database::query_string(){
+
+QString Database::query_string(){
 
     QString str("");
 
@@ -92,7 +93,10 @@ std::string Database::query_string(){
         }
         str += "\n";
     }
-    return str.toStdString();
+
+
+    return str;
+
 }
 
 //int database::insert()

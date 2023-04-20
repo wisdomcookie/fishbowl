@@ -8,18 +8,18 @@
 
 using namespace std;
 
-class Group;
+//class Group;
 #include "../groups/group.h"
 
-class fish;
+//class Fish;
 #include "fish.h"
 
-class profile
+class Profile
 {
 public:
-    profile();
-    profile(string username, string password);
-    ~profile();
+    Profile();
+    Profile(string username, string password);
+    ~Profile();
 
     //  -------- Profile information --------  //
 
@@ -38,7 +38,7 @@ public:
     string location, preference, age;
 
     //Friends list
-    vector<profile*> friendsList;
+    vector<Profile*> friendsList;
 
     //Groups list
     vector<Group*> groupsList;
@@ -48,16 +48,16 @@ public:
     vector<Message*> messageHistory;    //store different chats with other profiles
 
     //Fish owned by profile
-    vector<fish*> collection;
+    vector<Fish*> collection;
 
     //Settings
     bool access;    //private or public account
 
     //  -------- Methods --------  //
 
-    void addFriend(profile* x);
-    void removeFriend(profile* x);  //remove friend at profile
-    void removeFriendForeign(profile* x);  //remove friend at foreign profile
+    void addFriend(Profile* x);
+    void removeFriend(Profile* x);  //remove friend at profile
+    void removeFriendForeign(Profile* x);  //remove friend at foreign profile
 
     void changeBio(string x);
     void changeUsername(string x);
@@ -65,9 +65,9 @@ public:
     //change attributes here
 
     void createFish(string name, string species);
-    void removeFish(fish* x);
-    void changeFishBio(fish* x, string y);
-    void changeFishLocation(fish* x, string y);
+    void removeFish(Fish* x);
+    void changeFishBio(Fish* x, string y);
+    void changeFishLocation(Fish* x, string y);
 
     void addAdminGroup(Group* g);
 

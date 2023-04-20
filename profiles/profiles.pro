@@ -16,4 +16,6 @@ HEADERS += \
     fish.h \
     profile.h
 
-FORMS +=
+HEADERS += ../comm_database/database.h
+
+SOURCES += ../comm_database/databse.cpp
