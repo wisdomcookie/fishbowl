@@ -11,15 +11,18 @@ SOURCES += \
         groupchat.cpp \
         main.cpp \
         message.cpp \
-        post.cpp
+        post.cpp \
+        postcomment.cpp
 
 HEADERS += \
     chat.h \
     groupchat.h \
     message.h \
-    post.h
+    post.h \
+    postcomment.h
 
 
 HEADERS += ../profiles/profile.h
 
 SOURCES += ../profiles/profile.cpp
+

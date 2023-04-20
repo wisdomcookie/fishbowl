@@ -1,10 +1,11 @@
 create table profiles (
-      profile_id   INTEGER PRIMARY KEY ,
+      profile_id   INTEGER,
       username     TEXT NOT NULL UNIQUE ,
       name         TEXT NOT NULL        ,
       type         TEXT NOT NULL        ,
       date_created DATE NOT NULL        ,
-      description  TEXT                 
+      description  TEXT                 ,
+    primary key(profile_id)
     );
 
 create table groups (
@@ -77,7 +78,7 @@ create table messages (
       sender_id     INTEGER  NOT NULL ,
       chat_id   INTEGER  NOT NULL ,
       content       TEXT NOT NULL ,
-      message_date  TEXT NOT NULL ,
+      message_date  TEXT,
     foreign key (sender_id) references profiles(profile_id) ,
     foreign key (chat_id) references chats(chat_id));
 

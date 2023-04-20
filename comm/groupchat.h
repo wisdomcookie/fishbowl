@@ -1,7 +1,7 @@
 #ifndef GROUPCHAT_H
 #define GROUPCHAT_H
 #include "../profiles/profile.h"
-
+#include "../comm_database/database.h"
 
 #include "message.h"
 #include <vector>
@@ -29,6 +29,7 @@ private:
     QDateTime dateCreated;
     std::vector<Profile*> participants;
     std::vector<Message> messageHistory;
+    Database db;
 
 };
 
