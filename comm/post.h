@@ -18,7 +18,7 @@ public:
     Post(Profile *creator, Group *group, QString title, QString content); // User creates new post
     ~Post();
 
-    void edit_content(QString newContent);
+    void set_content(QString newContent);
 
     int get_id();
     Profile *get_creator();

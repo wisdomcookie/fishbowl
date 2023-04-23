@@ -5,6 +5,7 @@
 #include <set>
 #include <string>
 #include <vector>
+#include "QString"
 
 class Profile;
 class Post;
@@ -15,6 +16,7 @@ class Group
 public:
     Group();
     Group(std::string name);
+    Group(QString name, std::vector<Profile*> participants);
 
     ~Group();
 

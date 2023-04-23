@@ -22,7 +22,7 @@ Post::~Post(){
 
 }
 
-void Post::edit_content(QString newContent){
+void Post::set_content(QString newContent){
     content = newContent;
 }
 

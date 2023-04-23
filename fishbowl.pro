@@ -5,7 +5,7 @@ SUBDIRS += \
     comm_database \
     admin \
     comm \
-    fishbowl_gui \
+    engine \
     groups \
     profiles \
     search

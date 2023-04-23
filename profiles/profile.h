@@ -77,6 +77,7 @@ public:
 
     // --- Getter/Setter Methods --- //
 
+    int get_id();
     string getNameFirst();
     string getNameLast();
     string getUsername();

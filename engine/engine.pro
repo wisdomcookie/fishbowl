@@ -6,15 +6,15 @@ QT += core
 QT += sql
 
 SOURCES += \
-        aquarium.cpp \
-        fish.cpp \
-        main.cpp \
-        profile.cpp
+        engine.cpp \
+        main.cpp
 
 HEADERS += \
-    aquarium.h \
-    fish.h \
-    profile.h
+    engine.h
+
+HEADERS += ../profiles/profile.h
+
+SOURCES += ../profiles/profile.cpp
 
 HEADERS += ../comm_database/database.h
 
@@ -23,3 +23,4 @@ SOURCES += ../comm_database/databse.cpp
 HEADERS += ../groups/group.h
 
 SOURCES += ../groups/group.cpp
+
