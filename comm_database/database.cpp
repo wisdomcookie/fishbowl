@@ -59,15 +59,26 @@ void Database::query_exec(QString s) {
 
 }
 
-/*std::vector<std::map<QString, QString>>*/void Database::query_select(QString table, std::vector<QString> fields){
+std::vector<std::map<QString, QString>> Database::query_select(QString table, std::vector<QString> fields){
     QString fieldstring = fields[0];
 
     for(int i = 1; i < fields.size(); i++){
         fieldstring += "," + fields[i];
     }
 
-    QString sqlcmd = QString("select " + fieldstring + " from " + table);
+    QString sqlcmd = QString("select " + fieldstring + " from " + table + ";");
     query_exec(sqlcmd);
+
+    std::vector<std::map<QString, QString>> res;
+
+    while(query->next()){
+        std::map<QString, QString> row;
+        for(QString &field: fields){
+            row[field] = query->value(field).toString();
+        }
+        res.push_back(row);
+    }
+    return res;
 
 }
 
@@ -86,7 +97,7 @@ int Database::query_size(){
 QString Database::query_string(){
 
     QString str("");
-
+    query->first();
 
     std::vector<std::vector<QString>> results;
     while (query->next()) {
@@ -109,6 +120,15 @@ QString Database::query_string(){
 
     return str;
 
+}
+
+std::vector<std::map<QString, QString>> Database::query_vector(){
+    std::vector<std::map<QString, QString>> res;
+
+    while(query->next()){
+        std::map<QString, QString> row;
+
+    }
 }
 
 //int database::insert()

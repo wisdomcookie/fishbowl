@@ -20,7 +20,7 @@ public:
     void close();
 
     void query_exec(QString);
-    /*std::vector<std::map<QString, QString>>*/ void query_select(QString table, std::vector<QString> fields);
+    std::vector<std::map<QString, QString>> query_select(QString table, std::vector<QString> fields);
     int query_size();
     QString query_string();
     std::vector<std::map<QString, QString>> query_vector();
@@ -28,8 +28,7 @@ public:
 private:
     QSqlDatabase db;
     QSqlQuery    *query;
-    std::map<QString, std::vector<QString>> queryMap;
-    std::vector<std::map<QString, QString>> queryVector;
+    //std::vector<std::map<QString, QString>> queryVector;
 };
 
 #endif // DATABASE_H
