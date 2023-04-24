@@ -59,6 +59,18 @@ void Database::query_exec(QString s) {
 
 }
 
+/*std::vector<std::map<QString, QString>>*/void Database::query_select(QString table, std::vector<QString> fields){
+    QString fieldstring = fields[0];
+
+    for(int i = 1; i < fields.size(); i++){
+        fieldstring += "," + fields[i];
+    }
+
+    QString sqlcmd = QString("select " + fieldstring + " from " + table);
+    query_exec(sqlcmd);
+
+}
+
 int Database::query_size(){
     int res = 0;
     if(query->last())

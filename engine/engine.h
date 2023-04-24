@@ -46,7 +46,7 @@ public:
 
 
 private:
-    Database db;
+    Database *db;
 
     std::vector<Group*> groups;
     std::vector<Profile*> profiles;
