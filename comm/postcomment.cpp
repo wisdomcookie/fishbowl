@@ -1,4 +1,5 @@
 #include "postcomment.h"
+#include "../profiles/profile.h"
 
 PostComment::PostComment()
 {

@@ -23,6 +23,8 @@ public:
 
     //Maps contain field:value pairs
     std::vector<std::map<QString, QString>> query_select(QString table, std::vector<QString> fields);
+    int get_next_id(QString table);
+
     int query_size();
     QString query_string();
     std::vector<std::map<QString, QString>> query_vector();

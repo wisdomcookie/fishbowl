@@ -82,6 +82,13 @@ std::vector<std::map<QString, QString>> Database::query_select(QString table, st
 
 }
 
+int Database::get_next_id(QString table){
+
+    QString sqlcmd = QString("select max(rowid) from " + table + ";");
+    query_exec(sqlcmd);
+    return query->value(0).toInt() + 1;
+}
+
 int Database::query_size(){
     int res = 0;
     if(query->last())

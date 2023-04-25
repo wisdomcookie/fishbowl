@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "../comm/post.h"
+#include "../comm/postcomment.h"
 #include "../comm/message.h"
 #include "../comm_database/database.h"
 
@@ -100,10 +101,12 @@ private:
     QDateTime dateCreated;
     QString description;
 
-    std::map<int, Post*> posts;
     std::map<int, GroupChat*> groupchats;
     std::map<int, Group*> groups;
     std::map<int, Profile*> friends;
+    std::map<int, Post*> posts;
+    std::map<int, PostComment*> comments;
+    std::map<int, Message*> messages;
 
 };
 

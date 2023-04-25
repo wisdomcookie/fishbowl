@@ -1,6 +1,7 @@
 #ifndef POSTCOMMENT_H
 #define POSTCOMMENT_H
-#include "../profiles/profile.h"
+
+class Profile;
 
 #include "post.h"
 
