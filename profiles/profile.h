@@ -22,37 +22,37 @@ public:
     Profile(std::map<QString, QString> profileData); // load from database
     ~Profile();
 
-    //  -------- Profile information --------  //
+//    //  -------- Profile information --------  //
 
-    //Profile owner's legal name
-    string nameFirst, nameLast;
+//    //Profile owner's legal name
+//    string nameFirst, nameLast;
 
-    //Profile owner's username/password
-    //string username, password;
+//    //Profile owner's username/password
+//    //string username, password;
 
-    //Profile information General
-    string bio;
-    vector<Group*> adminList;   //list of groups this profile is an admin for
-    int id;
+//    //Profile information General
+//    string bio;
+//    vector<Group*> adminList;   //list of groups this profile is an admin for
+//    int id;
 
-    //Profile attributes -> expand this list
-    string location, preference, age;
+//    //Profile attributes -> expand this list
+//    string location, preference, age;
 
-    //Friends list
-    vector<Profile*> friendsList;
+//    //Friends list
+//    vector<Profile*> friendsList;
 
-    //Groups list
-    vector<Group*> groupsList;
+//    //Groups list
+//    vector<Group*> groupsList;
 
-    //Post/Message History
-    vector<Post*> postHistory;
-    vector<Message*> messageHistory;    //store different chats with other profiles
+//    //Post/Message History
+//    vector<Post*> postHistory;
+//    vector<Message*> messageHistory;    //store different chats with other profiles
 
-    //Fish owned by profile
-    vector<Fish*> collection;
+//    //Fish owned by profile
+//    vector<Fish*> collection;
 
-    //Settings
-    bool access;    //private or public account
+//    //Settings
+//    bool access;    //private or public account
 
     //  -------- Methods --------  //
 
@@ -92,10 +92,18 @@ public:
 private:
     int profileId;
     QString username;
-    QString name;
+    QString firstName;
+    QString lastName;
+    int age;
+    QString location;
     QString type;
     QDateTime dateCreated;
     QString description;
+
+    std::map<int, Post*> posts;
+    std::map<int, GroupChat*> groupchats;
+    std::map<int, Group*> groups;
+    std::map<int, Profile*> friends;
 
 };
 

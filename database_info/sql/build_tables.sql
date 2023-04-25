@@ -1,11 +1,27 @@
 create table profiles (
-      profile_id   INTEGER,
-      username     TEXT NOT NULL UNIQUE ,
-      name         TEXT NOT NULL        ,
-      type         TEXT NOT NULL        ,
-      date_created DATE NOT NULL        ,
-      description  TEXT                 ,
+      profile_id   INTEGER                  ,
+      username     TEXT     NOT NULL UNIQUE ,
+      first_name   TEXT     NOT NULL        ,
+      last_name    TEXT     NOT NULL        ,
+      age          INTEGER  NOT NULL        ,
+      location     TEXT     NOT NULL        ,
+      type         TEXT     NOT NULL        ,
+      date_created DATE     NOT NULL        ,
+      description  TEXT                     ,
     primary key(profile_id)
+    );
+
+create table fish (
+      fish_id      INTEGER                  ,
+      owner_id     INTEGER  NOT NULL        ,
+      name         TEXT     NOT NULL        ,
+      age          INTEGER  NOT NULL        ,
+      location     INTEGER  NOT NULL        ,
+      species      TEXT     NOT NULL        ,
+      date_created TEXT     NOT NULL        ,
+      description  TEXT                     ,
+    primary key(fish_id)                    ,
+    foreign key (owner_id) references profiles(profile_id)
     );
 
 create table groups (
@@ -21,27 +37,23 @@ create table group_participants (
       group_id     INTEGER NOT NULL                       ,
       profile_id   INTEGER NOT NULL                       ,
     foreign key (group_id) references groups(group_id) ,
-    foreign key (profile_id) references profiles(profile_id));
+    foreign key (profile_id) references profiles(profile_id)
+    );
 
 create table friends (
       requestor_id INTEGER NOT NULL                               ,
       requested_id INTEGER NOT NULL                               ,
     CONSTRAINT request UNIQUE(requestor_id, requested_id)     , 
     foreign key (requestor_id) references profiles(profile_id) ,
-    foreign key (requested_id) references profiles(profile_id));
-
-create table fish (
-      fish_id  INTEGER                       ,
-      owner_id INTEGER NOT NULL                               ,
-    foreign key (fish_id) references profiles(profile_id)  ,
-    foreign key (owner_id) references profiles(profile_id),
-    primary key(fish_id));
+    foreign key (requested_id) references profiles(profile_id)
+    );
 
 create table login (
       username TEXT,
       password TEXT NOT NULL        ,
     primary key(username),
-    foreign key (username) references profiles(username));
+    foreign key (username) references profiles(username)
+    );
 
 -----------------------------------------------
 
@@ -54,7 +66,8 @@ create table posts (
       content   TEXT NOT NULL           ,
       visibility  INTEGER NOT NULL
     foreign key (poster_id) references profiles(profile_id)
-    foreign key (group_id) references groups(group_id));
+    foreign key (group_id) references groups(group_id)
+    );
 
 create table post_comments (
       comment_id   INTEGER,
@@ -65,7 +78,8 @@ create table post_comments (
       content TEXT NOT NULL        ,
     primary key (comment_id),
     foreign key (post_id) references posts(post_id),
-    foreign key (commenter_id) references profiles(profile_id));
+    foreign key (commenter_id) references profiles(profile_id)
+    );
 
 create table groupchats (
       groupchat_id INTEGER,
@@ -78,7 +92,8 @@ create table groupchat_participants (
       groupchat_id INTEGER NOT NULL,
       participant_id INTEGER NOT NULL,
     foreign key (groupchat_id) references groupchats(groupchat_id),
-    foreign key (participant_id) references profiles(profile_id));
+    foreign key (participant_id) references profiles(profile_id)
+    );
 
 create table messages (
       message_id    INTEGER,
@@ -88,7 +103,8 @@ create table messages (
       content       TEXT NOT NULL ,
     primary key (message_id),
     foreign key (sender_id) references profiles(profile_id) ,
-    foreign key (groupchat_id) references groupchats(groupchat_id));
+    foreign key (groupchat_id) references groupchats(groupchat_id)
+    );
 
 -----------------------------------------------------------------------------
 
@@ -98,13 +114,15 @@ create table banned_users (
       ban_date    TEXT NOT NULL ,
       reason      TEXT NOT NULL ,
     foreign key (profile_id) references profiles(profile_id) ,
-    foreign key (group_id) references groups(group_id));
+    foreign key (group_id) references groups(group_id)
+    );
 
 create table admins (
       profile_id  INTEGER  NOT NULL ,
       group_id    INTEGER  NOT NULL ,
     foreign key (profile_id) references profiles(profile_id) ,
-    foreign key (group_id) references groups(group_id));
+    foreign key (group_id) references groups(group_id)
+    );
 
 create table reports (
       reporter_id INTEGER  NOT NULL ,
@@ -112,7 +130,8 @@ create table reports (
       type        TEXT NOT NULL ,
       reasoning   TEXT NOT NULL ,
     foreign key (reporter_id) references profiles(profile_id),
-    foreign key (reported_id) references profiles(profile_id));
+    foreign key (reported_id) references profiles(profile_id)
+    );
 
 .separator ","
 .mode csv
