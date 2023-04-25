@@ -70,10 +70,10 @@ int Database::query_size(){
     return res;
 }
 
-std::string Database::query_string(){
+
+QString Database::query_string(){
 
     QString str("");
-
 
     std::vector<std::vector<QString>> results;
     while (query->next()) {
@@ -92,7 +92,22 @@ std::string Database::query_string(){
         }
         str += "\n";
     }
-    return str.toStdString();
+    return str;
+}
+
+std::vector<std::vector<QString>> Database::query_vector() {
+
+    std::vector<std::vector<QString>> results;
+    while (query->next()) {
+
+        QSqlRecord rec = query->record();
+        std::vector<QString> row;
+        for(int i = 0; i < rec.count(); i++){
+            row.push_back(rec.value(i).toString());
+        }
+        results.push_back(row);
+    }
+    return results;
 }
 
 //int database::insert()

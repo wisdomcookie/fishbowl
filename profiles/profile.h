@@ -1,7 +1,6 @@
 #ifndef PROFILE_H
 #define PROFILE_H
 #include <vector>
-
 #include "../comm/post.h"
 #include "../comm/message.h"
 #include "../comm_database/database.h"
@@ -18,7 +17,7 @@ class profile
 {
 public:
     profile();
-    profile(string username, string password);
+    profile(string username, string password, string nameFirst, string nameLast);
     ~profile();
 
     //  -------- Profile information --------  //
@@ -64,7 +63,7 @@ public:
     void changePassword(string x);
     //change attributes here
 
-    void createFish(string name, string species);
+    fish* createFish(string name, string species, string bio);
     void removeFish(fish* x);
     void changeFishBio(fish* x, string y);
     void changeFishLocation(fish* x, string y);
@@ -75,7 +74,9 @@ public:
     void addPost(Post* p);
     void addGroup(Group* g);
 
-    // --- Getter/Setter Methods --- //
+    void createGroup(string name); //not to be confused with addGroup
+
+    // --- Getter Methods --- //
 
     string getNameFirst();
     string getNameLast();

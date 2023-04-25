@@ -8,4 +8,5 @@ SUBDIRS += \
     fishbowl_gui \
     groups \
     profiles \
-    search
+    search \
+    login

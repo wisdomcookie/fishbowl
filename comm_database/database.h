@@ -19,7 +19,8 @@ public:
     void open();
     void query_exec(QString);
     int query_size();
-    std::string query_string();
+    QString query_string();
+    std::vector<std::vector<QString>> query_vector();
     void close();
 
 private:

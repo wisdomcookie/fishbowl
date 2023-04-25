@@ -3,11 +3,13 @@
 profile::profile() {
 }
 
-profile::profile(string username, string password) {
+profile::profile(string username, string password, string nameFirst, string nameLast) {
     this->username = username;
     this->password = password;
+    this->nameFirst = nameFirst;
+    this->nameLast = nameLast;
     Database d;
-    d.query_exec("select * from profiles");  //make sure name of table is correct
+    d.query_exec("select * from profiles");
     id = d.query_size() + 1;
 }
 
@@ -75,10 +77,12 @@ void profile::changePassword(string x) {
  * @brief profile::createFish
  * @param name
  */
-void profile::createFish(string name, string species) {
-    fish* x = new fish(name, species);
+fish* profile::createFish(string name, string species, string bio) {
+    fish* x = new fish(name, species, bio);
     collection.push_back(x);
     x->location = this->location;
+    x->owner = this;
+    return x;
 }
 
 /**
@@ -150,6 +154,20 @@ void profile::addPost(Post* p) {
  */
 void profile::addGroup(Group* g) {
     groupsList.push_back(g);
+}
+
+/**
+ * Create a new group, will automatically make this profile
+ * the sole member and admin of said group.
+ * @brief profile::createGroup
+ * @param name
+ */
+void profile::createGroup(string name) {
+    Group* g = new Group(name);
+    addGroup(g);
+    addAdminGroup(g);
+    g->add_member(this);
+    g->add_admin(this);
 }
 
 
