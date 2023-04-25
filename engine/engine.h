@@ -13,7 +13,7 @@ public:
     ~Engine();
 
     void update_data();
-    void refresh_data();
+    void load_data();
 
     void create_post(Profile *actor, Group *group, QString title, QString content);
     void create_comment(Profile *actor, Post *post, QString content);

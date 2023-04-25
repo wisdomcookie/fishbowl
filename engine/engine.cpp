@@ -15,7 +15,7 @@ Engine::~Engine(){
 void Engine::update_data(){
 
 }
-void Engine::refresh_data(){
+void Engine::load_data(){
     std::vector<QString> profileFields = {QString("profile_id"), QString("username"), QString("name"), QString("type"), QString("date_created"), QString("description")};
     std::vector<std::map<QString, QString>> profileData = db->query_select(QString("profiles"), profileFields);
 
@@ -119,9 +119,6 @@ void Engine::refresh_data(){
         groupchats[groupchatId]->add_message(message);
         //profiles[senderId]->addMessage(message);
     } // loading and adding messages to the groupchats
-
-
-
 }
 
 void Engine::create_post(Profile *actor, Group *group, QString title, QString content){
