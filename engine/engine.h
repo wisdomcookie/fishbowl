@@ -48,8 +48,11 @@ public:
 private:
     Database *db;
 
-    std::vector<Group*> groups;
-    std::vector<Profile*> profiles;
+    std::map<int, Profile*> profiles;
+    std::map<int, Group*> groups;
+    std::map<int, Post*> posts;
+    std::map<int, GroupChat*> groupchats;
+
 
 };
 

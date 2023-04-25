@@ -4,11 +4,24 @@ Profile::Profile() {
 }
 
 Profile::Profile(string username, string password) {
-    this->username = username;
-    this->password = password;
+//    this->username = username;
+//    this->password = password;
     Database d;
     d.query_exec("select * from profiles");  //make sure name of table is correct
     id = d.query_size() + 1;
+}
+
+Profile::Profile(std::map<QString, QString> profileData){
+    profileId = profileData[QString("profile_id")].toInt();
+    username = profileData[QString("username")];
+    name = profileData[QString("name")];
+    type = profileData[QString("type")];
+
+    QString dateString = profileData[QString("date_created")];
+    QString dateFormat = QString("yyyy-MM-dd hh:mm:ss");
+    dateCreated = QDateTime::fromString(dateString, dateFormat);
+
+    description = profileData[QString("description")];
 }
 
 Profile::~Profile() {
@@ -114,6 +127,10 @@ void Profile::changeFishBio(Fish* x, string y) {
  */
 void Profile::changeFishLocation(Fish* x, string y) {
     x->location = y;
+}
+
+void Profile::add_fish(Fish *fish){
+    collection.push_back(fish);
 }
 
 /**

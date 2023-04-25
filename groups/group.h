@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include "QString"
+#include "qdatetime.h"
 
 class Profile;
 class Post;
@@ -15,8 +16,10 @@ class Group
 {
 public:
     Group();
-    Group(std::string name);
+    Group(QString name);
     Group(QString name, std::vector<Profile*> participants);
+    Group(int id, QString name, int size, QDateTime dateCreated, QString description); // load from database
+    Group(std::map<QString, QString> groupData); // load from database actual
 
     ~Group();
 
@@ -27,20 +30,28 @@ public:
     void add_post(Post *post);
     void remove_post(Post *post);
 
-    void set_description(std::string newDescription);
+    void set_description(QString newDescription);
+    void set_members(std::set<Profile *> members);
+    void set_admin(std::set<Profile*> admin);
+    void set_posts(std::vector<Post*> posts);
 
-    std::string get_name();
-    std::string get_description();
+    int get_id();
+    QString get_name();
+    QString get_description();
     std::set<Profile*> get_admin();
     std::set<Profile*> get_members();
     Aquarium get_aquarium();
 
 private:
-    std::string name;
-    std::string description;
+    int groupId;
+    QString name;
+    int size;
+    QDateTime dateCreated;
+    QString description;
+
     std::set<Profile*> admin;
     std::set<Profile*> members;
-    std::vector<Post*> postHistory;
+    std::vector<Post*> posts;
     Aquarium aquarium;
 
 };

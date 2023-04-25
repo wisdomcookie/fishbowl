@@ -48,11 +48,11 @@ create table login (
 create table posts (
       post_id     INTEGER ,
       poster_id   INTEGER  NOT NULL        ,
-      date_posted TEXT NOT NULL        ,
-      post_text   TEXT NOT NULL        ,
       group_id    INTEGER  NOT NULL        ,
-      visibility  TEXT NOT NULL        ,
-    primary key (post_id),
+      date_created TEXT NOT NULL        ,
+      title     TEXT NOT NULL           ,
+      content   TEXT NOT NULL           ,
+      visibility  INTEGER NOT NULL
     foreign key (poster_id) references profiles(profile_id)
     foreign key (group_id) references groups(group_id));
 
@@ -60,34 +60,35 @@ create table post_comments (
       comment_id   INTEGER,
       post_id      INTEGER  NOT NULL        ,
       commenter_id INTEGER  NOT NULL        ,
-      comment_text TEXT NOT NULL        ,
-      comment_date TEXT NOT NULL        ,
+      parent_comment_id INTEGER   NOT NULL  ,
+      date_created TEXT NOT NULL        ,
+      content TEXT NOT NULL        ,
     primary key (comment_id),
     foreign key (post_id) references posts(post_id),
     foreign key (commenter_id) references profiles(profile_id));
 
-create table chats (
-    chat_id INTEGER,
-    name TEXT, 
-    size INTEGER NOT NULL,
-    date_created TEXT NOT NULL,
-    primary key (chat_id));
+create table groupchats (
+      groupchat_id INTEGER,
+      name TEXT, 
+      size INTEGER NOT NULL,
+      date_created TEXT NOT NULL,
+    primary key (groupchat_id));
 
-create table chat_participants (
-     chat_id INTEGER NOT NULL,
-     participant_id,
-    foreign key (chat_id) references chats(chat_id),
+create table groupchat_participants (
+      groupchat_id INTEGER NOT NULL,
+      participant_id INTEGER NOT NULL,
+    foreign key (groupchat_id) references groupchats(groupchat_id),
     foreign key (participant_id) references profiles(profile_id));
 
 create table messages (
       message_id    INTEGER,
       sender_id     INTEGER  NOT NULL ,
-      chat_id   INTEGER  NOT NULL ,
+      groupchat_id   INTEGER  NOT NULL ,
+      date_created  TEXT NOT NULL,
       content       TEXT NOT NULL ,
-      message_date  TEXT,
     primary key (message_id),
     foreign key (sender_id) references profiles(profile_id) ,
-    foreign key (chat_id) references chats(chat_id));
+    foreign key (groupchat_id) references groupchats(groupchat_id));
 
 -----------------------------------------------------------------------------
 

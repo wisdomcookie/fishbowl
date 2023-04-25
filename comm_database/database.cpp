@@ -100,7 +100,7 @@ QString Database::query_string(){
     query->first();
 
     std::vector<std::vector<QString>> results;
-    while (query->next()) {
+    do {
 
         QSqlRecord rec = query->record();
         std::vector<QString> row;
@@ -108,7 +108,7 @@ QString Database::query_string(){
             row.push_back(rec.value(i).toString());
         }
         results.push_back(row);
-    }
+    } while (query->next());
 
     for(auto &i: results){
         for(auto &j: i){

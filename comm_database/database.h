@@ -20,6 +20,8 @@ public:
     void close();
 
     void query_exec(QString);
+
+    //Maps contain field:value pairs
     std::vector<std::map<QString, QString>> query_select(QString table, std::vector<QString> fields);
     int query_size();
     QString query_string();

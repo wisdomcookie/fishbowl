@@ -6,8 +6,27 @@ Group::Group(){
 
 }
 
-Group::Group(std::string name): name(name){
+Group::Group(QString name): name(name){
 
+}
+
+Group::Group(int id, QString name, int size, QDateTime dateCreated, QString description):
+    groupId(id), name(name), size(size), dateCreated(dateCreated), description(description){
+
+
+}
+
+Group::Group(std::map<QString, QString> groupData){
+
+    groupId = groupData[QString("group_id")].toInt();
+    name = groupData[QString("name")];
+    size = groupData[QString("size")].toInt();
+
+    QString dateString = groupData[QString("date_created")];
+    QString dateFormat = QString("yyyy-MM-dd hh:mm:ss");
+    dateCreated = QDateTime::fromString(dateString, dateFormat);
+
+    description = groupData[QString("description")];
 }
 
 Group::~Group(){
@@ -31,25 +50,38 @@ void Group::remove_admin(Profile *administrator){
 }
 
 void Group::add_post(Post *post){
-    postHistory.push_back(post);
+    posts.push_back(post);
 }
 
 void Group::remove_post(Post *post){
-    for(unsigned int i = 0 ; i < postHistory.size(); i++){
-        if (postHistory[i] == post){
-            postHistory.erase(postHistory.begin() + i);
+    for(unsigned int i = 0 ; i < posts.size(); i++){
+        if (posts[i] == post){
+            posts.erase(posts.begin() + i);
         }
     }
 }
 
-void Group::set_description(std::string newDescription){
+void Group::set_description(QString newDescription){
     description = newDescription;
 }
 
-std::string Group::get_name(){
+void Group::set_members(std::set<Profile *> newMembers){
+    members = newMembers;
+}
+void Group::set_admin(std::set<Profile*> newAdmin){
+    admin = newAdmin;
+}
+void Group::set_posts(std::vector<Post*> newPosts){
+    posts = newPosts;
+}
+
+int Group::get_id(){
+    return groupId;
+}
+QString Group::get_name(){
     return name;
 }
-std::string Group::get_description(){
+QString Group::get_description(){
     return description;
 }
 std::set<Profile*> Group::get_admin(){

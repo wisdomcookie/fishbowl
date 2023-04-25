@@ -19,6 +19,7 @@ class Profile
 public:
     Profile();
     Profile(string username, string password);
+    Profile(std::map<QString, QString> profileData); // load from database
     ~Profile();
 
     //  -------- Profile information --------  //
@@ -27,7 +28,7 @@ public:
     string nameFirst, nameLast;
 
     //Profile owner's username/password
-    string username, password;
+    //string username, password;
 
     //Profile information General
     string bio;
@@ -64,6 +65,7 @@ public:
     void changePassword(string x);
     //change attributes here
 
+    void add_fish(Fish *fish);
     void createFish(string name, string species);
     void removeFish(Fish* x);
     void changeFishBio(Fish* x, string y);
@@ -72,6 +74,7 @@ public:
     void addAdminGroup(Group* g);
 
     void addMessage(Message* m);
+    void add_post(Post *p);
     void addPost(Post* p);
     void addGroup(Group* g);
 
@@ -85,6 +88,14 @@ public:
     string getLocation();
     string getPreference();
     string getAge();
+
+private:
+    int profileId;
+    QString username;
+    QString name;
+    QString type;
+    QDateTime dateCreated;
+    QString description;
 
 };
 

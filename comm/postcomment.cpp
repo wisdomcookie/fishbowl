@@ -13,8 +13,25 @@ PostComment::PostComment(Profile *creator, Post *sourcePost, PostComment *source
 
 }     //User creates new comment
 
+PostComment::PostComment(std::map<QString, QString> commentData){
+    commentId = commentData[QString("comment_id")].toInt();
+    postId = commentData[QString("post_id")].toInt();
+    commenterId = commentData[QString("commenter_id")].toInt();
+    parentCommentId = commentData[QString("reply_to_comment_id")].toInt();
+
+    QString dateString = commentData[QString("date_created")];
+    QString dateFormat = QString("yyyy-MM-dd hh:mm:ss");
+    dateCreated = QDateTime::fromString(dateString, dateFormat);
+
+    content = commentData[QString("content")];
+}
+
 PostComment::~PostComment(){
 
+}
+
+void PostComment::add_reply(PostComment *reply){
+    replies[reply->get_id()] = reply;
 }
 
 int PostComment::get_id(){

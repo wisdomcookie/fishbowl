@@ -25,6 +25,7 @@ int main()
 //    d.query_exec("select * from profiles;");
 //    cout << d.query_string().toStdString() << endl;
 
+
     std::vector<QString> fields = {QString("profile_id"), QString("username")};
 
     std::vector<std::map<QString, QString>> res = d.query_select(QString("profiles"), fields);
