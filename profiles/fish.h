@@ -4,19 +4,19 @@
 
 using namespace std;
 
-class profile;
+class Profile;
 #include "profile.h"
 
-class fish
+class Fish
 {
 public:
-    fish();
-    fish(string name, string species);
-    ~fish();
+    Fish();
+    Fish(string name, string species, string bio);
+    ~Fish();
 
     //Fish sub-profile information
     string name, location, species, bio;
-    profile* owner;
+    Profile* owner;
 
 };
 

@@ -2,8 +2,7 @@ TEMPLATE = subdirs
 
 SUBDIRS += \
     Gui \
-    #comm_database \
-    #admin \
+    comm_database \
     comm \
     groups \
     profiles \

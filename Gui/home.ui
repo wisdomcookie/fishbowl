@@ -67,6 +67,9 @@
     </property>
    </widget>
    <widget class="QLineEdit" name="searchBar">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>190</x>
@@ -86,6 +89,9 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+    </property>
+    <property name="readOnly">
+     <bool>false</bool>
     </property>
     <property name="placeholderText">
      <string>  Search</string>
@@ -256,16 +262,85 @@ QPushButton:pressed {
     </property>
     <property name="font">
      <font>
-      <pointsize>40</pointsize>
-      <bold>true</bold>
+      <pointsize>13</pointsize>
+      <bold>false</bold>
       <stylestrategy>PreferAntialias</stylestrategy>
       <kerning>true</kerning>
      </font>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>9</number>
     </property>
-    <widget class="QWidget" name="HomePage"/>
+    <widget class="QWidget" name="HomePage">
+     <widget class="QListWidget" name="allPosts">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>611</width>
+        <height>471</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <family>Futura</family>
+        <pointsize>18</pointsize>
+        <italic>false</italic>
+        <bold>false</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustIgnored</enum>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::DoubleClicked</set>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>true</bool>
+      </property>
+      <property name="flow">
+       <enum>QListView::TopToBottom</enum>
+      </property>
+      <property name="isWrapping" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="resizeMode">
+       <enum>QListView::Adjust</enum>
+      </property>
+      <property name="layoutMode">
+       <enum>QListView::SinglePass</enum>
+      </property>
+      <property name="viewMode">
+       <enum>QListView::ListMode</enum>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+      <property name="selectionRectVisible">
+       <bool>true</bool>
+      </property>
+      <property name="itemAlignment">
+       <set>Qt::AlignTop</set>
+      </property>
+      <property name="sortingEnabled">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </widget>
     <widget class="QWidget" name="Groups">
      <widget class="QPushButton" name="pushButton">
       <property name="geometry">
@@ -282,23 +357,89 @@ QPushButton:pressed {
      </widget>
     </widget>
     <widget class="QWidget" name="Messages">
-     <widget class="QDial" name="dial">
+     <widget class="QLineEdit" name="message">
       <property name="geometry">
        <rect>
-        <x>260</x>
-        <y>90</y>
-        <width>131</width>
-        <height>101</height>
+        <x>10</x>
+        <y>430</y>
+        <width>411</width>
+        <height>41</height>
        </rect>
       </property>
-      <property name="sliderPosition">
-       <number>50</number>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <bold>false</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
       </property>
-      <property name="invertedAppearance">
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+      <property name="placeholderText">
+       <string>Message</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>10</y>
+        <width>58</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <bold>true</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="text">
+       <string>Chats</string>
+      </property>
+     </widget>
+     <widget class="QListView" name="chats">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>30</y>
+        <width>181</width>
+        <height>441</height>
+       </rect>
+      </property>
+      <property name="modelColumn">
+       <number>0</number>
+      </property>
+     </widget>
+     <widget class="QListView" name="messageHist">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>411</width>
+        <height>391</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <bold>false</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="isWrapping" stdset="0">
        <bool>false</bool>
       </property>
-      <property name="invertedControls">
-       <bool>false</bool>
+      <property name="wordWrap">
+       <bool>true</bool>
       </property>
      </widget>
     </widget>
@@ -329,7 +470,7 @@ QPushButton:pressed {
        <kerning>true</kerning>
       </font>
      </property>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -338,7 +479,7 @@ QPushButton:pressed {
         <height>71</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout">
+      <layout class="QHBoxLayout" name="hlay">
        <property name="sizeConstraint">
         <enum>QLayout::SetNoConstraint</enum>
        </property>
@@ -504,16 +645,16 @@ QPushButton:pressed {
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>10</x>
         <y>90</y>
         <width>391</width>
-        <height>171</height>
+        <height>221</height>
        </rect>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout">
+      <layout class="QVBoxLayout" name="vlay">
        <item>
         <widget class="QLabel" name="name">
          <property name="sizePolicy">
@@ -531,7 +672,7 @@ QPushButton:pressed {
           </font>
          </property>
          <property name="text">
-          <string>Emma Raupp</string>
+          <string/>
          </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -555,7 +696,7 @@ QPushButton:pressed {
           </font>
          </property>
          <property name="text">
-          <string>@emmarrr</string>
+          <string/>
          </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -563,85 +704,84 @@ QPushButton:pressed {
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="bio">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>5</verstretch>
-          </sizepolicy>
+        <widget class="QPlainTextEdit" name="pbio">
+         <property name="styleSheet">
+          <string notr="true">background-color : rgba(255,255,255,1%); color : black;</string>
          </property>
-         <property name="font">
-          <font>
-           <pointsize>15</pointsize>
-           <italic>true</italic>
-           <bold>false</bold>
-           <stylestrategy>PreferAntialias</stylestrategy>
-           <kerning>true</kerning>
-          </font>
-         </property>
-         <property name="text">
-          <string>I am cool</string>
-         </property>
-         <property name="scaledContents">
-          <bool>false</bool>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-         </property>
-         <property name="wordWrap">
+         <property name="readOnly">
           <bool>true</bool>
          </property>
         </widget>
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QPushButton" name="editProfile">
       <property name="geometry">
        <rect>
-        <x>400</x>
-        <y>89</y>
-        <width>171</width>
-        <height>171</height>
+        <x>410</x>
+        <y>230</y>
+        <width>151</width>
+        <height>32</height>
        </rect>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout_2">
-       <item>
-        <widget class="QLabel" name="label">
-         <property name="font">
-          <font>
-           <family>Apple Symbols</family>
-           <pointsize>22</pointsize>
-           <italic>false</italic>
-           <bold>false</bold>
-           <stylestrategy>PreferAntialias</stylestrategy>
-           <kerning>true</kerning>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QLabel{ 
-color: rgb(151, 151, 151)
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+background: rgb(44, 187, 63);
 }</string>
-         </property>
-         <property name="text">
-          <string>Collegeville, PA</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton_2">
-         <property name="styleSheet">
-          <string notr="true">QPushButton {\nbackground: rgb(44, 187, 63);\n}</string>
-         </property>
-         <property name="text">
-          <string>edit profile</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
+      </property>
+      <property name="text">
+       <string>Edit Profile</string>
+      </property>
      </widget>
+     <widget class="QPushButton" name="SaveChanges">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>230</y>
+        <width>151</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+background: rgb(44, 187, 63);
+}</string>
+      </property>
+      <property name="text">
+       <string>Save Changes</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="plocation">
+      <property name="geometry">
+       <rect>
+        <x>401</x>
+        <y>90</y>
+        <width>169</width>
+        <height>94</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color : rgba(255,255,255,1%); color : black;</string>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:700;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <zorder>editProfile</zorder>
+     <zorder>plocation</zorder>
+     <zorder>layoutWidget</zorder>
+     <zorder>layoutWidget</zorder>
+     <zorder>SaveChanges</zorder>
     </widget>
     <widget class="QWidget" name="Fish">
      <widget class="QToolButton" name="toolButton">
@@ -832,7 +972,7 @@ color: rgb(151, 151, 151)
       <property name="geometry">
        <rect>
         <x>360</x>
-        <y>210</y>
+        <y>250</y>
         <width>152</width>
         <height>32</height>
        </rect>
@@ -853,7 +993,7 @@ color: rgb(151, 151, 151)
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>110</y>
+        <y>150</y>
         <width>491</width>
         <height>91</height>
        </rect>
@@ -886,7 +1026,7 @@ color: rgb(151, 151, 151)
       <property name="geometry">
        <rect>
         <x>440</x>
-        <y>210</y>
+        <y>250</y>
         <width>81</width>
         <height>32</height>
        </rect>
@@ -907,6 +1047,39 @@ color: rgb(151, 151, 151)
       </property>
       <property name="standardButtons">
        <set>QDialogButtonBox::SaveAll</set>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="createlocation">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>110</y>
+        <width>491</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <bold>false</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::ClickFocus</enum>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="cursorPosition">
+       <number>0</number>
+      </property>
+      <property name="placeholderText">
+       <string>Location</string>
+      </property>
+      <property name="cursorMoveStyle">
+       <enum>Qt::VisualMoveStyle</enum>
       </property>
      </widget>
     </widget>
@@ -1177,10 +1350,185 @@ background: rgb(44, 187, 63);
        <property name="wordWrap">
         <bool>true</bool>
        </property>
-       <property name="buddy">
-        <cstring></cstring>
-       </property>
       </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="newPost">
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>30</y>
+        <width>141</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+        <bold>false</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="text">
+       <string>Create New Post</string>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="postBox">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>100</y>
+        <width>591</width>
+        <height>181</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="selectGroup">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>310</y>
+        <width>151</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Select Group</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>All</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>290</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Post to:</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="publish">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>310</y>
+        <width>141</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: rgb(68, 153, 247);</string>
+      </property>
+      <property name="text">
+       <string>Publish</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="titleBox">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>591</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Title</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="postView">
+     <widget class="QListView" name="comments">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>260</y>
+        <width>591</width>
+        <height>181</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <bold>false</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="isWrapping" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="commentLabel">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>240</y>
+        <width>121</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="addComment">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>450</y>
+        <width>591</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>591</width>
+        <height>218</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QLabel" name="viewTitle">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTextBrowser" name="viewPost">
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
    </widget>
@@ -1204,6 +1552,17 @@ background: rgb(44, 187, 63);
     <property name="text">
      <string>FishBowl</string>
     </property>
+   </widget>
+   <widget class="QStackedWidget" name="stackedWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>801</width>
+      <height>571</height>
+     </rect>
+    </property>
+    <widget class="QWidget" name="widget"/>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>

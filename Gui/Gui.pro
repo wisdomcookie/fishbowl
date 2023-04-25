@@ -9,38 +9,46 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    #fishbowl-main/Gui/Gui.pro \
-    #connect.cpp \
-    #home2.cpp \
+    login.cpp \
     main.cpp \
     home.cpp \
     ../profiles/fish.cpp \
-    ../profiles/profile.cpp
+    ../profiles/profile.cpp \
+    ../comm/message.cpp \
+    ../comm/chat.cpp \
+    ../comm/post.cpp \
+    ../groups/group.cpp
+
 
 HEADERS += \
     home.h \
     ../profiles/fish.h \
     ../profiles/profile.h \
-    #home2.h
+    login.h \
+    ../comm/message.h \
+    ../comm/chat.h \
+    ../comm/post.h \
+    ../groups/group.h
+
 
 FORMS += \
     #adminOptions.ui \
     #createAccount.ui \
-    #createNewChat.ui \
+    createNewChat.ui \
     #createPost.ui \
     #editFishProfile.ui \
     #editProfile.ui \
     #fish.ui \
     #fishProfile.ui \
-    #friends.ui \
+    friends.ui \
     #group.ui \
     #groups.ui \
     #home.ui \
     login.ui \
-    #messages.ui \
-    #post.ui \
+    messages.ui \
+    post.ui \
     #profile.ui \
-   #search.ui
+    #search.ui
     home.ui
 
 # Default rules for deployment.

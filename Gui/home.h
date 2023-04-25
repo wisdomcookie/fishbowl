@@ -6,11 +6,16 @@
 #include <QObject>
 #include <QVector>
 #include <vector>
+#include <QStandardItemModel>
 
 #include "../profiles/fish.h"
 #include "../profiles/profile.h"
 #include "../groups/group.h"
+#include "../comm/message.h"
+#include "../comm/chat.h"
+#include "../comm/post.h"
 #include "QtWidgets/qlistwidget.h"
+#include "login.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Home; }
@@ -25,6 +30,10 @@ public:
     ~Home();
 
 private slots:
+    void start(QWidget*);
+
+    void main_menu();
+
     void on_homeButton_clicked();
 
     void on_groupButton_clicked();
@@ -36,6 +45,8 @@ private slots:
     void on_profileButton_clicked();
 
     void on_fishButton_clicked();
+
+    void on_postButton_clicked();
 
     void on_toolButton_clicked();
 
@@ -59,9 +70,25 @@ private slots:
 
     void on_fish_clicked();
 
+    void on_editProfile_clicked();
+
+    void on_SaveChanges_clicked();
+
+    void on_message_returnPressed();
+
+    void on_publish_clicked();
+
+    void on_allPosts_itemDoubleClicked(QListWidgetItem *item);
+
 private:
     Ui::Home *ui;
-    profile p;
-    fish* f;
+    Profile p;
+    Fish* f;
+    Login* l;
+    Message *msg;
+    QStandardItemModel *chatModel;
+    Group* currGroup;
+    Group* all = new Group("All");
+
 };
 #endif // HOME_H
