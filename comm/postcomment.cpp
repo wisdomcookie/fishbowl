@@ -1,5 +1,7 @@
 #include "postcomment.h"
 #include "../profiles/profile.h"
+#include "post.h"
+
 
 PostComment::PostComment()
 {
@@ -10,9 +12,17 @@ PostComment::PostComment(int id, Profile *creator, QDateTime dateCreated, Post *
     id(id), creator(creator), dateCreated(dateCreated), sourcePost(sourcePost), sourceComment(sourceComment), replies(replies), content(content){
 
 }
-PostComment::PostComment(Profile *creator, Post *sourcePost, PostComment *sourceComment, QString content){
 
-}     //User creates new comment
+PostComment::PostComment(int id, Profile *creator, Post *post, PostComment *parentComment, QString content):
+    commentId(id), postId(post->get_id()), commenterId(creator->get_id()), parentCommentId(parentComment->get_id()), dateCreated(QDateTime::currentDateTimeUtc()),
+    content(content), visibility(true){
+}   //User creates new comment
+
+PostComment::PostComment(int id, Profile *creator, Post *post, QString content):
+    commentId(id), postId(post->get_id()), commenterId(creator->get_id()), parentCommentId(0), dateCreated(QDateTime::currentDateTimeUtc()),
+    content(content), visibility(true){
+
+}     //User creates new comment that is reply
 
 PostComment::PostComment(std::map<QString, QString> commentData){
     commentId = commentData[QString("comment_id")].toInt();

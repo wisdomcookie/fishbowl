@@ -1,5 +1,6 @@
 #include "post.h"
 #include "postcomment.h"
+#include "../profiles/profile.h"
 
 Post::Post() {
 
@@ -14,8 +15,8 @@ Post::Post(int id, Profile *creator, Group *sourceGroup, QString title, QString 
 
 } // Load from database
 
-Post::Post(Profile *creator, Group *sourceGroup, QString title, QString content):
-    creator(creator), sourceGroup(sourceGroup), title(title), content(content), dateCreated(QDateTime::currentDateTime()){
+Post::Post(int id, Profile *creator, Group *group, QString title, QString content):
+    postId(id), posterId(creator->get_id()), groupId(group->get_id()), group(group), title(title), content(content), dateCreated(QDateTime::currentDateTimeUtc()), visibility(true){
 
 } // User creates new post
 

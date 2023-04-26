@@ -8,22 +8,22 @@ int main()
     Database d;
     d.open();
 
-//    d.query_exec("select * from profiles;");
-//    cout << d.query_size() << endl;
-//    cout << d.query_string().toStdString() << endl;
+    d.query_exec("select * from profiles;");
+    cout << d.query_size() << endl;
+    cout << d.query_string().toStdString() << endl;
 
-//    d.query_exec("insert into profiles(username, name, type, date_created) values('nathandinh2', 'Nathan', 'user', date());");
-//    d.query_exec("select * from profiles;");
-//    cout << d.query_string().toStdString() << endl;
+    d.query_exec("insert into profiles(username, name, type, date_created) values('nathandinh2', 'Nathan', 'user', date());");
+    d.query_exec("select * from profiles;");
+    cout << d.query_string().toStdString() << endl;
 
-//    QString str = QDateTime::currentDateTimeUtc().toString();
-//    d.query_exec("update profiles set(name, description, date_created) = ('Nathan2', 'check', '" + str + "') where username='nathandinh2';");
-//    d.query_exec("select * from profiles;");
-//    cout << d.query_string().toStdString() << endl;
+    QString str = QDateTime::currentDateTimeUtc().toString();
+    d.query_exec("update profiles set(name, description, date_created) = ('Nathan2', 'check', '" + str + "') where username='nathandinh2';");
+    d.query_exec("select * from profiles;");
+    cout << d.query_string().toStdString() << endl;
 
-//    d.query_exec("delete from profiles where username='nathandinh2';");
-//    d.query_exec("select * from profiles;");
-//    cout << d.query_string().toStdString() << endl;
+    d.query_exec("delete from profiles where username='nathandinh2';");
+    d.query_exec("select * from profiles;");
+    cout << d.query_string().toStdString() << endl;
 
 
     std::vector<QString> fields = {QString("profile_id"), QString("username")};

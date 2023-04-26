@@ -10,7 +10,7 @@ class GroupChat
 public:
     GroupChat();
     GroupChat(int id, QString name, int size, QDateTime dateCreated, std::set<Profile*> participants, std::vector<Message> messageHistory); // load from database
-    GroupChat(QString name, std::vector<Profile*> participants); // user creates new groupchat
+    GroupChat(int id, Profile *owner, QString name, std::vector<Profile*> participants); // user creates new groupchat
     GroupChat(std::map<QString, QString> groupchatData);
     ~GroupChat();
 
@@ -23,14 +23,20 @@ public:
     void delete_message(Message msg);
 
     int get_id();
+    QString get_name();
+    int get_size();
+    QDateTime get_dateCreated();
     std::vector<Profile*> get_participants();
     std::vector<Message> get_history();
 
 private:
-    int id;
+    int groupchatId;
+    int ownerId;
     QString name;
     int size;
     QDateTime dateCreated;
+
+    Profile *owner;
     std::map<int, Profile*> participants;
     std::map<int, Message> messageHistory;
     Database db;

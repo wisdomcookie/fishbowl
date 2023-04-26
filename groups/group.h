@@ -20,6 +20,7 @@ public:
     Group(QString name, std::vector<Profile*> participants);
     Group(int id, QString name, int size, QDateTime dateCreated, QString description); // load from database
     Group(std::map<QString, QString> groupData); // load from database actual
+    Group(int id, Profile *creator, QString name, QString description); // user creates new group
 
     ~Group();
 
@@ -37,6 +38,8 @@ public:
 
     int get_id();
     QString get_name();
+    int get_size();
+    QDateTime get_dateCreated();
     QString get_description();
     std::set<Profile*> get_admin();
     std::set<Profile*> get_members();
@@ -49,8 +52,8 @@ private:
     QDateTime dateCreated;
     QString description;
 
-    std::set<Profile*> admin;
-    std::set<Profile*> members;
+    std::map<int, Profile*> admin;
+    std::map<int, Profile*> members;
     std::vector<Post*> posts;
     Aquarium aquarium;
 

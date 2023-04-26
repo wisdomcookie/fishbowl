@@ -20,6 +20,7 @@ class Profile
 public:
     Profile();
     Profile(string username, string password);
+    Profile(int id, QString username, QString firstName, QString lastName, int age, QString location, QString type, QDateTime dateCreated, QString description=0);
     Profile(std::map<QString, QString> profileData); // load from database
     ~Profile();
 
@@ -67,13 +68,19 @@ public:
     //change attributes here
 
     void add_fish(Fish *fish);
+    void add_comment(PostComment *comment);
+
     void createFish(string name, string species);
     void removeFish(Fish* x);
     void changeFishBio(Fish* x, string y);
     void changeFishLocation(Fish* x, string y);
 
+
+    void add_admin_group(Group *g);
     void addAdminGroup(Group* g);
 
+    void add_groupchat(GroupChat *groupchat);
+    void add_message(Message* m);
     void addMessage(Message* m);
     void add_post(Post *p);
     void addPost(Post* p);

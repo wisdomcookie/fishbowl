@@ -6,7 +6,7 @@ create table profiles (
       age          INTEGER  NOT NULL        ,
       location     TEXT     NOT NULL        ,
       type         TEXT     NOT NULL        ,
-      date_created DATE     NOT NULL        ,
+      date_created TEXT     NOT NULL        ,
       description  TEXT                     ,
     primary key(profile_id)
     );
@@ -33,10 +33,11 @@ create table groups (
     primary key(group_id)             
     );
 
-create table group_participants (
+create table group_members (
       group_id     INTEGER NOT NULL                       ,
       profile_id   INTEGER NOT NULL                       ,
-    foreign key (group_id) references groups(group_id) ,
+    CONSTRAINT request UNIQUE(group_id, profile_id)       ,
+    foreign key (group_id) references groups(group_id)    ,
     foreign key (profile_id) references profiles(profile_id)
     );
 
@@ -58,34 +59,37 @@ create table login (
 -----------------------------------------------
 
 create table posts (
-      post_id     INTEGER ,
-      poster_id   INTEGER  NOT NULL        ,
-      group_id    INTEGER  NOT NULL        ,
-      date_created TEXT NOT NULL        ,
-      title     TEXT NOT NULL           ,
-      content   TEXT NOT NULL           ,
-      visibility  INTEGER NOT NULL
-    foreign key (poster_id) references profiles(profile_id)
+      post_id       INTEGER                 ,
+      poster_id     INTEGER     NOT NULL    ,
+      group_id      INTEGER     NOT NULL    ,
+      date_created  TEXT        NOT NULL    ,
+      title         TEXT        NOT NULL    ,
+      content       TEXT        NOT NULL    ,
+      visibility    INTEGER     NOT NULL    ,
+    primary key (post_id)                   ,
+    foreign key (poster_id) references profiles(profile_id),
     foreign key (group_id) references groups(group_id)
     );
 
 create table post_comments (
-      comment_id   INTEGER,
-      post_id      INTEGER  NOT NULL        ,
-      commenter_id INTEGER  NOT NULL        ,
-      parent_comment_id INTEGER   NOT NULL  ,
-      date_created TEXT NOT NULL        ,
-      content TEXT NOT NULL        ,
+      comment_id        INTEGER             ,
+      post_id           INTEGER  NOT NULL   ,
+      commenter_id      INTEGER  NOT NULL   ,
+      parent_comment_id INTEGER  NOT NULL   ,
+      date_created      TEXT     NOT NULL   ,
+      content           TEXT     NOT NULL   ,
+      visibility        INTEGER  NOT NULL   ,
     primary key (comment_id),
     foreign key (post_id) references posts(post_id),
     foreign key (commenter_id) references profiles(profile_id)
     );
 
 create table groupchats (
-      groupchat_id INTEGER,
-      name TEXT, 
-      size INTEGER NOT NULL,
-      date_created TEXT NOT NULL,
+      groupchat_id  INTEGER             ,
+      owner_id     INTEGER NOT NULL    ,
+      name          TEXT    NOT NULL    , 
+      size          INTEGER NOT NULL    ,
+      date_created  TEXT    NOT NULL    ,   
     primary key (groupchat_id));
 
 create table groupchat_participants (
@@ -118,9 +122,10 @@ create table banned_users (
     );
 
 create table admins (
-      profile_id  INTEGER  NOT NULL ,
       group_id    INTEGER  NOT NULL ,
-    foreign key (profile_id) references profiles(profile_id) ,
+      admin_id  INTEGER  NOT NULL ,
+    CONSTRAINT request UNIQUE(group_id, admin_id)          ,
+    foreign key (admin_id) references profiles(profile_id) ,
     foreign key (group_id) references groups(group_id)
     );
 

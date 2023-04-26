@@ -1,5 +1,6 @@
 #include "group.h"
 #include "../profiles/aquarium.h"
+#include "../profiles/profile.h"
 #include "../comm/post.h"
 
 Group::Group(){
@@ -27,7 +28,16 @@ Group::Group(std::map<QString, QString> groupData){
     dateCreated = QDateTime::fromString(dateString, dateFormat);
 
     description = groupData[QString("description")];
-}
+} // load from database
+
+Group::Group(int id, Profile *creator, QString name, QString description):
+    groupId(id), name(name), size(1), dateCreated(QDateTime::currentDateTimeUtc()), description(description){
+
+    members[creator->get_id()] = creator;
+    admin[creator->get_id()] = creator;
+
+} // user creates new group
+
 
 Group::~Group(){
 

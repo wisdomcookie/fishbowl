@@ -15,12 +15,15 @@ public:
     void update_data();
     void load_data();
 
+    void create_profile(QString username, QString firstName, QString lastName, int age, QString location, QString type, QDateTime dateCreated, QString description=0);
+
     void create_post(Profile *actor, Group *group, QString title, QString content);
     void create_comment(Profile *actor, Post *post, QString content);
+    void create_comment_reply(Profile *actor, Post *post, PostComment *parentComment, QString content);
     void create_groupchat(Profile *actor, QString name, std::vector<Profile*> participants);
-    void create_group(Profile *actor, QString name, std::vector<Profile*> participants, std::vector<Profile*> admin);
-    void create_message(Profile *actor, Group *group, QString content);
-    void create_fish(Profile *actor, QString name);
+    void create_group(Profile *actor, QString name, QString description);
+    void create_message(Profile *actor, GroupChat *groupchat, QString content);
+    void create_fish(Profile *actor, QString name, int age, QString location, QString species, QString description = QString(""));
 
     void join_group(Profile *actor, Group *group);
     void join_groupchat(Profile *actor, GroupChat *groupchat);
@@ -47,11 +50,26 @@ public:
 
 private:
     Database *db;
+    QString dateFormat;
 
     std::map<int, Profile*> profiles;
     std::map<int, Group*> groups;
     std::map<int, Post*> posts;
     std::map<int, GroupChat*> groupchats;
+
+    std::vector<QString> profileFields;
+    std::vector<QString> fishFields;
+    std::vector<QString> groupFields;
+    std::vector<QString> groupMemberFields;
+    std::vector<QString> friendsFields;
+
+    std::vector<QString> postFields;
+    std::vector<QString> commentFields;
+    std::vector<QString> groupchatFields;
+    std::vector<QString> groupchatParticipantFields;
+    std::vector<QString> messageFields;
+
+    std::vector<QString> adminFields;
 
 
 };

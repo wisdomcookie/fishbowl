@@ -1,12 +1,14 @@
 #include "message.h"
+#include "../profiles/profile.h"
+#include "groupchat.h"
 
 Message::Message()
 {
 
 }
 
-Message::Message(Profile *sender, GroupChat *groupchat, QString content):
-    sender(sender), groupchat(groupchat), content(content), timeSent(QDateTime::currentDateTime())
+Message::Message(int id, Profile *sender, GroupChat *groupchat, QString content):
+    messageId(id), senderId(sender->get_id()), groupchatId(groupchat->get_id()), dateCreated(QDateTime::currentDateTimeUtc()), content(content), sender(sender), groupchat(groupchat)
 {
 
 }

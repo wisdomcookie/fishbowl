@@ -82,6 +82,39 @@ std::vector<std::map<QString, QString>> Database::query_select(QString table, st
 
 }
 
+//void Database::query_insert(QString table, std::vector<QString> fields, std::vector<QString> values){
+
+//    QString fieldstring = fields[0];
+//    for(int i = 1; i < fields.size(); i++){
+//        fieldstring += "," + fields[i];
+//    }
+
+//    QString valuestring = values[0];
+//    for(int i = 1; i < values.size(); i++){
+//        valuestring += "," + values[i];
+//    }
+
+//    QString sqlcmd = QString("insert into " + table + "(" + fieldstring + ")" + " values(" + valuestring + ");");
+//}
+
+void Database::query_insert(QString table, std::vector<QString> fields, std::vector<QVariant> values){
+
+    QString fieldstring = fields[0];
+    QString valuePlaceholders = QString(":" + fields[0]);
+
+    for(int i = 1; i < fields.size(); i++){
+        fieldstring += "," + fields[i];
+        valuePlaceholders += ", :" + fields[i];
+    }
+
+
+    query->prepare("insert into " + table + " (" + fieldstring + ") values " + valuePlaceholders + ")");
+
+    for(int i = 0; i < fields.size(); i++){
+        query->bindValue(i, values[i]);
+    }
+}
+
 int Database::get_next_id(QString table){
 
     QString sqlcmd = QString("select max(rowid) from " + table + ";");

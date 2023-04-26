@@ -1,17 +1,18 @@
 #ifndef POSTCOMMENT_H
 #define POSTCOMMENT_H
 
+#include "qdatetime.h"
 class Profile;
-
-#include "post.h"
+class Post;
 
 class PostComment
 {
 public:
     PostComment();
     //load from database
-    PostComment(int id, Profile *creator, QDateTime dateCreated, Post *sourcePost, PostComment *sourceComment, std::vector<PostComment*> replies, QString content);
-    PostComment(Profile *creator, Post *sourcePost, PostComment *sourceComment, QString content);     //User creates new comment
+    PostComment(int id, Profile *creator, QDateTime dateCreated, Post *sourcePost, PostComment *sourceComment, QString content);
+    PostComment(int id, Profile *creator, Post *post, QString content);  // User creates new comment
+    PostComment(int id, Profile *creator, Post *post, PostComment *parentComment, QString content); //User creates new comment that is a reply to another comment
     PostComment(std::map<QString, QString> commentData); // load from database actual
 
     ~PostComment();
@@ -27,6 +28,7 @@ public:
     PostComment *get_parentComment();
     std::vector<PostComment*> get_replies();
     QString get_content();
+    bool get_visibility();
 
 private:
     int commentId;
@@ -35,9 +37,10 @@ private:
     int parentCommentId;
     QDateTime dateCreated;
     QString content;
+    bool visibility;
 
     Profile *creator;
-    Post *Post;
+    Post *post;
     PostComment *parentComment;
     std::map<int, PostComment*> replies;
 

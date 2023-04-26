@@ -10,10 +10,13 @@ GroupChat::GroupChat(int id, QString name, int size, QDateTime dateCreated, std:
 
 }
 
-GroupChat::GroupChat(QString name, std::vector<Profile*> participants):
-    name(name), participants(participants){
+GroupChat::GroupChat(int id, Profile *owner, QString name, std::vector<Profile*> participants):
+    groupchatId(id), ownerId(owner->get_id()), name(name), size(participants.size()), dateCreated(QDateTime::currentDateTimeUtc()){
 
-}
+    for(Profile *profile: participants){
+        this->participants[profile->get_id()] = profile;
+    }
+} // user creates new groupchat
 
 GroupChat::~GroupChat(){
 
