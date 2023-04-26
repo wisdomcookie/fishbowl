@@ -25,6 +25,7 @@ public:
     std::vector<std::map<QString, QString>> query_select(QString table, std::vector<QString> fields);
     //void query_insert(QString table, std::vector<QString> fields, std::vector<QString> values);
     void query_insert(QString table, std::vector<QString> fields, std::vector<QVariant> values);
+    void query_update_by_rowid(QString table, int id, std::vector<QString> fields, std::vector<QVariant> values);
     void query_delete_by_rowid(QString table, int id);
     int get_next_id(QString table);
 

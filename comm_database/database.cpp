@@ -113,6 +113,32 @@ void Database::query_insert(QString table, std::vector<QString> fields, std::vec
     for(int i = 0; i < fields.size(); i++){
         query->bindValue(i, values[i]);
     }
+    query->exec();
+}
+
+void Database::query_update_by_rowid(QString table, int id, std::vector<QString> fields, std::vector<QVariant> values){
+
+    QString fieldstring = fields[0];
+    QString valuePlaceholders = QString(":" + fields[0]);
+
+    for(int i = 1; i < fields.size(); i++){
+        fieldstring += "," + fields[i];
+        valuePlaceholders += ", :" + fields[i];
+    }
+
+    query->prepare("update " + table + " set(" + fieldstring + ") = (" + valuePlaceholders + ") where rowid=:rowid");
+
+    for(int i = 0; i < fields.size(); i++){
+        query->bindValue(i, values[i]);
+    }
+    query->exec();
+}
+
+void Database::query_delete_by_rowid(QString table, int id){
+
+    query->prepare("delete from " + table + "where rowid=:rowid");
+    query->bindValue(":rowid", id);
+    query->exec();
 }
 
 int Database::get_next_id(QString table){

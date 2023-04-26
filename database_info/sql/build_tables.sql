@@ -113,18 +113,20 @@ create table messages (
 -----------------------------------------------------------------------------
 
 create table banned_users (
-      profile_id  INTEGER  NOT NULL ,
-      group_id    INTEGER  NOT NULL ,
-      ban_date    TEXT NOT NULL ,
-      reason      TEXT NOT NULL ,
-    foreign key (profile_id) references profiles(profile_id) ,
+      user_id     INTEGER               ,
+      group_id    INTEGER   NOT NULL    ,
+      admin_id    INTEGER   NOT NULL    ,
+      ban_date    TEXT      NOT NULL    ,
+      reason      TEXT      NOT NULL    ,     
+    CONSTRAINT request UNIQUE(user_id, group_id)         ,                       
+    foreign key (user_id) references profiles(profile_id)   ,
+    foreign key (admin_id) references admins(admin_id)      ,
     foreign key (group_id) references groups(group_id)
     );
 
 create table admins (
       group_id    INTEGER  NOT NULL ,
       admin_id  INTEGER  NOT NULL ,
-    CONSTRAINT request UNIQUE(group_id, admin_id)          ,
     foreign key (admin_id) references profiles(profile_id) ,
     foreign key (group_id) references groups(group_id)
     );
