@@ -64,8 +64,10 @@ public:
 
 
     // Getters
-
-
+    std::vector<Profile*> get_profileList();
+    std::vector<Group*> get_groupList();
+    std::vector<Post*> get_postList();
+    std::vector<GroupChat*> get_groupchatList();
 
 
 private:

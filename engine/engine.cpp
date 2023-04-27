@@ -15,7 +15,7 @@ Engine::Engine()
     dateFormat = QString("yyyy-MM-dd hh:mm:ss");
 
     profileFields = {
-        QString("profile_id"), QString("username"), QString("firstName"), QString("lastName"), QString("age"), QString("type"), QString("location"), QString("date_created"), QString("description")
+        QString("profile_id"), QString("username"), QString("firstName"), QString("lastName"), QString("age"), QString("location"), QString("date_created"), QString("description")
     };
 
     fishFields = {
@@ -494,9 +494,9 @@ void Engine::delete_group(Profile *actor, Group *group){
     }
     groups.erase(group->get_id());// remove from groupchats container
 
-    for(std::pair<int, Profile*> profile: group->get_members()){
-        profile.second->leave_group(group); // remove from participants
-    }
+    //for(std::pair<int, Profile*> profile: group->get_members()){
+     //   profile.second->leave_group(group); // remove from participants
+    //}
 
     db->query_delete_by_rowid(QString("groups"), group->get_id()); // remove from database entry for the group
     db->query_exec("delete from group_members where group_id=" + QString::number(group->get_id())); // remove the group member database entries
@@ -540,4 +540,34 @@ void Engine::ban_user(Profile *actor, Profile *user, Group *group, QDateTime ban
     };
     db->query_insert(QString("banned_users"), bannedUserFields , bannedUserData);
 
+}
+
+
+std::vector<Profile*> Engine::get_profileList(){
+    std::vector<Profile*> res;
+    for(auto i = profiles.begin(); i != profiles.end(); i++){
+        res.push_back(i->second);
+    }
+    return res;
+}
+std::vector<Group*> Engine::get_groupList(){
+    std::vector<Group*> res;
+    for(auto i = groups.begin(); i != groups.end(); i++){
+        res.push_back(i->second);
+    }
+    return res;
+}
+std::vector<Post*> Engine::get_postList(){
+    std::vector<Post*> res;
+    for(auto i = posts.begin(); i != posts.end(); i++){
+        res.push_back(i->second);
+    }
+    return res;
+}
+std::vector<GroupChat*> Engine::get_groupchatList(){
+    std::vector<GroupChat*> res;
+    for(auto i = groupchats.begin(); i != groupchats.end(); i++){
+        res.push_back(i->second);
+    }
+    return res;
 }

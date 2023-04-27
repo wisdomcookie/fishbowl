@@ -138,9 +138,42 @@ QString Profile::get_description(){
 
 std::vector<Fish*> Profile::get_fishList(){
     std::map<int, Fish*> fishMap = aquarium->get_fish();
+    std::vector<Fish*> res;
+    for(auto i = fishMap.begin(); i != fishMap.end(); i++){
+        res.push_back(i->second);
+    }
+    return res;
 }
 
+std::vector<Profile*>  Profile::get_friendList(){
+    std::vector<Profile*> res;
+    for(auto i = friends.begin(); i != friends.end(); i++){
+        res.push_back(i->second);
+    }
+    return res;
+}
 
+std::vector<Group*> Profile::get_groupList(){
+    std::vector<Group*> res;
+    for(auto i = groups.begin(); i != groups.end(); i++){
+        res.push_back(i->second);
+    }
+    return res;
+}
+std::vector<Post*> Profile::get_postHistory(){
+    std::vector<Post*> res;
+    for(auto i = posts.begin(); i != posts.end(); i++){
+        res.push_back(i->second);
+    }
+    return res;
+}
+std::vector<Message*> Profile::get_messageHistory(){
+    std::vector<Message*> res;
+    for(auto i = messages.begin(); i != messages.end(); i++){
+        res.push_back(i->second);
+    }
+    return res;
+}
 
 
 
