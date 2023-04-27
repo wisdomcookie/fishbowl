@@ -34,8 +34,8 @@ Home::Home(QWidget *parent)
     currGroup = all;
 
     //add information from databases
-    for(Fish* ff : p.collection){
-        addFish(QString::fromStdString(ff->name), QString::fromStdString(ff->species), QString::fromStdString(ff->bio));
+    for(Fish* ff : p.collection){ //ACCESS TO ARRAYS GONE
+        addFish(ff->get_name(), ff->get_species(), ff->get_description());
     }
 
     for(Profile* ff : p.friendsList){
@@ -116,11 +116,11 @@ void Home::on_profileButton_clicked()
 {
     ui->page->setCurrentIndex(4);
 
-    ui->username->setText(QString::fromStdString("@" + p.getUsername()));
-    ui->name->setText(QString::fromStdString(p.getNameFirst() + " " + p.getNameLast()));
-    ui->pbio->setPlainText(QString::fromStdString(p.getBio()));
-    ui->plocation->setText(QString::fromStdString(p.getLocation()));
-    if(!p.getAge().empty()) ui->age->setText(QString::fromStdString(p.getAge()) + tr(" years old"));
+    ui->username->setText(tr("@") + p.get_username());
+    ui->name->setText(p.get_firstName() + tr(" ") + p.get_lastName());
+    ui->pbio->setPlainText(p.get_description());
+    ui->plocation->setText(p.get_location());
+    if(p.get_age() > 0) ui->age->setText(QString::number(p.get_age()) + tr(" years old"));
 }
 
 
@@ -142,7 +142,7 @@ void Home::on_postButton_clicked()
 void Home::on_toolButton_clicked()
 {
     ui->createfish->setFocus();
-    ui->createlocation->setText(QString::fromStdString(p.getLocation()));
+    ui->createlocation->setText(p.get_location());
 
     ui->page->setCurrentIndex(6);
 }
@@ -150,8 +150,9 @@ void Home::on_toolButton_clicked()
 
 void Home::on_finished_accepted()
 {
-    f = p.createFish(ui->createfish->text().toStdString(), ui->createspecies->text().toStdString(), ui->createbio->toPlainText().toStdString());
-    f->location = ui->createlocation->text().toStdString();
+    //NOT SURE WHICH CONSTRUCTOR    f = new Fish(ui->createfish->text().toStdString(), ui->createspecies->text().toStdString(), ui->createbio->toPlainText().toStdString());
+    p.add_fish(f);
+    //f->set_location = ui->createlocation->text().toStdString();
     ui->createfish->clear();
     ui->createlocation->clear();
     ui->createspecies->clear();
@@ -159,7 +160,7 @@ void Home::on_finished_accepted()
 
     ui->page->setCurrentIndex(5);
 
-    addFish(QString::fromStdString(f->name), QString::fromStdString(f->species), QString::fromStdString(f->bio));
+    addFish(f->get_name(),f->get_species(),f->get_description());
 }
 
 void Home::on_finished_rejected()
@@ -190,10 +191,10 @@ void Home::on_fishlist_itemDoubleClicked(QListWidgetItem *item)
     f = p.collection.at(i);
 
     ui->page->setCurrentIndex(7);
-    ui->FishName->setText(QString::fromStdString(f->name));
-    ui->FishSpecies->setText(QString::fromStdString(f->species));
-    ui->FishLocation->setText(QString::fromStdString(f->location));
-    ui->FishBi->setText(QString::fromStdString(f->bio));
+    ui->FishName->setText(f->get_name());
+    ui->FishSpecies->setText(f->get_species());
+    ui->FishLocation->setText(f->get_location());
+    ui->FishBi->setText(f->get_description());
 }
 
 
@@ -202,10 +203,10 @@ void Home::on_EditFishProfile_clicked()
     ui->edit->show();
 
     //set information in boxes
-    ui->createfish->setText(QString::fromStdString(f->name));
-    ui->createlocation->setText(QString::fromStdString(f->location));
-    ui->createspecies->setText(QString::fromStdString(f->species));
-    ui->createbio->setPlainText(QString::fromStdString(f->bio));
+    ui->createfish->setText(f->get_name());
+    ui->createlocation->setText(f->get_location());
+    ui->createspecies->setText(f->get_species());
+    ui->createbio->setPlainText(f->get_description());
 
     //switch to page
     ui->createfish->setFocus();
@@ -221,14 +222,12 @@ void Home::on_edit_accepted()
     QListWidgetItem* it = ui->fishlist->item(i);
 
     //change fish info
-    f->name = ui->createfish->text().toStdString();
-    f->species = ui->createspecies->text().toStdString();
-    p.changeFishLocation(f, ui->createlocation->text().toStdString());
-    p.changeFishBio(f, ui->createbio->toPlainText().toStdString());
+    f->edit_data(ui->createfish->text(), 0, ui->createlocation->text(),  ui->createspecies->text(), ui->createbio->toPlainText());
+
 
     //display changes
-    it->setText(tr("Name: ") + (QString::fromStdString(f->name)) + tr("\n") + tr("Species: ") + (QString::fromStdString(f->species))
-                + tr("\n") + tr("Bio: ") + (QString::fromStdString(f->bio)) + tr("\n"));
+    it->setText(tr("Name: ") + (f->get_name()) + tr("\n") + tr("Species: ") + f->get_species()
+                + tr("\n") + tr("Bio: ") + f->get_description() + tr("\n"));
 
     ui->createfish->clear();
     ui->createspecies->clear();
@@ -256,7 +255,7 @@ void Home::on_pushButton_2_clicked()
             ui->fishlist->removeItemWidget(ui->fishlist->item(i));
             delete ui->fishlist->item(i);
             ui->fishlist->update();
-            p.removeFish(p.collection.at(i));
+            p.remove_fish(p.collection.at(i));
         }
     }
 }
@@ -294,7 +293,7 @@ void Home::on_editProfile_clicked()
 {
     ui->pbio->setFocus();
 
-    ui->age->setText(QString::fromStdString(p.getAge()));
+    ui->age->setText(QString::number(p.get_age()));
     ui->age->setReadOnly(false);
     ui->pbio->setReadOnly(false);
     ui->plocation->setReadOnly(false);
@@ -324,11 +323,9 @@ void Home::on_SaveChanges_clicked()
     ui->pbio->setStyleSheet("background-color : rgba(255,255,255,1%); color : black;");
     ui->plocation->setStyleSheet("background-color : rgba(255,255,255,1%); color : black;");
 
-    p.changeBio(ui->pbio->toPlainText().toStdString());
-    p.location = ui->plocation->toPlainText().toStdString();
-    p.age = ui->age->toPlainText().toStdString();
+    p.edit_profile(p.get_firstName(), p.get_lastName(), ui->age->toPlainText().toInt(), ui->p_location->toPlainText(), ui->pbio->toPlainText());
 
-    ui->age->setText(QString::fromStdString(p.getAge()) + tr(" years old"));
+    ui->age->setText(QString::number(p.get_age()) + tr(" years old"));
 
     ui->SaveChanges->hide();
     ui->pwordlabel->hide();
@@ -338,12 +335,10 @@ void Home::on_SaveChanges_clicked()
 
 void Home::on_newpword_returnPressed()
 {
-    if(ui->oldpword->text().toStdString() == p.password){
-        p.changePassword(ui->newpword->text().toStdString());
-        ui->pwordlabel->setText("Change Password: Changed!");
-        ui->oldpword->clear();
-        ui->newpword->clear();
-    } else ui->pwordlabel->setText("Change Password: (*OLD PASSWORD DOES NOT MATCH*)");
+    p.change_password(ui->newpword->text().toStdString());
+    ui->pwordlabel->setText("Change Password: Changed!");
+    ui->oldpword->clear();
+    ui->newpword->clear();
 }
 
 
@@ -370,7 +365,7 @@ void Home::on_publish_clicked()
     currGroup = new Group(ui->selectGroup->currentText().toStdString());
     Post* newPost = new Post(&p, currGroup, ui->titleBox->text(), ui->postBox->toPlainText());
     currGroup->add_post(newPost);
-    p.addPost(newPost);
+    p.add_post(newPost);
     addPost(currGroup, newPost);
     addMyPost(currGroup, newPost);
 
@@ -502,7 +497,7 @@ void Home::on_membersList_itemDoubleClicked(QListWidgetItem *item)
 
 void Home::profilePage(Profile* pp){
     ui->page->setCurrentWidget(ui->profileview);
-    ui->p_username->setText(QString::fromStdString("@" + pp->getUsername()));
+    ui->p_username->setText(tr("@") + pp->get_username());
     ui->p_name->setText(QString::fromStdString(pp->getNameFirst() + " " + pp->getNameLast()));
     ui->p_bio->setPlainText(QString::fromStdString(pp->getBio()));
     ui->p_location->setText(QString::fromStdString(pp->getLocation()));
@@ -514,5 +509,5 @@ void Home::profilePage(Profile* pp){
  * ************************/
 
 void Home::addFriend(Profile* f){
-    p.addFriend(f);
+    p.add_friend(f);
 }
