@@ -5,7 +5,6 @@ create table profiles (
       last_name    TEXT     NOT NULL        ,
       age          INTEGER  NOT NULL        ,
       location     TEXT     NOT NULL        ,
-      type         TEXT     NOT NULL        ,
       date_created TEXT     NOT NULL        ,
       description  TEXT                     ,
     primary key(profile_id)

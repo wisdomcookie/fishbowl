@@ -136,7 +136,9 @@ QString Profile::get_description(){
     return description;
 }
 
-
+std::vector<Fish*> Profile::get_fishList(){
+    std::map<int, Fish*> fishMap = aquarium->get_fish();
+}
 
 
 

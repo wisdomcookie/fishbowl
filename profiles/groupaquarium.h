@@ -2,7 +2,8 @@
 #define GROUPAQUARIUM_H
 
 
-#include <set>
+#include <map>
+
 class Profile;
 class Aquarium;
 class Group;
@@ -18,7 +19,7 @@ public:
 private:
     Group *owner;
 
-    std::set<Aquarium*> aquariumCollection;
+    std::map<int, Aquarium*> aquariumCollection; // key is the id of the owner's profile
 
 };
 

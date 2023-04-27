@@ -116,6 +116,7 @@ public:
     QDateTime get_dateCreated();
     QString get_description();
 
+    std::vector<Fish*> get_fishList();
 
 private:
     int profileId;
