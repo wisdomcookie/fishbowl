@@ -1,35 +1,43 @@
 #ifndef GROUPCHAT_H
 #define GROUPCHAT_H
-#include "../profiles/profile.h"
-#include "../comm_database/database.h"
 
-#include "message.h"
-#include <vector>
+#include <QDateTime>
+class Profile;
+class Message;
+
+
 class GroupChat
 {
 public:
     GroupChat();
-    GroupChat(int id, QString name, int size, QDateTime dateCreated, std::set<Profile*> participants, std::vector<Message> messageHistory); // load from database
-    GroupChat(QString name, std::vector<Profile*> participants); // user creates new groupchat
+    GroupChat(int id, Profile *owner, QString name, QDateTime dateCreated, std::vector<Profile*> participants); // user creates new groupchat
+    GroupChat(std::map<QString, QString> groupchatData); // load from database
     ~GroupChat();
 
-    void add_participant(Profile *p);
-    void remove_participant(Profile *p);
-    void send_message(Profile *sender, QString content); // create and send message
-    void send_message(Message msg); // send pre created message
-    void delete_message(Message msg);
+    void add_message(Message *message);
+    void add_participant(Profile *profile);
+    void remove_message(Message *message);
+    void remove_participant(Profile *profile);
 
-    std::vector<Profile*> get_participants();
-    std::vector<Message> get_history();
+
+    int get_id();
+    QString get_name();
+    int get_size();
+    QDateTime get_dateCreated();
+    Profile *get_owner();
+    std::map<int, Profile*> get_participants();
+    std::map<int, Message*> get_messageHistory();
 
 private:
-    int id;
+    int groupchatId;
+    int ownerId;
     QString name;
     int size;
     QDateTime dateCreated;
-    std::vector<Profile*> participants;
-    std::vector<Message> messageHistory;
-    Database db;
+
+    Profile *owner;
+    std::map<int, Profile*> participants;
+    std::map<int, Message*> messageHistory;
 
 };
 

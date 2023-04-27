@@ -26,6 +26,11 @@ int main()
     cout << d.query_string().toStdString() << endl;
 
 
+    std::vector<QString> fields = {QString("profile_id"), QString("username")};
+
+    std::vector<std::map<QString, QString>> res = d.query_select(QString("profiles"), fields);
+    cout << d.query_string().toStdString() << endl;
+
     d.close();
 
     cout << QDateTime::currentDateTimeUtc().toString(QString("yyyy-MM-dd hh:mm:ss")).toStdString() << endl;
@@ -41,6 +46,7 @@ int main()
 
     cout << str1.toStdString();
     cout << str2.toStdString();
+    cout << d.query_size();
 
 
 }

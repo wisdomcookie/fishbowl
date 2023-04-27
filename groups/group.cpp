@@ -1,63 +1,104 @@
 #include "group.h"
 #include "../profiles/aquarium.h"
+#include "../profiles/profile.h"
 #include "../comm/post.h"
 
 Group::Group(){
 
 }
 
-Group::Group(std::string name): name(name){
+Group::Group(int id, Profile *creator, QString name, QDateTime dateCreated, QString description):
+    groupId(id), name(name), size(1), dateCreated(dateCreated), description(description){
 
-}
+    members[creator->get_id()] = creator;
+    admin[creator->get_id()] = creator;
+
+} // user creates new group
+
+
+Group::Group(std::map<QString, QString> groupData){
+
+    groupId = groupData[QString("group_id")].toInt();
+    name = groupData[QString("name")];
+    size = groupData[QString("size")].toInt();
+
+    QString dateString = groupData[QString("date_created")];
+    QString dateFormat = QString("yyyy-MM-dd hh:mm:ss");
+    dateCreated = QDateTime::fromString(dateString, dateFormat);
+
+    description = groupData[QString("description")];
+} // load from database
+
 
 Group::~Group(){
 
 }
 
-void Group::add_member(Profile *person){
-    members.insert(person);
+void Group::add_member(Profile *profile){
+    members[profile->get_id()] = profile;
 }
 
-void Group::remove_member(Profile *person){
-    members.erase(person);
-}
 
 void Group::add_admin(Profile *administrator){
-    admin.insert(administrator);
-}
-
-void Group::remove_admin(Profile *administrator){
-    admin.erase(administrator);
+    admin[administrator->get_id()] = administrator;
 }
 
 void Group::add_post(Post *post){
-    postHistory.push_back(post);
+    posts[post->get_id()] = post;
+}
+
+
+void Group::remove_member(Profile *profile){
+    members.erase(profile->get_id());
+}
+
+
+void Group::remove_admin(Profile *administrator){
+    admin.erase(administrator->get_id());
 }
 
 void Group::remove_post(Post *post){
-    for(unsigned int i = 0 ; i < postHistory.size(); i++){
-        if (postHistory[i] == post){
-            postHistory.erase(postHistory.begin() + i);
-        }
-    }
+    posts.erase(post->get_id());
 }
 
-void Group::set_description(std::string newDescription){
+void Group::ban_from_group(Profile *profile){
+    bannedUsers[profile->get_id()] = profile;
+    members.erase(profile->get_id());
+}
+
+bool Group::is_admin(Profile *profile){
+    return (admin.find(profile->get_id()) != admin.end());
+}
+
+bool Group::is_member(Profile *profile){
+    return (members.find(profile->get_id()) != members.end());
+}
+
+bool Group::is_banned(Profile *profile){
+    return (bannedUsers.find(profile->get_id()) != bannedUsers.end());
+}
+
+
+
+void Group::set_description(QString newDescription){
     description = newDescription;
 }
 
-std::string Group::get_name(){
+int Group::get_id(){
+    return groupId;
+}
+QString Group::get_name(){
     return name;
 }
-std::string Group::get_description(){
+QString Group::get_description(){
     return description;
 }
-std::set<Profile*> Group::get_admin(){
+std::map<int, Profile*> Group::get_admin(){
     return admin;
 }
-std::set<Profile*> Group::get_members(){
+std::map<int, Profile*> Group::get_members(){
     return members;
 }
-Aquarium Group::get_aquarium(){
+Aquarium *Group::get_aquarium(){
     return aquarium;
 }
