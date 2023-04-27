@@ -60,6 +60,10 @@ public:
 
     std::vector<Fish*> get_fishList();
     std::vector<Profile*> get_friendList();
+    std::vector<Group*> get_groupList();
+    std::vector<Post*> get_postHistory();
+    std::vector<Message*> get_messageHistory();
+;
 
 private:
     int profileId;

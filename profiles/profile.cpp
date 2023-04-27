@@ -153,7 +153,27 @@ std::vector<Profile*>  Profile::get_friendList(){
     return res;
 }
 
-
+std::vector<Group*> Profile::get_groupList(){
+    std::vector<Group*> res;
+    for(auto i = groups.begin(); i != groups.end(); i++){
+        res.push_back(i->second);
+    }
+    return res;
+}
+std::vector<Post*> Profile::get_postHistory(){
+    std::vector<Post*> res;
+    for(auto i = posts.begin(); i != posts.end(); i++){
+        res.push_back(i->second);
+    }
+    return res;
+}
+std::vector<Message*> Profile::get_messageHistory(){
+    std::vector<Message*> res;
+    for(auto i = messages.begin(); i != messages.end(); i++){
+        res.push_back(i->second);
+    }
+    return res;
+}
 
 
 
