@@ -7,18 +7,18 @@ QT += sql
 
 SOURCES += \
         engine.cpp \
-        main.cpp
+        main.cpp \
+        session.cpp \
+        database.cpp
 
 HEADERS += \
-    engine.h
+    engine.h \
+    session.h \
+    database.h
 
 HEADERS += ../profiles/profile.h
 
 SOURCES += ../profiles/profile.cpp
-
-HEADERS += ../comm_database/database.h
-
-SOURCES += ../comm_database/databse.cpp
 
 HEADERS += ../groups/group.h
 

@@ -3,15 +3,18 @@
 profile::profile() {
 }
 
-profile::profile(string username, string password, string nameFirst, string nameLast) {
+profile::profile(string username, string password, string nameFirst, string nameLast, QDateTime timeCreated, int age, string location) {
     this->username = username;
     this->password = password;
     this->nameFirst = nameFirst;
     this->nameLast = nameLast;
+    this->timeCreated = timeCreated;
+    this->age = age;
+    this->location = location;
     QString p = "profiles";
     e = new Engine();
     d.get_next_id(p);
-    e->create_profile(QString::fromStdString(username), QString::fromStdString(bio));
+    e->create_profile(QString::fromStdString(username), QString::fromStdString(nameFirst), QString::fromStdString(nameLast), age, QString::fromStdString(location), timeCreated, QString::fromStdString(bio));
 }
 
 profile::~profile() {
@@ -199,6 +202,27 @@ string profile::getPreference() {
 }
 string profile::getAge() {
     return age;
+}
+int profile::getId() {
+    return id;
+}
+vector<Group*> profile::getAdminList() {
+    return adminList;
+}
+vector<profile*> profile::getFriendsList() {
+    return friendsList;
+}
+vector<Group*> profile::getGroupsList() {
+    return groupsList;
+}
+vector<Post*> profile::getPostHistory() {
+    return postHistory;
+}
+vector<Message*> profile::getMessageHistory() {
+    return messageHistory;
+}
+vector<fish*> profile::getFishList() {
+    return collection;
 }
 
 

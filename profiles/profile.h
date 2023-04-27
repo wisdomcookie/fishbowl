@@ -20,7 +20,7 @@ class profile
 {
 public:
     profile();
-    profile(string username, string password, string nameFirst, string nameLast);
+    profile(string username, string password, string nameFirst, string nameLast, QDateTime timeCreated, int age, string location);
     ~profile();
 
     Database d;
@@ -38,6 +38,7 @@ public:
     string bio;
     vector<Group*> adminList;   //list of groups this profile is an admin for
     int id;
+    QDateTime timeCreated;
 
     //Profile attributes -> expand this list
     string location, preference, age;
@@ -92,7 +93,13 @@ public:
     string getLocation();
     string getPreference();
     string getAge();
-
+    int getId();
+    vector<Group*> getAdminList();
+    vector<profile*> getFriendsList();
+    vector<Group*> getGroupsList();
+    vector<Post*> getPostHistory();
+    vector<Message*> getMessageHistory();
+    vector<fish*> getFishList();
 };
 
 #endif // PROFILE_H

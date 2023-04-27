@@ -8,7 +8,9 @@ fish::fish(string name, string species, string bio) {
     this->name = name;
     this->species = species;
     this->bio = bio;
-    id = owner->id;
+    QString f = "fish";
+    d.get_next_id(f);
+    //update database here
 }
 
 fish::~fish() {

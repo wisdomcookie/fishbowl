@@ -2,7 +2,6 @@ create table profiles (
       profile_id   INT  NOT NULL UNIQUE ,
       username     TEXT NOT NULL UNIQUE ,
       name         TEXT NOT NULL        ,
-      type         TEXT NOT NULL        ,
       date_created DATE NOT NULL        ,
       description  TEXT                 ,
     primary key (profile_id));

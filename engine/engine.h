@@ -1,63 +1,89 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
-#include "../comm_database/database.h"\
-
-class Group;
-#include "../groups/group.h"
+#include <QDateTime>
 
 class Profile;
-#include "../profiles/profile.h"
+class Fish;
+class Group;
+class Post;
+class PostComment;
+class GroupChat;
+class Message;
+class Database;
 
 class Engine
 {
 public:
     Engine();
+
     ~Engine();
 
     void update_data();
     void load_data();
 
-    void create_post(Profile *actor, Group *group, QString title, QString content);
-    void create_comment(Profile *actor, Post *post, QString content);
-    void create_groupchat(Profile *actor, QString name, std::vector<Profile*> participants);
-    void create_group(Profile *actor, QString name, std::vector<Profile*> participants, std::vector<Profile*> admin);
-    void create_message(Profile *actor, Group *group, QString content);
-    void create_profile(QString username, QString bio);
-    void create_fish(Profile *actor, QString name);
+    // Regular user
+
+    void create_profile(QString username, QString firstName, QString lastName, int age, QString location, QDateTime dateCreated, QString description=0);
+    void create_post(Profile *actor, Group *group, QDateTime dateCreated, QString title, QString content);
+    void create_comment(Profile *actor, Post *post, QDateTime dateCreated, QString content);
+    void create_comment_reply(Profile *actor, Post *post, PostComment *parentComment, QDateTime dateCreated, QString content);
+    void create_groupchat(Profile *actor, QString name, QDateTime dateCreated, std::vector<Profile*> participants);
+    void create_group(Profile *actor, QString name, QDateTime dateCreated, QString description);
+    void create_message(Profile *actor, GroupChat *groupchat, QDateTime dateCreated, QString content);
+    void create_fish(Profile *actor, QString name, int age, QString location, QString species, QDateTime dateCreated, QString description);
 
     void join_group(Profile *actor, Group *group);
     void join_groupchat(Profile *actor, GroupChat *groupchat);
 
+    void unfriend(Profile *actor, Profile *friendProfile);
     void leave_group(Profile *actor, Group *group);
     void leave_groupchat(Profile *actor, GroupChat *groupchat);
 
-    void edit_my_profile(Profile *actor, QString newBio = 0);
-    void edit_my_fish(Profile *actor, fish *fish, QString newContent = 0);
-    void edit_my_login(Profile *actor, QString newUsername = 0, QString newPassword = 0);
-    void edit_post(Profile *actor, Post *post, QString newContent = 0);
-    void edit_comment(Profile *actor, PostComment *comment, QString newContent = 0);
+    void edit_profile(Profile *actor, QString firstName, QString lastName, int age, QString location, QString description);
+    void edit_fish(Profile *actor, Fish *fish, QString name, int age, QString location, QString species, QString description);
+    void edit_password(Profile *actor, QString newPassword);
+    void edit_post(Profile *actor, Post *post, QString newContent);
+    void edit_comment(Profile *actor, PostComment *comment, QString newContent);
 
+    void delete_my_fish(Profile *actor, Fish *fish);
+    void delete_my_post(Profile *actor, Post *post);
+    void delete_my_comment(Profile *actor, PostComment *comment);
+    void delete_groupchat(Profile *actor, GroupChat *groupchat);
+
+
+    // Admin
+
+    void edit_group_description(Profile *actor, Group *group, QString newDescription);
     void remove_from_group(Profile *actor, Group *group, Profile *groupMember);
-    void remove_from_groupchat(Profile *actor, GroupChat *groupchat, Profile *groupchatParticipant);
-
+    void delete_group(Profile *actor, Group *group);
     void delete_post(Profile *actor, Post *post);
     void delete_comment(Profile *actor, PostComment *comment);
-    void delete_groupchat(Profile *actor, GroupChat *groupchat);
-    void delete_group(Profile *actor, Group *group);
-
-    void ban_user(Profile *actor, Profile *user, Group *group);
-
-    bool login(QString username, QString password);
-
+    void ban_user(Profile *actor, Profile *user, Group *group, QDateTime banDate, QString reason);
 
 private:
     Database *db;
+    QString dateFormat;
 
     std::map<int, Profile*> profiles;
     std::map<int, Group*> groups;
     std::map<int, Post*> posts;
     std::map<int, GroupChat*> groupchats;
+
+    std::vector<QString> profileFields;
+    std::vector<QString> fishFields;
+    std::vector<QString> groupFields;
+    std::vector<QString> groupMemberFields;
+    std::vector<QString> friendsFields;
+
+    std::vector<QString> postFields;
+    std::vector<QString> commentFields;
+    std::vector<QString> groupchatFields;
+    std::vector<QString> groupchatParticipantFields;
+    std::vector<QString> messageFields;
+
+    std::vector<QString> adminFields;
+    std::vector<QString> bannedUserFields;
 
 
 };

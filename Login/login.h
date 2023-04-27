@@ -12,7 +12,7 @@ public:
     login();
     ~login();
 
-    bool performLogin(string username, string password);
+    Profile* performLogin(string username, string password);
     Engine* e;
     Database d;
 };

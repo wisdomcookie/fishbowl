@@ -14,6 +14,8 @@ public:
     fish(string name, string species, string bio);
     ~fish();
 
+    Database d;
+
     //Fish sub-profile information
     string name, location, species, bio;
     profile* owner;
