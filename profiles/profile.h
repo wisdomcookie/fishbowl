@@ -20,67 +20,9 @@ class Profile
 public:
     Profile();
     // user creates new profile
-    Profile(int id, QString username, QString firstName, QString lastName, int age, QString location, QString type, QDateTime dateCreated, QString description);
+    Profile(int id, QString username, QString firstName, QString lastName, int age, QString location, QDateTime dateCreated, QString description);
     Profile(std::map<QString, QString> profileData); // load from database
     ~Profile();
-
-//    //  -------- Profile information --------  //
-//    Profile(string username, string password);
-//    //Profile owner's legal name
-//    string nameFirst, nameLast;
-
-//    //Profile owner's username/password
-//    //string username, password;
-
-//    //Profile information General
-//    string bio;
-//    vector<Group*> adminList;   //list of groups this profile is an admin for
-//    int id;
-
-//    //Profile attributes -> expand this list
-//    string location, preference, age;
-
-//    //Friends list
-//    vector<Profile*> friendsList;
-
-//    //Groups list
-//    vector<Group*> groupsList;
-
-//    //Post/Message History
-//    vector<Post*> postHistory;
-//    vector<Message*> messageHistory;    //store different chats with other profiles
-
-//    //Fish owned by profile
-//    vector<Fish*> collection;
-
-//    //Settings
-//    bool access;    //private or public account
-
-    //  -------- Methods --------  //
-
-//    void addFriend(Profile* x);
-//    void removeFriend(Profile* x);  //remove friend at profile
-//    void removeFriendForeign(Profile* x);  //remove friend at foreign profile
-//    void changeBio(string x);
-//    void changeUsername(string x);
-//    void changePassword(string x);
-//    //change attributes here
-//    void createFish(string name, string species);
-//    void removeFish(Fish* x);
-//    void changeFishBio(Fish* x, string y);
-//    void changeFishLocation(Fish* x, string y);
-//    void addAdminGroup(Group* g);
-//    void addMessage(Message* m);
-//    void addPost(Post* p);
-//    void addGroup(Group* g);
-//    string getNameFirst();
-//    string getNameLast();
-//    string getUsername();
-//    string getBio();
-//    string getLocation();
-//    string getPreference();
-//    string getAge();
-
 
     void add_fish(Fish *fish);
     void add_friend(Profile *profile);
@@ -117,6 +59,7 @@ public:
     QString get_description();
 
     std::vector<Fish*> get_fishList();
+    std::vector<Profile*> get_friendList();
 
 private:
     int profileId;

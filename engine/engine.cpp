@@ -15,7 +15,7 @@ Engine::Engine()
     dateFormat = QString("yyyy-MM-dd hh:mm:ss");
 
     profileFields = {
-        QString("profile_id"), QString("username"), QString("firstName"), QString("lastName"), QString("age"), QString("type"), QString("location"), QString("date_created"), QString("description")
+        QString("profile_id"), QString("username"), QString("firstName"), QString("lastName"), QString("age"), QString("location"), QString("date_created"), QString("description")
     };
 
     fishFields = {
@@ -164,13 +164,13 @@ void Engine::load_data(){
     } // loading and adding messages to the groupchats
 }
 
-void Engine::create_profile(QString username, QString firstName, QString lastName, int age, QString location, QString type, QDateTime dateCreated, QString description){
+void Engine::create_profile(QString username, QString password, QString firstName, QString lastName, int age, QString location, QDateTime dateCreated, QString description){
 
     int nextId = db->get_next_id(QString("profiles"));
-    Profile *profile = new Profile(nextId, username, firstName, lastName, age, location, type, dateCreated, description);
+    Profile *profile = new Profile(nextId, username, firstName, lastName, age, location, dateCreated, description);
 
     std::vector<QVariant> profileData =
-        {username, firstName, lastName, age, location, type, dateCreated.toString(dateFormat), description};
+        {username, firstName, lastName, age, location, dateCreated.toString(dateFormat), description};
 
     profiles[profile->get_id()] = profile; // inserts profile into profile map
     db->query_insert(QString("profiles"), profileFields, profileData); // inserts profile into database
@@ -540,4 +540,34 @@ void Engine::ban_user(Profile *actor, Profile *user, Group *group, QDateTime ban
     };
     db->query_insert(QString("banned_users"), bannedUserFields , bannedUserData);
 
+}
+
+
+std::vector<Profile*> Engine::get_profileList(){
+    std::vector<Profile*> res;
+    for(auto i = profiles.begin(); i != profiles.end(); i++){
+        res.push_back(i->second);
+    }
+    return res;
+}
+std::vector<Group*> Engine::get_groupList(){
+    std::vector<Group*> res;
+    for(auto i = groups.begin(); i != groups.end(); i++){
+        res.push_back(i->second);
+    }
+    return res;
+}
+std::vector<Post*> Engine::get_postList(){
+    std::vector<Post*> res;
+    for(auto i = posts.begin(); i != posts.end(); i++){
+        res.push_back(i->second);
+    }
+    return res;
+}
+std::vector<GroupChat*> Engine::get_groupchatList(){
+    std::vector<GroupChat*> res;
+    for(auto i = groupchats.begin(); i != groupchats.end(); i++){
+        res.push_back(i->second);
+    }
+    return res;
 }
