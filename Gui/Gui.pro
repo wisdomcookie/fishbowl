@@ -9,34 +9,54 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    connect.cpp \
+    login.cpp \
     main.cpp \
-    home.cpp
+    home.cpp \
+    ../profiles/fish.cpp \
+    ../profiles/profile.cpp \
+    ../comm/message.cpp \
+    ../comm/chat.cpp \
+    ../comm/post.cpp \
+    ../comm/postComment.cpp \
+    ../groups/group.cpp
+
 
 HEADERS += \
-    connect.h \
-    home.h
+    home.h \
+    ../profiles/fish.h \
+    ../profiles/profile.h \
+    login.h \
+    ../comm/message.h \
+    ../comm/chat.h \
+    ../comm/post.h \
+    ../comm/postComment.h \
+    ../groups/group.h
+
 
 FORMS += \
-    adminOptions.ui \
-    createAccount.ui \
+    #adminOptions.ui \
+    #createAccount.ui \
     createNewChat.ui \
-    createPost.ui \
-    editFishProfile.ui \
-    editProfile.ui \
-    fish.ui \
-    fishProfile.ui \
+    #createPost.ui \
+    #editFishProfile.ui \
+    #editProfile.ui \
+    #fish.ui \
+    #fishProfile.ui \
     friends.ui \
-    group.ui \
-    groups.ui \
-    home.ui \
+    #group.ui \
+    #groups.ui \
+    #home.ui \
     login.ui \
     messages.ui \
     post.ui \
-    profile.ui \
-    search.ui
+    #profile.ui \
+    #search.ui
+    home.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    home.qrc
