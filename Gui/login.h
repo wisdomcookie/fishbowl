@@ -14,12 +14,11 @@ class Login : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit Login(QWidget *parent = nullptr,
-                   Profile* p = nullptr);
+    explicit Login(QWidget *parent = nullptr);
     ~Login();
 
 signals:
-    void back();
+    void back(Profile* p);
 
 private slots:
     void on_loginButton_clicked();

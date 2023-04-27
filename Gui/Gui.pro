@@ -17,6 +17,7 @@ SOURCES += \
     ../comm/message.cpp \
     ../comm/chat.cpp \
     ../comm/post.cpp \
+    ../comm/postComment.cpp \
     ../groups/group.cpp
 
 
@@ -28,6 +29,7 @@ HEADERS += \
     ../comm/message.h \
     ../comm/chat.h \
     ../comm/post.h \
+    ../comm/postComment.h \
     ../groups/group.h
 
 

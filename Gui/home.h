@@ -14,6 +14,7 @@
 #include "../comm/message.h"
 #include "../comm/chat.h"
 #include "../comm/post.h"
+#include "../comm/postcomment.h"
 #include "QtWidgets/qlistwidget.h"
 #include "login.h"
 
@@ -32,7 +33,7 @@ public:
 private slots:
     void start(QWidget*);
 
-    void main_menu();
+    void main_menu(Profile* p);
 
     void on_homeButton_clicked();
 
@@ -80,6 +81,42 @@ private slots:
 
     void on_allPosts_itemDoubleClicked(QListWidgetItem *item);
 
+    void on_fishlist_itemClicked(QListWidgetItem *item);
+
+    void on_pushButton_2_clicked();
+
+    void on_newpword_returnPressed();
+
+    void addPost(Group*, Post*);
+
+    void addMyPost(Group*, Post*);
+
+    void on_addComment_returnPressed();
+
+    void on_createGroup_clicked();
+
+    void on_joinGroup_clicked();
+
+    void on_groupInfo_clicked();
+
+    void on_groupMembers_clicked();
+
+    void on_g_publish_clicked();
+
+    void addGroup(Group*);
+
+    void on_groupsList_itemClicked(QListWidgetItem *item);
+
+    void on_groupsList_itemSelectionChanged();
+
+    void addGroupMember(Group*, Profile* );
+
+    void on_membersList_itemDoubleClicked(QListWidgetItem *item);
+
+    void profilePage(Profile*);
+
+    void addFriend(Profile*);
+
 private:
     Ui::Home *ui;
     Profile p;
@@ -87,6 +124,9 @@ private:
     Login* l;
     Message *msg;
     QStandardItemModel *chatModel;
+    Post* currPost;
+    PostComment *cmt;
+    QStandardItemModel *cmtModel;
     Group* currGroup;
     Group* all = new Group("All");
 

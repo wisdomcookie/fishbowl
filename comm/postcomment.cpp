@@ -9,7 +9,8 @@ PostComment::PostComment(int id, Profile *creator, QDateTime dateCreated, Post *
     id(id), creator(creator), dateCreated(dateCreated), sourcePost(sourcePost), sourceComment(sourceComment), replies(replies), content(content){
 
 }
-PostComment::PostComment(Profile *creator, Post *sourcePost, PostComment *sourceComment, QString content){
+PostComment::PostComment(Profile *creator, Post *sourcePost, PostComment *sourceComment, QString content):
+    creator(creator), sourcePost(sourcePost), sourceComment(sourceComment), content(content){
 
 }     //User creates new comment
 

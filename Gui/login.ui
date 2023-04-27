@@ -60,6 +60,9 @@ background: rgb(128, 214, 255);
         <height>41</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background: rgb(245, 245, 245);</string>
+      </property>
       <property name="text">
        <string>Or Register Here!</string>
       </property>
@@ -92,6 +95,9 @@ background: rgb(128, 214, 255);
         <height>51</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background: rgb(245, 245, 245);</string>
+      </property>
       <property name="text">
        <string>Lets dive in!</string>
       </property>
@@ -104,6 +110,9 @@ background: rgb(128, 214, 255);
         <width>361</width>
         <height>31</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: rgb(245, 245, 245);</string>
       </property>
       <property name="text">
        <string/>
@@ -120,6 +129,9 @@ background: rgb(128, 214, 255);
         <width>361</width>
         <height>31</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: rgb(245, 245, 245);</string>
       </property>
       <property name="text">
        <string/>
@@ -159,6 +171,9 @@ background: rgb(128, 214, 255);
       <property name="autoFillBackground">
        <bool>false</bool>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background: rgb(245, 245, 245);</string>
+      </property>
       <property name="text">
        <string/>
       </property>
@@ -192,6 +207,9 @@ background: rgb(128, 214, 255);
         <kerning>true</kerning>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background: rgb(245, 245, 245);</string>
+      </property>
       <property name="standardButtons">
        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
       </property>
@@ -215,6 +233,9 @@ background: rgb(128, 214, 255);
       </property>
       <property name="focusPolicy">
        <enum>Qt::ClickFocus</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: rgb(245, 245, 245);</string>
       </property>
       <property name="text">
        <string/>
@@ -254,6 +275,9 @@ background: rgb(128, 214, 255);
       </property>
       <property name="focusPolicy">
        <enum>Qt::ClickFocus</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: rgb(245, 245, 245);</string>
       </property>
       <property name="horizontalScrollBarPolicy">
        <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -309,6 +333,9 @@ background: rgb(128, 214, 255);
       <property name="autoFillBackground">
        <bool>false</bool>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background: rgb(245, 245, 245);</string>
+      </property>
       <property name="text">
        <string/>
       </property>
@@ -347,6 +374,9 @@ background: rgb(128, 214, 255);
       </property>
       <property name="autoFillBackground">
        <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: rgb(245, 245, 245);</string>
       </property>
       <property name="inputMask">
        <string/>
@@ -393,6 +423,9 @@ background: rgb(128, 214, 255);
       <property name="autoFillBackground">
        <bool>false</bool>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background: rgb(245, 245, 245);</string>
+      </property>
       <property name="inputMask">
        <string/>
       </property>
@@ -432,6 +465,9 @@ background: rgb(128, 214, 255);
       <property name="focusPolicy">
        <enum>Qt::ClickFocus</enum>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background: rgb(245, 245, 245);</string>
+      </property>
       <property name="text">
        <string/>
       </property>
@@ -462,6 +498,45 @@ background: rgb(128, 214, 255);
       </property>
       <property name="text">
        <string>**Passwords must match**</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="c_age">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>90</y>
+        <width>371</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <bold>false</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::ClickFocus</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: rgb(245, 245, 245);</string>
+      </property>
+      <property name="inputMethodHints">
+       <set>Qt::ImhDigitsOnly|Qt::ImhPreferNumbers</set>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="cursorPosition">
+       <number>0</number>
+      </property>
+      <property name="placeholderText">
+       <string>Age</string>
+      </property>
+      <property name="cursorMoveStyle">
+       <enum>Qt::VisualMoveStyle</enum>
       </property>
      </widget>
     </widget>

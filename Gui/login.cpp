@@ -1,10 +1,9 @@
 #include "login.h"
 #include "ui_login.h"
 
-Login::Login(QWidget *parent, Profile* p) :
+Login::Login(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::Login),
-    p(p)
+    ui(new Ui::Login)
 {
     ui->setupUi(this);
 
@@ -22,19 +21,19 @@ Login::~Login()
 void Login::on_loginButton_clicked()
 {
     p = new Profile(ui->uname->text().toStdString(), ui->pword->text().toStdString());
-    emit back();
+    emit back(p);
 }
 
 
 void Login::on_create_accepted()
 {
-    p->changeUsername(ui->c_uname->text().toStdString());
-    p->changePassword(ui->c_pword->text().toStdString());
+    p = new Profile(ui->c_uname->text().toStdString(), ui->c_pword->text().toStdString());
     p->changeBio(ui->c_bio->toPlainText().toStdString());
     p->location = ui->c_location->text().toStdString();
     p->nameFirst = ui->fname->text().toStdString();
     p->nameLast = ui->lname->text().toStdString();
-    emit back();
+    p->age = ui->c_age->text().toStdString();
+    emit back(p);
 }
 
 
