@@ -27,11 +27,12 @@ void Login::on_loginButton_clicked()
 
 void Login::on_create_accepted()
 {
-    p = new Profile(ui->c_uname->text().toStdString(), ui->c_pword->text().toStdString());
+    e.create_profile(ui->c_uname->text(), ui->c_pword->text(), ui->fname->text(), ui->lname->text(), )
+    p = new Profile(.toStdString(), .toStdString());
     p->changeBio(ui->c_bio->toPlainText().toStdString());
     p->location = ui->c_location->text().toStdString();
-    p->nameFirst = ui->fname->text().toStdString();
-    p->nameLast = ui->lname->text().toStdString();
+    p->nameFirst = ).toStdString();
+    p->nameLast = .toStdString();
     p->age = ui->c_age->text().toStdString();
     emit back(p);
 }

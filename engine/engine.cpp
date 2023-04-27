@@ -164,13 +164,13 @@ void Engine::load_data(){
     } // loading and adding messages to the groupchats
 }
 
-void Engine::create_profile(QString username, QString firstName, QString lastName, int age, QString location, QString type, QDateTime dateCreated, QString description){
+void Engine::create_profile(QString username, QString password, QString firstName, QString lastName, int age, QString location, QDateTime dateCreated, QString description){
 
     int nextId = db->get_next_id(QString("profiles"));
-    Profile *profile = new Profile(nextId, username, firstName, lastName, age, location, type, dateCreated, description);
+    Profile *profile = new Profile(nextId, username, password, firstName, lastName, age, location, dateCreated, description);
 
     std::vector<QVariant> profileData =
-        {username, firstName, lastName, age, location, type, dateCreated.toString(dateFormat), description};
+        {username, firstName, lastName, age, location, dateCreated.toString(dateFormat), description};
 
     profiles[profile->get_id()] = profile; // inserts profile into profile map
     db->query_insert(QString("profiles"), profileFields, profileData); // inserts profile into database

@@ -19,8 +19,8 @@ Profile::Profile() {
 //    id = d.query_size() + 1;
 //}
 
-Profile::Profile(int id, QString username, QString firstName, QString lastName, int age, QString location, QString type, QDateTime dateCreated, QString description):
-    profileId(id), username(username), firstName(firstName), lastName(lastName), location(location), type(type), dateCreated(dateCreated), description(description)
+Profile::Profile(int id, QString username, QString password, QString firstName, QString lastName, int age, QString location, QString type, QDateTime dateCreated, QString description):
+    profileId(id), username(username), password(password), firstName(firstName), lastName(lastName), location(location), type(type), dateCreated(dateCreated), description(description)
 {
 
     aquarium = new Aquarium(this);

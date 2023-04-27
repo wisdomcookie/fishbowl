@@ -18,7 +18,8 @@ SOURCES += \
     ../comm/chat.cpp \
     ../comm/post.cpp \
     ../comm/postComment.cpp \
-    ../groups/group.cpp
+    ../groups/group.cpp \
+    ..engine/engine.cpp
 
 
 HEADERS += \
@@ -30,27 +31,12 @@ HEADERS += \
     ../comm/chat.h \
     ../comm/post.h \
     ../comm/postComment.h \
-    ../groups/group.h
+    ../groups/group.h \
+    ..engine/engine.h
 
 
 FORMS += \
-    #adminOptions.ui \
-    #createAccount.ui \
-    createNewChat.ui \
-    #createPost.ui \
-    #editFishProfile.ui \
-    #editProfile.ui \
-    #fish.ui \
-    #fishProfile.ui \
-    friends.ui \
-    #group.ui \
-    #groups.ui \
-    #home.ui \
     login.ui \
-    messages.ui \
-    post.ui \
-    #profile.ui \
-    #search.ui
     home.ui
 
 # Default rules for deployment.

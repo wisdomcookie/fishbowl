@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QObject>
 #include "../profiles/profile.h"
+#include "../engine/engine.h"
 
 namespace Ui {
 class Login;
