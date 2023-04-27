@@ -1,22 +1,14 @@
 #include "post.h"
 #include "postcomment.h"
 #include "../profiles/profile.h"
+#include "../groups/group.h"
 
 Post::Post() {
 
 }
 
-void Post::create_post(){
-
-}
-
-Post::Post(int id, Profile *creator, Group *sourceGroup, QString title, QString content, QDateTime dateCreated, std::map<int, PostComment*> comments):
-    postId(id), creator(creator), sourceGroup(sourceGroup), title(title), content(content), dateCreated(dateCreated), comments(comments){
-
-} // Load from database
-
-Post::Post(int id, Profile *creator, Group *group, QString title, QString content):
-    postId(id), posterId(creator->get_id()), groupId(group->get_id()), group(group), title(title), content(content), dateCreated(QDateTime::currentDateTimeUtc()), visibility(true){
+Post::Post(int id, Profile *creator, Group *group, QDateTime dateCreated, QString title, QString content):
+    postId(id), posterId(creator->get_id()), groupId(group->get_id()), dateCreated(dateCreated), title(title), content(content), visibility(true), group(group){
 
 } // User creates new post
 
@@ -31,8 +23,8 @@ Post::Post(std::map<QString, QString> postData){
 
     title = postData[QString("title")];
     content = postData[QString("content")];
-    visibility = postData[QString("title")].toInt();
-}
+    visibility = postData[QString("visibility")].toInt();
+} // load from database
 
 Post::~Post(){
 

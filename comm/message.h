@@ -10,7 +10,7 @@ class Message
 {
 public:
     Message();
-    Message(int id, Profile *sender, GroupChat *groupchat, QString content); // user creates new groupchat
+    Message(int id, Profile *sender, GroupChat *groupchat, QDateTime dateCreated, QString content); // user creates new groupchat
     Message(std::map<QString, QString> messageData); // load from database
     ~Message();
 
@@ -19,10 +19,11 @@ public:
     int get_id();
     int get_senderId();
     int get_groupchatId();
+    QDateTime get_dateCreated();
     QString get_content();
     Profile *get_sender();
     GroupChat *get_groupchat();
-    QDateTime get_dateCreated();
+
 
 private:
     int messageId;

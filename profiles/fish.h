@@ -13,15 +13,22 @@ class Fish
 {
 public:
     Fish();
-    Fish(int id, Profile *owner, QString name,int age, QString location, QString species, QString description);
+    Fish(int id, Profile *owner, QString name,int age, QString location, QString species, QDateTime dateCreated, QString description);
     Fish(std::map<QString, QString> fishData);
     ~Fish();
 
-    //Fish sub-profile information
-//    string name, location, species, bio;
-//    Profile* owner;
+    void edit_data(QString name, int age, QString location, QString species, QString description);
+    bool is_owner(Profile *profile);
+
     int get_id();
+    int get_ownerId();
+    QString get_name();
+    int get_age();
+    QString get_location();
+    QString get_species();
     QDateTime get_dateCreated();
+    QString get_description();
+    Profile *get_owner();
 
 private:
     int fishId;

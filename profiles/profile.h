@@ -1,31 +1,31 @@
 #ifndef PROFILE_H
 #define PROFILE_H
-#include <vector>
 
-#include "../comm/post.h"
-#include "../comm/postcomment.h"
-#include "../comm/message.h"
-#include "../comm_database/database.h"
+#include <vector>
+#include <QString>
+#include <QDateTime>
 
 using namespace std;
 
-//class Group;
-#include "../groups/group.h"
-
-//class Fish;
-#include "fish.h"
+class Group;
+class Post;
+class PostComment;
+class GroupChat;
+class Message;
+class Fish;
+class Aquarium;
 
 class Profile
 {
 public:
     Profile();
-    Profile(string username, string password);
-    Profile(int id, QString username, QString firstName, QString lastName, int age, QString location, QString type, QDateTime dateCreated, QString description=0);
+    // user creates new profile
+    Profile(int id, QString username, QString firstName, QString lastName, int age, QString location, QString type, QDateTime dateCreated, QString description);
     Profile(std::map<QString, QString> profileData); // load from database
     ~Profile();
 
 //    //  -------- Profile information --------  //
-
+//    Profile(string username, string password);
 //    //Profile owner's legal name
 //    string nameFirst, nameLast;
 
@@ -58,44 +58,64 @@ public:
 
     //  -------- Methods --------  //
 
-    void addFriend(Profile* x);
-    void removeFriend(Profile* x);  //remove friend at profile
-    void removeFriendForeign(Profile* x);  //remove friend at foreign profile
+//    void addFriend(Profile* x);
+//    void removeFriend(Profile* x);  //remove friend at profile
+//    void removeFriendForeign(Profile* x);  //remove friend at foreign profile
+//    void changeBio(string x);
+//    void changeUsername(string x);
+//    void changePassword(string x);
+//    //change attributes here
+//    void createFish(string name, string species);
+//    void removeFish(Fish* x);
+//    void changeFishBio(Fish* x, string y);
+//    void changeFishLocation(Fish* x, string y);
+//    void addAdminGroup(Group* g);
+//    void addMessage(Message* m);
+//    void addPost(Post* p);
+//    void addGroup(Group* g);
+//    string getNameFirst();
+//    string getNameLast();
+//    string getUsername();
+//    string getBio();
+//    string getLocation();
+//    string getPreference();
+//    string getAge();
 
-    void changeBio(string x);
-    void changeUsername(string x);
-    void changePassword(string x);
-    //change attributes here
 
     void add_fish(Fish *fish);
-    void add_comment(PostComment *comment);
-
-    void createFish(string name, string species);
-    void removeFish(Fish* x);
-    void changeFishBio(Fish* x, string y);
-    void changeFishLocation(Fish* x, string y);
-
-
-    void add_admin_group(Group *g);
-    void addAdminGroup(Group* g);
-
+    void add_friend(Profile *profile);
+    void add_group(Group *group);
+    void add_group_as_admin(Group *g);
     void add_groupchat(GroupChat *groupchat);
     void add_message(Message* m);
-    void addMessage(Message* m);
     void add_post(Post *p);
-    void addPost(Post* p);
-    void addGroup(Group* g);
+    void add_comment(PostComment *comment);
+
+    void edit_profile(QString firstName, QString lastName, int age, QString location, QString description);
+    void edit_fish(Fish *fish, QString name, int age, QString location, QString species, QString description);
+    void edit_post(Post *post, QString newContent);
+    void edit_comment(PostComment *comment, QString newContent);
+
+    void remove_fish(Fish *fish);
+    void remove_friend(Profile *profile);
+    void leave_group(Group *group);
+    void leave_groupchat(GroupChat *groupchat);
+    void delete_post(Post *post);
+    void delete_comment(PostComment *comment);
+
 
     // --- Getter/Setter Methods --- //
 
     int get_id();
-    string getNameFirst();
-    string getNameLast();
-    string getUsername();
-    string getBio();
-    string getLocation();
-    string getPreference();
-    string getAge();
+    QString get_username();
+    QString get_firstName();
+    QString get_lastName();
+    int get_age();
+    QString get_location();
+    QString get_type();
+    QDateTime get_dateCreated();
+    QString get_description();
+
 
 private:
     int profileId;
@@ -115,6 +135,7 @@ private:
     std::map<int, PostComment*> comments;
     std::map<int, Message*> messages;
 
+    Aquarium *aquarium;
 };
 
 #endif // PROFILE_H

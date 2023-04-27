@@ -8,12 +8,14 @@ QT += sql
 SOURCES += \
         aquarium.cpp \
         fish.cpp \
+        groupaquarium.cpp \
         main.cpp \
         profile.cpp
 
 HEADERS += \
     aquarium.h \
     fish.h \
+    groupaquarium.h \
     profile.h
 
 HEADERS += ../comm_database/database.h

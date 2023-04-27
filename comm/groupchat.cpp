@@ -1,56 +1,60 @@
 #include "groupchat.h"
+#include "../profiles/profile.h"
+#include "message.h"
 
 GroupChat::GroupChat()
 {
 
 }
 
-GroupChat::GroupChat(int id, QString name, int size, QDateTime dateCreated, std::vector<Profile*> participants, std::vector<Message> messageHistory):
-    id(id), name(name), size(size), dateCreated(dateCreated), participants(participants), messageHistory(messageHistory){
-
-}
-
-GroupChat::GroupChat(int id, Profile *owner, QString name, std::vector<Profile*> participants):
-    groupchatId(id), ownerId(owner->get_id()), name(name), size(participants.size()), dateCreated(QDateTime::currentDateTimeUtc()){
+GroupChat::GroupChat(int id, Profile *owner, QString name, QDateTime dateCreated, std::vector<Profile*> participants):
+    groupchatId(id), ownerId(owner->get_id()), name(name), size(participants.size()), dateCreated(dateCreated){
 
     for(Profile *profile: participants){
         this->participants[profile->get_id()] = profile;
     }
 } // user creates new groupchat
 
+GroupChat::GroupChat(std::map<QString, QString> groupchatData){
+    groupchatId = groupchatData[QString("groupchat_id")].toInt();
+    ownerId = groupchatData[QString("owner_id")].toInt();
+    name = groupchatData[QString("name")];
+    size = groupchatData[QString("size")].toInt();
+
+    QString dateString = groupchatData[QString("date_created")];
+    QString dateFormat = QString("yyyy-MM-dd hh:mm:ss");
+    dateCreated = QDateTime::fromString(dateString, dateFormat);
+
+} // load from database
+
 GroupChat::~GroupChat(){
 
 }
 
-void GroupChat::add_participant(Profile *p){
-    participants.push_back(p);
-    size++;
-}
-void GroupChat::remove_participant(Profile *p){
-    for(unsigned int i = 0; i < participants.size(); i++){
-        if(participants[i]->get_id() == p->get_id()){
-            messageHistory.erase(messageHistory.begin() + i);
-            size--;
-            return;
-        }
-    }
-}
-void GroupChat::send_message(Profile *sender, QString content){
-    Message msg = Message(sender, this, content);
-    messageHistory.push_back(msg);
-}
-void GroupChat::delete_message(Message msg){
-    for(unsigned int i = 0; i < messageHistory.size(); i++){
-        if(messageHistory[i].get_id() == msg.get_id()){
-            messageHistory.erase(messageHistory.begin() + i);
-            return;
-        }
-    }
+void GroupChat::add_message(Message *message){
+    messageHistory[message->get_id()] = message;
 }
 
-std::vector<Profile*> GroupChat::get_participants(){
+void GroupChat::add_participant(Profile *profile){
+
+    participants[profile->get_id()] = profile;
+    size++;
+}
+
+void GroupChat::remove_message(Message *message){
+    messageHistory.erase(message->get_id());
+}
+
+void GroupChat::remove_participant(Profile *profile){
+
+    participants.erase(profile->get_id());
+    size--;
+}
+
+
+std::map<int, Profile*> GroupChat::get_participants(){
     return participants;
 }
-std::vector<Message> GroupChat::get_history(){
+std::map<int, Message*> GroupChat::get_messageHistory(){
     return messageHistory;
 }

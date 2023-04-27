@@ -1,6 +1,12 @@
 #include "engine.h"
+#include "database.h"
+#include "../groups/group.h"
+#include "../profiles/profile.h"
+#include "../profiles/fish.h"
+#include "../comm/post.h"
 #include "../comm/postcomment.h"
 #include "../comm/groupchat.h"
+#include "../comm/message.h"
 
 Engine::Engine()
 {
@@ -61,6 +67,7 @@ Engine::~Engine(){
 void Engine::update_data(){
 
 }
+
 void Engine::load_data(){
 
     std::vector<std::map<QString, QString>> profileData = db->query_select(QString("profiles"), profileFields);
@@ -90,14 +97,13 @@ void Engine::load_data(){
     for(std::map<QString, QString> &row: friendsData){
         int requestorId = row[QString("requestorId")].toInt();
         int requestedId = row[QString("requested_id")].toInt();
-        profiles[requestorId]->addFriend(profiles[requestedId]);
-        profiles[requestedId]->addFriend(profiles[requestorId]); // two way friending
+        profiles[requestorId]->add_friend(profiles[requestedId]);
+        profiles[requestedId]->add_friend(profiles[requestorId]); // two way friending
     } // loading and adding friends by finding the profiles corresponding to the ids in the record
 
     std::vector<std::map<QString, QString>> fishData = db->query_select(QString("fish"), fishFields);
 
     for(std::map<QString, QString> &row: fishData){ // fix fish loading
-        int fishId = row[QString("fish_id")].toInt();
         int ownerId = row[QString("owner_id")].toInt();
         Fish *fish = new Fish(row);
         profiles[ownerId]->add_fish(fish);
@@ -188,7 +194,7 @@ void Engine::create_post(Profile *actor, Group *group, QDateTime dateCreated, QS
 void Engine::create_comment(Profile *actor, Post *post, QDateTime dateCreated, QString content){
 
     int nextId = db->get_next_id(QString("comments"));
-    PostComment *comment = new PostComment(nextId, actor, post, content);
+    PostComment *comment = new PostComment(nextId, actor, post, dateCreated, content);
 
     std::vector<QVariant> commentData = {
         comment->get_id(), post->get_id(), actor->get_id(), 0, dateCreated.toString(dateFormat), comment->get_visibility()
@@ -244,7 +250,7 @@ void Engine::create_group(Profile *actor, QString name, QDateTime dateCreated, Q
 
     groups[group->get_id()] = group; // inserts group into groups map
     db->query_insert(QString("groups"), groupFields, groupData); // inserts group into database
-    actor->add_admin_group(group);   // adds group to admin
+    actor->add_group_as_admin(group);   // adds group to admin
 
     std::vector<QVariant> groupMemberData = {group->get_id(), actor->get_id()};
     db->query_insert(QString("group_members"), groupMemberFields, groupMemberData); // adds creator as group member to database
@@ -276,14 +282,14 @@ void Engine::create_fish(Profile *actor, QString name, int age, QString location
         fish->get_id(), actor->get_id(), name, age, location, species, dateCreated.toString(dateFormat), description
     };
 
-    actor->add_fish(fish) // adds fish to owner
+    actor->add_fish(fish); // adds fish to owner
     db->query_insert(QString("fish"), fishFields, fishData); // inserts fish into database
 }
 
 void Engine::join_group(Profile *actor, Group *group){
 
     if(group->is_banned(actor)){
-        return;
+        throw "User banned from group";
     }
 
     std::vector<QVariant> groupMemberData = {actor->get_id(), group->get_id()};
@@ -302,12 +308,25 @@ void Engine::join_groupchat(Profile *actor, GroupChat *groupchat){
 
 }
 
+void Engine::unfriend(Profile *actor, Profile *friendProfile){
+
+    QString profileId1 = QString::number(actor->get_id());
+    QString profileId2 = QString::number(friendProfile->get_id());
+
+    actor->remove_friend(friendProfile);
+    friendProfile->remove_friend(actor);
+
+    db->query_exec(QString("delete from friends where (requestor_id=" + profileId1 + " and requested_id=" + profileId2 + ") or "
+                                                     "(requestor_id=" + profileId2 + " and requested_id=" + profileId1 + ");"));
+
+}
+
 void Engine::leave_group(Profile *actor, Group *group){
 
     QString memberId = QString::number(actor->get_id());
     QString groupId = QString::number(group->get_id());
 
-    if(actor->is_admin(group)){
+    if(group->is_admin(actor)){
         group->remove_admin(actor);
     }
     else{
@@ -316,6 +335,7 @@ void Engine::leave_group(Profile *actor, Group *group){
     actor->leave_group(group);
     db->query_exec(QString("delete from group_members where group_id=" + groupId + " and profile_id=" + memberId + ";"));
 }
+
 void Engine::leave_groupchat(Profile *actor, GroupChat *groupchat){
 
     QString participantId = QString::number(actor->get_id());
@@ -327,7 +347,7 @@ void Engine::leave_groupchat(Profile *actor, GroupChat *groupchat){
 
 }
 
-void Engine::edit_my_profile(Profile *actor, QString firstName, QString lastName, int age, QString location, QString description){
+void Engine::edit_profile(Profile *actor, QString firstName, QString lastName, int age, QString location, QString description){
 
     actor->edit_profile(firstName, lastName, age, location, description);
 
@@ -341,7 +361,7 @@ void Engine::edit_my_profile(Profile *actor, QString firstName, QString lastName
     db->query_update_by_rowid(QString("profiles"), actor->get_id(), editFields, profileData); // inserts profile into database
 }
 
-void Engine::edit_my_fish(Profile *actor, Fish *fish, QString name, int age, QString location, QString species, QString description){
+void Engine::edit_fish(Profile *actor, Fish *fish, QString name, int age, QString location, QString species, QString description){
 
     actor->edit_fish(fish, name, age, location, species, description);
 
@@ -354,33 +374,30 @@ void Engine::edit_my_fish(Profile *actor, Fish *fish, QString name, int age, QSt
 
     db->query_update_by_rowid(QString("fish"), fish->get_id(), editFields, fishData); // inserts profile into database
 }
-void Engine::edit_my_password(Profile *actor, QString newPassword){
+
+void Engine::edit_password(Profile *actor, QString newPassword){
 
     db->query_exec("update login set password = '" + newPassword + "' where username = '" + actor->get_username() + "';");
 }
+
 void Engine::edit_post(Profile *actor, Post *post, QString newContent){
 
-    post->edit_content(newContent);
+    if(post->get_creator()!=actor){
+        throw "User does not own this post";
+    }
+    post->set_content(newContent);
     db->query_exec("update posts set content = '" + newContent + "' where post_id = " + QString::number(post->get_id()) + ";");
 }
+
 void Engine::edit_comment(Profile *actor, PostComment *comment, QString newContent){
 
-    comment->edit_content(newContent);
+    if(comment->get_creator()!=actor){
+        throw "User does not own this comment";
+    }
+    comment->set_content(newContent);
     db->query_exec("update comments set content = '" + newContent + "' where comment_id = " + QString::number(comment->get_id()) + ";");
 }
 
-void Engine::remove_from_group(Profile *actor, Group *group, Profile *groupMember){
-
-    if(!actor->is_admin(group){
-        throw "Action not permitted for user";
-    }
-    group->remove_member(groupMember);
-    groupMember->leave_group(group);
-
-    QString memberId = QString::number(actor->get_id());
-    QString groupId = QString::number(group->get_id());
-    db->query_exec(QString("delete from group_members where group_id=" + groupId + " and profile_id=" + memberId + ";"));
-}
 
 //void Engine::remove_from_groupchat(Profile *actor, GroupChat *groupchat, Profile *groupchatParticipant){
 //    QString participantId = QString::number(actor->get_id());
@@ -392,39 +409,50 @@ void Engine::remove_from_group(Profile *actor, Group *group, Profile *groupMembe
 
 //}
 
-void Engine::delete_post(Profile *actor, Post *post){
+void Engine::delete_my_fish(Profile *actor, Fish *fish){
+
+    if(fish->is_owner(actor)){
+        throw "User doesnt own this fish";
+    }
+    actor->remove_fish(fish);
+    db->query_delete_by_rowid(QString("fish"), fish->get_id());
+    delete fish;
+}
+
+void Engine::delete_my_post(Profile *actor, Post *post){
 
     if(post->get_creator() != actor){
         throw "Action not permitted for user";
     }
     posts.erase(post->get_id()); // remove from posts container
     post->get_sourceGroup()->remove_post(post); // remove from source group
-    actor->remove_post(post); // remove from poster's post history
+    actor->delete_post(post); // remove from poster's post history
 
     db->query_delete_by_rowid(QString("posts"), post->get_id()); // remove from database
     delete post; // deallocate pointer
 
 }
-void Engine::delete_comment(Profile *actor, PostComment *comment){
+void Engine::delete_my_comment(Profile *actor, PostComment *comment){
 
     if(comment->get_creator() != actor){
         throw "Action not permitted for user";
     }
-    comment->get_sourcePost()->remove_comment(comment); // remove from source post
-    actor->remove_comment(comment); // remove from poster's comment history
+    comment->get_post()->remove_comment(comment); // remove from source post
+    actor->delete_comment(comment); // remove from poster's comment history
 
     db->query_delete_by_rowid(QString("comments"), comment->get_id()); // remove from database
     delete comment; // deallocate pointer
 }
+
 void Engine::delete_groupchat(Profile *actor, GroupChat *groupchat){
 
     if(groupchat->get_owner() != actor){
         throw "Action not permitted for user";
     }
-    groupchats.erase(groupchat->get_id())// remove from groupchats container
+    groupchats.erase(groupchat->get_id());// remove from groupchats container
 
-    for(Profile *profile: groupchat->get_participants()){
-        profile->remove_groupchat(groupchat); // remove from participants
+    for(std::pair<int, Profile*> profile: groupchat->get_participants()){
+        profile.second->leave_groupchat(groupchat); // remove from participants
     }
 
     db->query_delete_by_rowid(QString("groupchats"), groupchat->get_id()); // emove from database entry for the groupchat
@@ -432,15 +460,42 @@ void Engine::delete_groupchat(Profile *actor, GroupChat *groupchat){
     delete groupchat; // deallocate pointer
 
 }
-void Engine::delete_group(Profile *actor, Group *group){
 
-    if(!actor->is_admin(group)){
+
+// Admin
+
+
+void Engine::edit_group_description(Profile *actor, Group *group, QString newDescription){
+
+    if(!group->is_admin(actor)){
+        throw "Non admin cant edit";
+    }
+    group->set_description(newDescription);
+}
+
+void Engine::remove_from_group(Profile *actor, Group *group, Profile *groupMember){
+
+    if(!group->is_admin(actor)){
         throw "Action not permitted for user";
     }
-    groups.erase(group->get_id())// remove from groupchats container
+    group->remove_member(groupMember);
+    groupMember->leave_group(group);
 
-    for(Profile *profile: group->get_members()){
-        profile->remove_group(group); // remove from participants
+    QString memberId = QString::number(actor->get_id());
+    QString groupId = QString::number(group->get_id());
+    db->query_exec(QString("delete from group_members where group_id=" + groupId + " and profile_id=" + memberId + ";"));
+}
+
+
+void Engine::delete_group(Profile *actor, Group *group){
+
+    if(!group->is_admin(actor)){
+        throw "Action not permitted for user";
+    }
+    groups.erase(group->get_id());// remove from groupchats container
+
+    for(std::pair<int, Profile*> profile: group->get_members()){
+        profile.second->leave_group(group); // remove from participants
     }
 
     db->query_delete_by_rowid(QString("groups"), group->get_id()); // remove from database entry for the group
@@ -448,10 +503,37 @@ void Engine::delete_group(Profile *actor, Group *group){
     delete group; // deallocate pointer
 }
 
+void Engine::delete_post(Profile *actor, Post *post){
+
+    if(!post->get_sourceGroup()->is_admin(actor)){
+        throw "Actor is not admin of the group the post is in";
+    }
+
+    posts.erase(post->get_id()); // remove from posts container
+    post->get_sourceGroup()->remove_post(post); // remove from source group
+    post->get_creator()->delete_post(post);; // remove from poster's post history
+
+    db->query_delete_by_rowid(QString("posts"), post->get_id()); // remove from database
+    delete post; // deallocate pointer
+
+}
+
+void Engine::delete_comment(Profile *actor, PostComment *comment){
+
+    if(comment->get_creator() != actor){
+        throw "Actor is not admin of the group the post is in";
+    }
+    comment->get_post()->remove_comment(comment); // remove from source post
+    comment->get_creator()->delete_comment(comment); // remove from poster's comment history
+
+    db->query_delete_by_rowid(QString("comments"), comment->get_id()); // remove from database
+    delete comment; // deallocate pointer
+}
+
 void Engine::ban_user(Profile *actor, Profile *user, Group *group, QDateTime banDate, QString reason){
 
     group->ban_from_group(user);
-    user->remove_group(group);
+    user->leave_group(group);
 
     std::vector<QVariant> bannedUserData = {
         user->get_id(), group->get_id(), actor->get_id(), banDate.toString(dateFormat), reason
