@@ -93,7 +93,7 @@ private:
 
     std::vector<QString> adminFields;
     std::vector<QString> bannedUserFields;
-
+    std::vector<QString> loginFields;
 
 };
 

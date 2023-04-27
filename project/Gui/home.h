@@ -12,7 +12,6 @@
 #include "../profiles/profile.h"
 #include "../groups/group.h"
 #include "../comm/message.h"
-#include "../comm/chat.h"
 #include "../comm/post.h"
 #include "../comm/postcomment.h"
 #include "QtWidgets/qlistwidget.h"

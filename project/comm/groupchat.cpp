@@ -51,6 +51,21 @@ void GroupChat::remove_participant(Profile *profile){
     size--;
 }
 
+int GroupChat::get_id(){
+    return groupchatId;
+}
+QString GroupChat::get_name(){
+    return name;
+}
+int GroupChat::get_size(){
+    return size;
+}
+QDateTime GroupChat::get_dateCreated(){
+    return dateCreated;
+}
+Profile *GroupChat::get_owner(){
+    return owner;
+}
 
 std::map<int, Profile*> GroupChat::get_participants(){
     return participants;

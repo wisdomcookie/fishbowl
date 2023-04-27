@@ -56,6 +56,10 @@ Engine::Engine()
         QString("profile_id"), QString("group_id"), QString("ban_date"), QString("reason")
     };
 
+    loginFields = {
+        QString("username"), QString("password")
+    };
+
 
 }
 
@@ -174,6 +178,11 @@ void Engine::create_profile(QString username, QString password, QString firstNam
 
     profiles[profile->get_id()] = profile; // inserts profile into profile map
     db->query_insert(QString("profiles"), profileFields, profileData); // inserts profile into database
+
+    std::vector<QVariant> loginData = {
+        username, password
+    };
+    db->query_insert(QString("login"), loginFields, loginData);
 }
 
 void Engine::create_post(Profile *actor, Group *group, QDateTime dateCreated, QString title, QString content){
