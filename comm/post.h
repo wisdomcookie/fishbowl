@@ -14,11 +14,13 @@ class Post
 {
 public:
     Post();
-    Post(int id, Profile *creator, Group *group, QString title, QString content, QDateTime dateCreated, std::vector<PostComment*> comments); // Load from database
+    Post(int id, Profile *creator, Group *group, QString title, QString content, QDateTime dateCreated, std::map<int, PostComment*> comments); // Load from database
     Post(Profile *creator, Group *group, QString title, QString content); // User creates new post
+    Post(std::map<QString, QString> postData); // load from database actual
     ~Post();
 
-    void edit_content(QString newContent);
+    void set_content(QString newContent);
+    void add_comment(PostComment *comment);
 
     int get_id();
     Profile *get_creator();
@@ -26,16 +28,20 @@ public:
     QString get_title();
     QString get_content();
     QDateTime get_dateCreated();
-    std::vector<PostComment*> get_comments();
+    std::map<int, PostComment*> get_comments();
 
 private:
-    int id;
-    Profile *creator;
-    Group *sourceGroup;
+    int postId;
+    int posterId;
+    int groupId;
+    QDateTime dateCreated;
     QString title;
     QString content;
-    QDateTime dateCreated;
-    std::vector<PostComment*> comments;
+    bool visibility;
+
+    Profile *creator;
+    Group *sourceGroup;
+    std::map<int, PostComment*> comments;
 };
 
 #endif // POST_H

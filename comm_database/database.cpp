@@ -59,6 +59,36 @@ void Database::query_exec(QString s) {
 
 }
 
+std::vector<std::map<QString, QString>> Database::query_select(QString table, std::vector<QString> fields){
+    QString fieldstring = fields[0];
+
+    for(int i = 1; i < fields.size(); i++){
+        fieldstring += "," + fields[i];
+    }
+
+    QString sqlcmd = QString("select " + fieldstring + " from " + table + ";");
+    query_exec(sqlcmd);
+
+    std::vector<std::map<QString, QString>> res;
+
+    while(query->next()){
+        std::map<QString, QString> row;
+        for(QString &field: fields){
+            row[field] = query->value(field).toString();
+        }
+        res.push_back(row);
+    }
+    return res;
+
+}
+
+int Database::get_next_id(QString table){
+
+    QString sqlcmd = QString("select max(rowid) from " + table + ";");
+    query_exec(sqlcmd);
+    return query->value(0).toInt() + 1;
+}
+
 int Database::query_size(){
     int res = 0;
     if(query->last())
@@ -74,9 +104,10 @@ int Database::query_size(){
 QString Database::query_string(){
 
     QString str("");
+    query->first();
 
     std::vector<std::vector<QString>> results;
-    while (query->next()) {
+    do {
 
         QSqlRecord rec = query->record();
         std::vector<QString> row;
@@ -84,7 +115,7 @@ QString Database::query_string(){
             row.push_back(rec.value(i).toString());
         }
         results.push_back(row);
-    }
+    } while (query->next());
 
     for(auto &i: results){
         for(auto &j: i){
@@ -92,22 +123,19 @@ QString Database::query_string(){
         }
         str += "\n";
     }
+
+
     return str;
+
 }
 
-std::vector<std::vector<QString>> Database::query_vector() {
+std::vector<std::map<QString, QString>> Database::query_vector(){
+    std::vector<std::map<QString, QString>> res;
 
-    std::vector<std::vector<QString>> results;
-    while (query->next()) {
+    while(query->next()){
+        std::map<QString, QString> row;
 
-        QSqlRecord rec = query->record();
-        std::vector<QString> row;
-        for(int i = 0; i < rec.count(); i++){
-            row.push_back(rec.value(i).toString());
-        }
-        results.push_back(row);
     }
-    return results;
 }
 
 //int database::insert()

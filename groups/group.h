@@ -6,14 +6,22 @@
 #include <string>
 #include <vector>
 
+class fish;
+#include "../profiles/fish.h"
+
 class profile;
 #include "../profiles/profile.h"
+
+class Engine;
+#include "../engine/engine.h"
 
 class Group
 {
 public:
     Group();
     Group(std::string name);
+
+    Engine* e;
 
     ~Group();
 

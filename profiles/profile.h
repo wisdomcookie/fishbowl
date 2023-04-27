@@ -13,12 +13,18 @@ class Group;
 class fish;
 #include "fish.h"
 
+class Engine;
+#include "../engine/engine.h"
+
 class profile
 {
 public:
     profile();
     profile(string username, string password, string nameFirst, string nameLast);
     ~profile();
+
+    Database d;
+    Engine* e;
 
     //  -------- Profile information --------  //
 
@@ -81,6 +87,7 @@ public:
     string getNameFirst();
     string getNameLast();
     string getUsername();
+    string getPassword();
     string getBio();
     string getLocation();
     string getPreference();

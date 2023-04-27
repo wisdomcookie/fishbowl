@@ -8,6 +8,7 @@ fish::fish(string name, string species, string bio) {
     this->name = name;
     this->species = species;
     this->bio = bio;
+    id = owner->id;
 }
 
 fish::~fish() {

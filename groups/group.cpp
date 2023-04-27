@@ -5,11 +5,11 @@ Group::Group(){
 }
 
 Group::Group(std::string name): name(name){
-
+    this->name = name;
 }
 
 Group::~Group(){
-
+    delete e;
 }
 
 void Group::add_member(profile *person){

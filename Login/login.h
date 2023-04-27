@@ -2,6 +2,7 @@
 #define LOGIN_H
 #include <string>
 #include "../comm_database/database.h"
+#include "../engine/engine.h"
 
 using namespace std;
 
@@ -12,7 +13,7 @@ public:
     ~login();
 
     bool performLogin(string username, string password);
-
+    Engine* e;
     Database d;
 };
 

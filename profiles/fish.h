@@ -18,6 +18,8 @@ public:
     string name, location, species, bio;
     profile* owner;
 
+    int id;
+
     //  -------- Methods --------  //
 
     void changeName(string n);

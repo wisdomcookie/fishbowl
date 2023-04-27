@@ -8,13 +8,15 @@ profile::profile(string username, string password, string nameFirst, string name
     this->password = password;
     this->nameFirst = nameFirst;
     this->nameLast = nameLast;
-    Database d;
-    d.query_exec("select * from profiles");
-    id = d.query_size() + 1;
+    QString p = "profiles";
+    e = new Engine();
+    d.get_next_id(p);
+    e->create_profile(QString::fromStdString(username), QString::fromStdString(bio));
 }
 
 profile::~profile() {
     delete this;
+    delete e;
 }
 
 /**
@@ -82,6 +84,7 @@ fish* profile::createFish(string name, string species, string bio) {
     collection.push_back(x);
     x->location = this->location;
     x->owner = this;
+    //e->create_fish(, QString::fromStdString(name));
     return x;
 }
 
@@ -168,6 +171,7 @@ void profile::createGroup(string name) {
     addAdminGroup(g);
     g->add_member(this);
     g->add_admin(this);
+    //e->createGroup(this, QString::fromStdString(name), )
 }
 
 
@@ -180,6 +184,9 @@ string profile::getNameLast() {
 }
 string profile::getUsername() {
     return username;
+}
+string profile::getPassword() {
+    return password;
 }
 string profile::getBio() {
     return bio;
