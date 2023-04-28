@@ -1,41 +1,47 @@
 #ifndef FISH_H
 #define FISH_H
+#include "qdatetime.h"
+#include <map>
 #include <string>
-
+#include <QString>
 using namespace std;
 
-class profile;
-#include "profile.h"
+class Profile;
+//#include "profile.h"
 
-class fish
+class Fish
 {
 public:
-    fish();
-    fish(string name, string species, string bio);
-    ~fish();
+    Fish();
+    Fish(int id, Profile *owner, QString name,int age, QString location, QString species, QDateTime dateCreated, QString description);
+    Fish(std::map<QString, QString> fishData);
+    ~Fish();
 
-    Database d;
+    void edit_data(QString name, int age, QString location, QString species, QString description);
+    bool is_owner(Profile *profile);
 
-    //Fish sub-profile information
-    string name, location, species, bio;
-    profile* owner;
+    int get_id();
+    int get_ownerId();
+    QString get_name();
+    int get_age();
+    QString get_location();
+    QString get_species();
+    QDateTime get_dateCreated();
+    QString get_description();
+    Profile *get_owner();
 
-    int id;
+private:
+    int fishId;
+    int ownerId;
+    QString name;
+    int age;
+    QString location;
+    QString species;
+    QDateTime dateCreated;
+    QString description;
 
-    //  -------- Methods --------  //
+    Profile *owner;
 
-    void changeName(string n);
-    void changeLocation(string l);
-    void changeBio(string b);
-    void changeSpecies(string s); //in case of typo, not that your fish can change species!
-
-    //Getter Methods
-
-    string getName();
-    string getLocation();
-    string getSpecies();
-    string getBio();
-    profile* getOwner();
 };
 
 #endif // FISH_H

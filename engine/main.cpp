@@ -47,6 +47,7 @@ int main()
     cout << str1.toStdString();
     cout << str2.toStdString();
     cout << d.query_size();
-
+    cout << 0;
+    return 0;
 
 }

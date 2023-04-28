@@ -8,14 +8,27 @@ QT += sql
 SOURCES += \
         aquarium.cpp \
         fish.cpp \
+        groupaquarium.cpp \
         main.cpp \
         profile.cpp
 
 HEADERS += \
     aquarium.h \
     fish.h \
+    groupaquarium.h \
     profile.h
 
-HEADERS += ../comm_database/database.h
+HEADERS += ../groups/group.h
+SOURCES += ../groups/group.cpp
 
-SOURCES += ../comm_database/database.cpp
+HEADERS += ../comm/groupchat.h
+HEADERS += ../comm/message.h
+HEADERS += ../comm/post.h
+HEADERS += ../comm/postcomment.h
+
+SOURCES += ../comm/groupchat.cpp
+SOURCES += ../comm/message.cpp
+SOURCES += ../comm/post.cpp
+SOURCES += ../comm/postcomment.cpp
+
+

@@ -1,25 +1,46 @@
 #include "profile.h"
+#include "fish.h"
+#include "aquarium.h"
+#include "../groups/group.h"
+#include "../comm/post.h"
+#include "../comm/postcomment.h"
+#include "../comm/groupchat.h"
+#include "../comm/message.h"
 
-profile::profile() {
+
+Profile::Profile() {
 }
 
-profile::profile(string username, string password, string nameFirst, string nameLast, QDateTime timeCreated, int age, string location) {
-    this->username = username;
-    this->password = password;
-    this->nameFirst = nameFirst;
-    this->nameLast = nameLast;
-    this->timeCreated = timeCreated;
-    this->age = age;
-    this->location = location;
-    QString p = "profiles";
-    e = new Engine();
-    d.get_next_id(p);
-    e->create_profile(QString::fromStdString(username), QString::fromStdString(nameFirst), QString::fromStdString(nameLast), age, QString::fromStdString(location), timeCreated, QString::fromStdString(bio));
+Profile::Profile(int id, QString username, QString password, QString firstName, QString lastName, int age, QString location, QDateTime dateCreated, QString description):
+    profileId(id), username(username), password(password), firstName(firstName), lastName(lastName), location(location), dateCreated(dateCreated), description(description)
+{
+
+    aquarium = new Aquarium(this);
 }
 
-profile::~profile() {
-    delete this;
-    delete e;
+Profile::Profile(std::map<QString, QString> profileData){
+    profileId = profileData[QString("profile_id")].toInt();
+    username = profileData[QString("username")];
+    firstName = profileData[QString("first_name")];
+    lastName = profileData[QString("last_name")];
+    age = profileData[QString("age")].toInt();
+    location = profileData[QString("location")];
+    type = profileData[QString("type")];
+
+    QString dateString = profileData[QString("date_created")];
+    QString dateFormat = QString("yyyy-MM-dd hh:mm:ss");
+    dateCreated = QDateTime::fromString(dateString, dateFormat);
+
+    description = profileData[QString("description")];
+}
+
+Profile::~Profile() {
+    delete aquarium;
+}
+
+
+void Profile::add_fish(Fish *fish){
+    aquarium->add_fish(fish);
 }
 
 /**
@@ -28,9 +49,61 @@ profile::~profile() {
  * @brief profile::addFriend
  * @param x
  */
-void profile::addFriend(profile* x) {
-    friendsList.push_back(x);
+void Profile::add_friend(Profile *profile){
+    friends[profile->get_id()] = profile;
 }
+/**
+ * Add a group to the profile's list of groups.
+ * @brief profile::addGroup
+ * @param g
+ */
+void Profile::add_group(Group *group){
+    groups[group->get_id()] = group;
+}
+void Profile::add_group_as_admin(Group *g){
+
+}
+void Profile::add_groupchat(GroupChat *groupchat){
+    groupchats[groupchat->get_id()] = groupchat;
+}
+
+/**
+ * Add a message to the profile's history of messages.
+ * @brief profile::addMessage
+ * @param m
+ */
+void Profile::add_message(Message* message){
+    messages[message->get_id()] = message;
+}
+/**
+ * Add a post to the profile's history of posts.
+ * @brief profile::addPost
+ * @param p
+ */
+void Profile::add_post(Post *post){
+    posts[post->get_id()] = post;
+}
+void Profile::add_comment(PostComment *comment){
+    comments[comment->get_id()] = comment;
+}
+
+void Profile::edit_profile(QString firstName, QString lastName, int age, QString location, QString description){
+    this->firstName = firstName;
+    this->lastName = lastName;
+    this->age = age;
+    this->location = location;
+    this->description = description;
+}
+void Profile::edit_fish(Fish *fish, QString name, int age, QString location, QString species, QString description){
+    fish->edit_data(name, age, location, species, description);
+}
+void Profile::edit_post(Post *post, QString newContent){
+    post->set_content(newContent);
+}
+void Profile::edit_comment(PostComment *comment, QString newContent){
+    comment->set_content(newContent);
+}
+
 
 /**
  * Remove a friend from your friends list. This does not require a signal from
@@ -40,55 +113,8 @@ void profile::addFriend(profile* x) {
  * @brief profile::removeFriend
  * @param x
  */
-void profile::removeFriend(profile* x) {
-    for (unsigned long i=0; i<friendsList.size(); i++) {
-        if (friendsList.at(i) == x) {
-            friendsList.erase(friendsList.begin() + i);
-        }
-    }
-    removeFriendForeign(this);
-}
-
-/**
- * Refer to description in removeFriend method.
- * @brief profile::removeFriendForeign
- * @param x
- */
-void profile::removeFriendForeign(profile* x) {
-    for (unsigned long i=0; i<x->friendsList.size(); i++) {
-        if (x->friendsList.at(i) == this) {
-            x->friendsList.erase(friendsList.begin() + i);
-        }
-    }
-}
-
-/**
- * This method and changeUsername & changePassword are simple edit
- * methods available to the user to change their profile info.
- */
-void profile::changeBio(string x) {
-    bio = x;
-}
-void profile::changeUsername(string x) {
-    username = x;
-}
-void profile::changePassword(string x) {
-    password = x;
-}
-
-/**
- * The following method will add a fish with the specified name
- * to the profile's collection of fish.
- * @brief profile::createFish
- * @param name
- */
-fish* profile::createFish(string name, string species, string bio) {
-    fish* x = new fish(name, species, bio);
-    collection.push_back(x);
-    x->location = this->location;
-    x->owner = this;
-    //e->create_fish(, QString::fromStdString(name));
-    return x;
+void Profile::remove_friend(Profile *profile){
+    friends.erase(profile->get_id());
 }
 
 /**
@@ -96,140 +122,91 @@ fish* profile::createFish(string name, string species, string bio) {
  * @brief profile::removeFish
  * @param x
  */
-void profile::removeFish(fish* x) {
-    for (unsigned long i=0; i<collection.size(); i++) {
-        if (collection.at(i) == x) {
-            collection.erase(collection.begin() + i);
-        }
-    }
+void Profile::remove_fish(Fish *fish){
+    aquarium->remove_fish(fish);
 }
-
-/**
- * Change bio of particular fish in collection.
- * @brief profile::changeFishBio
- * @param x
- * @param y
- */
-void profile::changeFishBio(fish* x, string y) {
-    x->bio = y;
+void Profile::leave_group(Group *group){
+    groups.erase(group->get_id());
 }
-
-/**
- * The fish's location will be set to the profile's current
- * location when created. This method will allow that to be
- * changed at any time, at the discretion of the user.
- * @brief profile::changeFishLocation
- * @param x
- * @param y
- */
-void profile::changeFishLocation(fish* x, string y) {
-    x->location = y;
+void Profile::leave_groupchat(GroupChat *groupchat){
+    groupchats.erase(groupchat->get_id());
 }
-
-/**
- * Add group to the adminlist.
- * @brief profile::addAdminGroup
- * @param g
- */
-void profile::addAdminGroup(Group* g) {
-    adminList.push_back(g);
+void Profile::delete_post(Post *post){
+    posts.erase(post->get_id());
 }
-
-/**
- * Add a message to the profile's history of messages.
- * @brief profile::addMessage
- * @param m
- */
-void profile::addMessage(Message* m) {
-    messageHistory.push_back(m);
-}
-
-/**
- * Add a post to the profile's history of posts.
- * @brief profile::addPost
- * @param p
- */
-void profile::addPost(Post* p) {
-    postHistory.push_back(p);
-}
-
-/**
- * Add a group to the profile's list of groups.
- * @brief profile::addGroup
- * @param g
- */
-void profile::addGroup(Group* g) {
-    groupsList.push_back(g);
-}
-
-/**
- * Create a new group, will automatically make this profile
- * the sole member and admin of said group.
- * @brief profile::createGroup
- * @param name
- */
-void profile::createGroup(string name) {
-    Group* g = new Group(name);
-    addGroup(g);
-    addAdminGroup(g);
-    g->add_member(this);
-    g->add_admin(this);
-    //e->createGroup(this, QString::fromStdString(name), )
+void Profile::delete_comment(PostComment *comment){
+    comments.erase(comment->get_id());
 }
 
 
-//Getter and setter methods
-string profile::getNameFirst() {
-    return nameFirst;
+// --- Getter/Setter Methods --- //
+
+int Profile::get_id(){
+    return profileId;
 }
-string profile::getNameLast() {
-    return nameLast;
-}
-string profile::getUsername() {
+QString Profile::get_username(){
     return username;
 }
-string profile::getPassword() {
+QString Profile::get_password() {
     return password;
 }
-string profile::getBio() {
-    return bio;
+QString Profile::get_firstName(){
+    return firstName;
 }
-string profile::getLocation() {
-    return location;
+QString Profile::get_lastName(){
+    return lastName;
 }
-string profile::getPreference() {
-    return preference;
-}
-string profile::getAge() {
+int Profile::get_age(){
     return age;
 }
-int profile::getId() {
-    return id;
+QString Profile::get_location(){
+    return location;
 }
-vector<Group*> profile::getAdminList() {
-    return adminList;
+QDateTime Profile::get_dateCreated(){
+    return dateCreated;
 }
-vector<profile*> profile::getFriendsList() {
-    return friendsList;
-}
-vector<Group*> profile::getGroupsList() {
-    return groupsList;
-}
-vector<Post*> profile::getPostHistory() {
-    return postHistory;
-}
-vector<Message*> profile::getMessageHistory() {
-    return messageHistory;
-}
-vector<fish*> profile::getFishList() {
-    return collection;
+QString Profile::get_description(){
+    return description;
 }
 
+std::vector<Fish*> Profile::get_fishList(){
+    std::map<int, Fish*> fishMap = aquarium->get_fish();
+    std::vector<Fish*> res;
+    for(auto i = fishMap.begin(); i != fishMap.end(); i++){
+        res.push_back(i->second);
+    }
+    return res;
+}
 
+std::vector<Profile*>  Profile::get_friendList(){
+    std::vector<Profile*> res;
+    for(auto i = friends.begin(); i != friends.end(); i++){
+        res.push_back(i->second);
+    }
+    return res;
+}
 
-
-
-
+std::vector<Group*> Profile::get_groupList(){
+    std::vector<Group*> res;
+    for(auto i = groups.begin(); i != groups.end(); i++){
+        res.push_back(i->second);
+    }
+    return res;
+}
+std::vector<Post*> Profile::get_postHistory(){
+    std::vector<Post*> res;
+    for(auto i = posts.begin(); i != posts.end(); i++){
+        res.push_back(i->second);
+    }
+    return res;
+}
+std::vector<Message*> Profile::get_messageHistory(){
+    std::vector<Message*> res;
+    for(auto i = messages.begin(); i != messages.end(); i++){
+        res.push_back(i->second);
+    }
+    return res;
+}
 
 
 

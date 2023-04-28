@@ -24,7 +24,7 @@ public:
 
     // Regular user
 
-    void create_profile(QString username, QString firstName, QString lastName, int age, QString location, QDateTime dateCreated, QString description=0);
+    void create_profile(QString username, QString password, QString firstName, QString lastName, int age, QString location, QDateTime dateCreated, QString description);
     void create_post(Profile *actor, Group *group, QDateTime dateCreated, QString title, QString content);
     void create_comment(Profile *actor, Post *post, QDateTime dateCreated, QString content);
     void create_comment_reply(Profile *actor, Post *post, PostComment *parentComment, QDateTime dateCreated, QString content);
@@ -51,7 +51,6 @@ public:
     void delete_my_comment(Profile *actor, PostComment *comment);
     void delete_groupchat(Profile *actor, GroupChat *groupchat);
 
-
     // Admin
 
     void edit_group_description(Profile *actor, Group *group, QString newDescription);
@@ -60,6 +59,16 @@ public:
     void delete_post(Profile *actor, Post *post);
     void delete_comment(Profile *actor, PostComment *comment);
     void ban_user(Profile *actor, Profile *user, Group *group, QDateTime banDate, QString reason);
+
+    // Login
+    Profile* loginEngine(QString username, QString password);
+
+    // Getters
+    std::vector<Profile*> get_profileList();
+    std::vector<Group*> get_groupList();
+    std::vector<Post*> get_postList();
+    std::vector<GroupChat*> get_groupchatList();
+
 
 private:
     Database *db;
@@ -84,7 +93,7 @@ private:
 
     std::vector<QString> adminFields;
     std::vector<QString> bannedUserFields;
-
+    std::vector<QString> loginFields;
 
 };
 

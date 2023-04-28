@@ -1,62 +1,71 @@
 #include "fish.h"
+#include "../profiles/profile.h"
 
-fish::fish() {
+Fish::Fish() {
 
 }
 
-fish::fish(string name, string species, string bio) {
+Fish::Fish(int id, Profile *owner, QString name, int age, QString location, QString species, QDateTime dateCreated, QString description):
+    fishId(id), ownerId(owner->get_id()), name(name), age(age), location(location), species(species), dateCreated(dateCreated), description(description), owner(owner){
+
+}
+Fish::Fish(std::map<QString, QString> fishData){
+    fishId = fishData[QString("fish_id")].toInt();
+    ownerId = fishData[QString("owner_id")].toInt();
+    name = fishData[QString("name")];
+    age = fishData[QString("age")].toInt();
+    location = fishData[QString("location")];
+    species = fishData[QString("species")];
+
+    QString dateString = fishData[QString("date_created")];
+    QString dateFormat = QString("yyyy-MM-dd hh:mm:ss");
+    dateCreated = QDateTime::fromString(dateString, dateFormat);
+
+    description = fishData[QString("description")];
+}
+
+
+Fish::~Fish() {
+
+}
+
+
+void Fish::edit_data(QString name, int age, QString location, QString species, QString description){
     this->name = name;
+    this->age = age;
+    this->location = location;
     this->species = species;
-    this->bio = bio;
-    QString f = "fish";
-    d.get_next_id(f);
-    //update database here
+    this->description = description;
 }
 
-fish::~fish() {
-
+bool Fish::is_owner(Profile *profile){
+    return profile == owner;
 }
 
-/**
- * The following 9 methods are for changing fish profile parameters and getter
- * methods for said parameters.
- * @brief fish::changeName
- * @param n
- */
-void fish::changeName(string n) {
-    name = n;
+int Fish::get_id(){
+    return fishId;
 }
-
-void fish::changeLocation(string l) {
-    location = l;
+int Fish::get_ownerId(){
+    return ownerId;
 }
-
-void fish::changeBio(string b) {
-    bio = b;
-}
-
-void fish::changeSpecies(string s) {
-    species = s;
-}
-
-string fish::getName() {
+QString Fish::get_name(){
     return name;
 }
-
-string fish::getLocation() {
+int Fish::get_age(){
+    return age;
+}
+QString Fish::get_location(){
     return location;
 }
-
-string fish::getSpecies() {
+QString Fish::get_species(){
     return species;
 }
-
-string fish::getBio() {
-    return bio;
+QDateTime Fish::get_dateCreated(){
+    return dateCreated;
 }
-
-profile* fish::getOwner() {
+QString Fish::get_description(){
+    return description;
+}
+Profile *Fish::get_owner(){
     return owner;
 }
-
-

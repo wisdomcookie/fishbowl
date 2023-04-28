@@ -1,20 +1,15 @@
 #ifndef LOGIN_H
 #define LOGIN_H
 #include <string>
-#include "../comm_database/database.h"
+#include <QString>
 #include "../engine/engine.h"
-
-using namespace std;
+#include "../profiles/profile.h"
 
 class login
 {
 public:
-    login();
+    login(Profile*);
     ~login();
-
-    Profile* performLogin(string username, string password);
-    Engine* e;
-    Database d;
 };
 
 #endif // LOGIN_H

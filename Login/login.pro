@@ -9,9 +9,7 @@ SOURCES += \
         login.cpp \
         main.cpp
 
+
 HEADERS += \
     login.h
 
-HEADERS += ../comm_database/database.h
-
-SOURCES += ../comm_database/database.cpp

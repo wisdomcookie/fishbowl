@@ -1,21 +1,14 @@
 #include "post.h"
 #include "postcomment.h"
+#include "../profiles/profile.h"
+#include "../groups/group.h"
 
 Post::Post() {
 
 }
 
-void Post::create_post(){
-
-}
-
-Post::Post(int id, Profile *creator, Group *sourceGroup, QString title, QString content, QDateTime dateCreated, std::map<int, PostComment*> comments):
-    postId(id), creator(creator), sourceGroup(sourceGroup), title(title), content(content), dateCreated(dateCreated), comments(comments){
-
-} // Load from database
-
-Post::Post(Profile *creator, Group *sourceGroup, QString title, QString content):
-    creator(creator), sourceGroup(sourceGroup), title(title), content(content), dateCreated(QDateTime::currentDateTime()){
+Post::Post(int id, Profile *creator, Group *group, QDateTime dateCreated, QString title, QString content):
+    postId(id), posterId(creator->get_id()), groupId(group->get_id()), dateCreated(dateCreated), title(title), content(content), visibility(true), group(group){
 
 } // User creates new post
 
@@ -30,8 +23,8 @@ Post::Post(std::map<QString, QString> postData){
 
     title = postData[QString("title")];
     content = postData[QString("content")];
-    visibility = postData[QString("title")].toInt();
-}
+    visibility = postData[QString("visibility")].toInt();
+} // load from database
 
 Post::~Post(){
 
@@ -45,11 +38,18 @@ void Post::add_comment(PostComment *comment){
     comments[comment->get_id()] = comment;
 }
 
+void Post::remove_comment(PostComment *comment){
+    comments.erase(comment->get_id());
+}
+
 int Post::get_id(){
     return postId;
 }
 Profile *Post::get_creator(){
     return creator;
+}
+Group *Post::get_sourceGroup(){
+    return group;
 }
 QString Post::get_title(){
     return title;
@@ -59,6 +59,9 @@ QString Post::get_content(){
 }
 QDateTime Post::get_dateCreated(){
     return dateCreated;
+}
+bool Post::get_visibility(){
+    return visibility;
 }
 std::map<int, PostComment*> Post::get_comments(){
     return comments;

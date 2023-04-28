@@ -10,4 +10,5 @@ SUBDIRS += \
     groups \
     profiles \
     search \
-    login
+    login \
+    unit-test

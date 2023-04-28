@@ -11,16 +11,22 @@ SOURCES += \
 HEADERS += \
     group.h
 
-SOURCES += ../admin/administrator.cpp
-SOURCES += ../profiles/profile.cpp
-SOURCES +=
-SOURCES += ../profiles/fish.cpp
-SOURCES += ../profiles/aquarium.cpp
-SOURCES += ../comm/post.cpp
-
-HEADERS += ../admin/administrator.h
-HEADERS +=
-HEADERS +=
+#HEADERS += ../admin/administrator.h
+HEADERS += ../profiles/profile.h
 HEADERS += ../profiles/fish.h
 HEADERS += ../profiles/aquarium.h
+
+#SOURCES += ../admin/administrator.cpp
+SOURCES += ../profiles/profile.cpp
+SOURCES += ../profiles/fish.cpp
+SOURCES += ../profiles/aquarium.cpp
+
+HEADERS += ../comm/groupchat.h
+HEADERS += ../comm/message.h
 HEADERS += ../comm/post.h
+HEADERS += ../comm/postcomment.h
+
+SOURCES += ../comm/groupchat.cpp
+SOURCES += ../comm/message.cpp
+SOURCES += ../comm/post.cpp
+SOURCES += ../comm/postcomment.cpp

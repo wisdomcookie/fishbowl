@@ -2,7 +2,7 @@
 #define POST_H
 
 
-#include "qdatetime.h"
+#include <QDateTime>
 #include <vector>
 class Profile;
 class Group;
@@ -14,20 +14,21 @@ class Post
 {
 public:
     Post();
-    Post(int id, Profile *creator, Group *group, QString title, QString content, QDateTime dateCreated, std::map<int, PostComment*> comments); // Load from database
-    Post(Profile *creator, Group *group, QString title, QString content); // User creates new post
+    Post(int id, Profile *creator, Group *group, QDateTime dateCreated, QString title, QString content); // User creates new post
     Post(std::map<QString, QString> postData); // load from database actual
     ~Post();
 
     void set_content(QString newContent);
     void add_comment(PostComment *comment);
+    void remove_comment(PostComment *comment);
 
     int get_id();
     Profile *get_creator();
     Group *get_sourceGroup();
+    QDateTime get_dateCreated();
     QString get_title();
     QString get_content();
-    QDateTime get_dateCreated();
+    bool get_visibility();
     std::map<int, PostComment*> get_comments();
 
 private:
@@ -40,7 +41,7 @@ private:
     bool visibility;
 
     Profile *creator;
-    Group *sourceGroup;
+    Group *group;
     std::map<int, PostComment*> comments;
 };
 
