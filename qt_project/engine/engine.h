@@ -64,7 +64,7 @@ public:
 
     // Login
 
-    bool login(QString username, QString password);
+    Profile* loginEngine(QString , QString );
 
     // Getters
     std::vector<Profile*> get_profileList();

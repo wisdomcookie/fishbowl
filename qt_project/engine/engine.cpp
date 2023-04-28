@@ -578,12 +578,17 @@ void Engine::ban_user(Profile *actor, Profile *user, Group *group, QDateTime ban
 
 }
 
-bool Engine::login(QString username, QString password){
-    std::vector<QVariant> loginData = {
-        username, password
-    };
-    if(db->query_select(QString("login"), loginFields).size() > 0);
-
+Profile* Engine::loginEngine(QString username, QString password) {
+    std::vector<Profile*> v;
+    v = get_profileList();
+    for (unsigned long i=0; i<v.size(); i++) {
+        if (username == v.at(i)->get_username()) {
+            //if (password == v.at(i)->get_password()) {
+                return v.at(i);
+            }
+        //}
+    }
+    return NULL;
 }
 
 std::vector<Profile*> Engine::get_profileList(){

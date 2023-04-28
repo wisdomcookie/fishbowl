@@ -20,11 +20,13 @@ Login::~Login()
 
 void Login::on_loginButton_clicked()
 {
-    for (Profile* pp : e->get_profileList()) {
-        if (e->login(ui->uname->text(), ui->pword->text())) emit back(p, e);
+    p = e->loginEngine(ui->uname->text(), ui->pword->text());
+    if (p == nullptr){
+        ui->uname->clear();
+        ui->pword->clear();
+    } else {
+        emit back(p, e);
     }
-    ui->uname->clear();
-    ui->pword->clear();
 }
 
 

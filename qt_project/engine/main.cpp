@@ -57,15 +57,15 @@ int main()
 
     //e->create_profile(QString("bobby"), QString("bobby1"), QString("William"), QString("Dearing"), 1, QString("here"), QDateTime::currentDateTimeUtc(), QString("hi"));
 
-    Profile *bobby = e->get_profileList().at(0);
+    //Profile *bobby = e->get_profileList().at(0);
     //e->create_group(p, QString("Grouptitle"), QDateTime::currentDateTimeUtc(), QString("descriptionssssssssss"));
-    Group *group = e->get_groupList().at(0);
+    //Group *group = e->get_groupList().at(0);
     //e->create_post(profile, group, QDateTime::currentDateTimeUtc(), QString("hi love me"), QString("please"));
-    Post *post = e->get_postList().at(0);
+    //Post *post = e->get_postList().at(0);
 
     //e->create_comment(profile, post, QDateTime::currentDateTimeUtc(), QString("commentsssssss"));
     //e->create_profile(QString("kaela"), QString("bobby1"), QString("William"), QString("Dearing"), 6, QString("here"), QDateTime::currentDateTimeUtc(), QString("hi"));
-    Profile *kaela = e->get_profileList().at(1);
+//    Profile *kaela = e->get_profileList().at(1);
 //    e->join_group(kaela, group);
 //    e->add_friend(bobby, kaela);
 //    e->unfriend(bobby, kaela);
@@ -75,7 +75,7 @@ int main()
 //    Fish *fish = kaela->get_fishList().at(0);
 //    e->edit_fish(kaela, fish, QString("ad23"), 34, QString("PurdueTTTTT"), QString("longboi"), QString("pet"));
 
-    e->edit_post(bobby, post, QString("newContent"));
+//    e->edit_post(bobby, post, QString("newContent"));
     delete e;
 
     return 0;
