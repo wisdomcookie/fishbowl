@@ -25,14 +25,16 @@ public:
     // Regular user
 
     void create_profile(QString username, QString password, QString firstName, QString lastName, int age, QString location, QDateTime dateCreated, QString description);
+    void create_fish(Profile *actor, QString name, int age, QString location, QString species, QDateTime dateCreated, QString description);
     void create_post(Profile *actor, Group *group, QDateTime dateCreated, QString title, QString content);
     void create_comment(Profile *actor, Post *post, QDateTime dateCreated, QString content);
     void create_comment_reply(Profile *actor, Post *post, PostComment *parentComment, QDateTime dateCreated, QString content);
     void create_groupchat(Profile *actor, QString name, QDateTime dateCreated, std::vector<Profile*> participants);
     void create_group(Profile *actor, QString name, QDateTime dateCreated, QString description);
     void create_message(Profile *actor, GroupChat *groupchat, QDateTime dateCreated, QString content);
-    void create_fish(Profile *actor, QString name, int age, QString location, QString species, QDateTime dateCreated, QString description);
 
+
+    void add_friend(Profile* actor, Profile *friendProfile);
     void join_group(Profile *actor, Group *group);
     void join_groupchat(Profile *actor, GroupChat *groupchat);
 

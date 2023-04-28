@@ -92,6 +92,8 @@ private:
     std::map<int, PostComment*> comments;
     std::map<int, Message*> messages;
 
+    std::map<int, Fish*> fishList;
+
     Aquarium *aquarium;
 };
 
