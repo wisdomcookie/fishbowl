@@ -7,7 +7,6 @@ QT += core
 QT += sql
 
 SOURCES += \
-        chat.cpp \
         groupchat.cpp \
         main.cpp \
         message.cpp \
@@ -15,14 +14,20 @@ SOURCES += \
         postcomment.cpp
 
 HEADERS += \
-    chat.h \
     groupchat.h \
     message.h \
     post.h \
     postcomment.h
 
-
+#HEADERS += ../admin/administrator.h
 HEADERS += ../profiles/profile.h
+HEADERS += ../profiles/fish.h
+HEADERS += ../profiles/aquarium.h
 
+#SOURCES += ../admin/administrator.cpp
 SOURCES += ../profiles/profile.cpp
+SOURCES += ../profiles/fish.cpp
+SOURCES += ../profiles/aquarium.cpp
 
+HEADERS += ../groups/group.h
+SOURCES += ../groups/group.cpp

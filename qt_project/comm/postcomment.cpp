@@ -56,6 +56,10 @@ Profile *PostComment::get_creator(){
 QDateTime PostComment::get_dateCreated(){
     return dateCreated;
 }
+bool PostComment::get_visibility(){
+    return visibility;
+}
+
 Post *PostComment::get_post(){
     return post;
 }

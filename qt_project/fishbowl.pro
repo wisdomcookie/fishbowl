@@ -1,10 +1,10 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-    Gui \
-    admin \
+#    Gui \
+#    admin \
     comm \
     engine \
     groups \
     profiles \
-    search
+#    search

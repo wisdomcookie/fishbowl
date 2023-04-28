@@ -2,7 +2,7 @@
 
 Database::Database()
 {
-    QString path("../database_info/fishbowlDB.sqlite");
+    QString path("../../database_info/fishbowlDB.sqlite");
 
     db = QSqlDatabase::addDatabase("QSQLITE");
 

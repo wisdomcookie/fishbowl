@@ -90,6 +90,9 @@ int Group::get_id(){
 QString Group::get_name(){
     return name;
 }
+int Group::get_size(){
+    return size;
+}
 QString Group::get_description(){
     return description;
 }

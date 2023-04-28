@@ -5,7 +5,6 @@
 #include <QString>
 #include <QDateTime>
 
-using namespace std;
 
 class Group;
 class Post;

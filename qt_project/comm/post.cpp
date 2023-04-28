@@ -38,11 +38,18 @@ void Post::add_comment(PostComment *comment){
     comments[comment->get_id()] = comment;
 }
 
+void Post::remove_comment(PostComment *comment){
+    comments.erase(comment->get_id());
+}
+
 int Post::get_id(){
     return postId;
 }
 Profile *Post::get_creator(){
     return creator;
+}
+Group *Post::get_sourceGroup(){
+    return group;
 }
 QString Post::get_title(){
     return title;
@@ -52,6 +59,9 @@ QString Post::get_content(){
 }
 QDateTime Post::get_dateCreated(){
     return dateCreated;
+}
+bool Post::get_visibility(){
+    return visibility;
 }
 std::map<int, PostComment*> Post::get_comments(){
     return comments;
