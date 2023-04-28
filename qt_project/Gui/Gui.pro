@@ -19,10 +19,9 @@ SOURCES += \
     ../profiles/profile.cpp \
     ../comm/message.cpp \
     ../comm/post.cpp \
-    ../comm/postComment.cpp \
+    ../comm/postcomment.cpp \
     ../groups/group.cpp \
     ../engine/engine.cpp
-
 
 HEADERS += \
     home.h \
@@ -31,7 +30,7 @@ HEADERS += \
     login.h \
     ../comm/message.h \
     ../comm/post.h \
-    ../comm/postComment.h \
+    ../comm/postcomment.h \
     ../groups/group.h \
     ../engine/engine.h
 

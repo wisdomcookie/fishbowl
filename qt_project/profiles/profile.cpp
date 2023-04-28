@@ -21,7 +21,7 @@ Profile::Profile() {
 
 
 Profile::Profile(int id, QString username, QString firstName, QString lastName, int age, QString location, QDateTime dateCreated, QString description):
-    profileId(id), username(username), firstName(firstName), lastName(lastName), location(location), dateCreated(dateCreated), description(description)
+    profileId(id), username(username), firstName(firstName), lastName(lastName), age(age), location(location), dateCreated(dateCreated), description(description)
 {
 
     aquarium = new Aquarium(this);
