@@ -171,7 +171,7 @@ void Engine::load_data(){
 void Engine::create_profile(QString username, QString password, QString firstName, QString lastName, int age, QString location, QDateTime dateCreated, QString description){
 
     int nextId = db->get_next_id(QString("profiles"));
-    Profile *profile = new Profile(nextId, username, password, firstName, lastName, age, location, dateCreated, description);
+    Profile *profile = new Profile(nextId, username, firstName, lastName, age, location, dateCreated, description);
 
     std::vector<QVariant> profileData =
         {username, firstName, lastName, age, location, dateCreated.toString(dateFormat), description};

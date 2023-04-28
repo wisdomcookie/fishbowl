@@ -314,7 +314,7 @@ QPushButton:pressed {
      </font>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>11</number>
     </property>
     <widget class="QWidget" name="HomePage">
      <widget class="QListWidget" name="allPosts">
@@ -2277,7 +2277,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_2">
+    <widget class="QWidget" name="CreateGroup">
      <widget class="QLineEdit" name="g_titleBox">
       <property name="geometry">
        <rect>

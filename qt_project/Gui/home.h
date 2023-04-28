@@ -14,6 +14,7 @@
 #include "../comm/message.h"
 #include "../comm/post.h"
 #include "../comm/postcomment.h"
+#include "../engine/engine.h"
 #include "QtWidgets/qlistwidget.h"
 #include "login.h"
 
@@ -32,7 +33,7 @@ public:
 private slots:
     void start(QWidget*);
 
-    void main_menu(Profile* p);
+    void main_menu(Profile* p, Engine e);
 
     void on_homeButton_clicked();
 
@@ -119,6 +120,7 @@ private slots:
 private:
     Ui::Home *ui;
     Profile p;
+    Engine e;
     Fish* f;
     Login* l;
     Message *msg;
@@ -127,7 +129,7 @@ private:
     PostComment *cmt;
     QStandardItemModel *cmtModel;
     Group* currGroup;
-    Group* all = new Group("All");
+    Group* all;
 
 };
 #endif // HOME_H

@@ -19,7 +19,7 @@ class Profile
 public:
     Profile();
     // user creates new profile
-    Profile(int id, QString username, QString password, QString firstName, QString lastName, int age, QString location, QDateTime dateCreated, QString description);
+    //Profile(int id, QString username, QString password, QString firstName, QString lastName, int age, QString location, QDateTime dateCreated, QString description);
     Profile(int id, QString username, QString firstName, QString lastName, int age, QString location, QDateTime dateCreated, QString description);
     Profile(std::map<QString, QString> profileData); // load from database
     ~Profile();
