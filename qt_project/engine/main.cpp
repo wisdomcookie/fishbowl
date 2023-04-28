@@ -59,7 +59,7 @@ int main()
     //e->create_post(profile, group, QDateTime::currentDateTimeUtc(), QString("hi love me"), QString("please"));
     Post *post = e->get_postList().at(0);
 
-    e->create_comment(profile, post, QDateTime::currentDateTimeUtc(), QString("commentsssssss"));
+    //e->create_comment(profile, post, QDateTime::currentDateTimeUtc(), QString("commentsssssss"));
     delete e;
 
     return 0;
