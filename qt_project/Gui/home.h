@@ -33,7 +33,7 @@ public:
 private slots:
     void start(QWidget*);
 
-    void main_menu(Profile* p, Engine e);
+    void main_menu(Profile* p, Engine* e);
 
     void on_homeButton_clicked();
 
@@ -85,8 +85,6 @@ private slots:
 
     void on_pushButton_2_clicked();
 
-    void on_newpword_returnPressed();
-
     void addPost(Group*, Post*);
 
     void addMyPost(Group*, Post*);
@@ -117,10 +115,18 @@ private slots:
 
     void addFriend(Profile*);
 
+    void addAllGroup(Group*);
+
+    void on_AddFriend_clicked();
+
+    void on_chat_itemClicked(QListWidgetItem *item);
+
+    void addMessages(std::vector<Message*> m);
+
 private:
     Ui::Home *ui;
     Profile p;
-    Engine e;
+    Engine* e;
     Fish* f;
     Login* l;
     Message *msg;
@@ -130,6 +136,7 @@ private:
     QStandardItemModel *cmtModel;
     Group* currGroup;
     Group* all;
+    Profile* currFriend;
 
 };
 #endif // HOME_H

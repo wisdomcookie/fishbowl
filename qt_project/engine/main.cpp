@@ -67,7 +67,7 @@ int main()
     //e->create_profile(QString("kaela"), QString("bobby1"), QString("William"), QString("Dearing"), 6, QString("here"), QDateTime::currentDateTimeUtc(), QString("hi"));
     Profile *kaela = e->get_profileList().at(1);
 //    e->join_group(kaela, group);
-//    e->add_friend(bobby, kaela);
+    e->add_friend(bobby, kaela);
 //    e->unfriend(bobby, kaela);
 //    e->leave_group(kaela, group);
 //    e->edit_profile(kaela, QString("Mikaela"), QString("Mercado"), 22, QString("Melbourne"), QString("katyperry"));
@@ -75,7 +75,7 @@ int main()
 //    Fish *fish = kaela->get_fishList().at(0);
 //    e->edit_fish(kaela, fish, QString("ad23"), 34, QString("PurdueTTTTT"), QString("longboi"), QString("pet"));
 
-    e->edit_post(bobby, post, QString("newContent"));
+//    e->edit_post(bobby, post, QString("newContent"));
     delete e;
 
     return 0;

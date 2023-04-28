@@ -20,19 +20,21 @@ Login::~Login()
 
 void Login::on_loginButton_clicked()
 {
-    for (Profile* pp : e.get_profileList()) {
-        if (pp->get_username() == ui->uname->text()) emit back(p, e);
+    p = e->loginEngine(ui->uname->text(), ui->pword->text());
+    if (p == nullptr){
+        ui->uname->clear();
+        ui->pword->clear();
+    } else {
+        emit back(p, e);
     }
-    ui->uname->clear();
-    ui->pword->clear();
 }
 
 
 void Login::on_create_accepted()
 {
-    e.create_profile(ui->c_uname->text(), ui->c_pword->text(), ui->fname->text(), ui->lname->text(), ui->c_age->text().toInt(),
+    e->create_profile(ui->c_uname->text(), ui->c_pword->text(), ui->fname->text(), ui->lname->text(), ui->c_age->text().toInt(),
                      ui->c_location->text(), QDateTime::currentDateTimeUtc(), ui->c_bio->toPlainText());
-    p = e.get_profileList().back();
+    p = e->get_profileList().back();
     emit back(p, e);
 }
 

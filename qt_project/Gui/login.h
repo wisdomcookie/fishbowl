@@ -19,7 +19,7 @@ public:
     ~Login();
 
 signals:
-    void back(Profile* p, Engine e);
+    void back(Profile* p, Engine* e);
 
 private slots:
     void on_loginButton_clicked();
@@ -33,7 +33,7 @@ private slots:
 private:
     Ui::Login *ui;
     Profile* p;
-    Engine e;
+    Engine* e;
 };
 
 #endif // LOGIN_H

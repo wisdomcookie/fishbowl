@@ -582,7 +582,11 @@ bool Engine::login(QString username, QString password){
     std::vector<QVariant> loginData = {
         username, password
     };
-    if(db->query_select(QString("login"), loginFields).size() > 0);
+    if(db->query_select(QString("login"), loginFields).size() > 0){
+        return true;
+    }else{
+        return false;
+    }
 
 }
 
