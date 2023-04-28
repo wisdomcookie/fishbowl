@@ -1,12 +1,4 @@
 #include "profile.h"
-#include "fish.h"
-#include "aquarium.h"
-#include "../groups/group.h"
-#include "../comm/post.h"
-#include "../comm/postcomment.h"
-#include "../comm/groupchat.h"
-#include "../comm/message.h"
-
 
 Profile::Profile() {
 }

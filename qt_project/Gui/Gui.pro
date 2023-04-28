@@ -8,7 +8,6 @@ CONFIG += c++17
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-QT += core
 QT += sql
 
 SOURCES += \
@@ -17,22 +16,28 @@ SOURCES += \
     home.cpp \
     ../profiles/fish.cpp \
     ../profiles/profile.cpp \
+    ../profiles/aquarium.cpp \
     ../comm/message.cpp \
     ../comm/post.cpp \
     ../comm/postcomment.cpp \
+    ../comm/groupchat.cpp \
     ../groups/group.cpp \
-    ../engine/engine.cpp
+    ../engine/engine.cpp \
+    ../engine/database.cpp
 
 HEADERS += \
     home.h \
     ../profiles/fish.h \
     ../profiles/profile.h \
+    ../profiles/aquarium.h \
     login.h \
     ../comm/message.h \
     ../comm/post.h \
     ../comm/postcomment.h \
+    ../comm/groupchat.h \
     ../groups/group.h \
-    ../engine/engine.h
+    ../engine/engine.h \
+    ../engine/database.h
 
 
 FORMS += \

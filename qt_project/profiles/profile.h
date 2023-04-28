@@ -4,7 +4,13 @@
 #include <vector>
 #include <QString>
 #include <QDateTime>
-
+#include "fish.h"
+#include "aquarium.h"
+#include "../groups/group.h"
+#include "../comm/post.h"
+#include "../comm/postcomment.h"
+#include "../comm/groupchat.h"
+#include "../comm/message.h"
 
 class Group;
 class Post;
@@ -50,7 +56,6 @@ public:
 
     int get_id();
     QString get_username();
-    QString get_password();
     QString get_firstName();
     QString get_lastName();
     int get_age();
