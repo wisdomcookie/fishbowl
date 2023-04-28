@@ -33,7 +33,7 @@ public:
 private slots:
     void start(QWidget*);
 
-    void main_menu(Profile* p, Engine e);
+    void main_menu(Profile* p, Engine* e);
 
     void on_homeButton_clicked();
 
@@ -126,7 +126,7 @@ private slots:
 private:
     Ui::Home *ui;
     Profile p;
-    Engine e;
+    Engine* e;
     Fish* f;
     Login* l;
     Message *msg;

@@ -58,7 +58,7 @@ Home::Home(QWidget *parent)
         addGroup(gg);
     }
 
-    for (Group* gg : e.get_groupList()){
+    for (Group* gg : e->get_groupList()){
         addAllGroup(gg);
     }
 }
@@ -77,7 +77,7 @@ void Home::start(QWidget* w) {
     w->focusWidget();
 }
 
-void Home::main_menu(Profile* p, Engine e)
+void Home::main_menu(Profile* p, Engine* e)
 {
     this->p = *p;
     this->e = e;
@@ -223,7 +223,7 @@ void Home::on_edit_accepted()
     QListWidgetItem* it = ui->fishlist->item(i);
 
     //change fish info
-    e.edit_fish(&p, f, ui->createfish->text(), 0, ui->createlocation->text(),  ui->createspecies->text(), ui->createbio->toPlainText());
+    e->edit_fish(&p, f, ui->createfish->text(), 0, ui->createlocation->text(),  ui->createspecies->text(), ui->createbio->toPlainText());
 
     //display changes
     it->setText(tr("Name: ") + (f->get_name()) + tr("\n") + tr("Species: ") + f->get_species()
@@ -255,7 +255,7 @@ void Home::on_pushButton_2_clicked()
             ui->fishlist->removeItemWidget(ui->fishlist->item(i));
             delete ui->fishlist->item(i);
             ui->fishlist->update();
-            e.delete_my_fish(&p, p.get_fishList().at(i));
+            e->delete_my_fish(&p, p.get_fishList().at(i));
         }
     }
 }
@@ -345,8 +345,8 @@ void Home::on_publish_clicked()
     while(p.get_groupList().at(i)->get_name() != ui->titleBox->text()) i++;
     currGroup = p.get_groupList().at(i);
 
-    e.create_post(&p, currGroup, QDateTime::currentDateTimeUtc(), ui->titleBox->text(), ui->postBox->toPlainText());
-    Post* newPost = e.get_postList().back();
+    e->create_post(&p, currGroup, QDateTime::currentDateTimeUtc(), ui->titleBox->text(), ui->postBox->toPlainText());
+    Post* newPost = e->get_postList().back();
     currGroup->add_post(newPost);
     p.add_post(newPost);
     addPost(currGroup, newPost);
@@ -380,7 +380,7 @@ void Home::on_allPosts_itemDoubleClicked(QListWidgetItem *item)
 
 void Home::on_addComment_returnPressed()
 {
-    e.create_comment(&p, currPost, QDateTime::currentDateTimeUtc(), ui->addComment->text());
+    e->create_comment(&p, currPost, QDateTime::currentDateTimeUtc(), ui->addComment->text());
 
     int newRow = cmtModel->rowCount();
     cmtModel->insertRow(newRow);
@@ -397,8 +397,8 @@ void Home::on_chat_itemClicked(QListWidgetItem *item)
     Profile *temp = p.get_friendList().at(i);
     std::vector<Profile*> participants;
     participants.push_back(temp);
-    e.create_groupchat(&p, "", QDateTime::currentDateTimeUtc(), participants);
-    GroupChat* gc = e.get_groupchatList().back();
+    e->create_groupchat(&p, "", QDateTime::currentDateTimeUtc(), participants);
+    GroupChat* gc = e->get_groupchatList().back();
 
     //addMessages(gc->get_messageHistory());
 }
@@ -443,8 +443,8 @@ void Home::on_groupMembers_clicked()
 
 void Home::on_g_publish_clicked()
 {
-    e.create_group(&p, ui->groupName->text(), QDateTime::currentDateTimeUtc(), ui->g_description->toPlainText());
-    currGroup = e.get_groupList().back();
+    e->create_group(&p, ui->groupName->text(), QDateTime::currentDateTimeUtc(), ui->g_description->toPlainText());
+    currGroup = e->get_groupList().back();
 
     addGroup(currGroup);
 
@@ -515,7 +515,7 @@ void Home::addFriend(Profile* f){
 
 void Home::on_AddFriend_clicked()
 {
-    e.add_friend(&p, currFriend);
+    e->add_friend(&p, currFriend);
     addFriend(currFriend);
 }
 

@@ -1,7 +1,7 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-#    Gui \
+    Gui \
 #    admin \
     comm \
     engine \
