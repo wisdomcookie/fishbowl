@@ -11,6 +11,7 @@ Home::Home(QWidget *parent)
     , chatModel(new QStandardItemModel(this))
     , cmtModel(new QStandardItemModel(this))
 {
+
     ui->setupUi(this);
 
     ui->edit->hide();
@@ -29,38 +30,7 @@ Home::Home(QWidget *parent)
 
     currGroup = all;
 
-    //add information from databases
-    for(Fish* ff : p.get_fishList()){
-        addFish(ff->get_name(), ff->get_species(), ff->get_description());
-    }
 
-    for(Profile* ff : p.get_friendList()){
-        addFriend(ff);
-    }
-
-    for(Post* pp : p.get_postHistory()){
-        addMyPost(currGroup, pp);
-    }
-
-    /*for (Group* gg : p.get_groupList()){
-        for(Post* pp : gg->get_PostHistory){
-            addPost(gg, pp);
-        }
-    }*/
-
-    /*for (Group* gg : p.get_groupList()){
-        for(Profile* pp : gg->get_members()){
-            addGroupMember(gg, pp);
-        }
-    }*/
-
-    for (Group* gg : p.get_groupList()){
-        addGroup(gg);
-    }
-
-    /*for (Group* gg : e->get_groupList()){
-        addAllGroup(gg);
-    }*/
 }
 
 Home::~Home()
@@ -77,10 +47,46 @@ void Home::start(QWidget* w) {
     w->focusWidget();
 }
 
-void Home::main_menu(Profile* p, Engine* e)
+void Home::main_menu(Profile* p/*, Engine *e*/)
 {
-    this->p = *p;
-    this->e = e;
+    this->p = p;
+    e = new Engine();
+    e->load_data();
+    //this->e = e;
+    //add information from databases
+    for(Fish* ff : p->get_fishList()){
+        addFish(ff->get_name(), ff->get_species(), ff->get_description());
+    }
+
+    for(Profile* ff : p->get_friendList()){
+        addFriend(ff);
+    }
+
+    for(Post* pp : p->get_postHistory()){
+        addMyPost(currGroup, pp);
+    }
+
+    for (Group* gg : p->get_groupList()){
+        for(Post* pp : gg->get_postHistory()){
+            addPost(gg, pp);
+        }
+    }
+
+    for (Group* gg : p->get_groupList()){
+        for(Profile* pp : gg->get_members()){
+            addGroupMember(gg, pp);
+        }
+    }
+
+    for (Group* gg : p->get_groupList()){
+        addGroup(gg);
+    }
+
+//    for (Group* gg : e->get_groupList()){
+//        addAllGroup(gg);
+//    }
+
+    currGroup = e->get_groupList().at(0);
     ui->searchBar->setEnabled(true);
     delete ui->stackedWidget;
     ui->page->setCurrentIndex(0);
@@ -117,11 +123,11 @@ void Home::on_profileButton_clicked()
 {
     ui->page->setCurrentIndex(4);
 
-    ui->username->setText(tr("@") + p.get_username());
-    ui->name->setText(p.get_firstName() + tr(" ") + p.get_lastName());
-    ui->pbio->setPlainText(p.get_description());
-    ui->plocation->setText(p.get_location());
-    if(p.get_age() > 0) ui->age->setText(QString::number(p.get_age()) + tr(" years old"));
+    ui->username->setText(tr("@") + p->get_username());
+    ui->name->setText(p->get_firstName() + tr(" ") + p->get_lastName());
+    ui->pbio->setPlainText(p->get_description());
+    ui->plocation->setText(p->get_location());
+    if(p->get_age() > 0) ui->age->setText(QString::number(p->get_age()) + tr(" years old"));
 }
 
 
@@ -143,7 +149,7 @@ void Home::on_postButton_clicked()
 void Home::on_toolButton_clicked()
 {
     ui->createfish->setFocus();
-    ui->createlocation->setText(p.get_location());
+    ui->createlocation->setText(p->get_location());
 
     ui->page->setCurrentIndex(6);
 }
@@ -152,7 +158,7 @@ void Home::on_toolButton_clicked()
 void Home::on_finished_accepted()
 {
     //NOT SURE WHICH CONSTRUCTOR    f = new Fish(ui->createfish->text().toStdString(), ui->createspecies->text().toStdString(), ui->createbio->toPlainText().toStdString());
-    p.add_fish(f);
+    p->add_fish(f);
     //f->set_location = ui->createlocation->text().toStdString();
     ui->createfish->clear();
     ui->createlocation->clear();
@@ -189,7 +195,7 @@ void Home::on_fishlist_itemDoubleClicked(QListWidgetItem *item)
 
     int i = 0;
     while (ui->fishlist->item(i) != item) i++;
-    f = p.get_fishList().at(i);
+    f = p->get_fishList().at(i);
 
     ui->page->setCurrentIndex(7);
     ui->FishName->setText(f->get_name());
@@ -219,11 +225,11 @@ void Home::on_edit_accepted()
 {
     //find item in list
     int i = 0;
-    while (p.get_fishList().at(i) != f) i++;
+    while (p->get_fishList().at(i) != f) i++;
     QListWidgetItem* it = ui->fishlist->item(i);
 
     //change fish info
-    e->edit_fish(&p, f, ui->createfish->text(), 0, ui->createlocation->text(),  ui->createspecies->text(), ui->createbio->toPlainText());
+    e->edit_fish(p, f, ui->createfish->text(), 0, ui->createlocation->text(),  ui->createspecies->text(), ui->createbio->toPlainText());
 
     //display changes
     it->setText(tr("Name: ") + (f->get_name()) + tr("\n") + tr("Species: ") + f->get_species()
@@ -255,7 +261,7 @@ void Home::on_pushButton_2_clicked()
             ui->fishlist->removeItemWidget(ui->fishlist->item(i));
             delete ui->fishlist->item(i);
             ui->fishlist->update();
-            e->delete_my_fish(&p, p.get_fishList().at(i));
+            e->delete_my_fish(p, p->get_fishList().at(i));
         }
     }
 }
@@ -293,7 +299,7 @@ void Home::on_editProfile_clicked()
 {
     ui->pbio->setFocus();
 
-    ui->age->setText(QString::number(p.get_age()));
+    ui->age->setText(QString::number(p->get_age()));
     ui->age->setReadOnly(false);
     ui->pbio->setReadOnly(false);
     ui->plocation->setReadOnly(false);
@@ -317,9 +323,9 @@ void Home::on_SaveChanges_clicked()
     ui->pbio->setStyleSheet("background-color : rgba(255,255,255,1%); color : black;");
     ui->plocation->setStyleSheet("background-color : rgba(255,255,255,1%); color : black;");
 
-    p.edit_profile(p.get_firstName(), p.get_lastName(), ui->age->toPlainText().toInt(), ui->plocation->toPlainText(), ui->pbio->toPlainText());
+    p->edit_profile(p->get_firstName(), p->get_lastName(), ui->age->toPlainText().toInt(), ui->plocation->toPlainText(), ui->pbio->toPlainText());
 
-    ui->age->setText(QString::number(p.get_age()) + tr(" years old"));
+    ui->age->setText(QString::number(p->get_age()) + tr(" years old"));
 
     ui->SaveChanges->hide();
 }
@@ -342,13 +348,13 @@ void Home::on_message_returnPressed()
 void Home::on_publish_clicked()
 {
     int i = 0;
-    while(p.get_groupList().at(i)->get_name() != ui->titleBox->text()) i++;
-    currGroup = p.get_groupList().at(i);
+    while(p->get_groupList().at(i)->get_name() != ui->titleBox->text()) i++;
+    currGroup = p->get_groupList().at(i);
 
-    e->create_post(&p, currGroup, QDateTime::currentDateTimeUtc(), ui->titleBox->text(), ui->postBox->toPlainText());
+    e->create_post(p, currGroup, QDateTime::currentDateTimeUtc(), ui->titleBox->text(), ui->postBox->toPlainText());
     Post* newPost = e->get_postList().back();
     currGroup->add_post(newPost);
-    p.add_post(newPost);
+    p->add_post(newPost);
     addPost(currGroup, newPost);
     addMyPost(currGroup, newPost);
 
@@ -380,7 +386,7 @@ void Home::on_allPosts_itemDoubleClicked(QListWidgetItem *item)
 
 void Home::on_addComment_returnPressed()
 {
-    e->create_comment(&p, currPost, QDateTime::currentDateTimeUtc(), ui->addComment->text());
+    e->create_comment(p, currPost, QDateTime::currentDateTimeUtc(), ui->addComment->text());
 
     int newRow = cmtModel->rowCount();
     cmtModel->insertRow(newRow);
@@ -394,10 +400,10 @@ void Home::on_chat_itemClicked(QListWidgetItem *item)
 {
     int i = 0;
     while (ui->chat->item(i) != item) i++;
-    Profile *temp = p.get_friendList().at(i);
+    Profile *temp = p->get_friendList().at(i);
     std::vector<Profile*> participants;
     participants.push_back(temp);
-    e->create_groupchat(&p, "", QDateTime::currentDateTimeUtc(), participants);
+    e->create_groupchat(p, "", QDateTime::currentDateTimeUtc(), participants);
     GroupChat* gc = e->get_groupchatList().back();
 
     //addMessages(gc->get_messageHistory());
@@ -428,7 +434,7 @@ void Home::on_groupInfo_clicked()
     ui->stackedWidget_2->setCurrentWidget(ui->info);
 
     QString admins;
-    for(std::pair<int, Profile*> iter : currGroup->get_admin()) admins.append(iter.second->get_username());
+    for(Profile* iter : currGroup->get_admin()) admins.append(iter->get_username());
 
     ui->g_infoDisplay->setText(currGroup->get_name() + tr("\nCreated by: ") + admins
                                + tr("\n\n") + currGroup->get_description());
@@ -443,7 +449,7 @@ void Home::on_groupMembers_clicked()
 
 void Home::on_g_publish_clicked()
 {
-    e->create_group(&p, ui->groupName->text(), QDateTime::currentDateTimeUtc(), ui->g_description->toPlainText());
+    e->create_group(p, ui->groupName->text(), QDateTime::currentDateTimeUtc(), ui->g_description->toPlainText());
     currGroup = e->get_groupList().back();
 
     addGroup(currGroup);
@@ -457,19 +463,19 @@ void Home::on_g_publish_clicked()
 
 void Home::addGroup(Group* g){
     new QListWidgetItem(g->get_name(), ui->groupsList);
-    for(std::pair<int, Profile*> iter : currGroup->get_members()) new QListWidgetItem(iter.second->get_username(), ui->membersList);
+    for(Profile* iter : currGroup->get_members()) new QListWidgetItem(iter->get_username(), ui->membersList);
 }
 
 void Home::addAllGroup(Group* g){
     new QListWidgetItem(g->get_name(), ui->allGroups);
-    for(std::pair<int, Profile*> iter : currGroup->get_members()) new QListWidgetItem(iter.second->get_username(), ui->membersList);
+    for(Profile* iter : currGroup->get_members()) new QListWidgetItem(iter->get_username(), ui->membersList);
 }
 
 void Home::on_groupsList_itemClicked(QListWidgetItem *item)
 {
     int i = 0;
     while (ui->groupsList->item(i) != item) i++;
-    currGroup = p.get_groupList().at(i);
+    currGroup = p->get_groupList().at(i);
 }
 
 
@@ -515,7 +521,7 @@ void Home::addFriend(Profile* f){
 
 void Home::on_AddFriend_clicked()
 {
-    e->add_friend(&p, currFriend);
+    e->add_friend(p, currFriend);
     addFriend(currFriend);
 }
 

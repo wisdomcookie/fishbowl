@@ -39,8 +39,9 @@ public:
     int get_size();
     QDateTime get_dateCreated();
     QString get_description();
-    std::map<int, Profile*> get_admin();
-    std::map<int, Profile*> get_members();
+    std::vector<Profile*> get_admin();
+    std::vector<Profile*> get_members();
+    std::vector<Post*> get_postHistory();
     Aquarium *get_aquarium();
 
 private:

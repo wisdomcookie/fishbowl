@@ -16,7 +16,7 @@ Profile::Profile(int id, QString username, QString firstName, QString lastName, 
     profileId(id), username(username), firstName(firstName), lastName(lastName), age(age), location(location), dateCreated(dateCreated), description(description)
 {
 
-    aquarium = new Aquarium(this);
+    //aquarium = new Aquarium(this);
 }
 
 Profile::Profile(std::map<QString, QString> profileData){
@@ -36,7 +36,7 @@ Profile::Profile(std::map<QString, QString> profileData){
 }
 
 Profile::~Profile() {
-    delete aquarium;
+    //delete aquarium;
 }
 
 

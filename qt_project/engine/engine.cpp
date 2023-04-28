@@ -67,19 +67,26 @@ Engine::Engine()
 
 
 Engine::~Engine(){
+
+//    for(std::map<int, Profile*>::iterator itr = profiles.begin(); itr != profiles.end(); itr++)
+//    {
+//        delete (itr->second);
+//    }
+//    profiles.clear();
+    for(auto i = profiles.begin(); i != profiles.end(); i++){
+        delete i->second;
+    }
+    for(auto i = groups.begin(); i != groups.end(); i++){
+        delete i->second;
+    }
+    for(auto i = posts.begin(); i != posts.end(); i++){
+        delete i->second;
+    }
+    for(auto i = groupchats.begin(); i != groupchats.end(); i++){
+        delete i->second;
+    }
     delete db;
-    //    for(auto i: profiles){
-    //        delete i.second;
-    //    }
-    //    for(auto i: groups){
-    //        delete i.second;
-    //    }
-    //    for(auto i: posts){
-    //        delete i.second;
-    //    }
-    //    for(auto i: groupchats){
-    //        delete i.second;
-    //    }
+
 }
 
 void Engine::update_data(){
@@ -578,15 +585,18 @@ void Engine::ban_user(Profile *actor, Profile *user, Group *group, QDateTime ban
 
 }
 
-bool Engine::login(QString username, QString password){
+Profile *Engine::loginEngine(QString username, QString password){
     std::vector<QVariant> loginData = {
         username, password
     };
-    if(db->query_select(QString("login"), loginFields).size() > 0){
-        return true;
-    }else{
-        return false;
+    for(std::pair<int, Profile*> p: profiles){
+        if(p.second->get_username() == username){
+            return p.second;
+        }
     }
+
+    return nullptr;
+
 
 }
 

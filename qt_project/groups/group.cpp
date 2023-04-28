@@ -96,11 +96,26 @@ int Group::get_size(){
 QString Group::get_description(){
     return description;
 }
-std::map<int, Profile*> Group::get_admin(){
-    return admin;
+std::vector<Profile*> Group::get_admin(){
+    std::vector<Profile*> res;
+    for(auto i = admin.begin(); i != admin.end(); i++){
+        res.push_back(i->second);
+    }
+    return res;
 }
-std::map<int, Profile*> Group::get_members(){
-    return members;
+std::vector<Profile*> Group::get_members(){
+    std::vector<Profile*> res;
+    for(auto i = members.begin(); i != members.end(); i++){
+        res.push_back(i->second);
+    }
+    return res;
+}
+std::vector<Post*> Group::get_postHistory(){
+    std::vector<Post*> res;
+    for(auto i = posts.begin(); i != posts.end(); i++){
+        res.push_back(i->second);
+    }
+    return res;
 }
 Aquarium *Group::get_aquarium(){
     return aquarium;
