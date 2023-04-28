@@ -15,6 +15,7 @@ Group::Group(int id, Profile *creator, QString name, QDateTime dateCreated, QStr
 
 } // user creates new group
 
+
 Group::Group(std::map<QString, QString> groupData){
 
     groupId = groupData[QString("group_id")].toInt();

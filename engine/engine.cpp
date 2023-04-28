@@ -171,7 +171,7 @@ void Engine::load_data(){
 void Engine::create_profile(QString username, QString password, QString firstName, QString lastName, int age, QString location, QDateTime dateCreated, QString description){
 
     int nextId = db->get_next_id(QString("profiles"));
-    Profile *profile = new Profile(nextId, username, password, firstName, lastName, age, location, dateCreated, description);
+    Profile *profile = new Profile(nextId, username, firstName, lastName, age, location, dateCreated, description);
 
     std::vector<QVariant> profileData =
         {username, firstName, lastName, age, location, dateCreated.toString(dateFormat), description};
@@ -549,19 +549,6 @@ void Engine::ban_user(Profile *actor, Profile *user, Group *group, QDateTime ban
     };
     db->query_insert(QString("banned_users"), bannedUserFields , bannedUserData);
 
-}
-
-Profile* Engine::loginEngine(QString username, QString password) {
-    std::vector<Profile*> v;
-    v = get_profileList();
-    for (unsigned long i=0; i<v.size(); i++) {
-        if (username == v.at(i)->get_username()) {
-            if (password == v.at(i)->get_password()) {
-                return v.at(i);
-            }
-        }
-    }
-    return NULL;
 }
 
 std::vector<Profile*> Engine::get_profileList(){

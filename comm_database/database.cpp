@@ -54,15 +54,12 @@ void Database::query_exec(QString s) {
         QSqlError err = query->lastError();
         qDebug() << err.text();
     }
-
-    // return the number of rows retrieved from the table
-
 }
 
 std::vector<std::map<QString, QString>> Database::query_select(QString table, std::vector<QString> fields){
     QString fieldstring = fields[0];
 
-    for(int i = 1; i < fields.size(); i++){
+    for(unsigned long i = 1; i < fields.size(); i++){
         fieldstring += "," + fields[i];
     }
 

@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QObject>
 #include "../profiles/profile.h"
+#include "../engine/engine.h"
 
 namespace Ui {
 class Login;
@@ -18,7 +19,7 @@ public:
     ~Login();
 
 signals:
-    void back(Profile* p);
+    void back(Profile* p, Engine e);
 
 private slots:
     void on_loginButton_clicked();
@@ -32,6 +33,7 @@ private slots:
 private:
     Ui::Login *ui;
     Profile* p;
+    Engine e;
 };
 
 #endif // LOGIN_H

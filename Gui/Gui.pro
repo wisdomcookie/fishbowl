@@ -8,49 +8,41 @@ CONFIG += c++17
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+QT += sql
+QT += core
+
 SOURCES += \
     login.cpp \
     main.cpp \
     home.cpp \
     ../profiles/fish.cpp \
     ../profiles/profile.cpp \
+    ../profiles/aquarium.cpp \
     ../comm/message.cpp \
-    ../comm/chat.cpp \
     ../comm/post.cpp \
-    ../comm/postComment.cpp \
-    ../groups/group.cpp
-
+    ../comm/postcomment.cpp \
+    ../comm/groupchat.cpp \
+    ../groups/group.cpp \
+    ../engine/engine.cpp \
+    ../engine/database.cpp
 
 HEADERS += \
     home.h \
     ../profiles/fish.h \
     ../profiles/profile.h \
+    ../profiles/aquarium.h \
     login.h \
     ../comm/message.h \
-    ../comm/chat.h \
     ../comm/post.h \
-    ../comm/postComment.h \
-    ../groups/group.h
+    ../comm/postcomment.h \
+    ../comm/groupchat.h \
+    ../groups/group.h \
+    ../engine/engine.h \
+    ../engine/database.h
 
 
 FORMS += \
-    #adminOptions.ui \
-    #createAccount.ui \
-    createNewChat.ui \
-    #createPost.ui \
-    #editFishProfile.ui \
-    #editProfile.ui \
-    #fish.ui \
-    #fishProfile.ui \
-    friends.ui \
-    #group.ui \
-    #groups.ui \
-    #home.ui \
     login.ui \
-    messages.ui \
-    post.ui \
-    #profile.ui \
-    #search.ui
     home.ui
 
 # Default rules for deployment.

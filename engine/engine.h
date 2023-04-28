@@ -61,7 +61,7 @@ public:
     void ban_user(Profile *actor, Profile *user, Group *group, QDateTime banDate, QString reason);
 
     // Login
-    Profile* loginEngine(QString username, QString password);
+
 
     // Getters
     std::vector<Profile*> get_profileList();
