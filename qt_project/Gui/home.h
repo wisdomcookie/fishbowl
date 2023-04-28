@@ -85,8 +85,6 @@ private slots:
 
     void on_pushButton_2_clicked();
 
-    void on_newpword_returnPressed();
-
     void addPost(Group*, Post*);
 
     void addMyPost(Group*, Post*);
@@ -116,6 +114,8 @@ private slots:
     void profilePage(Profile*);
 
     void addFriend(Profile*);
+
+    void addAllGroup(Group*);
 
 private:
     Ui::Home *ui;

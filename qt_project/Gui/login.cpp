@@ -21,7 +21,7 @@ Login::~Login()
 void Login::on_loginButton_clicked()
 {
     for (Profile* pp : e.get_profileList()) {
-        if (pp->get_username() == ui->uname->text()) emit back(p, e);
+        if (e.login(ui->uname->text(), ui->pword->text())) emit back(p, e);
     }
     ui->uname->clear();
     ui->pword->clear();

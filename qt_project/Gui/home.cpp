@@ -27,9 +27,6 @@ Home::Home(QWidget *parent)
     ui->comments->setModel(cmtModel);
     cmtModel->insertColumn(0);
 
-    ui->pwordlabel->hide();
-    ui->newpword->hide();
-
     currGroup = all;
 
     //add information from databases
@@ -59,6 +56,10 @@ Home::Home(QWidget *parent)
 
     for (Group* gg : p.get_groupList()){
         addGroup(gg);
+    }
+
+    for (Group* gg : e.get_groupList()){
+        addAllGroup(gg);
     }
 }
 
@@ -222,7 +223,7 @@ void Home::on_edit_accepted()
     QListWidgetItem* it = ui->fishlist->item(i);
 
     //change fish info
-    p.edit_fish(f, ui->createfish->text(), 0, ui->createlocation->text(),  ui->createspecies->text(), ui->createbio->toPlainText());
+    e.edit_fish(&p, f, ui->createfish->text(), 0, ui->createlocation->text(),  ui->createspecies->text(), ui->createbio->toPlainText());
 
     //display changes
     it->setText(tr("Name: ") + (f->get_name()) + tr("\n") + tr("Species: ") + f->get_species()
@@ -254,7 +255,7 @@ void Home::on_pushButton_2_clicked()
             ui->fishlist->removeItemWidget(ui->fishlist->item(i));
             delete ui->fishlist->item(i);
             ui->fishlist->update();
-            p.remove_fish(p.get_fishList().at(i));
+            e.delete_my_fish(&p, p.get_fishList().at(i));
         }
     }
 }
@@ -303,11 +304,6 @@ void Home::on_editProfile_clicked()
 
     ui->plocation->setReadOnly(false);
     ui->SaveChanges->show();
-
-    ui->pwordlabel->show();
-    ui->newpword->show();
-
-    ui->pwordlabel->setText("Change Password: ");
 }
 
 
@@ -326,17 +322,7 @@ void Home::on_SaveChanges_clicked()
     ui->age->setText(QString::number(p.get_age()) + tr(" years old"));
 
     ui->SaveChanges->hide();
-    ui->pwordlabel->hide();
-    ui->newpword->hide();
 }
-
-void Home::on_newpword_returnPressed()
-{
-    //p.change_password(ui->newpword->text().toStdString());
-    ui->pwordlabel->setText("Change Password: Changed!");
-    ui->newpword->clear();
-}
-
 
 /*******************************
  * COMM BUTTONS
@@ -421,7 +407,7 @@ void Home::on_createGroup_clicked()
 
 void Home::on_joinGroup_clicked()
 {
-
+    ui->stackedWidget_2->setCurrentWidget(ui->g_joinGroup);
 }
 
 
@@ -449,7 +435,6 @@ void Home::on_g_publish_clicked()
     currGroup = e.get_groupList().back();
 
     addGroup(currGroup);
-    addGroupMember(currGroup, &p);
 
     ui->selectGroup->addItem(currGroup->get_name());
     ui->page->setCurrentIndex(1);
@@ -460,6 +445,12 @@ void Home::on_g_publish_clicked()
 
 void Home::addGroup(Group* g){
     new QListWidgetItem(g->get_name(), ui->groupsList);
+    for(std::pair<int, Profile*> iter : currGroup->get_members()) new QListWidgetItem(iter.second->get_username(), ui->membersList);
+}
+
+void Home::addAllGroup(Group* g){
+    new QListWidgetItem(g->get_name(), ui->allGroups);
+    for(std::pair<int, Profile*> iter : currGroup->get_members()) new QListWidgetItem(iter.second->get_username(), ui->membersList);
 }
 
 void Home::on_groupsList_itemClicked(QListWidgetItem *item)
@@ -477,28 +468,26 @@ void Home::on_groupsList_itemSelectionChanged()
 }
 
 void Home::addGroupMember(Group* gg, Profile* pp){
-    new QListWidgetItem(p.get_username(), ui->membersList);
+
 }
 
 
 void Home::on_membersList_itemDoubleClicked(QListWidgetItem *item)
 {
     int i = 0;
-    QString members;
     while (ui->allPosts->item(i) != item) i++;
     Profile *temp = currGroup->get_members().at(i);
 
     profilePage(temp);
-    //NOT WORKING
 }
 
 void Home::profilePage(Profile* pp){
-    ui->page->setCurrentWidget(ui->profileview);
-    ui->p_username->setText(tr("@") + pp->get_username());
-    ui->p_name->setText(pp->get_firstName() + " " + pp->get_lastName());
-    ui->p_bio->setPlainText(pp->get_description());
-    ui->p_location->setText(pp->get_location());
-    if(pp->get_age() > 0) ui->p_age->setText(QString::number(pp->get_age()) + tr(" years old"));
+    ui->page->setCurrentWidget(ui->profileView);
+    ui->friend_username->setText(tr("@") + pp->get_username());
+    ui->friend_name->setText(pp->get_firstName() + " " + pp->get_lastName());
+    ui->friend_bio->setPlainText(pp->get_description());
+    ui->friend_location->setText(pp->get_location());
+    if(pp->get_age() > 0) ui->friend_age->setText(QString::number(pp->get_age()) + tr(" years old"));
 }
 
 /****************************
@@ -506,5 +495,13 @@ void Home::profilePage(Profile* pp){
  * ************************/
 
 void Home::addFriend(Profile* f){
-    p.add_friend(f);
+    new QListWidgetItem(f->get_username(), ui->friendsList);
 }
+
+
+void Home::on_AddFriend_clicked()
+{
+    e.add_friend(&p,
+    addFriend();
+}
+
