@@ -14,9 +14,11 @@ Engine::Engine()
 
     dateFormat = QString("yyyy-MM-dd hh:mm:ss");
 
-    profileFields = {
-        QString("profile_id"), QString("username"), QString("firstName"), QString("lastName"), QString("age"), QString("location"), QString("date_created"), QString("description")
+    profileFields = std::vector<QString>{
+        QString("profile_id"), QString("username"), QString("first_name"), QString("last_name"), QString("age"), QString("location"), QString("date_created"), QString("description")
     };
+
+
 
     fishFields = {
         QString("fish_id"), QString("owner_id"), QString("name"), QString("age"), QString("location"), QString("species"), QString("date_created"), QString("description")
@@ -34,10 +36,10 @@ Engine::Engine()
     };
 
     postFields = {
-        QString("post_id"), QString("poster_id"), QString("date_created"), QString("content"), QString("group_id"), QString("visibility")
+        QString("post_id"), QString("poster_id"), QString("group_id"), QString("date_created"), QString("title"), QString("content"), QString("visibility")
     };
     commentFields = {
-        QString("comment_id"), QString("post_id"), QString("commenter_id"), QString("parent_comment_id"), QString("date_created"), QString("content")
+                     QString("comment_id"), QString("post_id"), QString("commenter_id"), QString("parent_comment_id"), QString("date_created"), QString("content"), QString("visibility")
     };
     groupchatFields = {
         QString("groupchat_id"), QString("name"), QString("size"), QString("date_created")
@@ -66,6 +68,18 @@ Engine::Engine()
 
 Engine::~Engine(){
     delete db;
+    for(auto i: profiles){
+        delete i.second;
+    }
+    for(auto i: groups){
+        delete i.second;
+    }
+    for(auto i: posts){
+        delete i.second;
+    }
+    for(auto i: groupchats){
+        delete i.second;
+    }
 }
 
 void Engine::update_data(){
@@ -88,7 +102,7 @@ void Engine::load_data(){
         groups[group->get_id()] = group;
     } // loading and adding groups by passing each record as a map of data to constructor
 
-    std::vector<std::map<QString, QString>> groupMemberData = db->query_select(QString("group_participants"), groupMemberFields);
+    std::vector<std::map<QString, QString>> groupMemberData = db->query_select(QString("group_members"), groupMemberFields);
 
     for(std::map<QString, QString> &row: groupMemberData){
         int groupId = row[QString("group_id")].toInt();
@@ -117,14 +131,14 @@ void Engine::load_data(){
 
     for(std::map<QString, QString> &row: postData){
         int groupId = row[QString("group_id")].toInt();
-        int profileId = row[QString("profile_id")].toInt();
+        int profileId = row[QString("poster_id")].toInt();
         Post *post = new Post(row);
         posts[post->get_id()] = post;
         groups[groupId]->add_post(post);
         profiles[profileId]->add_post(post);
     } // loading and adding posts
 
-    std::vector<std::map<QString, QString>> commentData = db->query_select(QString("post_comments"), postFields);
+    std::vector<std::map<QString, QString>> commentData = db->query_select(QString("post_comments"), commentFields);
 
     for(std::map<QString, QString> &row: commentData){
         int postId = row[QString("profile_id")].toInt();
@@ -174,7 +188,7 @@ void Engine::create_profile(QString username, QString password, QString firstNam
     Profile *profile = new Profile(nextId, username, firstName, lastName, age, location, dateCreated, description);
 
     std::vector<QVariant> profileData =
-        {username, firstName, lastName, age, location, dateCreated.toString(dateFormat), description};
+        {profile->get_id(), username, firstName, lastName, age, location, dateCreated.toString(dateFormat), description};
 
     profiles[profile->get_id()] = profile; // inserts profile into profile map
     db->query_insert(QString("profiles"), profileFields, profileData); // inserts profile into database
@@ -202,21 +216,21 @@ void Engine::create_post(Profile *actor, Group *group, QDateTime dateCreated, QS
 
 void Engine::create_comment(Profile *actor, Post *post, QDateTime dateCreated, QString content){
 
-    int nextId = db->get_next_id(QString("comments"));
+    int nextId = db->get_next_id(QString("post_comments"));
     PostComment *comment = new PostComment(nextId, actor, post, dateCreated, content);
 
     std::vector<QVariant> commentData = {
-        comment->get_id(), post->get_id(), actor->get_id(), 0, dateCreated.toString(dateFormat), comment->get_visibility()
+        comment->get_id(), post->get_id(), actor->get_id(), 0, dateCreated.toString(dateFormat), content, comment->get_visibility()
     }; // comments that are not replies are stored as replies to a placeholder comment with id 0
 
     post->add_comment(comment); // adds comment to post
     actor->add_comment(comment); // adds comment to commenter
-    db->query_insert(QString("comments"), commentFields, commentData);
+    db->query_insert(QString("post_comments"), commentFields, commentData);
 }
 
 void Engine::create_comment_reply(Profile *actor, Post *post, PostComment *parentComment, QDateTime dateCreated, QString content){
 
-    int nextId = db->get_next_id(QString("comments"));
+    int nextId = db->get_next_id(QString("post_comments"));
     PostComment *comment = new PostComment(nextId, actor, post, dateCreated, content);
 
     std::vector<QVariant> commentData = {
@@ -226,7 +240,7 @@ void Engine::create_comment_reply(Profile *actor, Post *post, PostComment *paren
     post->add_comment(comment); // adds comment to post
     parentComment->add_reply(comment); // adds comment to parent comment
     actor->add_comment(comment); // adds comment to commenter
-    db->query_insert(QString("comments"), commentFields, commentData);
+    db->query_insert(QString("post_comments"), commentFields, commentData);
 
 }
 void Engine::create_groupchat(Profile *actor, QString name, QDateTime dateCreated, std::vector<Profile*> participants){
@@ -551,6 +565,13 @@ void Engine::ban_user(Profile *actor, Profile *user, Group *group, QDateTime ban
 
 }
 
+bool Engine::login(QString username, QString password){
+    std::vector<QVariant> loginData = {
+        username, password
+    };
+    if(db->query_select(QString("login"), loginFields).size() > 0);
+
+}
 
 std::vector<Profile*> Engine::get_profileList(){
     std::vector<Profile*> res;

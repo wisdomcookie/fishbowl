@@ -51,6 +51,7 @@ void Database::query_exec(QString s) {
 
     // execute the provided sql call
     if(query->exec(sqlcmd) == false) {
+        std::cout << s.toStdString();
         QSqlError err = query->lastError();
         qDebug() << err.text();
     }
@@ -67,7 +68,12 @@ std::vector<std::map<QString, QString>> Database::query_select(QString table, st
     }
 
     QString sqlcmd = QString("select " + fieldstring + " from " + table + ";");
-    query_exec(sqlcmd);
+
+    if(query->exec(sqlcmd) == false) {
+        std::cout << sqlcmd.toStdString();
+        QSqlError err = query->lastError();
+        qDebug() << err.text();
+    }
 
     std::vector<std::map<QString, QString>> res;
 
@@ -82,21 +88,6 @@ std::vector<std::map<QString, QString>> Database::query_select(QString table, st
 
 }
 
-//void Database::query_insert(QString table, std::vector<QString> fields, std::vector<QString> values){
-
-//    QString fieldstring = fields[0];
-//    for(int i = 1; i < fields.size(); i++){
-//        fieldstring += "," + fields[i];
-//    }
-
-//    QString valuestring = values[0];
-//    for(int i = 1; i < values.size(); i++){
-//        valuestring += "," + values[i];
-//    }
-
-//    QString sqlcmd = QString("insert into " + table + "(" + fieldstring + ")" + " values(" + valuestring + ");");
-//}
-
 void Database::query_insert(QString table, std::vector<QString> fields, std::vector<QVariant> values){
 
     QString fieldstring = fields[0];
@@ -107,13 +98,20 @@ void Database::query_insert(QString table, std::vector<QString> fields, std::vec
         valuePlaceholders += ", :" + fields[i];
     }
 
+    QString debug("insert into " + table + " (" + fieldstring + ") values (" + valuePlaceholders + ")");
 
-    query->prepare("insert into " + table + " (" + fieldstring + ") values " + valuePlaceholders + ")");
+    query->prepare("insert into " + table + " (" + fieldstring + ") values (" + valuePlaceholders + ")");
 
     for(int i = 0; i < fields.size(); i++){
         query->bindValue(i, values[i]);
     }
-    query->exec();
+
+    if(query->exec() == false) {
+        std::cout << debug.toStdString();
+        QSqlError err = query->lastError();
+        qDebug() << err.text();
+    }
+//    query->exec();
 }
 
 void Database::query_update_by_rowid(QString table, int id, std::vector<QString> fields, std::vector<QVariant> values){
@@ -145,6 +143,7 @@ int Database::get_next_id(QString table){
 
     QString sqlcmd = QString("select max(rowid) from " + table + ";");
     query_exec(sqlcmd);
+    query->next();
     return query->value(0).toInt() + 1;
 }
 

@@ -1,15 +1,15 @@
 #include "login.h"
 
-login::login() {
+Login::Login() {
 }
-login::~login() {
+Login::~Login() {
     delete e;
 }
 
-bool login::performLogin(string username, string password) {
+bool Login::performLogin(QString username, QString password) {
     bool var = false;
     e = new Engine();
-    if (e->login(QString::fromStdString(username), QString::fromStdString(password))) {
+    if (e->login(username, password)){
         var = true;
     }
     return var;

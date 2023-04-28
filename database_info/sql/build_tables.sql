@@ -142,17 +142,17 @@ create table reports (
 .separator ","
 .mode csv
 
-.import "data/profiles.csv"            profiles
-.import "data/groups.csv"              groups
-.import "data/group_participants.csv" group_participants
-.import "data/friends.csv"            friends
-.import "data/fish.csv"               fish
-.import "data/login.csv"              login
-
-.import "data/posts.csv"         posts
-.import "data/post_comments.csv"  post_comments
-.import "data/messages.csv"      messages
-
-.import "data/banned_users.csv" banned_users
-.import "data/admins.csv"      admins
-.import "data/reports.csv"     reports
+--.import "data/profiles.csv"            profiles
+--.import "data/groups.csv"              groups
+--.import "data/group_participants.csv" group_participants
+--.import "data/friends.csv"            friends
+--.import "data/fish.csv"               fish
+--.import "data/login.csv"              login
+--
+--.import "data/posts.csv"         posts
+--.import "data/post_comments.csv"  post_comments
+--.import "data/messages.csv"      messages
+--
+--.import "data/banned_users.csv" banned_users
+--.import "data/admins.csv"      admins
+--.import "data/reports.csv"     reports
