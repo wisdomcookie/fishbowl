@@ -117,6 +117,12 @@ private slots:
 
     void addAllGroup(Group*);
 
+    void on_AddFriend_clicked();
+
+    void on_chat_itemClicked(QListWidgetItem *item);
+
+    void addMessages(std::vector<Message*> m);
+
 private:
     Ui::Home *ui;
     Profile p;
@@ -130,6 +136,7 @@ private:
     QStandardItemModel *cmtModel;
     Group* currGroup;
     Group* all;
+    Profile* currFriend;
 
 };
 #endif // HOME_H

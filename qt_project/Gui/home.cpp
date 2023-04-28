@@ -317,7 +317,7 @@ void Home::on_SaveChanges_clicked()
     ui->pbio->setStyleSheet("background-color : rgba(255,255,255,1%); color : black;");
     ui->plocation->setStyleSheet("background-color : rgba(255,255,255,1%); color : black;");
 
-    p.edit_profile(p.get_firstName(), p.get_lastName(), ui->age->toPlainText().toInt(), ui->p_location->toPlainText(), ui->pbio->toPlainText());
+    p.edit_profile(p.get_firstName(), p.get_lastName(), ui->age->toPlainText().toInt(), ui->plocation->toPlainText(), ui->pbio->toPlainText());
 
     ui->age->setText(QString::number(p.get_age()) + tr(" years old"));
 
@@ -330,9 +330,6 @@ void Home::on_SaveChanges_clicked()
 
 void Home::on_message_returnPressed()
 {
-    //std::vector<Profile*> participants;
-    //participants.push_back(&p);
-    //GroupChat *g = new GroupChat(QString("test"), participants);
     msg->set_content(ui->message->text());
     int newRow = chatModel->rowCount();
     chatModel->insertRow(newRow);
@@ -393,7 +390,22 @@ void Home::on_addComment_returnPressed()
     ui->comments->scrollToBottom();
 }
 
+void Home::on_chat_itemClicked(QListWidgetItem *item)
+{
+    int i = 0;
+    while (ui->chat->item(i) != item) i++;
+    Profile *temp = p.get_friendList().at(i);
+    std::vector<Profile*> participants;
+    participants.push_back(temp);
+    e.create_groupchat(&p, "", QDateTime::currentDateTimeUtc(), participants);
+    GroupChat* gc = e.get_groupchatList().back();
 
+    //addMessages(gc->get_messageHistory());
+}
+
+void Home::addMessages(std::vector<Message*> m){
+
+}
 
 /*************************************
  * GROUPS
@@ -468,20 +480,21 @@ void Home::on_groupsList_itemSelectionChanged()
 }
 
 void Home::addGroupMember(Group* gg, Profile* pp){
-
+    new QListWidgetItem(pp->get_username(), ui->membersList);
 }
 
 
 void Home::on_membersList_itemDoubleClicked(QListWidgetItem *item)
 {
     int i = 0;
-    while (ui->allPosts->item(i) != item) i++;
+    while (ui->membersList->item(i) != item) i++;
     Profile *temp = currGroup->get_members().at(i);
 
     profilePage(temp);
 }
 
 void Home::profilePage(Profile* pp){
+    currFriend = pp;
     ui->page->setCurrentWidget(ui->profileView);
     ui->friend_username->setText(tr("@") + pp->get_username());
     ui->friend_name->setText(pp->get_firstName() + " " + pp->get_lastName());
@@ -496,12 +509,13 @@ void Home::profilePage(Profile* pp){
 
 void Home::addFriend(Profile* f){
     new QListWidgetItem(f->get_username(), ui->friendsList);
+    new QListWidgetItem(f->get_username(), ui->chat);
 }
 
 
 void Home::on_AddFriend_clicked()
 {
-    e.add_friend(&p,
-    addFriend();
+    e.add_friend(&p, currFriend);
+    addFriend(currFriend);
 }
 
