@@ -47,6 +47,10 @@ void PostComment::set_content(QString newContent){
     content = newContent;
 }
 
+bool PostComment::is_reply(){
+    return parentCommentId != 0;
+}
+
 int PostComment::get_id(){
     return commentId;
 }

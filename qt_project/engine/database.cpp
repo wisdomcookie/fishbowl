@@ -124,12 +124,19 @@ void Database::query_update_by_rowid(QString table, int id, std::vector<QString>
         valuePlaceholders += ", :" + fields[i];
     }
 
+    QString debug("update " + table + " set(" + fieldstring + ") = (" + valuePlaceholders + ") where rowid=:rowid");
     query->prepare("update " + table + " set(" + fieldstring + ") = (" + valuePlaceholders + ") where rowid=:rowid");
 
     for(int i = 0; i < fields.size(); i++){
         query->bindValue(i, values[i]);
     }
-    query->exec();
+    query->bindValue(":rowid", id);
+
+    if(query->exec() == false) {
+
+        QSqlError err = query->lastError();
+        qDebug() << err.text();
+    }
 }
 
 void Database::query_delete_by_rowid(QString table, int id){

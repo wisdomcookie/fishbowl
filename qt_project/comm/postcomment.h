@@ -17,6 +17,7 @@ public:
 
     void set_content(QString newContent);
     void add_reply(PostComment *reply);
+    bool is_reply();
 
     int get_id();
     Profile *get_creator();

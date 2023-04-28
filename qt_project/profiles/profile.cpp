@@ -41,7 +41,7 @@ Profile::~Profile() {
 
 
 void Profile::add_fish(Fish *fish){
-    aquarium->add_fish(fish);
+    fishList[fish->get_id()] = fish;
 }
 
 /**
@@ -168,9 +168,9 @@ QString Profile::get_description(){
 }
 
 std::vector<Fish*> Profile::get_fishList(){
-    std::map<int, Fish*> fishMap = aquarium->get_fish();
+
     std::vector<Fish*> res;
-    for(auto i = fishMap.begin(); i != fishMap.end(); i++){
+    for(auto i = fishList.begin(); i != fishList.end(); i++){
         res.push_back(i->second);
     }
     return res;
