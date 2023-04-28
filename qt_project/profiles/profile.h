@@ -69,6 +69,8 @@ public:
     std::vector<Group*> get_groupList();
     std::vector<Post*> get_postHistory();
     std::vector<Message*> get_messageHistory();
+
+    QString get_password();
 ;
 
 private:
