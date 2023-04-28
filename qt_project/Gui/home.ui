@@ -2608,17 +2608,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
     </property>
     <widget class="QWidget" name="widget"/>
    </widget>
-   <zorder>stackedWidget</zorder>
-   <zorder>homeButton</zorder>
-   <zorder>friendsButton</zorder>
-   <zorder>groupButton</zorder>
-   <zorder>messageButton</zorder>
-   <zorder>searchBar</zorder>
-   <zorder>postButton</zorder>
-   <zorder>fishButton</zorder>
-   <zorder>profileButton</zorder>
-   <zorder>page</zorder>
-   <zorder>label_4</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

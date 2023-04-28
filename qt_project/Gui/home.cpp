@@ -58,9 +58,9 @@ Home::Home(QWidget *parent)
         addGroup(gg);
     }
 
-    for (Group* gg : e->get_groupList()){
+    /*for (Group* gg : e->get_groupList()){
         addAllGroup(gg);
-    }
+    }*/
 }
 
 Home::~Home()
