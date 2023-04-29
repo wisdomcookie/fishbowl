@@ -56,18 +56,21 @@ int main()
     e->load_data();
 
     //e->create_profile(QString("bobby"), QString("bobby1"), QString("William"), QString("Dearing"), 1, QString("here"), QDateTime::currentDateTimeUtc(), QString("hi"));
-
-//    Profile *bobby = e->get_profileList().at(0);
-//    Group *group = e->get_groupList().at(0);
-//    Post *post = e->get_postList().at(0);
     //e->create_group(p, QString("Grouptitle"), QDateTime::currentDateTimeUtc(), QString("descriptionssssssssss"));
 
-    //e->create_post(profile, group, QDateTime::currentDateTimeUtc(), QString("hi love me"), QString("please"));
 
+    Profile *bobby = e->get_profileList().at(0);
+    Group *group = e->get_groupList().at(0);
 
-    //e->create_comment(profile, post, QDateTime::currentDateTimeUtc(), QString("commentsssssss"));
+//    e->create_post(bobby, group, QDateTime::currentDateTimeUtc(), QString("hi love me"), QString("please"));
+    Post *post = e->get_postList().at(0);
+
+//    PostComment *bobbyReply = reply->get_replies()[3];
+
+//    e->create_comment(bobby, post, QDateTime::currentDateTimeUtc(), QString("commentsssssss"));
     //e->create_profile(QString("kaela"), QString("bobby1"), QString("William"), QString("Dearing"), 6, QString("here"), QDateTime::currentDateTimeUtc(), QString("hi"));
-//    Profile *kaela = e->get_profileList().at(1);
+    Profile *kaela = e->get_profileList().at(1);
+
 //    e->join_group(kaela, group);
 //    e->add_friend(bobby, kaela);
 //    e->unfriend(bobby, kaela);
@@ -75,10 +78,34 @@ int main()
 //    e->edit_profile(kaela, QString("Mikaela"), QString("Mercado"), 22, QString("Melbourne"), QString("katyperry"));
 //    e->create_fish(kaela, QString("ad"), 34, QString("Purdue"), QString("longboi"), QDateTime::currentDateTimeUtc(), QString("pet"));
 //    Fish *fish = kaela->get_fishList().at(0);
+
+    //    Fish *fish = kaela->get_fishList().at(0);
 //    e->edit_fish(kaela, fish, QString("ad23"), 34, QString("PurdueTTTTT"), QString("longboi"), QString("pet"));
 
 //    e->edit_post(bobby, post, QString("newContent"));
-    Profile *p = e->loginEngine(QString("bobby"), QString("bobby1"));
+//    Profile *p = e->loginEngine(QString("bobby"), QString("bobby1"));
+//    e->edit_password(bobby, QString("password1"));
+//    e->edit_comment(bobby, comment, QString("Nice post bobby!"));
+//    PostComment *comment = post->get_comments()[1];
+//    e->create_comment_reply(kaela, post, comment, QDateTime::currentDateTimeUtc(), QString("I agree! Nice post bobby"));
+
+//    PostComment *reply = comment->get_replies()[2];
+//    e->create_comment_reply(bobby, post, reply, QDateTime::currentDateTimeUtc(), QString("Thanks kaela!"));
+
+//    e->delete_my_fish(kaela, fish);
+//    e->delete_my_post(bobby, post);
+//      e->delete_my_comment(bobby, bobbyReply);
+//    void delete_groupchat(Profile *actor, GroupChat *groupchat);
+
+//    std::vector<Profile *> participants = {bobby, kaela};
+//    e->create_groupchat(bobby, QString("crabgc"), QDateTime::currentDateTimeUtc(), participants);
+    GroupChat *gc = e->get_groupchatList().at(0);
+//    e->create_profile(QString("jason"), QString("1234"), QString("Jason"), QString("Masonry"), 1, QString("lehigh"), QDateTime::currentDateTimeUtc(), QString("not an oyster"));
+//    e->create_message(kaela, gc, QDateTime::currentDateTimeUtc(), QString("hiiiiii"));
+    Profile *jason = e->get_profileList().at(2);
+//    e->join_groupchat(jason, gc);
+//    e->leave_groupchat(bobby, gc);
+    e->delete_groupchat(bobby, gc);
     delete e;
 
     return 0;

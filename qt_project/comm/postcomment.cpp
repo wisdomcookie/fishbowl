@@ -51,6 +51,18 @@ bool PostComment::is_reply(){
     return parentCommentId != 0;
 }
 
+void PostComment::set_creator(Profile *profile){
+    creator = profile;
+}
+
+void PostComment::set_parentComment(PostComment *parent){
+    parentComment = parent;
+}
+
+void PostComment::set_sourcePost(Post *sourcePost){
+    post = sourcePost;
+}
+
 int PostComment::get_id(){
     return commentId;
 }

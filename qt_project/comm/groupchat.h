@@ -18,7 +18,7 @@ public:
     void add_participant(Profile *profile);
     void remove_message(Message *message);
     void remove_participant(Profile *profile);
-
+    void set_owner(Profile *profile);
 
     int get_id();
     QString get_name();

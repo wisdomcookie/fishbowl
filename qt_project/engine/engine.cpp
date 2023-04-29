@@ -42,7 +42,7 @@ Engine::Engine()
         QString("comment_id"), QString("post_id"), QString("commenter_id"), QString("parent_comment_id"), QString("date_created"), QString("content"), QString("visibility")
     };
     groupchatFields = {
-        QString("groupchat_id"), QString("name"), QString("size"), QString("date_created")
+        QString("groupchat_id"), QString("owner_id"), QString("name"), QString("size"), QString("date_created")
     };
     groupchatParticipantFields = {
         QString("groupchat_id"), QString("participant_id")
@@ -143,13 +143,22 @@ void Engine::load_data(){
         posts[post->get_id()] = post;
         groups[groupId]->add_post(post);
         profiles[profileId]->add_post(post);
+        post->set_creator(profiles[profileId]);
+        post->set_group(groups[groupId]);
     } // loading and adding posts
 
     std::vector<std::map<QString, QString>> commentData = db->query_select(QString("post_comments"), commentFields);
 
     for(std::map<QString, QString> &row: commentData){
         int postId = row[QString("post_id")].toInt();
+        int commenterId = row[QString("commenter_id")].toInt();
+        int parentCommentId = row[QString("parent_comment_id")].toInt();
         PostComment *comment = new PostComment(row);
+        comment->set_creator(profiles[commenterId]); // set creator of comment
+        comment->set_sourcePost(posts[postId]);
+        if(parentCommentId!=0) {
+            comment->set_parentComment(posts[postId]->get_comments()[parentCommentId]);
+        }
         posts[postId]->add_comment(comment);
     } // loading and adding post comments
 
@@ -169,7 +178,9 @@ void Engine::load_data(){
 
     for(std::map<QString, QString> &row: groupchatData){
         GroupChat *groupchat = new GroupChat(row);
+        int ownerId = row[QString("owner_id")].toInt();
         groupchats[groupchat->get_id()] = groupchat;
+        groupchat->set_owner(profiles[ownerId]);
     } // loading and adding groupchats
 
     std::vector<std::map<QString, QString>> groupchatParticipantData = db->query_select(QString("groupchat_participants"), groupchatParticipantFields);
@@ -243,7 +254,7 @@ void Engine::create_comment_reply(Profile *actor, Post *post, PostComment *paren
     PostComment *comment = new PostComment(nextId, actor, post, dateCreated, content);
 
     std::vector<QVariant> commentData = {
-        comment->get_id(), post->get_id(), actor->get_id(), parentComment->get_id(), dateCreated.toString(dateFormat), comment->get_visibility()
+        comment->get_id(), post->get_id(), actor->get_id(), parentComment->get_id(), dateCreated.toString(dateFormat),  content, comment->get_visibility()
     };
 
     post->add_comment(comment); // adds comment to post
@@ -293,7 +304,7 @@ void Engine::create_group(Profile *actor, QString name, QDateTime dateCreated, Q
 }
 void Engine::create_message(Profile *actor, GroupChat *groupchat, QDateTime dateCreated, QString content){
 
-    int nextId = db->get_next_id(QString("groups"));
+    int nextId = db->get_next_id(QString("messages"));
     Message *message = new Message(nextId, actor, groupchat, dateCreated, content);
 
     std::vector<QVariant> messageData = {
@@ -342,11 +353,11 @@ void Engine::join_group(Profile *actor, Group *group){
 }
 void Engine::join_groupchat(Profile *actor, GroupChat *groupchat){
 
-    std::vector<QVariant> groupchatParticipantData = {actor->get_id(), groupchat->get_id()};
+    std::vector<QVariant> groupchatParticipantData = {groupchat->get_id(), actor->get_id()};
 
     groupchat->add_participant(actor); // add member to groupchat
     actor->add_groupchat(groupchat); // add groupchat to member
-    db->query_insert(QString("group_members"), groupchatParticipantFields, groupchatParticipantData);
+    db->query_insert(QString("groupchat_participants"), groupchatParticipantFields, groupchatParticipantData);
 
 }
 
@@ -438,7 +449,7 @@ void Engine::edit_comment(Profile *actor, PostComment *comment, QString newConte
         throw "User does not own this comment";
     }
     comment->set_content(newContent);
-    db->query_exec("update comments set content = '" + newContent + "' where comment_id = " + QString::number(comment->get_id()) + ";");
+    db->query_exec("update post_comments set content = '" + newContent + "' where comment_id=" + QString::number(comment->get_id()) + ";");
 }
 
 
@@ -464,7 +475,7 @@ void Engine::delete_my_fish(Profile *actor, Fish *fish){
 
 void Engine::delete_my_post(Profile *actor, Post *post){
 
-    if(post->get_creator() != actor){
+    if(post->get_creator()->get_id() != actor->get_id()){
         throw "Action not permitted for user";
     }
     posts.erase(post->get_id()); // remove from posts container
@@ -472,6 +483,7 @@ void Engine::delete_my_post(Profile *actor, Post *post){
     actor->delete_post(post); // remove from poster's post history
 
     db->query_delete_by_rowid(QString("posts"), post->get_id()); // remove from database
+//    db->query_exec(QString("delete from post_comments where post_id="+QString::number(post->get_id())+";"));
     delete post; // deallocate pointer
 
 }
@@ -480,10 +492,12 @@ void Engine::delete_my_comment(Profile *actor, PostComment *comment){
     if(comment->get_creator() != actor){
         throw "Action not permitted for user";
     }
+
     comment->get_post()->remove_comment(comment); // remove from source post
     actor->delete_comment(comment); // remove from poster's comment history
 
-    db->query_delete_by_rowid(QString("comments"), comment->get_id()); // remove from database
+    db->query_delete_by_rowid(QString("post_comments"), comment->get_id()); // remove from database
+
     delete comment; // deallocate pointer
 }
 

@@ -124,7 +124,8 @@ void Profile::remove_friend(Profile *profile){
  * @param x
  */
 void Profile::remove_fish(Fish *fish){
-    aquarium->remove_fish(fish);
+    fishList.erase(fish->get_id());
+   // aquarium->remove_fish(fish);
 }
 void Profile::leave_group(Group *group){
     groups.erase(group->get_id());

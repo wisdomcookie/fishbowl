@@ -51,6 +51,10 @@ void GroupChat::remove_participant(Profile *profile){
     size--;
 }
 
+void GroupChat::set_owner(Profile *profile){
+    owner = profile;
+}
+
 int GroupChat::get_id(){
     return groupchatId;
 }

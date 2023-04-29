@@ -141,9 +141,14 @@ void Database::query_update_by_rowid(QString table, int id, std::vector<QString>
 
 void Database::query_delete_by_rowid(QString table, int id){
 
-    query->prepare("delete from " + table + "where rowid=:rowid");
+    query->prepare("delete from " + table + " where rowid = :rowid");
     query->bindValue(":rowid", id);
-    query->exec();
+
+    if(query->exec() == false) {
+
+        QSqlError err = query->lastError();
+        qDebug() << err.text();
+    }
 }
 
 int Database::get_next_id(QString table){

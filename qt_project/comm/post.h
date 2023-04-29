@@ -19,8 +19,11 @@ public:
     ~Post();
 
     void set_content(QString newContent);
+    void set_creator(Profile *profile);
+    void set_group(Group *group);
     void add_comment(PostComment *comment);
     void remove_comment(PostComment *comment);
+
 
     int get_id();
     Profile *get_creator();
