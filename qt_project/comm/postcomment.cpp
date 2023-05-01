@@ -63,6 +63,9 @@ void PostComment::set_sourcePost(Post *sourcePost){
     post = sourcePost;
 }
 
+void PostComment::set_visibility(bool visibility){
+    this->visibility = visibility;
+}
 int PostComment::get_id(){
     return commentId;
 }

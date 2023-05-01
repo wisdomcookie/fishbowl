@@ -24,8 +24,8 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>90</y>
-      <width>161</width>
+      <y>100</y>
+      <width>141</width>
       <height>61</height>
      </rect>
     </property>
@@ -46,8 +46,8 @@ padding: 5px;
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>160</y>
-      <width>161</width>
+      <y>170</y>
+      <width>141</width>
       <height>61</height>
      </rect>
     </property>
@@ -68,8 +68,8 @@ padding: 5px;
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>300</y>
-      <width>161</width>
+      <y>310</y>
+      <width>141</width>
       <height>61</height>
      </rect>
     </property>
@@ -90,8 +90,8 @@ padding: 5px;
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>230</y>
-      <width>161</width>
+      <y>240</y>
+      <width>141</width>
       <height>61</height>
      </rect>
     </property>
@@ -114,9 +114,9 @@ padding: 5px;
     </property>
     <property name="geometry">
      <rect>
-      <x>190</x>
+      <x>170</x>
       <y>30</y>
-      <width>331</width>
+      <width>351</width>
       <height>41</height>
      </rect>
     </property>
@@ -248,7 +248,7 @@ QPushButton:pressed {
     </property>
     <property name="icon">
      <iconset theme="applications-science">
-      <normaloff>.</normaloff>.</iconset>
+      <normaloff>../../../../../../.designer/backup</normaloff>../../../../../../.designer/backup</iconset>
     </property>
    </widget>
    <widget class="QPushButton" name="profileButton">
@@ -268,12 +268,12 @@ QPushButton:pressed {
     <property name="styleSheet">
      <string notr="true">QPushButton {
     color: rgb(255, 255, 255);
-    border: 1px solid rgb(160, 60, 0);
+    border: 1px solid rgb(200, 100, 50);
     border-radius: 20px;
     border-style: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));
     background: qradialgradient(
         cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
-        radius: 1.35, stop: 0 rgb(212, 100, 0) stop: 1 rgb(160, 60, 0)
+        radius: 1.35, stop: 0 rgb(200, 100, 50) stop: 1 rgb(150, 75, 30)
         );
     padding: 5px;
     }
@@ -282,7 +282,7 @@ QPushButton:pressed {
     border-style: inset;
     background: qradialgradient(
         cx: 0.4, cy: -0.1, fx: 0.4, fy: -0.1,
-        radius: 1.35, stop: 0 rgb(112, 50, 0) stop: 1 rgb(60, 10, 0)
+        radius: 1.35, stop: 0 rgb(0, 2, 112) stop: 1 rgb(0, 0, 60)
         );
     }</string>
     </property>
@@ -293,10 +293,10 @@ QPushButton:pressed {
    <widget class="QStackedWidget" name="page">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>90</y>
+      <x>170</x>
+      <y>100</y>
       <width>611</width>
-      <height>471</height>
+      <height>481</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -314,7 +314,7 @@ QPushButton:pressed {
      </font>
     </property>
     <property name="currentIndex">
-     <number>6</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="HomePage">
      <widget class="QListWidget" name="allPosts">
@@ -393,10 +393,10 @@ QPushButton:pressed {
      <widget class="QLabel" name="groupName">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>311</width>
-        <height>31</height>
+        <x>11</x>
+        <y>1</y>
+        <width>251</width>
+        <height>45</height>
        </rect>
       </property>
       <property name="font">
@@ -408,7 +408,7 @@ QPushButton:pressed {
        </font>
       </property>
       <property name="text">
-       <string/>
+       <string>Group Name</string>
       </property>
      </widget>
      <widget class="QListWidget" name="groupsList">
@@ -479,38 +479,6 @@ QPushButton:pressed {
        <bool>false</bool>
       </property>
      </widget>
-     <widget class="QPushButton" name="groupMembers">
-      <property name="geometry">
-       <rect>
-        <x>320</x>
-        <y>30</y>
-        <width>100</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
-      </property>
-      <property name="text">
-       <string>Members</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="groupInfo">
-      <property name="geometry">
-       <rect>
-        <x>320</x>
-        <y>10</y>
-        <width>100</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
-      </property>
-      <property name="text">
-       <string>Info</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="createGroup">
       <property name="geometry">
        <rect>
@@ -547,13 +515,13 @@ QPushButton:pressed {
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>50</y>
+        <y>80</y>
         <width>411</width>
-        <height>411</height>
+        <height>381</height>
        </rect>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="g_posts">
        <widget class="QListWidget" name="groupPosts">
@@ -562,7 +530,7 @@ QPushButton:pressed {
           <x>0</x>
           <y>0</y>
           <width>411</width>
-          <height>411</height>
+          <height>381</height>
          </rect>
         </property>
         <property name="sizePolicy">
@@ -632,10 +600,10 @@ QPushButton:pressed {
        <widget class="QTextBrowser" name="g_infoDisplay">
         <property name="geometry">
          <rect>
-          <x>10</x>
+          <x>0</x>
           <y>0</y>
-          <width>401</width>
-          <height>411</height>
+          <width>411</width>
+          <height>381</height>
          </rect>
         </property>
         <property name="font">
@@ -668,7 +636,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <x>0</x>
           <y>0</y>
           <width>411</width>
-          <height>411</height>
+          <height>381</height>
          </rect>
         </property>
         <property name="sizePolicy">
@@ -738,7 +706,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <x>0</x>
           <y>0</y>
           <width>411</width>
-          <height>411</height>
+          <height>381</height>
          </rect>
         </property>
         <property name="sizePolicy">
@@ -802,6 +770,58 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </widget>
       </widget>
      </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>11</x>
+        <y>52</y>
+        <width>254</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="groupInfo">
+         <property name="styleSheet">
+          <string notr="true">background: rgb(245, 245, 245);</string>
+         </property>
+         <property name="text">
+          <string>Info</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="groupPostButton">
+         <property name="text">
+          <string>Posts</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="groupMembers">
+         <property name="styleSheet">
+          <string notr="true">background: rgb(245, 245, 245);</string>
+         </property>
+         <property name="text">
+          <string>Members</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QPushButton" name="leaveGroupButton">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>50</y>
+        <width>80</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Leave</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="Messages">
      <widget class="QLineEdit" name="message">
@@ -855,13 +875,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <string>Chats</string>
       </property>
      </widget>
-     <widget class="QListView" name="messageHist">
+     <widget class="QListView" name="messageHistLocal">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>30</y>
-        <width>411</width>
-        <height>391</height>
+        <x>210</x>
+        <y>40</y>
+        <width>201</width>
+        <height>371</height>
        </rect>
       </property>
       <property name="font">
@@ -873,7 +893,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
+       <string notr="true">background: rgb(245, 245, 245);
+border: rgb(245, 245, 245);</string>
       </property>
       <property name="editTriggers">
        <set>QAbstractItemView::NoEditTriggers</set>
@@ -956,6 +977,73 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <bool>false</bool>
       </property>
      </widget>
+     <widget class="QListView" name="messageHistRemote">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>40</y>
+        <width>191</width>
+        <height>371</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <bold>false</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: rgb(245, 245, 245);
+border: rgb(245,245,245);</string>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="isWrapping" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QListView" name="messageHistRemote_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>411</width>
+        <height>391</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <bold>false</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: rgb(245, 245, 245);</string>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="isWrapping" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <zorder>messageHistRemote_2</zorder>
+     <zorder>message</zorder>
+     <zorder>label</zorder>
+     <zorder>messageHistLocal</zorder>
+     <zorder>chat</zorder>
+     <zorder>messageHistRemote</zorder>
     </widget>
     <widget class="QWidget" name="Friends">
      <widget class="QListWidget" name="friendsList">
@@ -1029,10 +1117,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QLabel" name="label_8">
       <property name="geometry">
        <rect>
-        <x>250</x>
-        <y>10</y>
-        <width>131</width>
-        <height>31</height>
+        <x>210</x>
+        <y>0</y>
+        <width>211</width>
+        <height>41</height>
        </rect>
       </property>
       <property name="font">
@@ -1762,8 +1850,8 @@ QPushButton:pressed {
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="geometry">
        <rect>
-        <x>-140</x>
-        <y>10</y>
+        <x>-180</x>
+        <y>-90</y>
         <width>801</width>
         <height>601</height>
        </rect>
@@ -2060,9 +2148,9 @@ background: rgb(245, 245, 245);
      <widget class="QLabel" name="label_2">
       <property name="geometry">
        <rect>
-        <x>240</x>
+        <x>200</x>
         <y>30</y>
-        <width>141</width>
+        <width>221</width>
         <height>20</height>
        </rect>
       </property>
@@ -2125,7 +2213,7 @@ background: rgb(245, 245, 245);
        <string>Post to:</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="publish">
+     <widget class="QPushButton" name="p_publish">
       <property name="geometry">
        <rect>
         <x>460</x>
@@ -2141,7 +2229,7 @@ background: rgb(245, 245, 245);
        <string>Publish</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="titleBox">
+     <widget class="QLineEdit" name="p_titleBox">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -2333,9 +2421,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QLabel" name="label_6">
       <property name="geometry">
        <rect>
-        <x>260</x>
+        <x>250</x>
         <y>0</y>
-        <width>91</width>
+        <width>121</width>
         <height>31</height>
        </rect>
       </property>
@@ -2375,10 +2463,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QLabel" name="label_9">
       <property name="geometry">
        <rect>
-        <x>230</x>
-        <y>30</y>
-        <width>161</width>
-        <height>20</height>
+        <x>200</x>
+        <y>9</y>
+        <width>231</width>
+        <height>41</height>
        </rect>
       </property>
       <property name="font">
@@ -2587,13 +2675,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </widget>
     </widget>
    </widget>
-   <widget class="QLabel" name="label_4">
+   <widget class="QLabel" name="main_icon">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>30</y>
-      <width>171</width>
-      <height>31</height>
+      <x>20</x>
+      <y>20</y>
+      <width>131</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="font">
@@ -2605,8 +2693,19 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </font>
     </property>
     <property name="text">
-     <string>FishBowl</string>
+     <string/>
     </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>2</width>
+      <height>2</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2"/>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>

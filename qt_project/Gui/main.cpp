@@ -6,6 +6,8 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     Home w;
-    w.show();
+//    Login login;
+//    login.show();
+//    w.show();
     return a.exec();
 }

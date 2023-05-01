@@ -9,6 +9,11 @@ Login::Login(QWidget *parent) :
     e->load_data();
 
     ui->setupUi(this);
+    int id = QFontDatabase::addApplicationFont("../../assets/lost_fish.ttf");
+    QString family = QFontDatabase::applicationFontFamilies(id).at(0);
+    QFont monospace(family, 60);
+    ui->title_label->setFont(monospace);
+    ui->title_label->setAlignment(Qt::AlignHCenter);
 
     ui->warning->hide();
 
@@ -28,7 +33,9 @@ void Login::on_loginButton_clicked()
         ui->uname->clear();
         ui->pword->clear();
     } else {
+
         emit back(p);
+        //this->hide();
         //emit back(p, e);
     }
 }

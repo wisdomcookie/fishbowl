@@ -107,15 +107,18 @@ void Engine::load_data(){
     for(std::map<QString, QString> &row: groupData){
         Group *group = new Group(row);
         groups[group->get_id()] = group;
+
     } // loading and adding groups by passing each record as a map of data to constructor
 
     std::vector<std::map<QString, QString>> groupMemberData = db->query_select(QString("group_members"), groupMemberFields);
 
     for(std::map<QString, QString> &row: groupMemberData){
         int groupId = row[QString("group_id")].toInt();
+        //if(groupId == 0) continue;
         int profileId = row[QString("profile_id")].toInt();
         groups[groupId]->add_member(profiles[profileId]);
-    } // loading and adding group participants by finding the groups and profiles corresponding to the ids of the record
+        profiles[profileId]->add_group(groups[groupId]);
+    } // loading and adding group members by finding the groups and profiles corresponding to the ids of the record
 
     std::vector<std::map<QString, QString>> friendsData = db->query_select(QString("friends"), friendsFields);
 
@@ -189,7 +192,8 @@ void Engine::load_data(){
         int groupchatId = row[QString("groupchat_id")].toInt();
         int participantId = row[QString("participant_id")].toInt();
         groupchats[groupchatId]->add_participant(profiles[participantId]);
-    } // loading and adding participants to the groupchats
+        profiles[participantId]->add_groupchat(groupchats[groupchatId]);
+    } // loading and adding participants to the groupchats and vice versa
 
     std::vector<std::map<QString, QString>> messageData = db->query_select(QString("messages"), messageFields);
 
@@ -261,8 +265,8 @@ void Engine::create_comment_reply(Profile *actor, Post *post, PostComment *paren
     parentComment->add_reply(comment); // adds comment to parent comment
     actor->add_comment(comment); // adds comment to commenter
     db->query_insert(QString("post_comments"), commentFields, commentData);
-
 }
+
 void Engine::create_groupchat(Profile *actor, QString name, QDateTime dateCreated, std::vector<Profile*> participants){
 
     int nextId = db->get_next_id(QString("groupchats"));
@@ -280,8 +284,8 @@ void Engine::create_groupchat(Profile *actor, QString name, QDateTime dateCreate
         participant->add_groupchat(groupchat); // adds groupchat to participant
         db->query_insert(QString("groupchat_participants"), groupchatParticipantFields, groupchatParticipantData); // inserts participant into database
     }
-
 }
+
 void Engine::create_group(Profile *actor, QString name, QDateTime dateCreated, QString description){
 
     int nextId = db->get_next_id(QString("groups"));
@@ -294,14 +298,15 @@ void Engine::create_group(Profile *actor, QString name, QDateTime dateCreated, Q
     groups[group->get_id()] = group; // inserts group into groups map
     db->query_insert(QString("groups"), groupFields, groupData); // inserts group into database
     actor->add_group_as_admin(group);   // adds group to admin
+    actor->add_group(group);
 
     std::vector<QVariant> groupMemberData = {group->get_id(), actor->get_id()};
     db->query_insert(QString("group_members"), groupMemberFields, groupMemberData); // adds creator as group member to database
 
     std::vector<QVariant> adminData = {group->get_id(), actor->get_id()};
     db->query_insert(QString("admins"), adminFields, adminData); // adds creator as group admin to database
-
 }
+
 void Engine::create_message(Profile *actor, GroupChat *groupchat, QDateTime dateCreated, QString content){
 
     int nextId = db->get_next_id(QString("messages"));
@@ -482,9 +487,11 @@ void Engine::delete_my_post(Profile *actor, Post *post){
     post->get_sourceGroup()->remove_post(post); // remove from source group
     actor->delete_post(post); // remove from poster's post history
 
-    db->query_delete_by_rowid(QString("posts"), post->get_id()); // remove from database
-//    db->query_exec(QString("delete from post_comments where post_id="+QString::number(post->get_id())+";"));
-    delete post; // deallocate pointer
+    db->query_exec("update posts set visibility=0 where post_id=" + QString::number(post->get_id()) + ";");
+    //db->query_delete_by_rowid(QString("posts"), post->get_id()); // remove from database
+    //db->query_exec(QString("delete from post_comments where post_id="+QString::number(post->get_id())+";"));
+    //delete post; // deallocate pointer
+    post->set_visibility(false);
 
 }
 void Engine::delete_my_comment(Profile *actor, PostComment *comment){
@@ -496,9 +503,11 @@ void Engine::delete_my_comment(Profile *actor, PostComment *comment){
     comment->get_post()->remove_comment(comment); // remove from source post
     actor->delete_comment(comment); // remove from poster's comment history
 
-    db->query_delete_by_rowid(QString("post_comments"), comment->get_id()); // remove from database
+    db->query_exec("update post_comments set visibility=0 where comment_id=" + QString::number(comment->get_id()) + ";");
+    //db->query_delete_by_rowid(QString("post_comments"), comment->get_id()); // remove from database
 
-    delete comment; // deallocate pointer
+    //delete comment; // deallocate pointer
+    comment->set_visibility(false);
 }
 
 void Engine::delete_groupchat(Profile *actor, GroupChat *groupchat){
@@ -512,8 +521,9 @@ void Engine::delete_groupchat(Profile *actor, GroupChat *groupchat){
         profile.second->leave_groupchat(groupchat); // remove from participants
     }
 
-    db->query_delete_by_rowid(QString("groupchats"), groupchat->get_id()); // emove from database entry for the groupchat
+    db->query_delete_by_rowid(QString("groupchats"), groupchat->get_id()); // remove from database entry for the groupchat
     db->query_exec("delete from groupchat_participants where groupchat_id=" + QString::number(groupchat->get_id())); // remove the groupchat participant database entries
+    db->query_exec("delete from messages where groupchat_id=" + QString::number(groupchat->get_id()) + ";"); // remove the messages in that groupchat
     delete groupchat; // deallocate pointer
 
 }

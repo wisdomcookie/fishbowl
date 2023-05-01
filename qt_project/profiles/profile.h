@@ -68,6 +68,7 @@ public:
     std::vector<Profile*> get_friendList();
     std::vector<Group*> get_groupList();
     std::vector<Post*> get_postHistory();
+    std::vector<GroupChat*> get_groupchats();
     std::vector<Message*> get_messageHistory();
 
     QString get_password();

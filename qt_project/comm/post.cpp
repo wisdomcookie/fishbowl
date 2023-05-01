@@ -41,6 +41,10 @@ void Post::set_group(Group *group){
     this->group = group;
 }
 
+void Post::set_visibility(bool visibility){
+    this->visibility = visibility;
+}
+
 void Post::add_comment(PostComment *comment){
     comments[comment->get_id()] = comment;
 }

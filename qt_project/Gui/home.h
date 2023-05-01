@@ -77,7 +77,7 @@ private slots:
 
     void on_message_returnPressed();
 
-    void on_publish_clicked();
+//    void on_publish_clicked();
 
     void on_allPosts_itemDoubleClicked(QListWidgetItem *item);
 
@@ -123,12 +123,27 @@ private slots:
 
     void addMessages(std::vector<Message*> m);
 
+    void on_groupPostButton_clicked();
+
+    void on_p_publish_clicked();
+
+    void on_leaveGroupButton_clicked();
+
 private:
+
+    void load_groupList(); /*std::vector<Group*> groupList*/
+    void load_groupMembers();
+    void load_groupPosts();
+    void load_groupchats();
+    void load_messages();
+    //void load_friends();
+
     Ui::Home *ui;
     Profile *p;
     Engine* e;
     Fish* f;
     Login* l;
+    GroupChat *currGroupChat;
     Message *msg;
     QStandardItemModel *chatModel;
     Post* currPost;

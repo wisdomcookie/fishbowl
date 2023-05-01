@@ -2,6 +2,7 @@
 #include "ui_home.h"
 #include <iostream>
 #include <iterator>
+#include <QPixmap>
 
 
 Home::Home(QWidget *parent)
@@ -13,22 +14,38 @@ Home::Home(QWidget *parent)
 {
 
     ui->setupUi(this);
+    QPixmap pix("../../assets/blue_fish.svg");
+//    int w = ui->main_icon->width();
+//    int h = ui->main_icon->height();
+    ui->main_icon->setPixmap(pix/*.scaled(w, h, Qt::KeepAspectRatio)*/);
 
+//    QFontDatabase::addApplicationFont("../../assets/lost_fish.ttf");
+
+    //ui->centralwidget->hide();
     ui->edit->hide();
     ui->SaveChanges->hide();
     ui->searchBar->setEnabled(false);
 
-    l = new Login(this);
-    start(l);
+    //l = new Login(this);
+    l = new Login();
+    l->show();
+    //this->hide();
+
+    //start(l);
     connect(l, &Login::back, this, &Home::main_menu);
 
-    ui->messageHist->setModel(chatModel);
     chatModel->insertColumn(0);
+    chatModel->insertColumn(0);
+    ui->messageHistLocal->setModel(chatModel);
+    ui->messageHistRemote->setModel(chatModel);
+    ui->messageHistLocal->setModelColumn(1); //sent messages on right side
+    ui->messageHistRemote->setModelColumn(0); //received messages on left side
+
 
     ui->comments->setModel(cmtModel);
     cmtModel->insertColumn(0);
 
-    currGroup = all;
+    //currGroup = all;
 
 
 }
@@ -49,11 +66,21 @@ void Home::start(QWidget* w) {
 
 void Home::main_menu(Profile* p/*, Engine *e*/)
 {
+    this->show();
+    l->hide();
     this->p = p;
     e = new Engine();
     e->load_data();
     //this->e = e;
     //add information from databases
+    for(Group *group: e->get_groupList()){
+        if(group->get_id()==0){
+            currGroup = group;
+            break;
+        }
+    }
+//    currGroup = e->get_groupList().at(0);
+
     for(Fish* ff : p->get_fishList()){
         addFish(ff->get_name(), ff->get_species(), ff->get_description());
     }
@@ -72,21 +99,21 @@ void Home::main_menu(Profile* p/*, Engine *e*/)
         }
     }
 
-    for (Group* gg : p->get_groupList()){
-        for(Profile* pp : gg->get_members()){
-            addGroupMember(gg, pp);
-        }
-    }
+//    for (Group* gg : p->get_groupList()){
+//        for(Profile* pp : gg->get_members()){
+//            addGroupMember(gg, pp);
+//        }
+//    }
 
-    for (Group* gg : p->get_groupList()){
-        addGroup(gg);
-    }
+//    for (Group* gg : p->get_groupList()){
+//        addGroup(gg);
+//    }
 
 //    for (Group* gg : e->get_groupList()){
 //        addAllGroup(gg);
 //    }
+//    ui->centralwidget->show();
 
-    currGroup = e->get_groupList().at(0);
     ui->searchBar->setEnabled(true);
     delete ui->stackedWidget;
     ui->page->setCurrentIndex(0);
@@ -104,14 +131,21 @@ void Home::on_homeButton_clicked()
 void Home::on_groupButton_clicked()
 {
     ui->page->setCurrentIndex(1);
-    if(currGroup != all) ui->groupName->setText(currGroup->get_name());
+    load_groupList();
+    ui->groupsList->setCurrentRow(0);
+    on_groupsList_itemClicked(ui->groupsList->currentItem());
+//    for(Group* iter : p->get_groupList()){
+//        //new QListWidgetItem(iter->get_name(), ui->groupsList);
+//        ui->groupsList->addItem(new QListWidgetItem(iter->get_name(), ui->groupsList));
+//    }
+    //if(currGroup != all) ui->groupName->setText(currGroup->get_name());
 }
 
 void Home::on_messageButton_clicked()
 {
     ui->page->setCurrentIndex(2);
+    load_groupchats();
 }
-
 
 void Home::on_friendsButton_clicked()
 {
@@ -138,8 +172,11 @@ void Home::on_fishButton_clicked()
 
 void Home::on_postButton_clicked()
 {
+    for(Group *group: p->get_groupList()){
+        ui->selectGroup->addItem(group->get_name());
+    }
     ui->page->setCurrentIndex(8);
-    ui->titleBox->setFocus();
+    ui->p_titleBox->setFocus();
 }
 
 /*******************************
@@ -279,7 +316,8 @@ void Home::on_friends_clicked()
 void Home::on_groups_clicked()
 {
     ui->page->setCurrentIndex(1);
-    if(currGroup != all) ui->groupName->setText(currGroup->get_name());
+    //if(currGroup != all) ui->groupName->setText(currGroup->get_name());
+
 }
 
 
@@ -336,33 +374,58 @@ void Home::on_SaveChanges_clicked()
 
 void Home::on_message_returnPressed()
 {
+
+    e->create_message(p, currGroupChat, QDateTime::currentDateTimeUtc(), ui->message->text());
     msg->set_content(ui->message->text());
     int newRow = chatModel->rowCount();
     chatModel->insertRow(newRow);
-    chatModel->setData(chatModel->index(newRow, 0), msg->get_content());
-    chatModel->setData(chatModel->index(newRow, 0), int(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
+
+
+    chatModel->setData(chatModel->index(newRow, 1), msg->get_content());
+    chatModel->setData(chatModel->index(newRow, 1), int(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
+
     ui->message->clear();
-    ui->messageHist->scrollToBottom();
+    ui->messageHistLocal->scrollToBottom();
+    ui->messageHistRemote->scrollToBottom();
 }
 
-void Home::on_publish_clicked()
-{
-    int i = 0;
-    while(p->get_groupList().at(i)->get_name() != ui->titleBox->text()) i++;
-    currGroup = p->get_groupList().at(i);
+//void Home::loadMessageHelper(int senderId, Message *message){
+//    QString content = message->get_content();
 
-    e->create_post(p, currGroup, QDateTime::currentDateTimeUtc(), ui->titleBox->text(), ui->postBox->toPlainText());
-    Post* newPost = e->get_postList().back();
-    currGroup->add_post(newPost);
-    p->add_post(newPost);
-    addPost(currGroup, newPost);
-    addMyPost(currGroup, newPost);
+//    int newRow = chatModel->rowCount();
+//    chatModel->insertRow(newRow);
+//    if(senderId != p->get_id()){
+//        chatModel->setData(chatModel->index(newRow, 0), content);
+//        chatModel->setData(chatModel->index(newRow, 0), int(Qt::AlignLeft | Qt::AlignVCenter), Qt::TextAlignmentRole);
+//    }
+//    else{
+//        chatModel->setData(chatModel->index(newRow, 1), content);
+//        chatModel->setData(chatModel->index(newRow, 1), int(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
+//    }
 
-    ui->page->setCurrentIndex(0);
+//    ui->message->clear();
+//    ui->messageHistLocal->scrollToBottom();
+//    ui->messageHistRemote->scrollToBottom();
+//}
 
-    ui->titleBox->clear();
-    ui->postBox->clear();
-}
+//void Home::on_publish_clicked()
+//{
+//    int i = 0;
+//    while(p->get_groupList().at(i)->get_name() != ui->titleBox->text()) i++;
+//    currGroup = p->get_groupList().at(i);
+
+//    e->create_post(p, currGroup, QDateTime::currentDateTimeUtc(), ui->titleBox->text(), ui->postBox->toPlainText());
+//    Post* newPost = e->get_postList().back();
+//    currGroup->add_post(newPost);
+//    p->add_post(newPost);
+//    addPost(currGroup, newPost);
+//    addMyPost(currGroup, newPost);
+
+//    ui->page->setCurrentIndex(0);
+
+//    ui->titleBox->clear();
+//    ui->postBox->clear();
+//}
 
 void Home::addPost(Group* gr, Post* po){
     new QListWidgetItem(po->get_title() + tr("\n") + po->get_content(), ui->allPosts); //fix to add to group
@@ -398,13 +461,23 @@ void Home::on_addComment_returnPressed()
 
 void Home::on_chat_itemClicked(QListWidgetItem *item)
 {
-    int i = 0;
-    while (ui->chat->item(i) != item) i++;
-    Profile *temp = p->get_friendList().at(i);
-    std::vector<Profile*> participants;
-    participants.push_back(temp);
-    e->create_groupchat(p, "", QDateTime::currentDateTimeUtc(), participants);
-    GroupChat* gc = e->get_groupchatList().back();
+
+    for(GroupChat *gc: p->get_groupchats()){
+        if(gc->get_name().contains(item->text())){
+            currGroupChat = gc;
+            break;
+        }
+    }
+
+    load_messages();
+
+//    int i = 0;
+//    while (ui->chat->item(i) != item) i++;
+//    Profile *temp = p->get_friendList().at(i);
+//    std::vector<Profile*> participants;
+//    participants.push_back(temp);
+//    e->create_groupchat(p, "", QDateTime::currentDateTimeUtc(), participants);
+//    GroupChat* gc = e->get_groupchatList().back();
 
     //addMessages(gc->get_messageHistory());
 }
@@ -444,31 +517,44 @@ void Home::on_groupInfo_clicked()
 void Home::on_groupMembers_clicked()
 {
     ui->stackedWidget_2->setCurrentWidget(ui->g_members);
+    load_groupMembers();
 }
 
 
 void Home::on_g_publish_clicked()
 {
-    e->create_group(p, ui->groupName->text(), QDateTime::currentDateTimeUtc(), ui->g_description->toPlainText());
+
+    e->create_group(p, ui->g_titleBox->text(), QDateTime::currentDateTimeUtc(), ui->g_description->toPlainText());
     currGroup = e->get_groupList().back();
 
-    addGroup(currGroup);
+
+    //addGroup(currGroup);
+
+
 
     ui->selectGroup->addItem(currGroup->get_name());
     ui->page->setCurrentIndex(1);
 
     ui->g_titleBox->clear();
     ui->g_description->clear();
+
+    load_groupList();
 }
 
+
+
 void Home::addGroup(Group* g){
-    new QListWidgetItem(g->get_name(), ui->groupsList);
-    for(Profile* iter : currGroup->get_members()) new QListWidgetItem(iter->get_username(), ui->membersList);
+//    new QListWidgetItem(g->get_name(), ui->groupsList);
+//    for(Profile* iter : currGroup->get_members()){
+//        new QListWidgetItem(iter->get_username(), ui->membersList);
+//    }
 }
 
 void Home::addAllGroup(Group* g){
-    new QListWidgetItem(g->get_name(), ui->allGroups);
-    for(Profile* iter : currGroup->get_members()) new QListWidgetItem(iter->get_username(), ui->membersList);
+//    new QListWidgetItem(g->get_name(), ui->allGroups);
+//    for(Profile* iter : currGroup->get_members()){
+//        new QListWidgetItem(iter->get_username(), ui->membersList);
+//    }
 }
 
 void Home::on_groupsList_itemClicked(QListWidgetItem *item)
@@ -476,13 +562,16 @@ void Home::on_groupsList_itemClicked(QListWidgetItem *item)
     int i = 0;
     while (ui->groupsList->item(i) != item) i++;
     currGroup = p->get_groupList().at(i);
+    ui->groupName->setText(currGroup->get_name());
+    ui->stackedWidget_2->setCurrentWidget(ui->g_posts);
+    load_groupPosts();
 }
 
 
 void Home::on_groupsList_itemSelectionChanged()
 {
-    ui->groupName->setText(currGroup->get_name());
-    ui->stackedWidget_2->setCurrentWidget(ui->g_posts);
+//    ui->groupName->setText(currGroup->get_name());
+//    ui->stackedWidget_2->setCurrentWidget(ui->g_posts);
 }
 
 void Home::addGroupMember(Group* gg, Profile* pp){
@@ -514,14 +603,135 @@ void Home::profilePage(Profile* pp){
  * ************************/
 
 void Home::addFriend(Profile* f){
-    new QListWidgetItem(f->get_username(), ui->friendsList);
-    new QListWidgetItem(f->get_username(), ui->chat);
+    ui->friendsList->addItem(new QListWidgetItem(f->get_username(), ui->friendsList));
+    ui->chat->addItem(new QListWidgetItem(f->get_username(), ui->chat));
+//    new QListWidgetItem(f->get_username(), ui->friendsList);
+//    new QListWidgetItem(f->get_username(), ui->chat);
 }
 
 
 void Home::on_AddFriend_clicked()
 {
     e->add_friend(p, currFriend);
+    std::vector<Profile*> participants = {p, currFriend};
+    e->create_groupchat(p, p->get_username() + "," + currFriend->get_username(), QDateTime::currentDateTime(), participants);
     addFriend(currFriend);
+}
+
+
+void Home::on_groupPostButton_clicked()
+{
+    ui->stackedWidget_2->setCurrentWidget(ui->g_posts);
+    load_groupPosts();
+}
+
+void Home::load_groupList(/*std::vector<Group*> groupList*/){
+    ui->groupsList->clear();
+    for(Group* iter : p->get_groupList()){
+        //new QListWidgetItem(iter->get_name(), ui->groupsList);
+        ui->groupsList->addItem(new QListWidgetItem(iter->get_name(), ui->groupsList));
+    }
+}
+
+void Home::load_groupMembers(){
+    ui->membersList->clear();
+    for(Profile *profile: currGroup->get_members()){
+        ui->membersList->addItem(new QListWidgetItem(profile->get_username(), ui->membersList));
+    }
+
+}
+
+
+void Home::load_groupPosts(){
+    ui->groupPosts->clear();
+    for(Post *post: currGroup->get_postHistory()){
+        ui->groupPosts->addItem(new QListWidgetItem(post->get_title() + tr("\n") + post->get_content(), ui->groupPosts));
+    }
+    //new QListWidgetItem(po->get_title() + tr("\n") + po->get_content(), ui->allPosts); //fix to add to group
+}
+
+void Home::load_groupchats(){
+    ui->chat->clear();
+    Profile *friendProfile;
+    for(GroupChat *gc: p->get_groupchats()){
+        for(std::pair<int, Profile*> profile: gc->get_participants()){
+            if(profile.second->get_username() != p->get_username()){ // gc has two participants, user and their friend, the gc is labelled with friend's name to simulate direct messages
+                friendProfile = profile.second;
+            }
+        }
+
+        ui->chat->addItem(new QListWidgetItem(friendProfile->get_username(), ui->chat));
+    }
+
+}
+
+void Home::load_messages(){
+
+    chatModel->clear();
+    chatModel->insertColumn(0);
+    chatModel->insertColumn(0);
+    ui->messageHistLocal->setModel(chatModel);
+    ui->messageHistRemote->setModel(chatModel);
+    ui->messageHistLocal->setModelColumn(1); //sent messages on right side
+    ui->messageHistRemote->setModelColumn(0); //received messages on left side
+
+    int row = 0;
+    for(std::pair<int, Message*> msg: currGroupChat->get_messageHistory()){
+        chatModel->insertRow(row);
+
+        if(msg.second->get_senderId() == p->get_id()){
+            chatModel->setData(chatModel->index(row, 1), msg.second->get_content());
+            chatModel->setData(chatModel->index(row, 1), int(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
+        }
+        else{
+            chatModel->setData(chatModel->index(row, 0), msg.second->get_content());
+            chatModel->setData(chatModel->index(row, 0), int(Qt::AlignLeft | Qt::AlignVCenter), Qt::TextAlignmentRole);
+        }
+
+        row += 1;
+    }
+    ui->messageHistLocal->scrollToBottom();
+    ui->messageHistRemote->scrollToBottom();
+
+}
+
+void Home::on_p_publish_clicked()
+{
+//        int i = 0;
+        QString groupName = ui->selectGroup->currentText();
+        //Group *postGroup;
+        for(Group *group: p->get_groupList()){
+            if(group->get_name() == groupName){
+                currGroup = group;
+                break;
+            }
+        }
+
+//        while(p->get_groupList().at(i)->get_name() != ui->selectGroup->currentText()) i++;
+//        currGroup = p->get_groupList().at(i);
+
+        e->create_post(p, currGroup, QDateTime::currentDateTimeUtc(), ui->p_titleBox->text(), ui->postBox->toPlainText());
+
+        Post* newPost = e->get_postList().back();
+//        currGroup->add_post(newPost);
+//        p->add_post(newPost);
+//        addPost(currGroup, newPost);
+        addMyPost(currGroup, newPost);
+
+        load_groupPosts();
+
+        ui->page->setCurrentIndex(0);
+
+        ui->p_titleBox->clear();
+        ui->postBox->clear();
+}
+
+
+void Home::on_leaveGroupButton_clicked()
+{
+        e->leave_group(p, currGroup);
+        on_groupButton_clicked();
+//        load_groupList();
+//        currGroup = e->get_groupList().at(0); // set to the all group
 }
 

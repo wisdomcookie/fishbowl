@@ -21,6 +21,7 @@ public:
     void set_creator(Profile *profile);
     void set_parentComment(PostComment *parent);
     void set_sourcePost(Post *sourcePost);
+    void set_visibility(bool visibility);
 
     int get_id();
     Profile *get_creator();

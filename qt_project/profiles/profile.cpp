@@ -192,6 +192,7 @@ std::vector<Group*> Profile::get_groupList(){
     }
     return res;
 }
+
 std::vector<Post*> Profile::get_postHistory(){
     std::vector<Post*> res;
     for(auto i = posts.begin(); i != posts.end(); i++){
@@ -199,6 +200,16 @@ std::vector<Post*> Profile::get_postHistory(){
     }
     return res;
 }
+
+std::vector<GroupChat*> Profile::get_groupchats(){
+    std::vector<GroupChat*> res;
+    for(auto i = groupchats.begin(); i != groupchats.end(); i++){
+        res.push_back(i->second);
+    }
+    return res;
+
+}
+
 std::vector<Message*> Profile::get_messageHistory(){
     std::vector<Message*> res;
     for(auto i = messages.begin(); i != messages.end(); i++){

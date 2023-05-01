@@ -32,25 +32,6 @@ background: rgb(128, 214, 255);
      </rect>
     </property>
     <widget class="QWidget" name="loginpage">
-     <widget class="QLabel" name="namesssss">
-      <property name="geometry">
-       <rect>
-        <x>200</x>
-        <y>150</y>
-        <width>391</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Chalkboard</family>
-        <pointsize>18</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>By Emma Raupp, Nathan Dinh &amp; Jack Horowitz</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="createNewAccount">
       <property name="geometry">
        <rect>
@@ -67,13 +48,13 @@ background: rgb(128, 214, 255);
        <string>Or Register Here!</string>
       </property>
      </widget>
-     <widget class="QLabel" name="labelllllll">
+     <widget class="QLabel" name="title_label">
       <property name="geometry">
        <rect>
-        <x>319</x>
+        <x>140</x>
         <y>90</y>
-        <width>171</width>
-        <height>71</height>
+        <width>501</width>
+        <height>101</height>
        </rect>
       </property>
       <property name="font">
