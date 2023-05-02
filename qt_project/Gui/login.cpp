@@ -6,7 +6,7 @@ Login::Login(QWidget *parent) :
     ui(new Ui::Login)
 {
     e = new Engine();
-    e->load_data();
+    e->reload_data();
 
     ui->setupUi(this);
     int id = QFontDatabase::addApplicationFont("../../assets/lost_fish.ttf");
@@ -34,7 +34,7 @@ void Login::on_loginButton_clicked()
         ui->pword->clear();
     } else {
 
-        emit back(p);
+        emit back(p, e);
         //this->hide();
         //emit back(p, e);
     }
@@ -47,7 +47,7 @@ void Login::on_create_accepted()
                      ui->c_location->text(), QDateTime::currentDateTimeUtc(), ui->c_bio->toPlainText());
     p = e->get_profileList().back();
     //emit back(p);
-    emit back(p);
+    emit back(p, e);
 }
 
 

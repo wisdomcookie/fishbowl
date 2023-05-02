@@ -89,8 +89,12 @@ Engine::~Engine(){
 
 }
 
-void Engine::update_data(){
-
+void Engine::reload_data(){
+    profiles.clear();
+    groups.clear();
+    posts.clear();
+    groupchats.clear();
+    load_data();
 }
 
 void Engine::load_data(){
@@ -658,4 +662,17 @@ std::vector<GroupChat*> Engine::get_groupchatList(){
         res.push_back(i->second);
     }
     return res;
+}
+
+std::map<int, Profile*> Engine::get_profiles(){
+    return profiles;
+}
+std::map<int, Group*> Engine::get_groups(){
+    return groups;
+}
+std::map<int, Post*> Engine::get_posts(){
+    return posts;
+}
+std::map<int, GroupChat*> Engine::get_groupchats(){
+    return groupchats;
 }

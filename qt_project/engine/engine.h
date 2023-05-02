@@ -19,7 +19,7 @@ public:
 
     ~Engine();
 
-    void update_data();
+    void reload_data();
     void load_data();
 
     // Regular user
@@ -76,6 +76,11 @@ public:
     std::vector<Group*> get_groupList();//
     std::vector<Post*> get_postList();//
     std::vector<GroupChat*> get_groupchatList();//
+
+    std::map<int, Profile*> get_profiles();
+    std::map<int, Group*> get_groups();
+    std::map<int, Post*> get_posts();
+    std::map<int, GroupChat*> get_groupchats();
 
 
 private:

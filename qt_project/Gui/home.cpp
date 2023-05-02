@@ -27,7 +27,8 @@ Home::Home(QWidget *parent)
 //    ui->profileIconButton->setIconSize(pix1.rect().size());
 //    QFontDatabase::addApplicationFont("../../assets/lost_fish.ttf");
 
-    //ui->centralwidget->hide();
+    ui->groupsList->setAlternatingRowColors(false);
+
     ui->edit->hide();
     ui->SaveChanges->hide();
     ui->searchBar->setEnabled(false);
@@ -70,14 +71,14 @@ void Home::start(QWidget* w) {
 //    w->focusWidget();
 }
 
-void Home::main_menu(Profile* p/*, Engine *e*/)
+void Home::main_menu(Profile* p, Engine *e)
 {
     this->show();
     l->hide();
     this->p = p;
-    e = new Engine();
-    e->load_data();
-    //this->e = e;
+//    e = new Engine();
+//    e->reload_data();
+    this->e = e;
     //add information from databases
     for(Group *group: e->get_groupList()){
         if(group->get_id()==0){
@@ -86,6 +87,11 @@ void Home::main_menu(Profile* p/*, Engine *e*/)
         }
     }
 //    currGroup = e->get_groupList().at(0);
+
+    ui->fishlist->clear();
+    ui->friendsList->clear();
+    ui->allPosts->clear();
+    ui->myPosts->clear();
 
     for(Fish* ff : p->get_fishList()){
         addFish(ff->get_name(), ff->get_species(), ff->get_description());
@@ -758,6 +764,19 @@ void Home::load_messages(){
 
 }
 
+void Home::reload_data(){
+    int profileId = p->get_id();
+    int groupchatId = currGroupChat->get_id();
+    e->reload_data();
+    main_menu(e->get_profiles()[profileId], e);
+    p = e->get_profiles()[profileId];
+    currGroupChat = e->get_groupchats()[groupchatId];
+
+    on_messageButton_clicked();
+    load_messages();
+    //holding current profile and reloading data
+}
+
 void Home::on_p_publish_clicked()
 {
 //        int i = 0;
@@ -842,5 +861,11 @@ void Home::on_commentPublishButton_clicked()
 
         ui->addComment->clear();
         ui->comments->scrollToBottom();
+}
+
+
+void Home::on_reloadButton_clicked()
+{
+        reload_data();
 }
 

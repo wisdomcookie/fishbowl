@@ -19,7 +19,7 @@ public:
     ~Login();
 
 signals:
-    void back(Profile* p/*, Engine* e*/);
+    void back(Profile* p, Engine* e);
 
 private slots:
     void on_loginButton_clicked();

@@ -33,7 +33,7 @@ public:
 private slots:
     void start(QWidget*);
 
-    void main_menu(Profile* p/*, Engine* e*/);
+    void main_menu(Profile* p, Engine* e);
 
     void on_homeButton_clicked();
 
@@ -135,6 +135,8 @@ private slots:
 
     void on_commentPublishButton_clicked();
 
+    void on_reloadButton_clicked();
+
 private:
 
     void load_groupList(); /*std::vector<Group*> groupList*/
@@ -143,6 +145,7 @@ private:
     void load_postComments();
     void load_groupchats();
     void load_messages();
+    void reload_data();
     //void load_friends();
 
     Ui::Home *ui;
