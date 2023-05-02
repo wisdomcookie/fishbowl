@@ -83,7 +83,7 @@ private slots:
 
     void on_fishlist_itemClicked(QListWidgetItem *item);
 
-    void on_pushButton_2_clicked();
+    void on_deleteFishButton_clicked();
 
     void addPost(Group*, Post*);
 
@@ -129,11 +129,18 @@ private slots:
 
     void on_leaveGroupButton_clicked();
 
+    void on_EditFishPic_clicked();
+
+    void on_groupPosts_itemDoubleClicked(QListWidgetItem *item);
+
+    void on_commentPublishButton_clicked();
+
 private:
 
     void load_groupList(); /*std::vector<Group*> groupList*/
     void load_groupMembers();
     void load_groupPosts();
+    void load_postComments();
     void load_groupchats();
     void load_messages();
     //void load_friends();

@@ -3,6 +3,8 @@
 #include <iostream>
 #include <iterator>
 #include <QPixmap>
+#include <QFileDialog>
+#include <QBuffer>
 
 
 Home::Home(QWidget *parent)
@@ -19,6 +21,10 @@ Home::Home(QWidget *parent)
 //    int h = ui->main_icon->height();
     ui->main_icon->setPixmap(pix/*.scaled(w, h, Qt::KeepAspectRatio)*/);
 
+//    QPixmap pix1("../../assets/profile_icon.svg");
+//    QIcon buttonIcon(pix1);
+//    ui->profileIconButton->setIcon(buttonIcon);
+//    ui->profileIconButton->setIconSize(pix1.rect().size());
 //    QFontDatabase::addApplicationFont("../../assets/lost_fish.ttf");
 
     //ui->centralwidget->hide();
@@ -59,9 +65,9 @@ Home::~Home()
  * ****************************/
 
 void Home::start(QWidget* w) {
-    ui->stackedWidget->insertWidget(0, w);
-    ui->stackedWidget->setCurrentWidget(w);
-    w->focusWidget();
+//    ui->stackedWidget->insertWidget(0, w);
+//    ui->stackedWidget->setCurrentWidget(w);
+//    w->focusWidget();
 }
 
 void Home::main_menu(Profile* p/*, Engine *e*/)
@@ -115,7 +121,7 @@ void Home::main_menu(Profile* p/*, Engine *e*/)
 //    ui->centralwidget->show();
 
     ui->searchBar->setEnabled(true);
-    delete ui->stackedWidget;
+//    delete ui->stackedWidget;
     ui->page->setCurrentIndex(0);
 }
 
@@ -195,6 +201,8 @@ void Home::on_toolButton_clicked()
 void Home::on_finished_accepted()
 {
     //NOT SURE WHICH CONSTRUCTOR    f = new Fish(ui->createfish->text().toStdString(), ui->createspecies->text().toStdString(), ui->createbio->toPlainText().toStdString());
+    e->create_fish(p, ui->createfish->text(), 0, ui->createlocation->text(), ui->createspecies->text(), QDateTime::currentDateTimeUtc(),  ui->createbio->toPlainText());
+    f = p->get_fishList().back();
     p->add_fish(f);
     //f->set_location = ui->createlocation->text().toStdString();
     ui->createfish->clear();
@@ -239,6 +247,12 @@ void Home::on_fishlist_itemDoubleClicked(QListWidgetItem *item)
     ui->FishSpecies->setText(f->get_species());
     ui->FishLocation->setText(f->get_location());
     ui->FishBi->setText(f->get_description());
+
+    QPixmap fishPixMap;
+    fishPixMap.loadFromData(f->get_picture());
+    int w = ui->FishPic->width();
+    int h = ui->FishPic->height();
+    ui->FishPic->setPixmap(fishPixMap.scaled(w, h, Qt::KeepAspectRatio));
 }
 
 
@@ -291,14 +305,15 @@ void Home::on_fishlist_itemClicked(QListWidgetItem *item)
 }
 
 
-void Home::on_pushButton_2_clicked()
+void Home::on_deleteFishButton_clicked()
 {
     for (int i = 0; i < ui->fishlist->count(); i++){
         if (ui->fishlist->item(i)->checkState() == Qt::Checked){
+            e->delete_my_fish(p, p->get_fishList().at(i));
             ui->fishlist->removeItemWidget(ui->fishlist->item(i));
             delete ui->fishlist->item(i);
             ui->fishlist->update();
-            e->delete_my_fish(p, p->get_fishList().at(i));
+
         }
     }
 }
@@ -362,7 +377,7 @@ void Home::on_SaveChanges_clicked()
     ui->plocation->setStyleSheet("background-color : rgba(255,255,255,1%); color : black;");
 
     p->edit_profile(p->get_firstName(), p->get_lastName(), ui->age->toPlainText().toInt(), ui->plocation->toPlainText(), ui->pbio->toPlainText());
-
+    e->edit_profile(p, p->get_firstName(), p->get_lastName(), ui->age->toPlainText().toInt(), ui->plocation->toPlainText(), ui->pbio->toPlainText());
     ui->age->setText(QString::number(p->get_age()) + tr(" years old"));
 
     ui->SaveChanges->hide();
@@ -437,24 +452,42 @@ void Home::addMyPost(Group* gr, Post* po){
 
 void Home::on_allPosts_itemDoubleClicked(QListWidgetItem *item)
 {
+    currGroup = e->get_groupList().at(0);
+
     int i = 0;
-    while (ui->allPosts->item(i) != item) i++;
-    //currPost = currGroup->postHistory.at(i);
+    while (ui->groupPosts->item(i) != item) i++;
+    currPost = currGroup->get_postHistory().at(i);
 
     ui->page->setCurrentIndex(9);
     ui->viewTitle->setText(currPost->get_title());
     ui->viewPost->setText(currPost->get_content());
     ui->commentLabel->setText(tr("Comments: ") + QString::number(currPost->get_comments().size()));
+    load_postComments();
 }
+
+void Home::on_groupPosts_itemDoubleClicked(QListWidgetItem *item)
+{
+    int i = 0;
+    while (ui->groupPosts->item(i) != item) i++;
+    currPost = currGroup->get_postHistory().at(i);
+
+    ui->page->setCurrentIndex(9);
+    ui->viewTitle->setText(currPost->get_title());
+    ui->viewPost->setText(currPost->get_content());
+    ui->commentLabel->setText(tr("Comments: ") + QString::number(currPost->get_comments().size()));
+    load_postComments();
+}
+
 
 void Home::on_addComment_returnPressed()
 {
-    e->create_comment(p, currPost, QDateTime::currentDateTimeUtc(), ui->addComment->text());
+    e->create_comment(p, currPost, QDateTime::currentDateTimeUtc(), ui->addComment->toPlainText());
 
     int newRow = cmtModel->rowCount();
     cmtModel->insertRow(newRow);
-    cmtModel->setData(cmtModel->index(newRow, 0), ui->addComment->text());
-    cmtModel->setData(cmtModel->index(newRow, 0), int(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
+    cmtModel->setData(cmtModel->index(newRow, 0), ui->addComment->toPlainText() + tr("\nby: ") + p->get_username());
+    cmtModel->setData(cmtModel->index(newRow, 0), int(Qt::AlignLeft | Qt::AlignVCenter), Qt::TextAlignmentRole);
+
     ui->addComment->clear();
     ui->comments->scrollToBottom();
 }
@@ -650,6 +683,36 @@ void Home::load_groupPosts(){
     //new QListWidgetItem(po->get_title() + tr("\n") + po->get_content(), ui->allPosts); //fix to add to group
 }
 
+void Home::load_postComments(){
+
+//    int i = 0;
+//    while (ui->groupPosts->item(i) != item) i++;
+//    currPost = currGroup->get_postHistory().at(i);
+
+//    ui->page->setCurrentIndex(9);
+//    ui->viewTitle->setText(currPost->get_title());
+//    ui->viewPost->setText(currPost->get_content());
+//    ui->commentLabel->setText(tr("Comments: ") + QString::number(currPost->get_comments().size()));
+
+//    e->create_comment(p, currPost, QDateTime::currentDateTimeUtc(), ui->addComment->text());
+    cmtModel->clear();
+    cmtModel->insertColumn(0);
+    int i = 0;
+    for(std::pair<int, PostComment*> comment: currPost->get_comments()){
+        cmtModel->insertRow(i);
+        cmtModel->setData(cmtModel->index(i, 0), comment.second->get_content() + tr("\nby: ") + comment.second->get_creator()->get_username());
+        cmtModel->setData(cmtModel->index(i, 0), int(Qt::AlignLeft | Qt::AlignVCenter), Qt::TextAlignmentRole);
+        i += 1;
+    }
+
+//    int newRow = cmtModel->rowCount();
+//    cmtModel->insertRow(newRow);
+//    cmtModel->setData(cmtModel->index(newRow, 0), ui->addComment->text());
+//    cmtModel->setData(cmtModel->index(newRow, 0), int(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
+//    ui->addComment->clear();
+//    ui->comments->scrollToBottom();
+}
+
 void Home::load_groupchats(){
     ui->chat->clear();
     Profile *friendProfile;
@@ -733,5 +796,51 @@ void Home::on_leaveGroupButton_clicked()
         on_groupButton_clicked();
 //        load_groupList();
 //        currGroup = e->get_groupList().at(0); // set to the all group
+}
+
+
+void Home::on_EditFishPic_clicked()
+{
+        QFileDialog dialog(this);
+        dialog.setNameFilter(tr("Images (*.png *.xpm *.jpg)"));
+        dialog.setViewMode(QFileDialog::Detail);
+
+        QStringList fileNames;
+        if (dialog.exec()) {
+            fileNames = dialog.selectedFiles();
+        }
+
+        // Load the selected image file into a QPixmap object and then display as label
+        QPixmap fishPixMap(fileNames.first());
+        int w = ui->FishPic->width();
+        int h = ui->FishPic->height();
+        ui->FishPic->clear();
+        ui->FishPic->setPixmap(fishPixMap.scaled(w, h, Qt::KeepAspectRatio));
+
+
+        // Pixmap -> bytearray -> sqlite blob
+        QByteArray fishPicBytes;
+        QBuffer buffer(&fishPicBytes);
+        buffer.open(QIODevice::WriteOnly);
+        fishPixMap.toImage().save(&buffer, "PNG");
+
+        e->save_fish_picture(f, fishPicBytes);
+
+}
+
+
+
+
+void Home::on_commentPublishButton_clicked()
+{
+        e->create_comment(p, currPost, QDateTime::currentDateTimeUtc(), ui->addComment->toPlainText());
+
+        int newRow = cmtModel->rowCount();
+        cmtModel->insertRow(newRow);
+        cmtModel->setData(cmtModel->index(newRow, 0), ui->addComment->toPlainText() + tr("\nby: ") + p->get_username());
+        cmtModel->setData(cmtModel->index(newRow, 0), int(Qt::AlignLeft | Qt::AlignTop), Qt::TextAlignmentRole);
+
+        ui->addComment->clear();
+        ui->comments->scrollToBottom();
 }
 

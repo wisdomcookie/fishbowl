@@ -65,6 +65,12 @@ public:
 
     Profile* loginEngine(QString username, QString password);//
 
+    // Add-ons
+    void load_fish_picture(Fish *fish);
+    void save_fish_picture(Fish *fish, QByteArray fishPicture);
+
+    //void save_fish_picture(Fish *fish, QByteArray());
+
     // Getters
     std::vector<Profile*> get_profileList();//
     std::vector<Group*> get_groupList();//

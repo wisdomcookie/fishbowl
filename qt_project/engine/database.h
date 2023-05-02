@@ -27,6 +27,9 @@ public:
     void query_insert(QString table, std::vector<QString> fields, std::vector<QVariant> values);
     void query_update_by_rowid(QString table, int id, std::vector<QString> fields, std::vector<QVariant> values);
     void query_delete_by_rowid(QString table, int id);
+
+    QByteArray load_fish_picture(int fishId);
+    void save_fish_picture(int fishId, QByteArray fishPicture);
     int get_next_id(QString table);
 
     int query_size();

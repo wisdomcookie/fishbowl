@@ -151,6 +151,31 @@ void Database::query_delete_by_rowid(QString table, int id){
     }
 }
 
+QByteArray Database::load_fish_picture(int fishId){
+    query->prepare("select fish_img from fish where fish_id=:id");
+    query->bindValue(":id", fishId);
+    if(query->exec() == false) {
+
+        QSqlError err = query->lastError();
+        qDebug() << err.text();
+    }
+    query->next();
+    return query->value(0).toByteArray();
+}
+
+
+void Database::save_fish_picture(int fishId, QByteArray fishPicture){
+
+    query->prepare("update fish set fish_img=:picture where fish_id=:id");
+    query->bindValue(":picture", fishPicture);
+    query->bindValue(":id", fishId);
+    if(query->exec() == false) {
+
+        QSqlError err = query->lastError();
+        qDebug() << err.text();
+    }
+}
+
 int Database::get_next_id(QString table){
 
     QString sqlcmd = QString("select max(rowid) from " + table + ";");

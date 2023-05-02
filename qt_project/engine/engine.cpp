@@ -134,6 +134,7 @@ void Engine::load_data(){
     for(std::map<QString, QString> &row: fishData){ // fix fish loading
         int ownerId = row[QString("owner_id")].toInt();
         Fish *fish = new Fish(row);
+        load_fish_picture(fish);
         profiles[ownerId]->add_fish(fish);
     } // loading and adding fish
 
@@ -620,8 +621,14 @@ Profile *Engine::loginEngine(QString username, QString password){
     }
 
     return nullptr;
+}
 
+void Engine::load_fish_picture(Fish *fish){
+    fish->edit_picture(db->load_fish_picture(fish->get_id()));
+}
 
+void Engine::save_fish_picture(Fish *fish, QByteArray fishPicture){
+    db->save_fish_picture(fish->get_id(), fishPicture);
 }
 
 std::vector<Profile*> Engine::get_profileList(){

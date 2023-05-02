@@ -19,6 +19,7 @@ create table fish (
       species      TEXT     NOT NULL        ,
       date_created TEXT     NOT NULL        ,
       description  TEXT                     ,
+      fish_img     BLOB                     ,
     primary key(fish_id)                    ,
     foreign key (owner_id) references profiles(profile_id)
     );
