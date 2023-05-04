@@ -135,17 +135,37 @@ private slots:
 
     void on_commentPublishButton_clicked();
 
-    void on_reloadButton_clicked();
+    void on_reloadButtonMessages_clicked();
+
+    void on_friendsList_itemDoubleClicked(QListWidgetItem *item);
+
+    void on_friendAquarium_clicked();
+
+    void on_friendfishlist_itemDoubleClicked(QListWidgetItem *item);
+
+    void on_myPosts_itemDoubleClicked(QListWidgetItem *item);
+
+    void on_othergroupsList_itemClicked(QListWidgetItem *item);
+
+    void on_unfriendButton_clicked();
+
+    void on_reloadButtonComments_clicked();
+
+    void on_reloadButtonHome_clicked();
 
 private:
 
     void load_groupList(); /*std::vector<Group*> groupList*/
+    void load_othergroupList();
     void load_groupMembers();
     void load_groupPosts();
     void load_postComments();
     void load_groupchats();
     void load_messages();
+    void load_friendFish();
     void reload_data();
+    void reload_data_comments();
+    void reload_data_home();
     //void load_friends();
 
     Ui::Home *ui;

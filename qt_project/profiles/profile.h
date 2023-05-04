@@ -51,6 +51,8 @@ public:
     void delete_post(Post *post);
     void delete_comment(PostComment *comment);
 
+    bool is_friend(Profile *friendProfile);
+
 
     // --- Getter/Setter Methods --- //
 

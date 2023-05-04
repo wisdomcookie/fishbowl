@@ -165,7 +165,8 @@ background: rgb(245,245,245)</string>
        <bool>false</bool>
       </property>
       <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
+       <string notr="true">background: rgb(245, 245, 245);
+color: black;</string>
       </property>
       <property name="text">
        <string/>
@@ -201,7 +202,7 @@ background: rgb(245,245,245)</string>
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
+       <string notr="true">color: black;background: rgb(245, 245, 245);</string>
       </property>
       <property name="standardButtons">
        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
@@ -228,7 +229,7 @@ background: rgb(245,245,245)</string>
        <enum>Qt::ClickFocus</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
+       <string notr="true">color: black;background: rgb(245, 245, 245);</string>
       </property>
       <property name="text">
        <string/>
@@ -270,7 +271,7 @@ background: rgb(245,245,245)</string>
        <enum>Qt::ClickFocus</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
+       <string notr="true">color: black;background: rgb(245, 245, 245);</string>
       </property>
       <property name="horizontalScrollBarPolicy">
        <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -282,19 +283,22 @@ background: rgb(245,245,245)</string>
      <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
-        <x>350</x>
+        <x>320</x>
         <y>10</y>
-        <width>101</width>
+        <width>151</width>
         <height>41</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <pointsize>13</pointsize>
+        <pointsize>16</pointsize>
         <bold>false</bold>
         <stylestrategy>PreferAntialias</stylestrategy>
         <kerning>true</kerning>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: black;</string>
       </property>
       <property name="text">
        <string>Create Account</string>
@@ -327,7 +331,7 @@ background: rgb(245,245,245)</string>
        <bool>false</bool>
       </property>
       <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
+       <string notr="true">color: black;background: rgb(245, 245, 245);</string>
       </property>
       <property name="text">
        <string/>
@@ -369,7 +373,7 @@ background: rgb(245,245,245)</string>
        <bool>false</bool>
       </property>
       <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
+       <string notr="true">color: black;background: rgb(245, 245, 245);</string>
       </property>
       <property name="inputMask">
        <string/>
@@ -417,7 +421,7 @@ background: rgb(245,245,245)</string>
        <bool>false</bool>
       </property>
       <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
+       <string notr="true">color: black;background: rgb(245, 245, 245);</string>
       </property>
       <property name="inputMask">
        <string/>
@@ -459,7 +463,7 @@ background: rgb(245,245,245)</string>
        <enum>Qt::ClickFocus</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
+       <string notr="true">color: black;background: rgb(245, 245, 245);</string>
       </property>
       <property name="text">
        <string/>
@@ -514,7 +518,7 @@ background: rgb(245,245,245)</string>
        <enum>Qt::ClickFocus</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
+       <string notr="true">color: black;background: rgb(245, 245, 245);</string>
       </property>
       <property name="inputMethodHints">
        <set>Qt::ImhDigitsOnly|Qt::ImhPreferNumbers</set>

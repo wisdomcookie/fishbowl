@@ -310,16 +310,16 @@ QPushButton:pressed {
      </font>
     </property>
     <property name="currentIndex">
-     <number>6</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="HomePage">
      <widget class="QListWidget" name="allPosts">
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>0</y>
+        <y>40</y>
         <width>621</width>
-        <height>461</height>
+        <height>421</height>
        </rect>
       </property>
       <property name="sizePolicy">
@@ -384,6 +384,30 @@ QPushButton:pressed {
        <bool>false</bool>
       </property>
      </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>0</y>
+        <width>161</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+        <bold>false</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: black;</string>
+      </property>
+      <property name="text">
+       <string>Global Posts</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="Groups">
      <widget class="QLabel" name="groupName">
@@ -414,9 +438,9 @@ QPushButton:pressed {
       <property name="geometry">
        <rect>
         <x>440</x>
-        <y>0</y>
+        <y>40</y>
         <width>181</width>
-        <height>421</height>
+        <height>151</height>
        </rect>
       </property>
       <property name="sizePolicy">
@@ -485,9 +509,9 @@ QPushButton:pressed {
       <property name="geometry">
        <rect>
         <x>440</x>
-        <y>440</y>
+        <y>200</y>
         <width>181</width>
-        <height>21</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -502,9 +526,9 @@ color:black;</string>
       <property name="geometry">
        <rect>
         <x>440</x>
-        <y>420</y>
+        <y>430</y>
         <width>181</width>
-        <height>21</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -525,7 +549,7 @@ color:black;</string>
        </rect>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="g_posts">
        <widget class="QListWidget" name="groupPosts">
@@ -833,9 +857,9 @@ color:black;</string>
       <property name="geometry">
        <rect>
         <x>350</x>
-        <y>50</y>
+        <y>52</y>
         <width>71</width>
-        <height>31</height>
+        <height>23</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -844,6 +868,125 @@ color:black;</string>
       </property>
       <property name="text">
        <string>Leave</string>
+      </property>
+     </widget>
+     <widget class="QListWidget" name="othergroupsList">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>270</y>
+        <width>181</width>
+        <height>151</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <family>Futura</family>
+        <pointsize>18</pointsize>
+        <italic>false</italic>
+        <bold>false</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: black;</string>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustIgnored</enum>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::DoubleClicked</set>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>false</bool>
+      </property>
+      <property name="flow">
+       <enum>QListView::TopToBottom</enum>
+      </property>
+      <property name="isWrapping" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="resizeMode">
+       <enum>QListView::Adjust</enum>
+      </property>
+      <property name="layoutMode">
+       <enum>QListView::SinglePass</enum>
+      </property>
+      <property name="viewMode">
+       <enum>QListView::ListMode</enum>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+      <property name="selectionRectVisible">
+       <bool>true</bool>
+      </property>
+      <property name="itemAlignment">
+       <set>Qt::AlignTop</set>
+      </property>
+      <property name="sortingEnabled">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="groupName_2">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>20</y>
+        <width>181</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+        <bold>false</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: black;</string>
+      </property>
+      <property name="text">
+       <string>My Groups</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="groupName_3">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>250</y>
+        <width>181</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+        <bold>false</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: black;</string>
+      </property>
+      <property name="text">
+       <string>Other Groups</string>
       </property>
      </widget>
     </widget>
@@ -1065,12 +1208,37 @@ border: rgb(245,245,245);</string>
        <bool>true</bool>
       </property>
      </widget>
+     <widget class="QLabel" name="chattingNameLabel">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>421</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <bold>true</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:black;</string>
+      </property>
+      <property name="text">
+       <string>Talking to:</string>
+      </property>
+     </widget>
      <zorder>messageHistBorder</zorder>
      <zorder>message</zorder>
      <zorder>label</zorder>
      <zorder>messageHistLocal</zorder>
      <zorder>chat</zorder>
      <zorder>messageHistRemote</zorder>
+     <zorder>chattingNameLabel</zorder>
     </widget>
     <widget class="QWidget" name="Friends">
      <widget class="QListWidget" name="friendsList">
@@ -1393,38 +1561,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </widget>
     </widget>
     <widget class="QWidget" name="Fish">
-     <widget class="QToolButton" name="toolButton">
-      <property name="geometry">
-       <rect>
-        <x>160</x>
-        <y>1</y>
-        <width>271</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>13</pointsize>
-        <bold>true</bold>
-        <stylestrategy>PreferAntialias</stylestrategy>
-        <kerning>true</kerning>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background: rgb(68, 153, 247);
-color:black;</string>
-      </property>
-      <property name="text">
-       <string>create new fish</string>
-      </property>
-     </widget>
      <widget class="QListWidget" name="fishlist">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>40</y>
         <width>621</width>
-        <height>421</height>
+        <height>371</height>
        </rect>
       </property>
       <property name="sizePolicy">
@@ -1447,7 +1590,8 @@ color:black;</string>
        <enum>Qt::LeftToRight</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: black;</string>
+       <string notr="true">color: black;
+</string>
       </property>
       <property name="horizontalScrollBarPolicy">
        <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -1480,7 +1624,7 @@ color:black;</string>
        <bool>true</bool>
       </property>
       <property name="selectionRectVisible">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
       <property name="itemAlignment">
        <set>Qt::AlignTop</set>
@@ -1489,20 +1633,78 @@ color:black;</string>
        <bool>false</bool>
       </property>
      </widget>
+     <widget class="QToolButton" name="toolButton">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>430</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <bold>true</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: rgb(68, 153, 247);
+color:black;</string>
+      </property>
+      <property name="text">
+       <string>Create New Fish</string>
+      </property>
+     </widget>
      <widget class="QPushButton" name="deleteFishButton">
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>0</y>
-        <width>31</width>
+        <y>430</y>
+        <width>191</width>
         <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="styleSheet">
-       <string notr="true">background: rgb(165, 44, 34);</string>
+       <string notr="true">background: rgb(165, 44, 34);
+color: black;</string>
       </property>
       <property name="text">
-       <string>X</string>
+       <string>Delete Selected Fish</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="aquariumLabel">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>621</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: black;
+text-align: center;</string>
+      </property>
+      <property name="text">
+       <string>My Aquarium</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
       </property>
      </widget>
     </widget>
@@ -1745,7 +1947,7 @@ color:black;</string>
         <x>0</x>
         <y>0</y>
         <width>621</width>
-        <height>451</height>
+        <height>411</height>
        </rect>
       </property>
       <property name="sizePolicy">
@@ -1818,45 +2020,6 @@ color:black;</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="EditFishProfile">
-       <property name="geometry">
-        <rect>
-         <x>460</x>
-         <y>410</y>
-         <width>151</width>
-         <height>32</height>
-        </rect>
-       </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>123</width>
-         <height>32</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>13</pointsize>
-         <bold>true</bold>
-         <stylestrategy>PreferAntialias</stylestrategy>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton {
-background: rgb(68, 153, 247);
-color:black;
-}</string>
-       </property>
-       <property name="text">
-        <string>Edit Fish Profile</string>
        </property>
       </widget>
       <widget class="QLabel" name="FishLocation">
@@ -2022,45 +2185,84 @@ color:black;
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QPushButton" name="EditFishPic">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>410</y>
-         <width>171</width>
-         <height>32</height>
-        </rect>
-       </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>123</width>
-         <height>32</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>13</pointsize>
-         <bold>true</bold>
-         <stylestrategy>PreferAntialias</stylestrategy>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton {
+     </widget>
+     <widget class="QPushButton" name="EditFishPic">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>420</y>
+        <width>171</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>123</width>
+        <height>32</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <bold>true</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
 background: rgb(68, 153, 247);
 color:black;
 }</string>
-       </property>
-       <property name="text">
-        <string>Select Fish Picture</string>
-       </property>
-      </widget>
+      </property>
+      <property name="text">
+       <string>Select Fish Picture</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="EditFishProfile">
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>421</y>
+        <width>151</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>123</width>
+        <height>32</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <bold>true</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+background: rgb(68, 153, 247);
+color:black;
+}</string>
+      </property>
+      <property name="text">
+       <string>Edit Fish Profile</string>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="newPost">
@@ -2116,11 +2318,6 @@ color:black;
       <property name="placeholderText">
        <string>Select Group</string>
       </property>
-      <item>
-       <property name="text">
-        <string>All</string>
-       </property>
-      </item>
      </widget>
      <widget class="QLabel" name="label_5">
       <property name="geometry">
@@ -2181,8 +2378,8 @@ color:black;</string>
        <rect>
         <x>0</x>
         <y>230</y>
-        <width>621</width>
-        <height>171</height>
+        <width>620</width>
+        <height>170</height>
        </rect>
       </property>
       <property name="font">
@@ -2212,10 +2409,10 @@ color:black;</string>
      <widget class="QTextBrowser" name="viewPost">
       <property name="geometry">
        <rect>
-        <x>1</x>
-        <y>45</y>
-        <width>621</width>
-        <height>161</height>
+        <x>0</x>
+        <y>60</y>
+        <width>620</width>
+        <height>150</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -2253,8 +2450,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>621</width>
-        <height>41</height>
+        <width>620</width>
+        <height>50</height>
        </rect>
       </property>
       <property name="font">
@@ -2377,7 +2574,7 @@ color: black;</string>
        <rect>
         <x>260</x>
         <y>0</y>
-        <width>121</width>
+        <width>111</width>
         <height>31</height>
        </rect>
       </property>
@@ -2494,7 +2691,7 @@ color:black;
        <string>Add Friend</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="AddFriend_2">
+     <widget class="QPushButton" name="friendAquarium">
       <property name="geometry">
        <rect>
         <x>300</x>
@@ -2672,6 +2869,375 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </item>
       </layout>
      </widget>
+     <widget class="QPushButton" name="unfriendButton">
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>360</y>
+        <width>151</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+background: rgb(68, 153, 247);
+color:black;
+}</string>
+      </property>
+      <property name="text">
+       <string>Unfriend</string>
+      </property>
+     </widget>
+     <zorder>unfriendButton</zorder>
+     <zorder>AddFriend</zorder>
+     <zorder>friendAquarium</zorder>
+     <zorder>layoutWidget</zorder>
+    </widget>
+    <widget class="QWidget" name="friendFish">
+     <widget class="QListWidget" name="friendfishlist">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>40</y>
+        <width>621</width>
+        <height>381</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <family>Futura</family>
+        <pointsize>18</pointsize>
+        <italic>false</italic>
+        <bold>false</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: black;</string>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustIgnored</enum>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::DoubleClicked|QAbstractItemView::SelectedClicked</set>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>false</bool>
+      </property>
+      <property name="flow">
+       <enum>QListView::TopToBottom</enum>
+      </property>
+      <property name="isWrapping" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="resizeMode">
+       <enum>QListView::Adjust</enum>
+      </property>
+      <property name="layoutMode">
+       <enum>QListView::SinglePass</enum>
+      </property>
+      <property name="viewMode">
+       <enum>QListView::ListMode</enum>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+      <property name="selectionRectVisible">
+       <bool>false</bool>
+      </property>
+      <property name="itemAlignment">
+       <set>Qt::AlignTop</set>
+      </property>
+      <property name="sortingEnabled">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="friendFishLabel">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>621</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: black;
+text-align: center;</string>
+      </property>
+      <property name="text">
+       <string>X's Aquarium</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="friendFishView">
+     <widget class="QFrame" name="gridFrame_2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>621</width>
+        <height>411</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>471</width>
+        <height>150</height>
+       </size>
+      </property>
+      <property name="baseSize">
+       <size>
+        <width>471</width>
+        <height>151</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <bold>true</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <widget class="QLabel" name="FishName_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>13</y>
+         <width>601</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>123</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Avenir</family>
+         <pointsize>40</pointsize>
+         <italic>false</italic>
+         <bold>true</bold>
+         <underline>false</underline>
+         <strikeout>false</strikeout>
+         <stylestrategy>PreferAntialias</stylestrategy>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: black;background: rgb(245, 245, 245);</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Box</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="FishLocation_2">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>170</y>
+         <width>351</width>
+         <height>81</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>123</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Avenir</family>
+         <pointsize>20</pointsize>
+         <italic>true</italic>
+         <bold>true</bold>
+         <stylestrategy>PreferAntialias</stylestrategy>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: black;background: rgb(245, 245, 245);</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Box</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="FishSpecies_2">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>80</y>
+         <width>351</width>
+         <height>81</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>123</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Avenir</family>
+         <pointsize>20</pointsize>
+         <italic>true</italic>
+         <bold>false</bold>
+         <stylestrategy>PreferAntialias</stylestrategy>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: black;background: rgb(245, 245, 245);</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Box</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="FishPic_2">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>80</y>
+         <width>241</width>
+         <height>171</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>139</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>40</pointsize>
+         <bold>true</bold>
+         <stylestrategy>PreferAntialias</stylestrategy>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background: rgb(245, 245, 245);</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Box</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="FishBi_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>260</y>
+         <width>601</width>
+         <height>141</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>123</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>20</pointsize>
+         <bold>false</bold>
+         <stylestrategy>PreferAntialias</stylestrategy>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: black;background: rgb(245, 245, 245);</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Box</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
     </widget>
    </widget>
    <widget class="QLabel" name="main_icon">
@@ -2744,14 +3310,49 @@ padding: 5px;
      <string>Search</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="reloadButton">
+   <widget class="QPushButton" name="reloadButtonMessages">
+    <property name="geometry">
+     <rect>
+      <x>29</x>
+      <y>540</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: black</string>
+    </property>
+    <property name="text">
+     <string>Refresh</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="reloadButtonComments">
     <property name="geometry">
      <rect>
       <x>30</x>
       <y>540</y>
-      <width>80</width>
-      <height>23</height>
+      <width>81</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: black</string>
+    </property>
+    <property name="text">
+     <string>Refresh</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="reloadButtonHome">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>540</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: black</string>
     </property>
     <property name="text">
      <string>Refresh</string>
