@@ -24,13 +24,19 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>90</y>
-      <width>161</width>
+      <y>110</y>
+      <width>121</width>
       <height>61</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background: rgb(245, 245, 245);</string>
+     <string notr="true">QPushButton {
+color: rgb(0, 0, 0);
+border: 1px solid rgb(200, 200, 200);
+border-radius: 20px;
+background: rgb(245, 245, 245);
+padding: 5px;
+}</string>
     </property>
     <property name="text">
      <string>Home</string>
@@ -40,13 +46,19 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>160</y>
-      <width>161</width>
+      <y>180</y>
+      <width>121</width>
       <height>61</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background: rgb(245, 245, 245);</string>
+     <string notr="true">QPushButton {
+color: rgb(0, 0, 0);
+border: 1px solid rgb(200, 200, 200);
+border-radius: 20px;
+background: rgb(245, 245, 245);
+padding: 5px;
+}</string>
     </property>
     <property name="text">
      <string>Friends</string>
@@ -56,13 +68,19 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>300</y>
-      <width>161</width>
+      <y>320</y>
+      <width>121</width>
       <height>61</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background: rgb(245, 245, 245);</string>
+     <string notr="true">QPushButton {
+color: rgb(0, 0, 0);
+border: 1px solid rgb(200, 200, 200);
+border-radius: 20px;
+background: rgb(245, 245, 245);
+padding: 5px;
+}</string>
     </property>
     <property name="text">
      <string>Groups</string>
@@ -72,13 +90,19 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>230</y>
-      <width>161</width>
+      <y>250</y>
+      <width>121</width>
       <height>61</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background: rgb(245, 245, 245);</string>
+     <string notr="true">QPushButton {
+color: rgb(0, 0, 0);
+border: 1px solid rgb(200, 200, 200);
+border-radius: 20px;
+background: rgb(245, 245, 245);
+padding: 5px;
+}</string>
     </property>
     <property name="text">
      <string>Messages</string>
@@ -90,9 +114,9 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>30</y>
-      <width>331</width>
+      <x>150</x>
+      <y>20</y>
+      <width>341</width>
       <height>41</height>
      </rect>
     </property>
@@ -115,7 +139,7 @@
      <bool>false</bool>
     </property>
     <property name="placeholderText">
-     <string>  Search</string>
+     <string/>
     </property>
     <property name="cursorMoveStyle">
      <enum>Qt::VisualMoveStyle</enum>
@@ -127,10 +151,10 @@
    <widget class="QPushButton" name="postButton">
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>510</x>
       <y>20</y>
-      <width>60</width>
-      <height>59</height>
+      <width>71</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="font">
@@ -187,10 +211,10 @@ QPushButton:pressed {
    <widget class="QPushButton" name="fishButton">
     <property name="geometry">
      <rect>
-      <x>620</x>
+      <x>590</x>
       <y>20</y>
-      <width>61</width>
-      <height>61</height>
+      <width>91</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="font">
@@ -220,20 +244,16 @@ QPushButton:pressed {
     }</string>
     </property>
     <property name="text">
-     <string>Fish</string>
-    </property>
-    <property name="icon">
-     <iconset theme="applications-science">
-      <normaloff>.</normaloff>.</iconset>
+     <string>Aquarium</string>
     </property>
    </widget>
    <widget class="QPushButton" name="profileButton">
     <property name="geometry">
      <rect>
-      <x>700</x>
+      <x>690</x>
       <y>20</y>
-      <width>81</width>
-      <height>61</height>
+      <width>91</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="font">
@@ -244,12 +264,12 @@ QPushButton:pressed {
     <property name="styleSheet">
      <string notr="true">QPushButton {
     color: rgb(255, 255, 255);
-    border: 1px solid rgb(160, 60, 0);
+    border: 1px solid rgb(200, 100, 50);
     border-radius: 20px;
     border-style: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));
     background: qradialgradient(
         cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
-        radius: 1.35, stop: 0 rgb(212, 100, 0) stop: 1 rgb(160, 60, 0)
+        radius: 1.35, stop: 0 rgb(200, 100, 50) stop: 1 rgb(150, 75, 30)
         );
     padding: 5px;
     }
@@ -258,7 +278,7 @@ QPushButton:pressed {
     border-style: inset;
     background: qradialgradient(
         cx: 0.4, cy: -0.1, fx: 0.4, fy: -0.1,
-        radius: 1.35, stop: 0 rgb(112, 50, 0) stop: 1 rgb(60, 10, 0)
+        radius: 1.35, stop: 0 rgb(0, 2, 112) stop: 1 rgb(0, 0, 60)
         );
     }</string>
     </property>
@@ -269,9 +289,9 @@ QPushButton:pressed {
    <widget class="QStackedWidget" name="page">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>90</y>
-      <width>611</width>
+      <x>150</x>
+      <y>110</y>
+      <width>631</width>
       <height>471</height>
      </rect>
     </property>
@@ -290,109 +310,15 @@ QPushButton:pressed {
      </font>
     </property>
     <property name="currentIndex">
-     <number>12</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="HomePage">
      <widget class="QListWidget" name="allPosts">
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>0</y>
-        <width>611</width>
-        <height>471</height>
-       </rect>
-      </property>
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="font">
-       <font>
-        <family>Futura</family>
-        <pointsize>18</pointsize>
-        <italic>false</italic>
-        <bold>false</bold>
-        <stylestrategy>PreferAntialias</stylestrategy>
-        <kerning>true</kerning>
-       </font>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::LeftToRight</enum>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
-      </property>
-      <property name="horizontalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOff</enum>
-      </property>
-      <property name="sizeAdjustPolicy">
-       <enum>QAbstractScrollArea::AdjustIgnored</enum>
-      </property>
-      <property name="editTriggers">
-       <set>QAbstractItemView::DoubleClicked</set>
-      </property>
-      <property name="alternatingRowColors">
-       <bool>true</bool>
-      </property>
-      <property name="flow">
-       <enum>QListView::TopToBottom</enum>
-      </property>
-      <property name="isWrapping" stdset="0">
-       <bool>false</bool>
-      </property>
-      <property name="resizeMode">
-       <enum>QListView::Adjust</enum>
-      </property>
-      <property name="layoutMode">
-       <enum>QListView::SinglePass</enum>
-      </property>
-      <property name="viewMode">
-       <enum>QListView::ListMode</enum>
-      </property>
-      <property name="wordWrap">
-       <bool>true</bool>
-      </property>
-      <property name="selectionRectVisible">
-       <bool>true</bool>
-      </property>
-      <property name="itemAlignment">
-       <set>Qt::AlignTop</set>
-      </property>
-      <property name="sortingEnabled">
-       <bool>false</bool>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="Groups">
-     <widget class="QLabel" name="groupName">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>231</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>30</pointsize>
-        <bold>false</bold>
-        <stylestrategy>PreferAntialias</stylestrategy>
-        <kerning>true</kerning>
-       </font>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QListWidget" name="groupsList">
-      <property name="geometry">
-       <rect>
-        <x>430</x>
-        <y>0</y>
-        <width>181</width>
+        <y>40</y>
+        <width>621</width>
         <height>421</height>
        </rect>
       </property>
@@ -415,6 +341,9 @@ QPushButton:pressed {
       <property name="layoutDirection">
        <enum>Qt::LeftToRight</enum>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: black;background: rgb(245, 245, 245);</string>
+      </property>
       <property name="horizontalScrollBarPolicy">
        <enum>Qt::ScrollBarAlwaysOff</enum>
       </property>
@@ -425,7 +354,7 @@ QPushButton:pressed {
        <set>QAbstractItemView::DoubleClicked</set>
       </property>
       <property name="alternatingRowColors">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
       <property name="flow">
        <enum>QListView::TopToBottom</enum>
@@ -455,49 +384,139 @@ QPushButton:pressed {
        <bool>false</bool>
       </property>
      </widget>
-     <widget class="QPushButton" name="groupMembers">
+     <widget class="QLabel" name="label_7">
       <property name="geometry">
        <rect>
-        <x>320</x>
-        <y>30</y>
-        <width>100</width>
-        <height>21</height>
+        <x>230</x>
+        <y>0</y>
+        <width>161</width>
+        <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+        <bold>false</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
       <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
+       <string notr="true">color: black;</string>
       </property>
       <property name="text">
-       <string>Members</string>
+       <string>Global Posts</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="groupInfo">
+    </widget>
+    <widget class="QWidget" name="Groups">
+     <widget class="QLabel" name="groupName">
       <property name="geometry">
        <rect>
-        <x>320</x>
-        <y>10</y>
-        <width>100</width>
-        <height>21</height>
+        <x>11</x>
+        <y>1</y>
+        <width>251</width>
+        <height>45</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>30</pointsize>
+        <bold>false</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
       <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
+       <string notr="true">color: black;</string>
       </property>
       <property name="text">
-       <string>Info</string>
+       <string>Group Name</string>
+      </property>
+     </widget>
+     <widget class="QListWidget" name="groupsList">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>40</y>
+        <width>181</width>
+        <height>151</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <family>Futura</family>
+        <pointsize>18</pointsize>
+        <italic>false</italic>
+        <bold>false</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: black;</string>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustIgnored</enum>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::DoubleClicked</set>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>false</bool>
+      </property>
+      <property name="flow">
+       <enum>QListView::TopToBottom</enum>
+      </property>
+      <property name="isWrapping" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="resizeMode">
+       <enum>QListView::Adjust</enum>
+      </property>
+      <property name="layoutMode">
+       <enum>QListView::SinglePass</enum>
+      </property>
+      <property name="viewMode">
+       <enum>QListView::ListMode</enum>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+      <property name="selectionRectVisible">
+       <bool>true</bool>
+      </property>
+      <property name="itemAlignment">
+       <set>Qt::AlignTop</set>
+      </property>
+      <property name="sortingEnabled">
+       <bool>false</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="createGroup">
       <property name="geometry">
        <rect>
-        <x>430</x>
-        <y>440</y>
+        <x>440</x>
+        <y>200</y>
         <width>181</width>
-        <height>21</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
+       <string notr="true">background: rgb(68, 153, 247);
+color:black;</string>
       </property>
       <property name="text">
        <string>Create Group</string>
@@ -506,14 +525,15 @@ QPushButton:pressed {
      <widget class="QPushButton" name="joinGroup">
       <property name="geometry">
        <rect>
-        <x>430</x>
-        <y>420</y>
+        <x>440</x>
+        <y>430</y>
         <width>181</width>
-        <height>21</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
+       <string notr="true">background: rgb(68, 153, 247);
+color:black;</string>
       </property>
       <property name="text">
        <string>Join Group</string>
@@ -523,10 +543,13 @@ QPushButton:pressed {
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>50</y>
+        <y>80</y>
         <width>411</width>
-        <height>411</height>
+        <height>381</height>
        </rect>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
       </property>
       <widget class="QWidget" name="g_posts">
        <widget class="QListWidget" name="groupPosts">
@@ -535,7 +558,7 @@ QPushButton:pressed {
           <x>0</x>
           <y>0</y>
           <width>411</width>
-          <height>411</height>
+          <height>381</height>
          </rect>
         </property>
         <property name="sizePolicy">
@@ -557,6 +580,9 @@ QPushButton:pressed {
         <property name="layoutDirection">
          <enum>Qt::LeftToRight</enum>
         </property>
+        <property name="styleSheet">
+         <string notr="true">color: black;</string>
+        </property>
         <property name="frameShadow">
          <enum>QFrame::Plain</enum>
         </property>
@@ -570,7 +596,7 @@ QPushButton:pressed {
          <set>QAbstractItemView::DoubleClicked</set>
         </property>
         <property name="alternatingRowColors">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
         <property name="flow">
          <enum>QListView::TopToBottom</enum>
@@ -605,19 +631,22 @@ QPushButton:pressed {
        <widget class="QTextBrowser" name="g_infoDisplay">
         <property name="geometry">
          <rect>
-          <x>10</x>
+          <x>0</x>
           <y>0</y>
-          <width>401</width>
-          <height>192</height>
+          <width>411</width>
+          <height>381</height>
          </rect>
         </property>
         <property name="font">
          <font>
-          <pointsize>24</pointsize>
+          <pointsize>20</pointsize>
          </font>
         </property>
         <property name="autoFillBackground">
          <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: black;</string>
         </property>
         <property name="html">
          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -626,8 +655,8 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:24pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:20pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:24pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="openLinks">
          <bool>false</bool>
@@ -641,7 +670,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <x>0</x>
           <y>0</y>
           <width>411</width>
-          <height>411</height>
+          <height>381</height>
          </rect>
         </property>
         <property name="sizePolicy">
@@ -663,6 +692,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <property name="layoutDirection">
          <enum>Qt::LeftToRight</enum>
         </property>
+        <property name="styleSheet">
+         <string notr="true">color: black;</string>
+        </property>
         <property name="horizontalScrollBarPolicy">
          <enum>Qt::ScrollBarAlwaysOff</enum>
         </property>
@@ -673,7 +705,80 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <set>QAbstractItemView::DoubleClicked|QAbstractItemView::SelectedClicked</set>
         </property>
         <property name="alternatingRowColors">
+         <bool>false</bool>
+        </property>
+        <property name="flow">
+         <enum>QListView::TopToBottom</enum>
+        </property>
+        <property name="isWrapping" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="resizeMode">
+         <enum>QListView::Adjust</enum>
+        </property>
+        <property name="layoutMode">
+         <enum>QListView::SinglePass</enum>
+        </property>
+        <property name="viewMode">
+         <enum>QListView::ListMode</enum>
+        </property>
+        <property name="wordWrap">
          <bool>true</bool>
+        </property>
+        <property name="selectionRectVisible">
+         <bool>true</bool>
+        </property>
+        <property name="itemAlignment">
+         <set>Qt::AlignTop</set>
+        </property>
+        <property name="sortingEnabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="g_joinGroup">
+       <widget class="QListWidget" name="allGroups">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>411</width>
+          <height>381</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <family>Futura</family>
+          <pointsize>18</pointsize>
+          <italic>false</italic>
+          <bold>false</bold>
+          <stylestrategy>PreferAntialias</stylestrategy>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: black;</string>
+        </property>
+        <property name="horizontalScrollBarPolicy">
+         <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QAbstractScrollArea::AdjustIgnored</enum>
+        </property>
+        <property name="editTriggers">
+         <set>QAbstractItemView::DoubleClicked</set>
+        </property>
+        <property name="alternatingRowColors">
+         <bool>false</bool>
         </property>
         <property name="flow">
          <enum>QListView::TopToBottom</enum>
@@ -705,6 +810,185 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </widget>
       </widget>
      </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>11</x>
+        <y>52</y>
+        <width>254</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="groupInfo">
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>Info</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="groupPostButton">
+         <property name="styleSheet">
+          <string notr="true">
+color:black;</string>
+         </property>
+         <property name="text">
+          <string>Posts</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="groupMembers">
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>Members</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QPushButton" name="leaveGroupButton">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>52</y>
+        <width>71</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: rgb(68, 153, 247);
+color:black;</string>
+      </property>
+      <property name="text">
+       <string>Leave</string>
+      </property>
+     </widget>
+     <widget class="QListWidget" name="othergroupsList">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>270</y>
+        <width>181</width>
+        <height>151</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <family>Futura</family>
+        <pointsize>18</pointsize>
+        <italic>false</italic>
+        <bold>false</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: black;</string>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustIgnored</enum>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::DoubleClicked</set>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>false</bool>
+      </property>
+      <property name="flow">
+       <enum>QListView::TopToBottom</enum>
+      </property>
+      <property name="isWrapping" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="resizeMode">
+       <enum>QListView::Adjust</enum>
+      </property>
+      <property name="layoutMode">
+       <enum>QListView::SinglePass</enum>
+      </property>
+      <property name="viewMode">
+       <enum>QListView::ListMode</enum>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+      <property name="selectionRectVisible">
+       <bool>true</bool>
+      </property>
+      <property name="itemAlignment">
+       <set>Qt::AlignTop</set>
+      </property>
+      <property name="sortingEnabled">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="groupName_2">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>20</y>
+        <width>181</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+        <bold>false</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: black;</string>
+      </property>
+      <property name="text">
+       <string>My Groups</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="groupName_3">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>250</y>
+        <width>181</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+        <bold>false</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: black;</string>
+      </property>
+      <property name="text">
+       <string>Other Groups</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="Messages">
      <widget class="QLineEdit" name="message">
@@ -712,8 +996,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <rect>
         <x>10</x>
         <y>430</y>
-        <width>411</width>
-        <height>41</height>
+        <width>421</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="font">
@@ -728,7 +1012,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <string/>
       </property>
       <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
+       <string notr="true">color: black;background: rgb(245, 245, 245);</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -740,10 +1024,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>490</x>
+        <x>510</x>
         <y>10</y>
-        <width>58</width>
-        <height>16</height>
+        <width>51</width>
+        <height>20</height>
        </rect>
       </property>
       <property name="font">
@@ -754,32 +1038,152 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <kerning>true</kerning>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color:black;</string>
+      </property>
       <property name="text">
        <string>Chats</string>
       </property>
      </widget>
-     <widget class="QListView" name="chats">
+     <widget class="QListView" name="messageHistLocal">
       <property name="geometry">
        <rect>
-        <x>430</x>
-        <y>30</y>
-        <width>181</width>
-        <height>441</height>
+        <x>220</x>
+        <y>40</y>
+        <width>201</width>
+        <height>371</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <bold>false</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
       </property>
-      <property name="modelColumn">
-       <number>0</number>
+      <property name="styleSheet">
+       <string notr="true">color: black;background: rgb(245, 245, 245);
+border: rgb(245, 245, 245);</string>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="isWrapping" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
       </property>
      </widget>
-     <widget class="QListView" name="messageHist">
+     <widget class="QListWidget" name="chat">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>30</y>
+        <width>181</width>
+        <height>431</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <family>Futura</family>
+        <pointsize>18</pointsize>
+        <italic>false</italic>
+        <bold>false</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: black;background: rgb(245, 245, 245);</string>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustIgnored</enum>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::DoubleClicked|QAbstractItemView::SelectedClicked</set>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>false</bool>
+      </property>
+      <property name="flow">
+       <enum>QListView::TopToBottom</enum>
+      </property>
+      <property name="isWrapping" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="resizeMode">
+       <enum>QListView::Adjust</enum>
+      </property>
+      <property name="layoutMode">
+       <enum>QListView::SinglePass</enum>
+      </property>
+      <property name="viewMode">
+       <enum>QListView::ListMode</enum>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+      <property name="selectionRectVisible">
+       <bool>true</bool>
+      </property>
+      <property name="itemAlignment">
+       <set>Qt::AlignTop</set>
+      </property>
+      <property name="sortingEnabled">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QListView" name="messageHistRemote">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>40</y>
+        <width>201</width>
+        <height>371</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <bold>false</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: black;background: rgb(245, 245, 245);
+border: rgb(245,245,245);</string>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="isWrapping" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QListView" name="messageHistBorder">
       <property name="geometry">
        <rect>
         <x>10</x>
         <y>30</y>
-        <width>411</width>
+        <width>421</width>
         <height>391</height>
        </rect>
       </property>
@@ -804,6 +1208,37 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <bool>true</bool>
       </property>
      </widget>
+     <widget class="QLabel" name="chattingNameLabel">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>421</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <bold>true</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:black;</string>
+      </property>
+      <property name="text">
+       <string>Talking to:</string>
+      </property>
+     </widget>
+     <zorder>messageHistBorder</zorder>
+     <zorder>message</zorder>
+     <zorder>label</zorder>
+     <zorder>messageHistLocal</zorder>
+     <zorder>chat</zorder>
+     <zorder>messageHistRemote</zorder>
+     <zorder>chattingNameLabel</zorder>
     </widget>
     <widget class="QWidget" name="Friends">
      <widget class="QListWidget" name="friendsList">
@@ -811,8 +1246,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <rect>
         <x>0</x>
         <y>50</y>
-        <width>611</width>
-        <height>421</height>
+        <width>621</width>
+        <height>411</height>
        </rect>
       </property>
       <property name="sizePolicy">
@@ -834,6 +1269,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <property name="layoutDirection">
        <enum>Qt::LeftToRight</enum>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: black;</string>
+      </property>
       <property name="horizontalScrollBarPolicy">
        <enum>Qt::ScrollBarAlwaysOff</enum>
       </property>
@@ -844,7 +1282,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <set>QAbstractItemView::DoubleClicked|QAbstractItemView::SelectedClicked</set>
       </property>
       <property name="alternatingRowColors">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
       <property name="flow">
        <enum>QListView::TopToBottom</enum>
@@ -877,10 +1315,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QLabel" name="label_8">
       <property name="geometry">
        <rect>
-        <x>250</x>
-        <y>10</y>
-        <width>131</width>
-        <height>31</height>
+        <x>220</x>
+        <y>0</y>
+        <width>181</width>
+        <height>41</height>
        </rect>
       </property>
       <property name="font">
@@ -890,6 +1328,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <stylestrategy>PreferAntialias</stylestrategy>
         <kerning>true</kerning>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: black;</string>
       </property>
       <property name="text">
        <string>Friends</string>
@@ -908,15 +1349,16 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QPushButton" name="editProfile">
       <property name="geometry">
        <rect>
-        <x>410</x>
-        <y>230</y>
+        <x>470</x>
+        <y>360</y>
         <width>151</width>
         <height>32</height>
        </rect>
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton {
-background: rgb(245, 245, 245);
+background: rgb(68, 153, 247);
+color:black;
 }</string>
       </property>
       <property name="text">
@@ -926,453 +1368,206 @@ background: rgb(245, 245, 245);
      <widget class="QPushButton" name="SaveChanges">
       <property name="geometry">
        <rect>
-        <x>410</x>
-        <y>230</y>
+        <x>470</x>
+        <y>360</y>
         <width>151</width>
         <height>32</height>
        </rect>
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton {
-background: rgb(245, 245, 245);
+background: rgb(68, 153, 247);
+color:black;
 }</string>
       </property>
       <property name="text">
        <string>Save Changes</string>
       </property>
      </widget>
-     <widget class="QTextEdit" name="plocation">
+     <widget class="QWidget" name="layoutWidget_2">
       <property name="geometry">
        <rect>
-        <x>401</x>
-        <y>90</y>
-        <width>169</width>
-        <height>94</height>
+        <x>0</x>
+        <y>0</y>
+        <width>621</width>
+        <height>341</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">background-color : rgba(255,255,255,1%); color : black;</string>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-      <property name="html">
-       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QLabel" name="name">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>3</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>40</pointsize>
+           <bold>false</bold>
+           <stylestrategy>PreferAntialias</stylestrategy>
+           <kerning>true</kerning>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: black;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_5">
+         <item>
+          <widget class="QLabel" name="username">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>20</pointsize>
+             <bold>false</bold>
+             <stylestrategy>PreferAntialias</stylestrategy>
+             <kerning>true</kerning>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: black;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <widget class="QTextEdit" name="plocation">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>1000</width>
+               <height>1000</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>16</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color : rgba(255,255,255,1%); color : black;</string>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+             <property name="html">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:700;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-      <property name="placeholderText">
-       <string>Location</string>
-      </property>
-     </widget>
-     <widget class="QTextEdit" name="age">
-      <property name="geometry">
-       <rect>
-        <x>400</x>
-        <y>180</y>
-        <width>151</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color : rgba(255,255,255,1%); color : black;</string>
-      </property>
-      <property name="inputMethodHints">
-       <set>Qt::ImhDigitsOnly|Qt::ImhMultiLine|Qt::ImhPreferNumbers</set>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-      <property name="html">
-       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:16pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:700;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="placeholderText">
+              <string>Location</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTextEdit" name="age">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>16</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color : rgba(255,255,255,1%); color : black;</string>
+             </property>
+             <property name="inputMethodHints">
+              <set>Qt::ImhDigitsOnly|Qt::ImhMultiLine|Qt::ImhPreferNumbers</set>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+             <property name="html">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:700;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-      <property name="placeholderText">
-       <string>Age</string>
-      </property>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:16pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:700;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="placeholderText">
+              <string>Age</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QPlainTextEdit" name="pbio">
+         <property name="font">
+          <font>
+           <pointsize>16</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color : rgba(255,255,255,1%); color : black;</string>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="placeholderText">
+          <string>Bio</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
-     <widget class="QLabel" name="pwordlabel">
-      <property name="geometry">
-       <rect>
-        <x>11</x>
-        <y>321</y>
-        <width>108</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Change Password</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="oldpword">
-      <property name="geometry">
-       <rect>
-        <x>11</x>
-        <y>347</y>
-        <width>125</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>13</pointsize>
-        <bold>false</bold>
-        <stylestrategy>PreferAntialias</stylestrategy>
-        <kerning>true</kerning>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
-      </property>
-      <property name="placeholderText">
-       <string>Old Password</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="newpword">
-      <property name="geometry">
-       <rect>
-        <x>146</x>
-        <y>347</y>
-        <width>125</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>13</pointsize>
-        <bold>false</bold>
-        <stylestrategy>PreferAntialias</stylestrategy>
-        <kerning>true</kerning>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
-      </property>
-      <property name="placeholderText">
-       <string>New Password</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="name">
-      <property name="geometry">
-       <rect>
-        <x>11</x>
-        <y>91</y>
-        <width>391</width>
-        <height>47</height>
-       </rect>
-      </property>
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>3</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>40</pointsize>
-        <bold>false</bold>
-        <stylestrategy>PreferAntialias</stylestrategy>
-        <kerning>true</kerning>
-       </font>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="username">
-      <property name="geometry">
-       <rect>
-        <x>11</x>
-        <y>148</y>
-        <width>391</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>20</pointsize>
-        <bold>false</bold>
-        <stylestrategy>PreferAntialias</stylestrategy>
-        <kerning>true</kerning>
-       </font>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QPlainTextEdit" name="pbio">
-      <property name="geometry">
-       <rect>
-        <x>11</x>
-        <y>181</y>
-        <width>391</width>
-        <height>101</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color : rgba(255,255,255,1%); color : black;</string>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-      <property name="placeholderText">
-       <string>Bio</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="friends">
-      <property name="geometry">
-       <rect>
-        <x>11</x>
-        <y>1</y>
-        <width>131</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton {
-    color: rgb(255, 255, 255);
-    border: 1px solid rgb(100, 100, 200);
-    border-radius: 20px;
-    border-style: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));
-    background: qradialgradient(
-        cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
-        radius: 1.35, stop: 0 rgb(145, 139, 255) stop: 1 rgb(120, 115, 255)
-        );
-    padding: 5px;
-    }
-
-QPushButton:pressed {
-    border-style: inset;
-    background: qradialgradient(
-        cx: 0.4, cy: -0.1, fx: 0.4, fy: -0.1,
-        radius: 1.35, stop: 0 rgb(0, 2, 112) stop: 1 rgb(0, 0, 60)
-        );
-    }</string>
-      </property>
-      <property name="text">
-       <string>Friends</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="fish">
-      <property name="geometry">
-       <rect>
-        <x>445</x>
-        <y>1</y>
-        <width>131</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>13</pointsize>
-        <bold>false</bold>
-        <stylestrategy>PreferAntialias</stylestrategy>
-        <kerning>true</kerning>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton {
-    color: rgb(255, 255, 255);
-    border: 1px solid rgb(100, 100, 200);
-    border-radius: 20px;
-    border-style: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));
-    background: qradialgradient(
-        cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
-        radius: 1.35, stop: 0 rgb(145, 139, 255) stop: 1 rgb(120, 115, 255)
-        );
-    padding: 5px;
-    }
-
-QPushButton:pressed {
-    border-style: inset;
-    background: qradialgradient(
-        cx: 0.4, cy: -0.1, fx: 0.4, fy: -0.1,
-        radius: 1.35, stop: 0 rgb(0, 2, 112) stop: 1 rgb(0, 0, 60)
-        );
-    }</string>
-      </property>
-      <property name="text">
-       <string>Fish</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="groups">
-      <property name="geometry">
-       <rect>
-        <x>156</x>
-        <y>1</y>
-        <width>131</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>13</pointsize>
-        <bold>false</bold>
-        <stylestrategy>PreferAntialias</stylestrategy>
-        <kerning>true</kerning>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton {
-    color: rgb(255, 255, 255);
-    border: 1px solid rgb(100, 100, 200);
-    border-radius: 20px;
-    border-style: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));
-    background: qradialgradient(
-        cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
-        radius: 1.35, stop: 0 rgb(145, 139, 255) stop: 1 rgb(120, 115, 255)
-        );
-    padding: 5px;
-    }
-
-QPushButton:pressed {
-    border-style: inset;
-    background: qradialgradient(
-        cx: 0.4, cy: -0.1, fx: 0.4, fy: -0.1,
-        radius: 1.35, stop: 0 rgb(0, 2, 112) stop: 1 rgb(0, 0, 60)
-        );
-    }</string>
-      </property>
-      <property name="text">
-       <string>Groups</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="posts">
-      <property name="geometry">
-       <rect>
-        <x>301</x>
-        <y>1</y>
-        <width>131</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>13</pointsize>
-        <bold>false</bold>
-        <stylestrategy>PreferAntialias</stylestrategy>
-        <kerning>true</kerning>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton {
-    color: rgb(255, 255, 255);
-    border: 1px solid rgb(100, 100, 200);
-    border-radius: 20px;
-    border-style: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));
-    background: qradialgradient(
-        cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
-        radius: 1.35, stop: 0 rgb(145, 139, 255) stop: 1 rgb(120, 115, 255)
-        );
-    padding: 5px;
-    }
-
-QPushButton:pressed {
-    border-style: inset;
-    background: qradialgradient(
-        cx: 0.4, cy: -0.1, fx: 0.4, fy: -0.1,
-        radius: 1.35, stop: 0 rgb(0, 2, 112) stop: 1 rgb(0, 0, 60)
-        );
-    }</string>
-      </property>
-      <property name="text">
-       <string>Posts</string>
-      </property>
-     </widget>
-     <zorder>friends</zorder>
-     <zorder>fish</zorder>
-     <zorder>groups</zorder>
-     <zorder>posts</zorder>
-     <zorder>pwordlabel</zorder>
-     <zorder>oldpword</zorder>
-     <zorder>newpword</zorder>
-     <zorder>name</zorder>
-     <zorder>username</zorder>
-     <zorder>pbio</zorder>
-     <zorder>editProfile</zorder>
-     <zorder>plocation</zorder>
-     <zorder>SaveChanges</zorder>
-     <zorder>age</zorder>
     </widget>
     <widget class="QWidget" name="Fish">
-     <widget class="QToolButton" name="toolButton">
-      <property name="geometry">
-       <rect>
-        <x>160</x>
-        <y>1</y>
-        <width>271</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>13</pointsize>
-        <bold>true</bold>
-        <stylestrategy>PreferAntialias</stylestrategy>
-        <kerning>true</kerning>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
-      </property>
-      <property name="text">
-       <string>create new fish</string>
-      </property>
-     </widget>
      <widget class="QListWidget" name="fishlist">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>40</y>
-        <width>611</width>
-        <height>431</height>
+        <width>621</width>
+        <height>371</height>
        </rect>
       </property>
       <property name="sizePolicy">
@@ -1394,6 +1589,10 @@ QPushButton:pressed {
       <property name="layoutDirection">
        <enum>Qt::LeftToRight</enum>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: black;
+</string>
+      </property>
       <property name="horizontalScrollBarPolicy">
        <enum>Qt::ScrollBarAlwaysOff</enum>
       </property>
@@ -1404,7 +1603,7 @@ QPushButton:pressed {
        <set>QAbstractItemView::DoubleClicked|QAbstractItemView::SelectedClicked</set>
       </property>
       <property name="alternatingRowColors">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
       <property name="flow">
        <enum>QListView::TopToBottom</enum>
@@ -1425,7 +1624,7 @@ QPushButton:pressed {
        <bool>true</bool>
       </property>
       <property name="selectionRectVisible">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
       <property name="itemAlignment">
        <set>Qt::AlignTop</set>
@@ -1434,20 +1633,78 @@ QPushButton:pressed {
        <bool>false</bool>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QToolButton" name="toolButton">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>430</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <bold>true</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: rgb(68, 153, 247);
+color:black;</string>
+      </property>
+      <property name="text">
+       <string>Create New Fish</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="deleteFishButton">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>430</y>
+        <width>191</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: rgb(165, 44, 34);
+color: black;</string>
+      </property>
+      <property name="text">
+       <string>Delete Selected Fish</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="aquariumLabel">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>31</width>
+        <width>621</width>
         <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+        <bold>false</bold>
+       </font>
+      </property>
       <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
+       <string notr="true">color: black;
+text-align: center;</string>
       </property>
       <property name="text">
-       <string>X</string>
+       <string>My Aquarium</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
       </property>
      </widget>
     </widget>
@@ -1458,9 +1715,9 @@ QPushButton:pressed {
      <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
-        <x>210</x>
+        <x>230</x>
         <y>-10</y>
-        <width>151</width>
+        <width>131</width>
         <height>41</height>
        </rect>
       </property>
@@ -1472,6 +1729,9 @@ QPushButton:pressed {
         <kerning>true</kerning>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: black;</string>
+      </property>
       <property name="text">
        <string>Create New Fish</string>
       </property>
@@ -1479,9 +1739,9 @@ QPushButton:pressed {
      <widget class="QLineEdit" name="createfish">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>0</x>
         <y>30</y>
-        <width>491</width>
+        <width>621</width>
         <height>31</height>
        </rect>
       </property>
@@ -1503,7 +1763,7 @@ QPushButton:pressed {
        <bool>false</bool>
       </property>
       <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
+       <string notr="true">color: black;background: rgb(245, 245, 245);</string>
       </property>
       <property name="text">
        <string/>
@@ -1518,9 +1778,9 @@ QPushButton:pressed {
      <widget class="QLineEdit" name="createspecies">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>0</x>
         <y>70</y>
-        <width>491</width>
+        <width>621</width>
         <height>31</height>
        </rect>
       </property>
@@ -1536,7 +1796,7 @@ QPushButton:pressed {
        <enum>Qt::ClickFocus</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
+       <string notr="true">color: black;background: rgb(245, 245, 245);</string>
       </property>
       <property name="text">
        <string/>
@@ -1551,34 +1811,13 @@ QPushButton:pressed {
        <enum>Qt::VisualMoveStyle</enum>
       </property>
      </widget>
-     <widget class="QDialogButtonBox" name="finished">
-      <property name="geometry">
-       <rect>
-        <x>360</x>
-        <y>250</y>
-        <width>152</width>
-        <height>32</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>13</pointsize>
-        <bold>false</bold>
-        <stylestrategy>PreferAntialias</stylestrategy>
-        <kerning>true</kerning>
-       </font>
-      </property>
-      <property name="standardButtons">
-       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-      </property>
-     </widget>
      <widget class="QPlainTextEdit" name="createbio">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>0</x>
         <y>150</y>
-        <width>491</width>
-        <height>91</height>
+        <width>621</width>
+        <height>121</height>
        </rect>
       </property>
       <property name="font">
@@ -1599,7 +1838,7 @@ QPushButton:pressed {
        <enum>Qt::ClickFocus</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
+       <string notr="true">color: black;background: rgb(245, 245, 245);</string>
       </property>
       <property name="horizontalScrollBarPolicy">
        <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -1608,13 +1847,49 @@ QPushButton:pressed {
        <string>Bio</string>
       </property>
      </widget>
+     <widget class="QLineEdit" name="createlocation">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>110</y>
+        <width>621</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <bold>false</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::ClickFocus</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: black;background: rgb(245, 245, 245);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="cursorPosition">
+       <number>0</number>
+      </property>
+      <property name="placeholderText">
+       <string>Location</string>
+      </property>
+      <property name="cursorMoveStyle">
+       <enum>Qt::VisualMoveStyle</enum>
+      </property>
+     </widget>
      <widget class="QDialogButtonBox" name="edit">
       <property name="geometry">
        <rect>
-        <x>440</x>
-        <y>250</y>
+        <x>540</x>
+        <y>280</y>
         <width>81</width>
-        <height>32</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="minimumSize">
@@ -1631,16 +1906,20 @@ QPushButton:pressed {
         <kerning>true</kerning>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background: rgb(68, 153, 247);
+color:black;</string>
+      </property>
       <property name="standardButtons">
        <set>QDialogButtonBox::SaveAll</set>
       </property>
      </widget>
-     <widget class="QLineEdit" name="createlocation">
+     <widget class="QDialogButtonBox" name="finished">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>110</y>
-        <width>491</width>
+        <x>460</x>
+        <y>280</y>
+        <width>161</width>
         <height>31</height>
        </rect>
       </property>
@@ -1652,23 +1931,12 @@ QPushButton:pressed {
         <kerning>true</kerning>
        </font>
       </property>
-      <property name="focusPolicy">
-       <enum>Qt::ClickFocus</enum>
-      </property>
       <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
+       <string notr="true">background: rgb(68, 153, 247);
+color:black;</string>
       </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="cursorPosition">
-       <number>0</number>
-      </property>
-      <property name="placeholderText">
-       <string>Location</string>
-      </property>
-      <property name="cursorMoveStyle">
-       <enum>Qt::VisualMoveStyle</enum>
+      <property name="standardButtons">
+       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
       </property>
      </widget>
     </widget>
@@ -1676,10 +1944,10 @@ QPushButton:pressed {
      <widget class="QFrame" name="gridFrame">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>20</y>
-        <width>591</width>
-        <height>451</height>
+        <x>0</x>
+        <y>0</y>
+        <width>621</width>
+        <height>411</height>
        </rect>
       </property>
       <property name="sizePolicy">
@@ -1714,9 +1982,52 @@ QPushButton:pressed {
       <widget class="QLabel" name="FishName">
        <property name="geometry">
         <rect>
-         <x>20</x>
+         <x>10</x>
          <y>13</y>
-         <width>551</width>
+         <width>601</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>123</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Avenir</family>
+         <pointsize>40</pointsize>
+         <italic>false</italic>
+         <bold>true</bold>
+         <underline>false</underline>
+         <strikeout>false</strikeout>
+         <stylestrategy>PreferAntialias</stylestrategy>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: black;background: rgb(245, 245, 245);</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Box</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="FishLocation">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>170</y>
+         <width>351</width>
          <height>81</height>
         </rect>
        </property>
@@ -1729,88 +2040,7 @@ QPushButton:pressed {
        <property name="font">
         <font>
          <family>Avenir</family>
-         <pointsize>68</pointsize>
-         <italic>false</italic>
-         <bold>true</bold>
-         <underline>false</underline>
-         <strikeout>false</strikeout>
-         <stylestrategy>PreferAntialias</stylestrategy>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background: rgb(245, 245, 245);</string>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::Box</enum>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="scaledContents">
-        <bool>true</bool>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="EditFishProfile">
-       <property name="geometry">
-        <rect>
-         <x>427</x>
-         <y>414</y>
-         <width>151</width>
-         <height>32</height>
-        </rect>
-       </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>123</width>
-         <height>32</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>13</pointsize>
-         <bold>true</bold>
-         <stylestrategy>PreferAntialias</stylestrategy>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton {
-background: rgb(245, 245, 245);
-}</string>
-       </property>
-       <property name="text">
-        <string>Edit Fish Profile</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="FishLocation">
-       <property name="geometry">
-        <rect>
-         <x>260</x>
-         <y>180</y>
-         <width>311</width>
-         <height>71</height>
-        </rect>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>123</width>
-         <height>20</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Avenir</family>
-         <pointsize>28</pointsize>
+         <pointsize>20</pointsize>
          <italic>true</italic>
          <bold>true</bold>
          <stylestrategy>PreferAntialias</stylestrategy>
@@ -1818,7 +2048,7 @@ background: rgb(245, 245, 245);
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background: rgb(245, 245, 245);</string>
+        <string notr="true">color: black;background: rgb(245, 245, 245);</string>
        </property>
        <property name="frameShape">
         <enum>QFrame::Box</enum>
@@ -1837,9 +2067,9 @@ background: rgb(245, 245, 245);
        <property name="geometry">
         <rect>
          <x>260</x>
-         <y>110</y>
-         <width>311</width>
-         <height>61</height>
+         <y>80</y>
+         <width>351</width>
+         <height>81</height>
         </rect>
        </property>
        <property name="minimumSize">
@@ -1851,7 +2081,7 @@ background: rgb(245, 245, 245);
        <property name="font">
         <font>
          <family>Avenir</family>
-         <pointsize>28</pointsize>
+         <pointsize>20</pointsize>
          <italic>true</italic>
          <bold>false</bold>
          <stylestrategy>PreferAntialias</stylestrategy>
@@ -1859,7 +2089,7 @@ background: rgb(245, 245, 245);
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background: rgb(245, 245, 245);</string>
+        <string notr="true">color: black;background: rgb(245, 245, 245);</string>
        </property>
        <property name="frameShape">
         <enum>QFrame::Box</enum>
@@ -1880,10 +2110,10 @@ background: rgb(245, 245, 245);
        </property>
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>110</y>
-         <width>221</width>
-         <height>141</height>
+         <x>10</x>
+         <y>80</y>
+         <width>241</width>
+         <height>171</height>
         </rect>
        </property>
        <property name="sizePolicy">
@@ -1919,9 +2149,9 @@ background: rgb(245, 245, 245);
       <widget class="QLabel" name="FishBi">
        <property name="geometry">
         <rect>
-         <x>20</x>
+         <x>10</x>
          <y>260</y>
-         <width>551</width>
+         <width>601</width>
          <height>141</height>
         </rect>
        </property>
@@ -1940,7 +2170,7 @@ background: rgb(245, 245, 245);
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background: rgb(245, 245, 245);</string>
+        <string notr="true">color: black;background: rgb(245, 245, 245);</string>
        </property>
        <property name="frameShape">
         <enum>QFrame::Box</enum>
@@ -1956,14 +2186,92 @@ background: rgb(245, 245, 245);
        </property>
       </widget>
      </widget>
+     <widget class="QPushButton" name="EditFishPic">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>420</y>
+        <width>171</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>123</width>
+        <height>32</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <bold>true</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+background: rgb(68, 153, 247);
+color:black;
+}</string>
+      </property>
+      <property name="text">
+       <string>Select Fish Picture</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="EditFishProfile">
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>421</y>
+        <width>151</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>123</width>
+        <height>32</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <bold>true</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+background: rgb(68, 153, 247);
+color:black;
+}</string>
+      </property>
+      <property name="text">
+       <string>Edit Fish Profile</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="newPost">
      <widget class="QLabel" name="label_2">
       <property name="geometry">
        <rect>
-        <x>240</x>
+        <x>210</x>
         <y>30</y>
-        <width>141</width>
+        <width>211</width>
         <height>20</height>
        </rect>
       </property>
@@ -1975,6 +2283,9 @@ background: rgb(245, 245, 245);
         <kerning>true</kerning>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: black;</string>
+      </property>
       <property name="text">
        <string>Create New Post</string>
       </property>
@@ -1984,12 +2295,12 @@ background: rgb(245, 245, 245);
        <rect>
         <x>10</x>
         <y>100</y>
-        <width>591</width>
+        <width>611</width>
         <height>181</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
+       <string notr="true">color: black;background: rgb(245, 245, 245);</string>
       </property>
      </widget>
      <widget class="QComboBox" name="selectGroup">
@@ -2002,16 +2313,11 @@ background: rgb(245, 245, 245);
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
+       <string notr="true">color: black;background: rgb(245, 245, 245);</string>
       </property>
       <property name="placeholderText">
        <string>Select Group</string>
       </property>
-      <item>
-       <property name="text">
-        <string>All</string>
-       </property>
-      </item>
      </widget>
      <widget class="QLabel" name="label_5">
       <property name="geometry">
@@ -2022,37 +2328,41 @@ background: rgb(245, 245, 245);
         <height>20</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: black;</string>
+      </property>
       <property name="text">
        <string>Post to:</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="publish">
+     <widget class="QPushButton" name="p_publish">
       <property name="geometry">
        <rect>
-        <x>460</x>
+        <x>470</x>
         <y>310</y>
-        <width>141</width>
+        <width>151</width>
         <height>32</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background: rgb(68, 153, 247);</string>
+       <string notr="true">background: rgb(68, 153, 247);
+color:black;</string>
       </property>
       <property name="text">
        <string>Publish</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="titleBox">
+     <widget class="QLineEdit" name="p_titleBox">
       <property name="geometry">
        <rect>
         <x>10</x>
         <y>60</y>
-        <width>591</width>
+        <width>611</width>
         <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
+       <string notr="true">color: black;background: rgb(245, 245, 245);</string>
       </property>
       <property name="frame">
        <bool>true</bool>
@@ -2066,10 +2376,10 @@ background: rgb(245, 245, 245);
      <widget class="QListView" name="comments">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>260</y>
-        <width>591</width>
-        <height>181</height>
+        <x>0</x>
+        <y>230</y>
+        <width>620</width>
+        <height>170</height>
        </rect>
       </property>
       <property name="font">
@@ -2084,7 +2394,7 @@ background: rgb(245, 245, 245);
        <bool>true</bool>
       </property>
       <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
+       <string notr="true">color: black;background: rgb(245, 245, 245);</string>
       </property>
       <property name="editTriggers">
        <set>QAbstractItemView::NoEditTriggers</set>
@@ -2096,56 +2406,17 @@ background: rgb(245, 245, 245);
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QLabel" name="commentLabel">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>240</y>
-        <width>121</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="addComment">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>450</y>
-        <width>591</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="viewTitle">
-      <property name="geometry">
-       <rect>
-        <x>11</x>
-        <y>11</y>
-        <width>591</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
      <widget class="QTextBrowser" name="viewPost">
       <property name="geometry">
        <rect>
-        <x>11</x>
-        <y>35</y>
-        <width>591</width>
-        <height>192</height>
+        <x>0</x>
+        <y>60</y>
+        <width>620</width>
+        <height>150</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
+       <string notr="true">color: black;background: rgb(245, 245, 245);</string>
       </property>
       <property name="html">
        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -2154,8 +2425,75 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:13pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="commentLabel">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>210</y>
+        <width>151</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: black;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QTextBrowser" name="viewTitle">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>620</width>
+        <height>50</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: rgb(245, 245, 245);
+font-weight: bold;
+color: black;</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="commentPublishButton">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>410</y>
+        <width>131</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: rgb(68, 153, 247);
+color: black;</string>
+      </property>
+      <property name="text">
+       <string>Comment</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="addComment">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>410</y>
+        <width>481</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: black;background: rgb(245, 245, 245);</string>
       </property>
      </widget>
     </widget>
@@ -2165,8 +2503,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <rect>
         <x>0</x>
         <y>40</y>
-        <width>611</width>
-        <height>431</height>
+        <width>621</width>
+        <height>421</height>
        </rect>
       </property>
       <property name="sizePolicy">
@@ -2189,7 +2527,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <enum>Qt::LeftToRight</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
+       <string notr="true">color: black;background: rgb(245, 245, 245);</string>
       </property>
       <property name="horizontalScrollBarPolicy">
        <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -2201,7 +2539,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <set>QAbstractItemView::DoubleClicked</set>
       </property>
       <property name="alternatingRowColors">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
       <property name="flow">
        <enum>QListView::TopToBottom</enum>
@@ -2236,7 +2574,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <rect>
         <x>260</x>
         <y>0</y>
-        <width>91</width>
+        <width>111</width>
         <height>31</height>
        </rect>
       </property>
@@ -2248,23 +2586,26 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <kerning>true</kerning>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: black;</string>
+      </property>
       <property name="text">
        <string>My Posts</string>
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_2">
+    <widget class="QWidget" name="CreateGroup">
      <widget class="QLineEdit" name="g_titleBox">
       <property name="geometry">
        <rect>
         <x>10</x>
         <y>60</y>
-        <width>591</width>
+        <width>601</width>
         <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
+       <string notr="true">color: black;background: rgb(245, 245, 245);</string>
       </property>
       <property name="frame">
        <bool>true</bool>
@@ -2276,10 +2617,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QLabel" name="label_9">
       <property name="geometry">
        <rect>
-        <x>230</x>
-        <y>30</y>
-        <width>161</width>
-        <height>20</height>
+        <x>200</x>
+        <y>9</y>
+        <width>231</width>
+        <height>41</height>
        </rect>
       </property>
       <property name="font">
@@ -2290,6 +2631,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <kerning>true</kerning>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: black;</string>
+      </property>
       <property name="text">
        <string>Create New Group</string>
       </property>
@@ -2299,12 +2643,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <rect>
         <x>10</x>
         <y>100</y>
-        <width>591</width>
+        <width>601</width>
         <height>181</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background: rgb(245, 245, 245);</string>
+       <string notr="true">color: black;background: rgb(245, 245, 245);</string>
       </property>
       <property name="placeholderText">
        <string>Description</string>
@@ -2313,7 +2657,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QPushButton" name="g_publish">
       <property name="geometry">
        <rect>
-        <x>460</x>
+        <x>470</x>
         <y>300</y>
         <width>141</width>
         <height>32</height>
@@ -2327,14 +2671,335 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_3">
-     <widget class="QStackedWidget" name="profileview">
+    <widget class="QWidget" name="profileView">
+     <widget class="QPushButton" name="AddFriend">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>10</y>
-        <width>611</width>
-        <height>471</height>
+        <x>470</x>
+        <y>360</y>
+        <width>151</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+background: rgb(68, 153, 247);
+color:black;
+}</string>
+      </property>
+      <property name="text">
+       <string>Add Friend</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="friendAquarium">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>360</y>
+        <width>141</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+color:black;
+}</string>
+      </property>
+      <property name="text">
+       <string>View Aquarium</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>621</width>
+        <height>341</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QLabel" name="friend_name">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>3</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>40</pointsize>
+           <bold>false</bold>
+           <stylestrategy>PreferAntialias</stylestrategy>
+           <kerning>true</kerning>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: black;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="QLabel" name="friend_username">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>20</pointsize>
+             <bold>false</bold>
+             <stylestrategy>PreferAntialias</stylestrategy>
+             <kerning>true</kerning>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: black;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QTextEdit" name="friend_location">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>1000</width>
+               <height>1000</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color : rgba(255,255,255,1%); color : black;</string>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+             <property name="html">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:700;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="placeholderText">
+              <string>Location</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTextEdit" name="friend_age">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color : rgba(255,255,255,1%); color : black;</string>
+             </property>
+             <property name="inputMethodHints">
+              <set>Qt::ImhDigitsOnly|Qt::ImhMultiLine|Qt::ImhPreferNumbers</set>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+             <property name="html">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:700;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="placeholderText">
+              <string>Age</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QPlainTextEdit" name="friend_bio">
+         <property name="styleSheet">
+          <string notr="true">background-color : rgba(255,255,255,1%); color : black;</string>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="placeholderText">
+          <string>Bio</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QPushButton" name="unfriendButton">
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>360</y>
+        <width>151</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+background: rgb(68, 153, 247);
+color:black;
+}</string>
+      </property>
+      <property name="text">
+       <string>Unfriend</string>
+      </property>
+     </widget>
+     <zorder>unfriendButton</zorder>
+     <zorder>AddFriend</zorder>
+     <zorder>friendAquarium</zorder>
+     <zorder>layoutWidget</zorder>
+    </widget>
+    <widget class="QWidget" name="friendFish">
+     <widget class="QListWidget" name="friendfishlist">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>40</y>
+        <width>621</width>
+        <height>381</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <family>Futura</family>
+        <pointsize>18</pointsize>
+        <italic>false</italic>
+        <bold>false</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: black;</string>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustIgnored</enum>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::DoubleClicked|QAbstractItemView::SelectedClicked</set>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>false</bool>
+      </property>
+      <property name="flow">
+       <enum>QListView::TopToBottom</enum>
+      </property>
+      <property name="isWrapping" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="resizeMode">
+       <enum>QListView::Adjust</enum>
+      </property>
+      <property name="layoutMode">
+       <enum>QListView::SinglePass</enum>
+      </property>
+      <property name="viewMode">
+       <enum>QListView::ListMode</enum>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+      <property name="selectionRectVisible">
+       <bool>false</bool>
+      </property>
+      <property name="itemAlignment">
+       <set>Qt::AlignTop</set>
+      </property>
+      <property name="sortingEnabled">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="friendFishLabel">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>621</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: black;
+text-align: center;</string>
+      </property>
+      <property name="text">
+       <string>X's Aquarium</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="friendFishView">
+     <widget class="QFrame" name="gridFrame_2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>621</width>
+        <height>411</height>
        </rect>
       </property>
       <property name="sizePolicy">
@@ -2343,1786 +3008,245 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="minimumSize">
+       <size>
+        <width>471</width>
+        <height>150</height>
+       </size>
+      </property>
+      <property name="baseSize">
+       <size>
+        <width>471</width>
+        <height>151</height>
+       </size>
+      </property>
       <property name="font">
        <font>
         <pointsize>13</pointsize>
-        <bold>false</bold>
+        <bold>true</bold>
         <stylestrategy>PreferAntialias</stylestrategy>
         <kerning>true</kerning>
        </font>
       </property>
-      <property name="currentIndex">
-       <number>6</number>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
       </property>
-      <widget class="QWidget" name="HomePage_2">
-       <widget class="QListWidget" name="allPosts_2">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>611</width>
-          <height>471</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="font">
-         <font>
-          <family>Futura</family>
-          <pointsize>18</pointsize>
-          <italic>false</italic>
-          <bold>false</bold>
-          <stylestrategy>PreferAntialias</stylestrategy>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: rgb(245, 245, 245);</string>
-        </property>
-        <property name="horizontalScrollBarPolicy">
-         <enum>Qt::ScrollBarAlwaysOff</enum>
-        </property>
-        <property name="sizeAdjustPolicy">
-         <enum>QAbstractScrollArea::AdjustIgnored</enum>
-        </property>
-        <property name="editTriggers">
-         <set>QAbstractItemView::DoubleClicked</set>
-        </property>
-        <property name="alternatingRowColors">
-         <bool>true</bool>
-        </property>
-        <property name="flow">
-         <enum>QListView::TopToBottom</enum>
-        </property>
-        <property name="isWrapping" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="resizeMode">
-         <enum>QListView::Adjust</enum>
-        </property>
-        <property name="layoutMode">
-         <enum>QListView::SinglePass</enum>
-        </property>
-        <property name="viewMode">
-         <enum>QListView::ListMode</enum>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-        <property name="selectionRectVisible">
-         <bool>true</bool>
-        </property>
-        <property name="itemAlignment">
-         <set>Qt::AlignTop</set>
-        </property>
-        <property name="sortingEnabled">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="Groups_2">
-       <widget class="QLabel" name="groupName_2">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>231</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>30</pointsize>
-          <bold>false</bold>
-          <stylestrategy>PreferAntialias</stylestrategy>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QListWidget" name="groupsList_2">
-        <property name="geometry">
-         <rect>
-          <x>430</x>
-          <y>0</y>
-          <width>181</width>
-          <height>421</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="font">
-         <font>
-          <family>Futura</family>
-          <pointsize>18</pointsize>
-          <italic>false</italic>
-          <bold>false</bold>
-          <stylestrategy>PreferAntialias</stylestrategy>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
-        </property>
-        <property name="horizontalScrollBarPolicy">
-         <enum>Qt::ScrollBarAlwaysOff</enum>
-        </property>
-        <property name="sizeAdjustPolicy">
-         <enum>QAbstractScrollArea::AdjustIgnored</enum>
-        </property>
-        <property name="editTriggers">
-         <set>QAbstractItemView::DoubleClicked</set>
-        </property>
-        <property name="alternatingRowColors">
-         <bool>true</bool>
-        </property>
-        <property name="flow">
-         <enum>QListView::TopToBottom</enum>
-        </property>
-        <property name="isWrapping" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="resizeMode">
-         <enum>QListView::Adjust</enum>
-        </property>
-        <property name="layoutMode">
-         <enum>QListView::SinglePass</enum>
-        </property>
-        <property name="viewMode">
-         <enum>QListView::ListMode</enum>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-        <property name="selectionRectVisible">
-         <bool>true</bool>
-        </property>
-        <property name="itemAlignment">
-         <set>Qt::AlignTop</set>
-        </property>
-        <property name="sortingEnabled">
-         <bool>false</bool>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="groupMembers_2">
-        <property name="geometry">
-         <rect>
-          <x>320</x>
-          <y>30</y>
-          <width>100</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: rgb(245, 245, 245);</string>
-        </property>
-        <property name="text">
-         <string>Members</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="groupInfo_2">
-        <property name="geometry">
-         <rect>
-          <x>320</x>
-          <y>10</y>
-          <width>100</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: rgb(245, 245, 245);</string>
-        </property>
-        <property name="text">
-         <string>Info</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="createGroup_2">
-        <property name="geometry">
-         <rect>
-          <x>430</x>
-          <y>440</y>
-          <width>181</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: rgb(245, 245, 245);</string>
-        </property>
-        <property name="text">
-         <string>Create Group</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="joinGroup_2">
-        <property name="geometry">
-         <rect>
-          <x>430</x>
-          <y>420</y>
-          <width>181</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: rgb(245, 245, 245);</string>
-        </property>
-        <property name="text">
-         <string>Join Group</string>
-        </property>
-       </widget>
-       <widget class="QStackedWidget" name="stackedWidget_3">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>50</y>
-          <width>411</width>
-          <height>411</height>
-         </rect>
-        </property>
-        <widget class="QWidget" name="g_posts_2">
-         <widget class="QListWidget" name="groupPosts_2">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>411</width>
-            <height>411</height>
-           </rect>
-          </property>
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="font">
-           <font>
-            <family>Futura</family>
-            <pointsize>18</pointsize>
-            <italic>false</italic>
-            <bold>false</bold>
-            <stylestrategy>PreferAntialias</stylestrategy>
-            <kerning>true</kerning>
-           </font>
-          </property>
-          <property name="layoutDirection">
-           <enum>Qt::LeftToRight</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Plain</enum>
-          </property>
-          <property name="horizontalScrollBarPolicy">
-           <enum>Qt::ScrollBarAlwaysOff</enum>
-          </property>
-          <property name="sizeAdjustPolicy">
-           <enum>QAbstractScrollArea::AdjustIgnored</enum>
-          </property>
-          <property name="editTriggers">
-           <set>QAbstractItemView::DoubleClicked</set>
-          </property>
-          <property name="alternatingRowColors">
-           <bool>true</bool>
-          </property>
-          <property name="flow">
-           <enum>QListView::TopToBottom</enum>
-          </property>
-          <property name="isWrapping" stdset="0">
-           <bool>false</bool>
-          </property>
-          <property name="resizeMode">
-           <enum>QListView::Adjust</enum>
-          </property>
-          <property name="layoutMode">
-           <enum>QListView::SinglePass</enum>
-          </property>
-          <property name="viewMode">
-           <enum>QListView::ListMode</enum>
-          </property>
-          <property name="wordWrap">
-           <bool>true</bool>
-          </property>
-          <property name="selectionRectVisible">
-           <bool>true</bool>
-          </property>
-          <property name="itemAlignment">
-           <set>Qt::AlignTop</set>
-          </property>
-          <property name="sortingEnabled">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </widget>
-        <widget class="QWidget" name="info_2">
-         <widget class="QTextBrowser" name="g_infoDisplay_2">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>0</y>
-            <width>401</width>
-            <height>192</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>24</pointsize>
-           </font>
-          </property>
-          <property name="autoFillBackground">
-           <bool>false</bool>
-          </property>
-          <property name="html">
-           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-hr { height: 1px; border-width: 0; }
-li.unchecked::marker { content: &quot;\2610&quot;; }
-li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:24pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-          <property name="openLinks">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </widget>
-        <widget class="QWidget" name="g_members_2">
-         <widget class="QListWidget" name="membersList_2">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>411</width>
-            <height>411</height>
-           </rect>
-          </property>
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="font">
-           <font>
-            <family>Futura</family>
-            <pointsize>18</pointsize>
-            <italic>false</italic>
-            <bold>false</bold>
-            <stylestrategy>PreferAntialias</stylestrategy>
-            <kerning>true</kerning>
-           </font>
-          </property>
-          <property name="layoutDirection">
-           <enum>Qt::LeftToRight</enum>
-          </property>
-          <property name="horizontalScrollBarPolicy">
-           <enum>Qt::ScrollBarAlwaysOff</enum>
-          </property>
-          <property name="sizeAdjustPolicy">
-           <enum>QAbstractScrollArea::AdjustIgnored</enum>
-          </property>
-          <property name="editTriggers">
-           <set>QAbstractItemView::DoubleClicked|QAbstractItemView::SelectedClicked</set>
-          </property>
-          <property name="alternatingRowColors">
-           <bool>true</bool>
-          </property>
-          <property name="flow">
-           <enum>QListView::TopToBottom</enum>
-          </property>
-          <property name="isWrapping" stdset="0">
-           <bool>false</bool>
-          </property>
-          <property name="resizeMode">
-           <enum>QListView::Adjust</enum>
-          </property>
-          <property name="layoutMode">
-           <enum>QListView::SinglePass</enum>
-          </property>
-          <property name="viewMode">
-           <enum>QListView::ListMode</enum>
-          </property>
-          <property name="wordWrap">
-           <bool>true</bool>
-          </property>
-          <property name="selectionRectVisible">
-           <bool>true</bool>
-          </property>
-          <property name="itemAlignment">
-           <set>Qt::AlignTop</set>
-          </property>
-          <property name="sortingEnabled">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </widget>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="Messages_2">
-       <widget class="QLineEdit" name="message_2">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>430</y>
-          <width>411</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>13</pointsize>
-          <bold>false</bold>
-          <stylestrategy>PreferAntialias</stylestrategy>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="accessibleDescription">
-         <string/>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: rgb(245, 245, 245);</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-        </property>
-        <property name="placeholderText">
-         <string>Message</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_7">
-        <property name="geometry">
-         <rect>
-          <x>490</x>
-          <y>10</y>
-          <width>58</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>13</pointsize>
-          <bold>true</bold>
-          <stylestrategy>PreferAntialias</stylestrategy>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="text">
-         <string>Chats</string>
-        </property>
-       </widget>
-       <widget class="QListView" name="chats_2">
-        <property name="geometry">
-         <rect>
-          <x>430</x>
-          <y>30</y>
-          <width>181</width>
-          <height>441</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: rgb(245, 245, 245);</string>
-        </property>
-        <property name="modelColumn">
-         <number>0</number>
-        </property>
-       </widget>
-       <widget class="QListView" name="messageHist_2">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>30</y>
-          <width>411</width>
-          <height>391</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>13</pointsize>
-          <bold>false</bold>
-          <stylestrategy>PreferAntialias</stylestrategy>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: rgb(245, 245, 245);</string>
-        </property>
-        <property name="editTriggers">
-         <set>QAbstractItemView::NoEditTriggers</set>
-        </property>
-        <property name="isWrapping" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="Friends_2">
-       <widget class="QListWidget" name="fishlist_3">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>50</y>
-          <width>611</width>
-          <height>421</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="font">
-         <font>
-          <family>Futura</family>
-          <pointsize>18</pointsize>
-          <italic>false</italic>
-          <bold>false</bold>
-          <stylestrategy>PreferAntialias</stylestrategy>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
-        </property>
-        <property name="horizontalScrollBarPolicy">
-         <enum>Qt::ScrollBarAlwaysOff</enum>
-        </property>
-        <property name="sizeAdjustPolicy">
-         <enum>QAbstractScrollArea::AdjustIgnored</enum>
-        </property>
-        <property name="editTriggers">
-         <set>QAbstractItemView::DoubleClicked|QAbstractItemView::SelectedClicked</set>
-        </property>
-        <property name="alternatingRowColors">
-         <bool>true</bool>
-        </property>
-        <property name="flow">
-         <enum>QListView::TopToBottom</enum>
-        </property>
-        <property name="isWrapping" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="resizeMode">
-         <enum>QListView::Adjust</enum>
-        </property>
-        <property name="layoutMode">
-         <enum>QListView::SinglePass</enum>
-        </property>
-        <property name="viewMode">
-         <enum>QListView::ListMode</enum>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-        <property name="selectionRectVisible">
-         <bool>true</bool>
-        </property>
-        <property name="itemAlignment">
-         <set>Qt::AlignTop</set>
-        </property>
-        <property name="sortingEnabled">
-         <bool>false</bool>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_10">
-        <property name="geometry">
-         <rect>
-          <x>250</x>
-          <y>10</y>
-          <width>131</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>40</pointsize>
-          <bold>false</bold>
-          <stylestrategy>PreferAntialias</stylestrategy>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="text">
-         <string>Friends</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="Profile_2">
+      <widget class="QLabel" name="FishName_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>13</y>
+         <width>601</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>123</width>
+         <height>20</height>
+        </size>
+       </property>
        <property name="font">
         <font>
-         <pointsize>13</pointsize>
+         <family>Avenir</family>
+         <pointsize>40</pointsize>
+         <italic>false</italic>
+         <bold>true</bold>
+         <underline>false</underline>
+         <strikeout>false</strikeout>
+         <stylestrategy>PreferAntialias</stylestrategy>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: black;background: rgb(245, 245, 245);</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Box</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="FishLocation_2">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>170</y>
+         <width>351</width>
+         <height>81</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>123</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Avenir</family>
+         <pointsize>20</pointsize>
+         <italic>true</italic>
          <bold>true</bold>
          <stylestrategy>PreferAntialias</stylestrategy>
          <kerning>true</kerning>
         </font>
        </property>
-       <widget class="QPushButton" name="addFriend">
-        <property name="geometry">
-         <rect>
-          <x>410</x>
-          <y>190</y>
-          <width>151</width>
-          <height>32</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton {
-background: rgb(245, 245, 245);
-}</string>
-        </property>
-        <property name="text">
-         <string>Add Friend</string>
-        </property>
-       </widget>
-       <widget class="QTextEdit" name="p_location">
-        <property name="geometry">
-         <rect>
-          <x>401</x>
-          <y>50</y>
-          <width>169</width>
-          <height>94</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color : rgba(255,255,255,1%); color : black;</string>
-        </property>
-        <property name="readOnly">
-         <bool>true</bool>
-        </property>
-        <property name="html">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-hr { height: 1px; border-width: 0; }
-li.unchecked::marker { content: &quot;\2610&quot;; }
-li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:700;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="placeholderText">
-         <string>Location</string>
-        </property>
-       </widget>
-       <widget class="QTextEdit" name="p_age">
-        <property name="geometry">
-         <rect>
-          <x>400</x>
-          <y>140</y>
-          <width>151</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color : rgba(255,255,255,1%); color : black;</string>
-        </property>
-        <property name="inputMethodHints">
-         <set>Qt::ImhDigitsOnly|Qt::ImhMultiLine|Qt::ImhPreferNumbers</set>
-        </property>
-        <property name="readOnly">
-         <bool>true</bool>
-        </property>
-        <property name="html">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-hr { height: 1px; border-width: 0; }
-li.unchecked::marker { content: &quot;\2610&quot;; }
-li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:700;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="placeholderText">
-         <string>Age</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="p_name">
-        <property name="geometry">
-         <rect>
-          <x>11</x>
-          <y>51</y>
-          <width>391</width>
-          <height>47</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>3</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>40</pointsize>
-          <bold>false</bold>
-          <stylestrategy>PreferAntialias</stylestrategy>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-       <widget class="QLabel" name="p_username">
-        <property name="geometry">
-         <rect>
-          <x>11</x>
-          <y>108</y>
-          <width>391</width>
-          <height>23</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>20</pointsize>
-          <bold>false</bold>
-          <stylestrategy>PreferAntialias</stylestrategy>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-       <widget class="QPlainTextEdit" name="p_bio">
-        <property name="geometry">
-         <rect>
-          <x>11</x>
-          <y>141</y>
-          <width>391</width>
-          <height>101</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color : rgba(255,255,255,1%); color : black;</string>
-        </property>
-        <property name="readOnly">
-         <bool>true</bool>
-        </property>
-        <property name="placeholderText">
-         <string>Bio</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="Fish_2">
-       <widget class="QToolButton" name="toolButton_2">
-        <property name="geometry">
-         <rect>
-          <x>160</x>
-          <y>1</y>
-          <width>271</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>13</pointsize>
-          <bold>true</bold>
-          <stylestrategy>PreferAntialias</stylestrategy>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: rgb(245, 245, 245);</string>
-        </property>
-        <property name="text">
-         <string>create new fish</string>
-        </property>
-       </widget>
-       <widget class="QListWidget" name="fishlist_4">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>40</y>
-          <width>611</width>
-          <height>431</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="font">
-         <font>
-          <family>Futura</family>
-          <pointsize>18</pointsize>
-          <italic>false</italic>
-          <bold>false</bold>
-          <stylestrategy>PreferAntialias</stylestrategy>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
-        </property>
-        <property name="horizontalScrollBarPolicy">
-         <enum>Qt::ScrollBarAlwaysOff</enum>
-        </property>
-        <property name="sizeAdjustPolicy">
-         <enum>QAbstractScrollArea::AdjustIgnored</enum>
-        </property>
-        <property name="editTriggers">
-         <set>QAbstractItemView::DoubleClicked|QAbstractItemView::SelectedClicked</set>
-        </property>
-        <property name="alternatingRowColors">
-         <bool>true</bool>
-        </property>
-        <property name="flow">
-         <enum>QListView::TopToBottom</enum>
-        </property>
-        <property name="isWrapping" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="resizeMode">
-         <enum>QListView::Adjust</enum>
-        </property>
-        <property name="layoutMode">
-         <enum>QListView::SinglePass</enum>
-        </property>
-        <property name="viewMode">
-         <enum>QListView::ListMode</enum>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-        <property name="selectionRectVisible">
-         <bool>true</bool>
-        </property>
-        <property name="itemAlignment">
-         <set>Qt::AlignTop</set>
-        </property>
-        <property name="sortingEnabled">
-         <bool>false</bool>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_3">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>31</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: rgb(245, 245, 245);</string>
-        </property>
-        <property name="text">
-         <string>X</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="CreateFish_2">
-       <property name="mouseTracking">
+       <property name="styleSheet">
+        <string notr="true">color: black;background: rgb(245, 245, 245);</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Box</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="scaledContents">
         <bool>true</bool>
        </property>
-       <widget class="QLabel" name="label_11">
-        <property name="geometry">
-         <rect>
-          <x>210</x>
-          <y>-10</y>
-          <width>151</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>13</pointsize>
-          <bold>false</bold>
-          <stylestrategy>PreferAntialias</stylestrategy>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="text">
-         <string>Create New Fish</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="createfish_2">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>30</y>
-          <width>491</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>13</pointsize>
-          <bold>false</bold>
-          <stylestrategy>PreferAntialias</stylestrategy>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="mouseTracking">
-         <bool>true</bool>
-        </property>
-        <property name="focusPolicy">
-         <enum>Qt::StrongFocus</enum>
-        </property>
-        <property name="autoFillBackground">
-         <bool>false</bool>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: rgb(245, 245, 245);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="placeholderText">
-         <string>Fish Name</string>
-        </property>
-        <property name="cursorMoveStyle">
-         <enum>Qt::VisualMoveStyle</enum>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="createspecies_2">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>70</y>
-          <width>491</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>13</pointsize>
-          <bold>false</bold>
-          <stylestrategy>PreferAntialias</stylestrategy>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="focusPolicy">
-         <enum>Qt::ClickFocus</enum>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: rgb(245, 245, 245);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="cursorPosition">
-         <number>0</number>
-        </property>
-        <property name="placeholderText">
-         <string>Species</string>
-        </property>
-        <property name="cursorMoveStyle">
-         <enum>Qt::VisualMoveStyle</enum>
-        </property>
-       </widget>
-       <widget class="QDialogButtonBox" name="finished_2">
-        <property name="geometry">
-         <rect>
-          <x>360</x>
-          <y>250</y>
-          <width>152</width>
-          <height>32</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>13</pointsize>
-          <bold>false</bold>
-          <stylestrategy>PreferAntialias</stylestrategy>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="standardButtons">
-         <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-        </property>
-       </widget>
-       <widget class="QPlainTextEdit" name="createbio_2">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>150</y>
-          <width>491</width>
-          <height>91</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>13</pointsize>
-          <bold>false</bold>
-          <stylestrategy>PreferAntialias</stylestrategy>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="cursor" stdset="0">
-         <cursorShape>IBeamCursor</cursorShape>
-        </property>
-        <property name="mouseTracking">
-         <bool>true</bool>
-        </property>
-        <property name="focusPolicy">
-         <enum>Qt::ClickFocus</enum>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: rgb(245, 245, 245);</string>
-        </property>
-        <property name="horizontalScrollBarPolicy">
-         <enum>Qt::ScrollBarAlwaysOff</enum>
-        </property>
-        <property name="placeholderText">
-         <string>Bio</string>
-        </property>
-       </widget>
-       <widget class="QDialogButtonBox" name="edit_2">
-        <property name="geometry">
-         <rect>
-          <x>440</x>
-          <y>250</y>
-          <width>81</width>
-          <height>32</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>81</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>13</pointsize>
-          <bold>false</bold>
-          <stylestrategy>PreferAntialias</stylestrategy>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="standardButtons">
-         <set>QDialogButtonBox::SaveAll</set>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="createlocation_2">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>110</y>
-          <width>491</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>13</pointsize>
-          <bold>false</bold>
-          <stylestrategy>PreferAntialias</stylestrategy>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="focusPolicy">
-         <enum>Qt::ClickFocus</enum>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: rgb(245, 245, 245);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="cursorPosition">
-         <number>0</number>
-        </property>
-        <property name="placeholderText">
-         <string>Location</string>
-        </property>
-        <property name="cursorMoveStyle">
-         <enum>Qt::VisualMoveStyle</enum>
-        </property>
-       </widget>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
       </widget>
-      <widget class="QWidget" name="fishView_2">
-       <widget class="QFrame" name="gridFrame_2">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>20</y>
-          <width>591</width>
-          <height>451</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>471</width>
-          <height>150</height>
-         </size>
-        </property>
-        <property name="baseSize">
-         <size>
-          <width>471</width>
-          <height>151</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>13</pointsize>
-          <bold>true</bold>
-          <stylestrategy>PreferAntialias</stylestrategy>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
-        </property>
-        <widget class="QLabel" name="FishName_2">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>13</y>
-           <width>551</width>
-           <height>81</height>
-          </rect>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>123</width>
-           <height>20</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>Avenir</family>
-           <pointsize>68</pointsize>
-           <italic>false</italic>
-           <bold>true</bold>
-           <underline>false</underline>
-           <strikeout>false</strikeout>
-           <stylestrategy>PreferAntialias</stylestrategy>
-           <kerning>true</kerning>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background: rgb(245, 245, 245);</string>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::Box</enum>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="scaledContents">
-          <bool>true</bool>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="EditFishProfile_2">
-         <property name="geometry">
-          <rect>
-           <x>427</x>
-           <y>414</y>
-           <width>151</width>
-           <height>32</height>
-          </rect>
-         </property>
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>123</width>
-           <height>32</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>13</pointsize>
-           <bold>true</bold>
-           <stylestrategy>PreferAntialias</stylestrategy>
-           <kerning>true</kerning>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-background: rgb(245, 245, 245);
-}</string>
-         </property>
-         <property name="text">
-          <string>Edit Fish Profile</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="FishLocation_2">
-         <property name="geometry">
-          <rect>
-           <x>260</x>
-           <y>180</y>
-           <width>311</width>
-           <height>71</height>
-          </rect>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>123</width>
-           <height>20</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>Avenir</family>
-           <pointsize>28</pointsize>
-           <italic>true</italic>
-           <bold>true</bold>
-           <stylestrategy>PreferAntialias</stylestrategy>
-           <kerning>true</kerning>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background: rgb(245, 245, 245);</string>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::Box</enum>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="scaledContents">
-          <bool>true</bool>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-        <widget class="QLabel" name="FishSpecies_2">
-         <property name="geometry">
-          <rect>
-           <x>260</x>
-           <y>110</y>
-           <width>311</width>
-           <height>61</height>
-          </rect>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>123</width>
-           <height>20</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>Avenir</family>
-           <pointsize>28</pointsize>
-           <italic>true</italic>
-           <bold>false</bold>
-           <stylestrategy>PreferAntialias</stylestrategy>
-           <kerning>true</kerning>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background: rgb(245, 245, 245);</string>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::Box</enum>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="scaledContents">
-          <bool>true</bool>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-        <widget class="QLabel" name="FishPic_2">
-         <property name="enabled">
-          <bool>true</bool>
-         </property>
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>110</y>
-           <width>221</width>
-           <height>141</height>
-          </rect>
-         </property>
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>139</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>40</pointsize>
-           <bold>true</bold>
-           <stylestrategy>PreferAntialias</stylestrategy>
-           <kerning>true</kerning>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background: rgb(245, 245, 245);</string>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::Box</enum>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QLabel" name="FishBi_2">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>260</y>
-           <width>551</width>
-           <height>141</height>
-          </rect>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>123</width>
-           <height>20</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>20</pointsize>
-           <bold>false</bold>
-           <stylestrategy>PreferAntialias</stylestrategy>
-           <kerning>true</kerning>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background: rgb(245, 245, 245);</string>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::Box</enum>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-         </property>
-         <property name="wordWrap">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </widget>
+      <widget class="QLabel" name="FishSpecies_2">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>80</y>
+         <width>351</width>
+         <height>81</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>123</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Avenir</family>
+         <pointsize>20</pointsize>
+         <italic>true</italic>
+         <bold>false</bold>
+         <stylestrategy>PreferAntialias</stylestrategy>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: black;background: rgb(245, 245, 245);</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Box</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
       </widget>
-      <widget class="QWidget" name="newPost_2">
-       <widget class="QLabel" name="label_12">
-        <property name="geometry">
-         <rect>
-          <x>240</x>
-          <y>30</y>
-          <width>141</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>20</pointsize>
-          <bold>false</bold>
-          <stylestrategy>PreferAntialias</stylestrategy>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="text">
-         <string>Create New Post</string>
-        </property>
-       </widget>
-       <widget class="QPlainTextEdit" name="postBox_2">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>100</y>
-          <width>591</width>
-          <height>181</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: rgb(245, 245, 245);</string>
-        </property>
-       </widget>
-       <widget class="QComboBox" name="selectGroup_2">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>310</y>
-          <width>151</width>
-          <height>32</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: rgb(245, 245, 245);</string>
-        </property>
-        <property name="placeholderText">
-         <string>Select Group</string>
-        </property>
-        <item>
-         <property name="text">
-          <string>All</string>
-         </property>
-        </item>
-       </widget>
-       <widget class="QLabel" name="label_13">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>290</y>
-          <width>51</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Post to:</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="publish_2">
-        <property name="geometry">
-         <rect>
-          <x>460</x>
-          <y>310</y>
-          <width>141</width>
-          <height>32</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: rgb(68, 153, 247);</string>
-        </property>
-        <property name="text">
-         <string>Publish</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="titleBox_2">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>60</y>
-          <width>591</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: rgb(245, 245, 245);</string>
-        </property>
-        <property name="frame">
-         <bool>true</bool>
-        </property>
-        <property name="placeholderText">
-         <string>Title</string>
-        </property>
-       </widget>
+      <widget class="QLabel" name="FishPic_2">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>80</y>
+         <width>241</width>
+         <height>171</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>139</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>40</pointsize>
+         <bold>true</bold>
+         <stylestrategy>PreferAntialias</stylestrategy>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background: rgb(245, 245, 245);</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Box</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
       </widget>
-      <widget class="QWidget" name="postView_2">
-       <widget class="QListView" name="comments_2">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>260</y>
-          <width>591</width>
-          <height>181</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>13</pointsize>
-          <bold>false</bold>
-          <stylestrategy>PreferAntialias</stylestrategy>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="autoFillBackground">
-         <bool>true</bool>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: rgb(245, 245, 245);</string>
-        </property>
-        <property name="editTriggers">
-         <set>QAbstractItemView::NoEditTriggers</set>
-        </property>
-        <property name="isWrapping" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QLabel" name="commentLabel_2">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>240</y>
-          <width>121</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="addComment_2">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>450</y>
-          <width>591</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: rgb(245, 245, 245);</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="viewTitle_2">
-        <property name="geometry">
-         <rect>
-          <x>11</x>
-          <y>11</y>
-          <width>591</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QTextBrowser" name="viewPost_2">
-        <property name="geometry">
-         <rect>
-          <x>11</x>
-          <y>35</y>
-          <width>591</width>
-          <height>192</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: rgb(245, 245, 245);</string>
-        </property>
-        <property name="html">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-hr { height: 1px; border-width: 0; }
-li.unchecked::marker { content: &quot;\2610&quot;; }
-li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
+      <widget class="QLabel" name="FishBi_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>260</y>
+         <width>601</width>
+         <height>141</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>123</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>20</pointsize>
+         <bold>false</bold>
+         <stylestrategy>PreferAntialias</stylestrategy>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: black;background: rgb(245, 245, 245);</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Box</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
       </widget>
-      <widget class="QWidget" name="myposts_2">
-       <widget class="QListWidget" name="myPosts_2">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>40</y>
-          <width>611</width>
-          <height>431</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="font">
-         <font>
-          <family>Futura</family>
-          <pointsize>18</pointsize>
-          <italic>false</italic>
-          <bold>false</bold>
-          <stylestrategy>PreferAntialias</stylestrategy>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: rgb(245, 245, 245);</string>
-        </property>
-        <property name="horizontalScrollBarPolicy">
-         <enum>Qt::ScrollBarAlwaysOff</enum>
-        </property>
-        <property name="sizeAdjustPolicy">
-         <enum>QAbstractScrollArea::AdjustIgnored</enum>
-        </property>
-        <property name="editTriggers">
-         <set>QAbstractItemView::DoubleClicked</set>
-        </property>
-        <property name="alternatingRowColors">
-         <bool>true</bool>
-        </property>
-        <property name="flow">
-         <enum>QListView::TopToBottom</enum>
-        </property>
-        <property name="isWrapping" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="resizeMode">
-         <enum>QListView::Adjust</enum>
-        </property>
-        <property name="layoutMode">
-         <enum>QListView::SinglePass</enum>
-        </property>
-        <property name="viewMode">
-         <enum>QListView::ListMode</enum>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-        <property name="selectionRectVisible">
-         <bool>true</bool>
-        </property>
-        <property name="itemAlignment">
-         <set>Qt::AlignTop</set>
-        </property>
-        <property name="sortingEnabled">
-         <bool>false</bool>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_14">
-        <property name="geometry">
-         <rect>
-          <x>260</x>
-          <y>0</y>
-          <width>91</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>20</pointsize>
-          <bold>false</bold>
-          <stylestrategy>PreferAntialias</stylestrategy>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="text">
-         <string>My Posts</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="page_5">
-       <widget class="QLineEdit" name="g_titleBox_2">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>60</y>
-          <width>591</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: rgb(245, 245, 245);</string>
-        </property>
-        <property name="frame">
-         <bool>true</bool>
-        </property>
-        <property name="placeholderText">
-         <string>Name</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_15">
-        <property name="geometry">
-         <rect>
-          <x>230</x>
-          <y>30</y>
-          <width>161</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>20</pointsize>
-          <bold>false</bold>
-          <stylestrategy>PreferAntialias</stylestrategy>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="text">
-         <string>Create New Group</string>
-        </property>
-       </widget>
-       <widget class="QPlainTextEdit" name="g_description_2">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>100</y>
-          <width>591</width>
-          <height>181</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: rgb(245, 245, 245);</string>
-        </property>
-        <property name="placeholderText">
-         <string>Description</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="g_publish_2">
-        <property name="geometry">
-         <rect>
-          <x>460</x>
-          <y>300</y>
-          <width>141</width>
-          <height>32</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: rgb(68, 153, 247);</string>
-        </property>
-        <property name="text">
-         <string>Create New Group</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="page_6"/>
      </widget>
     </widget>
    </widget>
-   <widget class="QLabel" name="label_4">
+   <widget class="QLabel" name="main_icon">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>30</y>
-      <width>171</width>
-      <height>31</height>
+      <x>30</x>
+      <y>10</y>
+      <width>91</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="font">
@@ -4134,31 +3258,106 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </font>
     </property>
     <property name="text">
-     <string>FishBowl</string>
+     <string/>
     </property>
    </widget>
-   <widget class="QStackedWidget" name="stackedWidget">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>801</width>
-      <height>601</height>
+      <width>2</width>
+      <height>2</height>
      </rect>
     </property>
-    <widget class="QWidget" name="widget"/>
+    <layout class="QVBoxLayout" name="verticalLayout_2"/>
    </widget>
-   <zorder>stackedWidget</zorder>
-   <zorder>homeButton</zorder>
-   <zorder>friendsButton</zorder>
-   <zorder>groupButton</zorder>
-   <zorder>messageButton</zorder>
-   <zorder>searchBar</zorder>
-   <zorder>postButton</zorder>
-   <zorder>fishButton</zorder>
-   <zorder>profileButton</zorder>
-   <zorder>page</zorder>
-   <zorder>label_4</zorder>
+   <widget class="QPushButton" name="posts">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>390</y>
+      <width>121</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+color: rgb(0, 0, 0);
+border: 1px solid rgb(200, 200, 200);
+border-radius: 20px;
+background: rgb(245, 245, 245);
+padding: 5px;
+}</string>
+    </property>
+    <property name="text">
+     <string>Posts</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>72</y>
+      <width>341</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: black;</string>
+    </property>
+    <property name="text">
+     <string>Search</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="reloadButtonMessages">
+    <property name="geometry">
+     <rect>
+      <x>29</x>
+      <y>540</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: black</string>
+    </property>
+    <property name="text">
+     <string>Refresh</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="reloadButtonComments">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>540</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: black</string>
+    </property>
+    <property name="text">
+     <string>Refresh</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="reloadButtonHome">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>540</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: black</string>
+    </property>
+    <property name="text">
+     <string>Refresh</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

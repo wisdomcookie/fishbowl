@@ -19,37 +19,38 @@ public:
 
     ~Engine();
 
-    void update_data();
+    void reload_data();
     void load_data();
 
     // Regular user
 
-    void create_profile(QString username, QString password, QString firstName, QString lastName, int age, QString location, QDateTime dateCreated, QString description);
-    void create_post(Profile *actor, Group *group, QDateTime dateCreated, QString title, QString content);
-    void create_comment(Profile *actor, Post *post, QDateTime dateCreated, QString content);
-    void create_comment_reply(Profile *actor, Post *post, PostComment *parentComment, QDateTime dateCreated, QString content);
-    void create_groupchat(Profile *actor, QString name, QDateTime dateCreated, std::vector<Profile*> participants);
-    void create_group(Profile *actor, QString name, QDateTime dateCreated, QString description);
-    void create_message(Profile *actor, GroupChat *groupchat, QDateTime dateCreated, QString content);
-    void create_fish(Profile *actor, QString name, int age, QString location, QString species, QDateTime dateCreated, QString description);
+    void create_profile(QString username, QString password, QString firstName, QString lastName, int age, QString location, QDateTime dateCreated, QString description);//
+    void create_fish(Profile *actor, QString name, int age, QString location, QString species, QDateTime dateCreated, QString description);//
+    void create_group(Profile *actor, QString name, QDateTime dateCreated, QString description);//
+    void create_post(Profile *actor, Group *group, QDateTime dateCreated, QString title, QString content);//
+    void create_comment(Profile *actor, Post *post, QDateTime dateCreated, QString content);//
+    void create_comment_reply(Profile *actor, Post *post, PostComment *parentComment, QDateTime dateCreated, QString content);//
+    void create_groupchat(Profile *actor, QString name, QDateTime dateCreated, std::vector<Profile*> participants);//
+    void create_message(Profile *actor, GroupChat *groupchat, QDateTime dateCreated, QString content);//
 
-    void join_group(Profile *actor, Group *group);
-    void join_groupchat(Profile *actor, GroupChat *groupchat);
+    void add_friend(Profile* actor, Profile *friendProfile);//
+    void join_group(Profile *actor, Group *group);//
+    void join_groupchat(Profile *actor, GroupChat *groupchat);//
 
-    void unfriend(Profile *actor, Profile *friendProfile);
-    void leave_group(Profile *actor, Group *group);
-    void leave_groupchat(Profile *actor, GroupChat *groupchat);
+    void unfriend(Profile *actor, Profile *friendProfile);//
+    void leave_group(Profile *actor, Group *group);//
+    void leave_groupchat(Profile *actor, GroupChat *groupchat);//
 
-    void edit_profile(Profile *actor, QString firstName, QString lastName, int age, QString location, QString description);
-    void edit_fish(Profile *actor, Fish *fish, QString name, int age, QString location, QString species, QString description);
-    void edit_password(Profile *actor, QString newPassword);
-    void edit_post(Profile *actor, Post *post, QString newContent);
-    void edit_comment(Profile *actor, PostComment *comment, QString newContent);
+    void edit_profile(Profile *actor, QString firstName, QString lastName, int age, QString location, QString description);//
+    void edit_fish(Profile *actor, Fish *fish, QString name, int age, QString location, QString species, QString description);//
+    void edit_password(Profile *actor, QString newPassword);//
+    void edit_post(Profile *actor, Post *post, QString newContent);//
+    void edit_comment(Profile *actor, PostComment *comment, QString newContent);//
 
-    void delete_my_fish(Profile *actor, Fish *fish);
-    void delete_my_post(Profile *actor, Post *post);
-    void delete_my_comment(Profile *actor, PostComment *comment);
-    void delete_groupchat(Profile *actor, GroupChat *groupchat);
+    void delete_my_fish(Profile *actor, Fish *fish);//
+    void delete_my_post(Profile *actor, Post *post);//
+    void delete_my_comment(Profile *actor, PostComment *comment);//
+    void delete_groupchat(Profile *actor, GroupChat *groupchat);//
 
     // Admin
 
@@ -62,12 +63,24 @@ public:
 
     // Login
 
+    Profile* loginEngine(QString username, QString password);//
+
+    // Add-ons
+    void load_fish_picture(Fish *fish);
+    void save_fish_picture(Fish *fish, QByteArray fishPicture);
+
+    //void save_fish_picture(Fish *fish, QByteArray());
 
     // Getters
-    std::vector<Profile*> get_profileList();
-    std::vector<Group*> get_groupList();
-    std::vector<Post*> get_postList();
-    std::vector<GroupChat*> get_groupchatList();
+    std::vector<Profile*> get_profileList();//
+    std::vector<Group*> get_groupList();//
+    std::vector<Post*> get_postList();//
+    std::vector<GroupChat*> get_groupchatList();//
+
+    std::map<int, Profile*> get_profiles();
+    std::map<int, Group*> get_groups();
+    std::map<int, Post*> get_posts();
+    std::map<int, GroupChat*> get_groupchats();
 
 
 private:

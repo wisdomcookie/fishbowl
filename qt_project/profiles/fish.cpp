@@ -38,6 +38,10 @@ void Fish::edit_data(QString name, int age, QString location, QString species, Q
     this->description = description;
 }
 
+void Fish::edit_picture(QByteArray picture){
+    this->picture = picture;
+}
+
 bool Fish::is_owner(Profile *profile){
     return profile == owner;
 }
@@ -66,6 +70,10 @@ QDateTime Fish::get_dateCreated(){
 QString Fish::get_description(){
     return description;
 }
+QByteArray Fish::get_picture(){
+    return picture;
+}
+
 Profile *Fish::get_owner(){
     return owner;
 }

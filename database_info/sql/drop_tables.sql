@@ -1,14 +1,14 @@
 drop table if exists posts;
 drop table if exists post_comments;
-drop table if exists chats;
-drop table if exists chat_participants;
+drop table if exists groupchats;
+drop table if exists groupchat_participants;
 drop table if exists messages;
 drop table if exists banned_users;
 drop table if exists admins;
 drop table if exists reports;
 drop table if exists profiles;
 drop table if exists groups;
-drop table if exists group_participants;
+drop table if exists group_members;
 drop table if exists friends;
 drop table if exists fish;
 drop table if exists login;

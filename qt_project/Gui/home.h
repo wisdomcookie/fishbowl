@@ -14,6 +14,7 @@
 #include "../comm/message.h"
 #include "../comm/post.h"
 #include "../comm/postcomment.h"
+#include "../engine/engine.h"
 #include "QtWidgets/qlistwidget.h"
 #include "login.h"
 
@@ -32,7 +33,7 @@ public:
 private slots:
     void start(QWidget*);
 
-    void main_menu(Profile* p);
+    void main_menu(Profile* p, Engine* e);
 
     void on_homeButton_clicked();
 
@@ -76,15 +77,13 @@ private slots:
 
     void on_message_returnPressed();
 
-    void on_publish_clicked();
+//    void on_publish_clicked();
 
     void on_allPosts_itemDoubleClicked(QListWidgetItem *item);
 
     void on_fishlist_itemClicked(QListWidgetItem *item);
 
-    void on_pushButton_2_clicked();
-
-    void on_newpword_returnPressed();
+    void on_deleteFishButton_clicked();
 
     void addPost(Group*, Post*);
 
@@ -116,18 +115,73 @@ private slots:
 
     void addFriend(Profile*);
 
+    void addAllGroup(Group*);
+
+    void on_AddFriend_clicked();
+
+    void on_chat_itemClicked(QListWidgetItem *item);
+
+    void addMessages(std::vector<Message*> m);
+
+    void on_groupPostButton_clicked();
+
+    void on_p_publish_clicked();
+
+    void on_leaveGroupButton_clicked();
+
+    void on_EditFishPic_clicked();
+
+    void on_groupPosts_itemDoubleClicked(QListWidgetItem *item);
+
+    void on_commentPublishButton_clicked();
+
+    void on_reloadButtonMessages_clicked();
+
+    void on_friendsList_itemDoubleClicked(QListWidgetItem *item);
+
+    void on_friendAquarium_clicked();
+
+    void on_friendfishlist_itemDoubleClicked(QListWidgetItem *item);
+
+    void on_myPosts_itemDoubleClicked(QListWidgetItem *item);
+
+    void on_othergroupsList_itemClicked(QListWidgetItem *item);
+
+    void on_unfriendButton_clicked();
+
+    void on_reloadButtonComments_clicked();
+
+    void on_reloadButtonHome_clicked();
+
 private:
+
+    void load_groupList(); /*std::vector<Group*> groupList*/
+    void load_othergroupList();
+    void load_groupMembers();
+    void load_groupPosts();
+    void load_postComments();
+    void load_groupchats();
+    void load_messages();
+    void load_friendFish();
+    void reload_data();
+    void reload_data_comments();
+    void reload_data_home();
+    //void load_friends();
+
     Ui::Home *ui;
-    Profile p;
+    Profile *p;
+    Engine* e;
     Fish* f;
     Login* l;
+    GroupChat *currGroupChat;
     Message *msg;
     QStandardItemModel *chatModel;
     Post* currPost;
     PostComment *cmt;
     QStandardItemModel *cmtModel;
     Group* currGroup;
-    Group* all = new Group("All");
+    Group* all;
+    Profile* currFriend;
 
 };
 #endif // HOME_H

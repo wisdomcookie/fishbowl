@@ -1,21 +1,22 @@
 #include "profile.h"
-#include "fish.h"
-#include "aquarium.h"
-#include "../groups/group.h"
-#include "../comm/post.h"
-#include "../comm/postcomment.h"
-#include "../comm/groupchat.h"
-#include "../comm/message.h"
-
 
 Profile::Profile() {
 }
 
+//Profile::Profile(string username, string password) {
+////    this->username = username;
+////    this->password = password;
+//    Database d;
+//    d.query_exec("select * from profiles");  //make sure name of table is correct
+//    id = d.query_size() + 1;
+//}
+
+
 Profile::Profile(int id, QString username, QString firstName, QString lastName, int age, QString location, QDateTime dateCreated, QString description):
-    profileId(id), username(username), firstName(firstName), lastName(lastName), location(location), dateCreated(dateCreated), description(description)
+    profileId(id), username(username), firstName(firstName), lastName(lastName), age(age), location(location), dateCreated(dateCreated), description(description)
 {
 
-    aquarium = new Aquarium(this);
+    //aquarium = new Aquarium(this);
 }
 
 Profile::Profile(std::map<QString, QString> profileData){
@@ -35,12 +36,12 @@ Profile::Profile(std::map<QString, QString> profileData){
 }
 
 Profile::~Profile() {
-    delete aquarium;
+    //delete aquarium;
 }
 
 
 void Profile::add_fish(Fish *fish){
-    aquarium->add_fish(fish);
+    fishList[fish->get_id()] = fish;
 }
 
 /**
@@ -123,7 +124,8 @@ void Profile::remove_friend(Profile *profile){
  * @param x
  */
 void Profile::remove_fish(Fish *fish){
-    aquarium->remove_fish(fish);
+    fishList.erase(fish->get_id());
+   // aquarium->remove_fish(fish);
 }
 void Profile::leave_group(Group *group){
     groups.erase(group->get_id());
@@ -138,6 +140,9 @@ void Profile::delete_comment(PostComment *comment){
     comments.erase(comment->get_id());
 }
 
+bool Profile::is_friend(Profile *friendProfile){
+    return friends.find(friendProfile->get_id()) != friends.end();
+}
 
 // --- Getter/Setter Methods --- //
 
@@ -167,9 +172,9 @@ QString Profile::get_description(){
 }
 
 std::vector<Fish*> Profile::get_fishList(){
-    std::map<int, Fish*> fishMap = aquarium->get_fish();
+
     std::vector<Fish*> res;
-    for(auto i = fishMap.begin(); i != fishMap.end(); i++){
+    for(auto i = fishList.begin(); i != fishList.end(); i++){
         res.push_back(i->second);
     }
     return res;
@@ -190,6 +195,7 @@ std::vector<Group*> Profile::get_groupList(){
     }
     return res;
 }
+
 std::vector<Post*> Profile::get_postHistory(){
     std::vector<Post*> res;
     for(auto i = posts.begin(); i != posts.end(); i++){
@@ -197,6 +203,16 @@ std::vector<Post*> Profile::get_postHistory(){
     }
     return res;
 }
+
+std::vector<GroupChat*> Profile::get_groupchats(){
+    std::vector<GroupChat*> res;
+    for(auto i = groupchats.begin(); i != groupchats.end(); i++){
+        res.push_back(i->second);
+    }
+    return res;
+
+}
+
 std::vector<Message*> Profile::get_messageHistory(){
     std::vector<Message*> res;
     for(auto i = messages.begin(); i != messages.end(); i++){

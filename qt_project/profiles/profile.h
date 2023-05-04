@@ -4,7 +4,13 @@
 #include <vector>
 #include <QString>
 #include <QDateTime>
-
+#include "fish.h"
+#include "aquarium.h"
+#include "../groups/group.h"
+#include "../comm/post.h"
+#include "../comm/postcomment.h"
+#include "../comm/groupchat.h"
+#include "../comm/message.h"
 
 class Group;
 class Post;
@@ -19,6 +25,7 @@ class Profile
 public:
     Profile();
     // user creates new profile
+    //Profile(int id, QString username, QString password, QString firstName, QString lastName, int age, QString location, QDateTime dateCreated, QString description);
     Profile(int id, QString username, QString firstName, QString lastName, int age, QString location, QDateTime dateCreated, QString description);
     Profile(std::map<QString, QString> profileData); // load from database
     ~Profile();
@@ -44,6 +51,8 @@ public:
     void delete_post(Post *post);
     void delete_comment(PostComment *comment);
 
+    bool is_friend(Profile *friendProfile);
+
 
     // --- Getter/Setter Methods --- //
 
@@ -61,12 +70,16 @@ public:
     std::vector<Profile*> get_friendList();
     std::vector<Group*> get_groupList();
     std::vector<Post*> get_postHistory();
+    std::vector<GroupChat*> get_groupchats();
     std::vector<Message*> get_messageHistory();
+
+    QString get_password();
 ;
 
 private:
     int profileId;
     QString username;
+    QString password;
     QString firstName;
     QString lastName;
     int age;
@@ -81,6 +94,8 @@ private:
     std::map<int, Post*> posts;
     std::map<int, PostComment*> comments;
     std::map<int, Message*> messages;
+
+    std::map<int, Fish*> fishList;
 
     Aquarium *aquarium;
 };

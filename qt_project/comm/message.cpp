@@ -15,7 +15,7 @@ Message::Message(int id, Profile *sender, GroupChat *groupchat, QDateTime dateCr
 
 Message::Message(std::map<QString, QString> messageData){
     messageId = messageData[QString("message_id")].toInt();
-    senderId = messageData[QString("senderr_id")].toInt();
+    senderId = messageData[QString("sender_id")].toInt();
     groupchatId = messageData[QString("groupchat_id")].toInt();
 
     QString dateString = messageData[QString("date_created")];
@@ -35,6 +35,10 @@ void Message::set_content(QString newContent){
 
 int Message::get_id(){
     return messageId;
+}
+
+int Message::get_senderId(){
+    return senderId;
 }
 
 QString Message::get_content(){

@@ -18,6 +18,7 @@ public:
     ~Fish();
 
     void edit_data(QString name, int age, QString location, QString species, QString description);
+    void edit_picture(QByteArray picture);
     bool is_owner(Profile *profile);
 
     int get_id();
@@ -28,6 +29,7 @@ public:
     QString get_species();
     QDateTime get_dateCreated();
     QString get_description();
+    QByteArray get_picture();
     Profile *get_owner();
 
 private:
@@ -39,6 +41,7 @@ private:
     QString species;
     QDateTime dateCreated;
     QString description;
+    QByteArray picture;
 
     Profile *owner;
 

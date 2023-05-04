@@ -17,6 +17,11 @@ public:
 
     void set_content(QString newContent);
     void add_reply(PostComment *reply);
+    bool is_reply();
+    void set_creator(Profile *profile);
+    void set_parentComment(PostComment *parent);
+    void set_sourcePost(Post *sourcePost);
+    void set_visibility(bool visibility);
 
     int get_id();
     Profile *get_creator();
