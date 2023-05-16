@@ -1,5 +1,8 @@
 #include "profile.h"
 
+/**
+ * @brief Profile::Profile
+ */
 Profile::Profile() {
 }
 
@@ -11,14 +14,30 @@ Profile::Profile() {
 //    id = d.query_size() + 1;
 //}
 
-
+/**
+ * Constructor for profiles utilized by the Engine class to fill in all
+ * important information for a profile as it is created
+ * @brief Profile::Profile
+ * @param id
+ * @param username
+ * @param firstName
+ * @param lastName
+ * @param age
+ * @param location
+ * @param dateCreated
+ * @param description
+ */
 Profile::Profile(int id, QString username, QString firstName, QString lastName, int age, QString location, QDateTime dateCreated, QString description):
     profileId(id), username(username), firstName(firstName), lastName(lastName), age(age), location(location), dateCreated(dateCreated), description(description)
 {
-
     //aquarium = new Aquarium(this);
 }
 
+/**
+ * Constructor used by Engine class to load profiles out of the database
+ * @brief Profile::Profile
+ * @param profileData
+ */
 Profile::Profile(std::map<QString, QString> profileData){
     profileId = profileData[QString("profile_id")].toInt();
     username = profileData[QString("username")];
@@ -35,11 +54,18 @@ Profile::Profile(std::map<QString, QString> profileData){
     description = profileData[QString("description")];
 }
 
+/**
+ * @brief Profile::~Profile
+ */
 Profile::~Profile() {
     //delete aquarium;
 }
 
-
+/**
+ * Adds a fish to this profile's list of fish
+ * @brief Profile::add_fish
+ * @param fish
+ */
 void Profile::add_fish(Fish *fish){
     fishList[fish->get_id()] = fish;
 }
@@ -61,9 +87,20 @@ void Profile::add_friend(Profile *profile){
 void Profile::add_group(Group *group){
     groups[group->get_id()] = group;
 }
+
+/**
+ * Intended to add this profile as a group's administrator
+ * @brief Profile::add_group_as_admin
+ * @param g
+ */
 void Profile::add_group_as_admin(Group *g){
 
 }
+/**
+ * Intended to add a groupchat to the profile's history of groupchats.
+ * @brief Profile::add_groupchat
+ * @param groupchat
+ */
 void Profile::add_groupchat(GroupChat *groupchat){
     groupchats[groupchat->get_id()] = groupchat;
 }
@@ -84,10 +121,24 @@ void Profile::add_message(Message* message){
 void Profile::add_post(Post *post){
     posts[post->get_id()] = post;
 }
+/**
+ * Add a comment to the profile's history of comments.
+ * @brief Profile::add_comment
+ * @param comment
+ */
 void Profile::add_comment(PostComment *comment){
     comments[comment->get_id()] = comment;
 }
 
+/**
+ * Edit the profile information through the engine class
+ * @brief Profile::edit_profile
+ * @param firstName
+ * @param lastName
+ * @param age
+ * @param location
+ * @param description
+ */
 void Profile::edit_profile(QString firstName, QString lastName, int age, QString location, QString description){
     this->firstName = firstName;
     this->lastName = lastName;
@@ -95,12 +146,34 @@ void Profile::edit_profile(QString firstName, QString lastName, int age, QString
     this->location = location;
     this->description = description;
 }
+/**
+ * Passes engine's edit fish params to the fish class
+ * @brief Profile::edit_fish
+ * @param fish
+ * @param name
+ * @param age
+ * @param location
+ * @param species
+ * @param description
+ */
 void Profile::edit_fish(Fish *fish, QString name, int age, QString location, QString species, QString description){
     fish->edit_data(name, age, location, species, description);
 }
+/**
+ * Passes engine's edit post params to the post class
+ * @brief Profile::edit_post
+ * @param post
+ * @param newContent
+ */
 void Profile::edit_post(Post *post, QString newContent){
     post->set_content(newContent);
 }
+/**
+ * Passes engine's edit comment params to the postComment class
+ * @brief Profile::edit_comment
+ * @param comment
+ * @param newContent
+ */
 void Profile::edit_comment(PostComment *comment, QString newContent){
     comment->set_content(newContent);
 }
@@ -127,15 +200,35 @@ void Profile::remove_fish(Fish *fish){
     fishList.erase(fish->get_id());
    // aquarium->remove_fish(fish);
 }
+/**
+ * Allows user to leave a specified group
+ * @brief Profile::leave_group
+ * @param group
+ */
 void Profile::leave_group(Group *group){
     groups.erase(group->get_id());
 }
+/**
+ * Allows user to leave a specified groupchat
+ * @brief Profile::leave_groupchat
+ * @param groupchat
+ */
 void Profile::leave_groupchat(GroupChat *groupchat){
     groupchats.erase(groupchat->get_id());
 }
+/**
+ * Removes post from user's list of posts
+ * @brief Profile::delete_post
+ * @param post
+ */
 void Profile::delete_post(Post *post){
     posts.erase(post->get_id());
 }
+/**
+ * Removes comment from users list of comments
+ * @brief Profile::delete_comment
+ * @param comment
+ */
 void Profile::delete_comment(PostComment *comment){
     comments.erase(comment->get_id());
 }
