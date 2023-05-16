@@ -26,6 +26,13 @@ Home::Home(QWidget *parent)
 //    ui->profileIconButton->setIcon(buttonIcon);
 //    ui->profileIconButton->setIconSize(pix1.rect().size());
 //    QFontDatabase::addApplicationFont("../../assets/lost_fish.ttf");
+//    int id = QFontDatabase::addApplicationFont("../../assets/lost_fish.ttf");
+//    QString family = QFontDatabase::applicationFontFamilies(id).at(0);
+//    QFont monospace(family, 28);
+//    ui->aquariumLabel->setFont(monospace);
+    ui->aquariumLabel->setAlignment(Qt::AlignHCenter);
+//    ui->friendFishLabel->setFont(monospace);
+    ui->friendFishLabel->setAlignment(Qt::AlignHCenter);
 
     ui->groupsList->setAlternatingRowColors(false);
 
@@ -102,14 +109,17 @@ void Home::main_menu(Profile* p, Engine *e)
     }
 
     for(Post* pp : p->get_postHistory()){
-        addMyPost(currGroup, pp);
+        addMyPost(pp->get_sourceGroup(), pp);
     }
 
-    for (Group* gg : p->get_groupList()){
-        for(Post* pp : gg->get_postHistory()){
-            addPost(gg, pp);
-        }
+    for(Post* post: e->get_groups()[0]->get_postHistory()){
+        addPost(post->get_sourceGroup(), post);
     }
+//    for (Group* gg : p->get_groupList()){
+//        for(Post* pp : gg->get_postHistory()){
+//            addPost(gg, pp);
+//        }
+//    }
 
 //    for (Group* gg : p->get_groupList()){
 //        for(Profile* pp : gg->get_members()){
@@ -138,12 +148,16 @@ void Home::main_menu(Profile* p, Engine *e)
 void Home::on_homeButton_clicked()
 {
     ui->page->setCurrentIndex(0);
+    ui->reloadButtonHome->show();
+    ui->reloadButtonMessages->hide();
+    ui->reloadButtonComments->hide();
 }
 
 void Home::on_groupButton_clicked()
 {
     ui->page->setCurrentIndex(1);
     load_groupList();
+    load_othergroupList();
     ui->groupsList->setCurrentRow(0);
     on_groupsList_itemClicked(ui->groupsList->currentItem());
 //    for(Group* iter : p->get_groupList()){
@@ -184,11 +198,13 @@ void Home::on_fishButton_clicked()
 
 void Home::on_postButton_clicked()
 {
+    ui->selectGroup->clear();
     for(Group *group: p->get_groupList()){
         ui->selectGroup->addItem(group->get_name());
     }
     ui->page->setCurrentIndex(8);
     ui->p_titleBox->setFocus();
+    ui->selectGroup->setCurrentIndex(0);
 }
 
 /*******************************
@@ -448,12 +464,13 @@ void Home::on_message_returnPressed()
 //    ui->postBox->clear();
 //}
 
+//Adds posts in "All" group in home page
 void Home::addPost(Group* gr, Post* po){
-    new QListWidgetItem(po->get_title() + tr("\n") + po->get_content(), ui->allPosts); //fix to add to group
+    new QListWidgetItem(po->get_title() + tr("\nby: ") + po->get_creator()->get_username() + tr("\n"), ui->allPosts);
 }
 
 void Home::addMyPost(Group* gr, Post* po){
-    new QListWidgetItem(po->get_title() + tr("\n") + po->get_content() + tr("\nfrom: ") + gr->get_name(), ui->myPosts);
+    new QListWidgetItem(po->get_title() + tr("\nin: ") + gr->get_name() + tr("\n"), ui->myPosts);
 }
 
 void Home::on_allPosts_itemDoubleClicked(QListWidgetItem *item)
@@ -461,7 +478,7 @@ void Home::on_allPosts_itemDoubleClicked(QListWidgetItem *item)
     currGroup = e->get_groupList().at(0);
 
     int i = 0;
-    while (ui->groupPosts->item(i) != item) i++;
+    while (ui->allPosts->item(i) != item) i++;
     currPost = currGroup->get_postHistory().at(i);
 
     ui->page->setCurrentIndex(9);
@@ -507,7 +524,8 @@ void Home::on_chat_itemClicked(QListWidgetItem *item)
             break;
         }
     }
-
+    ui->chattingNameLabel->setText("Talking to: " + item->text());
+//    ui->chattingNameLabel->setAlignment(Qt::AlignHCenter);
     load_messages();
 
 //    int i = 0;
@@ -537,7 +555,31 @@ void Home::on_createGroup_clicked()
 
 void Home::on_joinGroup_clicked()
 {
+
     ui->stackedWidget_2->setCurrentWidget(ui->g_joinGroup);
+    QString groupname = ui->othergroupsList->currentItem()->text();
+    for(Group *group: e->get_groupList()){
+        if(group->get_name() == groupname){
+            e->join_group(p, group);
+            currGroup = group;
+            break;
+        }
+    }
+
+    ui->stackedWidget_2->setCurrentWidget(ui->g_posts);
+    ui->groupName->setText(currGroup->get_name());
+    load_groupList();
+    load_othergroupList();
+    load_groupPosts();
+
+
+//    int i = 0;
+//    QString groupname = ui->othergroupsList->
+//    while (ui->othergroupsList->item(i) != item) i++;
+//    currGroup = p->get_groupList().at(i);
+//    ui->groupName->setText(currGroup->get_name());
+//    ui->stackedWidget_2->setCurrentWidget(ui->g_posts);
+//    load_groupPosts();
 }
 
 
@@ -598,6 +640,7 @@ void Home::addAllGroup(Group* g){
 
 void Home::on_groupsList_itemClicked(QListWidgetItem *item)
 {
+    ui->leaveGroupButton->show();
     int i = 0;
     while (ui->groupsList->item(i) != item) i++;
     currGroup = p->get_groupList().at(i);
@@ -635,6 +678,15 @@ void Home::profilePage(Profile* pp){
     ui->friend_bio->setPlainText(pp->get_description());
     ui->friend_location->setText(pp->get_location());
     if(pp->get_age() > 0) ui->friend_age->setText(QString::number(pp->get_age()) + tr(" years old"));
+    if(p->is_friend(currFriend)){
+        ui->unfriendButton->show();
+        ui->AddFriend->hide();
+        //ui->AddFriend->show();
+    }
+    else{
+        ui->unfriendButton->hide();
+        ui->AddFriend->show();
+    }
 }
 
 /****************************
@@ -655,6 +707,7 @@ void Home::on_AddFriend_clicked()
     std::vector<Profile*> participants = {p, currFriend};
     e->create_groupchat(p, p->get_username() + "," + currFriend->get_username(), QDateTime::currentDateTime(), participants);
     addFriend(currFriend);
+    on_friendsButton_clicked();
 }
 
 
@@ -672,6 +725,15 @@ void Home::load_groupList(/*std::vector<Group*> groupList*/){
     }
 }
 
+void Home::load_othergroupList(){
+    ui->othergroupsList->clear();
+    for(Group *group: e->get_groupList()){
+        if(!group->is_member(p)){
+            ui->othergroupsList->addItem(new QListWidgetItem(group->get_name(), ui->othergroupsList));
+        }
+    }
+}
+
 void Home::load_groupMembers(){
     ui->membersList->clear();
     for(Profile *profile: currGroup->get_members()){
@@ -684,7 +746,7 @@ void Home::load_groupMembers(){
 void Home::load_groupPosts(){
     ui->groupPosts->clear();
     for(Post *post: currGroup->get_postHistory()){
-        ui->groupPosts->addItem(new QListWidgetItem(post->get_title() + tr("\n") + post->get_content(), ui->groupPosts));
+        ui->groupPosts->addItem(new QListWidgetItem(post->get_title() + tr("\nby: ") + post->get_creator()->get_username() + tr("\n"), ui->groupPosts));
     }
     //new QListWidgetItem(po->get_title() + tr("\n") + po->get_content(), ui->allPosts); //fix to add to group
 }
@@ -701,6 +763,10 @@ void Home::load_postComments(){
 //    ui->commentLabel->setText(tr("Comments: ") + QString::number(currPost->get_comments().size()));
 
 //    e->create_comment(p, currPost, QDateTime::currentDateTimeUtc(), ui->addComment->text());
+    ui->reloadButtonComments->show();
+    ui->reloadButtonMessages->hide();
+    ui->reloadButtonHome->hide();
+
     cmtModel->clear();
     cmtModel->insertColumn(0);
     int i = 0;
@@ -736,6 +802,10 @@ void Home::load_groupchats(){
 
 void Home::load_messages(){
 
+    ui->reloadButtonMessages->show();
+    ui->reloadButtonComments->hide();
+    ui->reloadButtonHome->hide();
+
     chatModel->clear();
     chatModel->insertColumn(0);
     chatModel->insertColumn(0);
@@ -764,6 +834,17 @@ void Home::load_messages(){
 
 }
 
+void Home::load_friendFish(){
+    ui->friendFishLabel->setText(currFriend->get_username() + "'s Aquarium");
+    ui->friendfishlist->clear();
+
+    for(Fish *fish: currFriend->get_fishList()){
+        (new QListWidgetItem(tr("Name: ") + fish->get_name() + tr("\n") + tr("Species: ") + fish->get_species()
+                                 + tr("\n") + tr("Bio: ") + fish->get_description() + tr("\n"), ui->friendfishlist));//->setCheckState(Qt::Unchecked);
+
+    }
+}
+
 void Home::reload_data(){
     int profileId = p->get_id();
     int groupchatId = currGroupChat->get_id();
@@ -775,6 +856,29 @@ void Home::reload_data(){
     on_messageButton_clicked();
     load_messages();
     //holding current profile and reloading data
+}
+
+void Home::reload_data_comments(){
+    int profileId = p->get_id();
+    int postId = currPost->get_id();
+    e->reload_data();
+    main_menu(e->get_profiles()[profileId], e);
+    p = e->get_profiles()[profileId];
+    currPost = e->get_posts()[postId];
+
+    ui->page->setCurrentIndex(9);
+    ui->viewTitle->setText(currPost->get_title());
+    ui->viewPost->setText(currPost->get_content());
+    ui->commentLabel->setText(tr("Comments: ") + QString::number(currPost->get_comments().size()));
+    load_postComments();
+
+}
+
+void Home::reload_data_home(){
+    int profileId = p->get_id();
+    e->reload_data();
+    main_menu(e->get_profiles()[profileId], e);
+
 }
 
 void Home::on_p_publish_clicked()
@@ -799,10 +903,16 @@ void Home::on_p_publish_clicked()
 //        p->add_post(newPost);
 //        addPost(currGroup, newPost);
         addMyPost(currGroup, newPost);
-
         load_groupPosts();
 
-        ui->page->setCurrentIndex(0);
+        if(newPost->get_sourceGroup()->get_id()==0){
+            addPost(currGroup, newPost);
+            ui->page->setCurrentIndex(0);
+        }
+        else{
+            ui->page->setCurrentIndex(1);
+            on_groupPostButton_clicked();
+        }
 
         ui->p_titleBox->clear();
         ui->postBox->clear();
@@ -864,8 +974,101 @@ void Home::on_commentPublishButton_clicked()
 }
 
 
-void Home::on_reloadButton_clicked()
+void Home::on_reloadButtonMessages_clicked()
 {
         reload_data();
+}
+
+
+void Home::on_friendsList_itemDoubleClicked(QListWidgetItem *item)
+{
+        int i = 0;
+        while (ui->friendsList->item(i) != item) i++;
+        Profile *temp = p->get_friendList().at(i);
+
+        profilePage(temp);
+}
+
+
+void Home::on_friendAquarium_clicked()
+{
+        load_friendFish();
+        ui->page->setCurrentIndex(13);
+}
+
+
+void Home::on_friendfishlist_itemDoubleClicked(QListWidgetItem *item)
+{
+        ui->FishName_2->clear();
+        ui->FishSpecies_2->clear();
+        ui->FishLocation_2->clear();
+        ui->FishBi_2->clear();
+
+        int i = 0;
+        while (ui->friendfishlist->item(i) != item) i++;
+        f = currFriend->get_fishList().at(i);
+
+        ui->page->setCurrentIndex(14);
+        ui->FishName_2->setText(f->get_name());
+        ui->FishSpecies_2->setText(f->get_species());
+        ui->FishLocation_2->setText(f->get_location());
+        ui->FishBi_2->setText(f->get_description());
+
+        QPixmap fishPixMap;
+        fishPixMap.loadFromData(f->get_picture());
+        int w = ui->FishPic->width();
+        int h = ui->FishPic->height();
+        ui->FishPic_2->setPixmap(fishPixMap.scaled(w, h, Qt::KeepAspectRatio));
+}
+
+
+void Home::on_myPosts_itemDoubleClicked(QListWidgetItem *item)
+{
+        //currGroup = e->get_groupList().at(0);
+
+        int i = 0;
+        while (ui->myPosts->item(i) != item) i++;
+        currPost = p->get_postHistory().at(i);
+
+        ui->page->setCurrentIndex(9);
+        ui->viewTitle->setText(currPost->get_title());
+        ui->viewPost->setText(currPost->get_content());
+        ui->commentLabel->setText(tr("Comments: ") + QString::number(currPost->get_comments().size()));
+        load_postComments();
+}
+
+
+void Home::on_othergroupsList_itemClicked(QListWidgetItem *item)
+{
+        ui->leaveGroupButton->hide();
+        for(Group *group: e->get_groupList()){
+            if(group->get_name() == item->text()){
+                currGroup = group;
+            }
+        }
+
+    ui->groupName->setText(currGroup->get_name());
+    ui->stackedWidget_2->setCurrentWidget(ui->g_posts);
+    load_groupPosts();
+}
+
+
+void Home::on_unfriendButton_clicked()
+{
+    e->unfriend(p, currFriend);
+    ui->unfriendButton->hide();
+    ui->AddFriend->show();
+}
+
+
+void Home::on_reloadButtonComments_clicked()
+{
+    reload_data_comments();
+}
+
+
+void Home::on_reloadButtonHome_clicked()
+{
+    reload_data_home();
 }
 

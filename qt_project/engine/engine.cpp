@@ -226,6 +226,8 @@ void Engine::create_profile(QString username, QString password, QString firstNam
         username, password
     };
     db->query_insert(QString("login"), loginFields, loginData);
+
+    join_group(profile, groups[0]);
 }
 
 void Engine::create_post(Profile *actor, Group *group, QDateTime dateCreated, QString title, QString content){
@@ -239,6 +241,7 @@ void Engine::create_post(Profile *actor, Group *group, QDateTime dateCreated, QS
 
     posts[post->get_id()] = post; // inserts post into post map
     actor->add_post(post); // adds post to poster
+    post->set_creator(actor);
     group->add_post(post);  // adds post to group
     db->query_insert(QString("posts"), postFields, postData);  // inserts post into database
 }
@@ -358,6 +361,7 @@ void Engine::join_group(Profile *actor, Group *group){
     std::vector<QVariant> groupMemberData = {group->get_id(), actor->get_id()};
 
     group->add_member(actor); // adds member to group
+    actor->add_group(group);
     db->query_insert(QString("group_members"), groupMemberFields, groupMemberData);
 
 }
@@ -517,9 +521,9 @@ void Engine::delete_my_comment(Profile *actor, PostComment *comment){
 
 void Engine::delete_groupchat(Profile *actor, GroupChat *groupchat){
 
-    if(groupchat->get_owner() != actor){
-        throw "Action not permitted for user";
-    }
+//    if(groupchat->get_owner() != actor){
+//        throw "Action not permitted for user";
+//    }
     groupchats.erase(groupchat->get_id());// remove from groupchats container
 
     for(std::pair<int, Profile*> profile: groupchat->get_participants()){
@@ -632,6 +636,7 @@ void Engine::load_fish_picture(Fish *fish){
 }
 
 void Engine::save_fish_picture(Fish *fish, QByteArray fishPicture){
+    fish->edit_picture(fishPicture);
     db->save_fish_picture(fish->get_id(), fishPicture);
 }
 

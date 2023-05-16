@@ -233,6 +233,9 @@ void Profile::delete_comment(PostComment *comment){
     comments.erase(comment->get_id());
 }
 
+bool Profile::is_friend(Profile *friendProfile){
+    return friends.find(friendProfile->get_id()) != friends.end();
+}
 
 // --- Getter/Setter Methods --- //
 
